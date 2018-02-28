@@ -18,7 +18,7 @@
         android:paddingTop="18dp"
         tools:ignore="UselessParent">
 
-        <cn.hs.com.wovencloud.base.me.fragment.ProgressBarCircularIndeterminate
+        <com.cn.climax.wisdomparking.base.fragment.ProgressBarCircularIndeterminate
             android:id="@+id/progress_view"
             android:layout_width="50dp"
             android:layout_height="50dp"

@@ -1,6 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#26ABCA</color>
+    <color name="colorPrimaryDark">#28A8C7</color>
+    <color name="colorAccent">#26ABCA</color>
+
+    <!-- common -->
+    <color name="color_31c27c">#31c27c</color>
+    <color name="color_0176da">#0176da</color>
+    <color name="color_005eaa">#005eaa</color>
+    <color name="color_red">#ff0000</color>
+    <color name="color_43d28d">#43d28d</color>
+    <color name="color_f5f5f5">#f5f5f5</color>
+    <color name="color_e81d62">#e81d62</color>
+    <color name="color_4bae4f">#4bae4f</color>
+    <color name="color_2095f2">#2095f2</color>
+    <color name="color_512da8">#512da8</color>
+    <color name="color_cd3e3a">#cd3e3a</color>
+    <color name="color_ebebeb">#ebebeb</color>
+    <color name="color_2895ca">#2895ca</color>
+    <color name="color_26ca8a">#26ca8a</color>
+    <color name="color_fd604f">#fd604f</color>
+    <color name="color_eeeeee">#EEEEEE</color>
+    <color name="color_cccccc">#cccccc</color>
+    <color name="divider">#88FFFFFF</color>
+
+    <!-- text color -->
+    <color name="text_darker_color">#333333</color>
+    <color name="text_common_color">#666666</color>
+    <color name="text_lighter_color">#999999</color>
+    <color name="text_common_hint">#AAAAAA</color>
+
+    <!-- button -->
+    <color name="buttonRetryBackground">#30000000</color>
+    <color name="button_retry_background_stroke">#50000000</color>
+
+    <!-- tip net state -->
+    <color name="yellow_warning">#FFFF99</color>
+    <color name="green_warning">#5AC65C</color>
+    <color name="green_light">#90DD96</color>
+    <color name="green_light_unbtn">#C8EAD2</color>
+    <!-- tip net state -->
+
+    <!-- bottom navigation -->
+    <color name="active">#F63D2B</color>
+    <color name="inactive">#747474</color>
+    <!-- bottom navigation -->
+
+    <!-- city picker -->
+    <color name="cp_content_bg">#F3F3F3</color>
+    <color name="cp_divider">#E5E5E5</color>
+    <color name="cp_common_bg">#FAFAFA</color>
+    <color name="cp_shadow">#AAEBEBEB</color>
+    <color name="cp_gray">#8c8c8c</color>
+    <color name="cp_gray_deep">#5c5c5c</color>
+    <color name="cp_alpha_gray">#CC646464</color>
+    <color name="cp_theme_gray">#646464</color>
+    <color name="color_F3F1F2">#F3F1F2</color>
+    <!--  city picker -->
+
+    <!-- ＲＥＧＩＳＴＥＲ -->
+    <color name="register_bg_color">#F5F5F5</color>
+
+    <!--<color name="purple">#69415D</color>-->
+    <color name="purple_start_color">#6178f2</color>
+    <color name="purple_end_color">#925eff</color>
+    <color name="color_5DC8FF">#5DC8FF</color>
+
+    <color name="color_CCD9DF">#CCD9DF</color>
+    <color name="color_FCFFFF">#FCFFFF</color>
+
+    <color name="green_1">#33FFFF</color>
+    <color name="green_2">#33FF00</color>
+    <color name="green_3">#33CC00</color>
+    <color name="green_4">#339900</color>
+    <color name="green_5">#336600</color>
+
+    <color name="yellow_1">#FFFFCC</color>
+    <color name="yellow_2">#FFFF99</color>
+    <color name="yellow_3">#FFFF66</color>
+    <color name="yellow_4">#FFFF33</color>
+    <color name="yellow_5">#FFFF00</color>
+
+    <color name="red_1">#FFCCFF</color>
+    <color name="red_2">#FFCC99</color>
+    <color name="red_3">#FF66FF</color>
+    <color name="red_4">#FF3399</color>
+    <color name="red_5">#FF3300</color>
+
+    <color name="blue_1">#33CCFF</color>
+    <color name="blue_2">#3399FF</color>
+    <color name="blue_3">#3366FF</color>
+    <color name="blue_4">#3366CC</color>
+    <color name="blue_5">#333366</color>
+
+    <color name="blue_2A3F6C">#2A3F6C</color>
+    <color name="blue_4D6991">#4D6991</color>
+    <color name="white_CEC8BC">#CEC8BC</color>
+
+    <!-- 日历定义的一些颜色 -->
+    <color name="normal_day">#ff999999</color>
+    <color name="selected_day_background">#C2185B</color>
+    <color name="selected_day_text">#FFFFFF</color>
+    <color name="invalid_day_background">#c0c0c0</color>
+
+    <!-- 基础色值 -->
+    <!-- 全局布局页面背景色    -->
+    <color name="base_gray">#f4f4f4</color>
+    <color name="base_orange">#f89326</color>
+    <color name="text_common_black_dark">#333333</color>
+    <color name="color_E4E4E4">#E4E4E4</color>
+
 </resources>

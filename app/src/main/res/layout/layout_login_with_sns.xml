@@ -1,6 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="18dp"
+    android:orientation="vertical"
+    android:paddingLeft="18dp"
+    android:paddingRight="18dp">
+
+    <!-- 用户名 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/icon_login_user"
+            android:contentDescription="@string/app_name"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/etAccount"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="@string/string_login_hint_phone"
+            android:imeOptions="actionNext"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:textColor="@color/text_common_color"
+            android:textColorHint="@color/text_common_hint"
+            android:textCursorDrawable="@null"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/ivAccountClear"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:contentDescription="@string/app_name"
+            android:padding="3dp"
+            android:src="@drawable/icon_account_clear"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_dimen_1px"
+        android:background="@color/color_CCD9DF" />
+
+    <!-- 密码 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/icon_login_password"
+            android:contentDescription="@string/app_name"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/etSnsCode"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="@string/string_login_hint_l_verify_code"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:maxLines="1"
+            android:textColor="@color/text_common_color"
+            android:textColorHint="@color/text_common_hint"
+            android:textCursorDrawable="@null"
+            android:textSize="14sp" />
+
+        <com.cn.climax.wisdomparking.widget.counttime.AwesomeCountDownTimer
+            android:id="@+id/btnVerify"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            app:bootstrapBrand="primary"
+            app:bootstrapSize="sm"
+            app:bootstrapText="@string/string_register_verifycode"
+            app:roundedCorners="false"
+            app:showOutline="false" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_dimen_1px"
+        android:background="@color/color_CCD9DF" />
 
 </LinearLayout>

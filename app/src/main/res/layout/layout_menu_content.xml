@@ -12,7 +12,7 @@
         android:layout_margin="15dp"
         android:orientation="horizontal">
 
-        <com.pinger.sample.CircleImageView
+        <com.cn.climax.wisdomparking.widget.CircleImageView
             android:id="@+id/avatar"
             android:layout_width="64dp"
             android:layout_height="64dp"

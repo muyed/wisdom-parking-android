@@ -1,9 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.cn.climax.wisdomparking.ui.account.RegisterActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/base_blue_nav_toolbar_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:background="@color/white"
+        android:fadeScrollbars="true"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/allLoginArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:orientation="vertical"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp">
+
+                <FrameLayout
+                    android:id="@+id/img_login_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginBottom="20dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/img_logo" />
+
+                </FrameLayout>
+
+                <!-- 用户名 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@drawable/icon_login_user"
+                        android:contentDescription="@string/app_name"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/etAccount"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/string_register_hint_phone_number"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:textColor="@color/text_common_color"
+                        android:textColorHint="@color/text_common_hint"
+                        android:textCursorDrawable="@null"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/ivAccountClear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:contentDescription="@string/app_name"
+                        android:padding="3dp"
+                        android:src="@drawable/icon_account_clear"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_dimen_1px"
+                    android:background="@color/color_CCD9DF" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/allRegisterNoteArea"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:layout_below="@+id/allLoginArea"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp">
+
+                <com.cn.climax.wisdomparking.widget.SmoothCheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="8dp"
+                    app:color_checked="@color/colorAccent" />
+
+                <TextView
+                    android:id="@+id/atvRegisterNote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/string_platform_agreement"
+                    android:textSize="13sp"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnRegisterNext"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_below="@+id/allRegisterNoteArea"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="48dp"
+                android:background="@drawable/activity_button_blue_border"
+                android:gravity="center"
+                android:text="@string/string_register_next_btn"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
