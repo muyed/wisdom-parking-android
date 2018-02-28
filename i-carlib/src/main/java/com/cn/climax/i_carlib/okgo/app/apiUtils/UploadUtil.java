@@ -1,4 +1,4 @@
-package cn.hs.com.wovencloud.data.apiUtils;
+package com.cn.climax.i_carlib.okgo.app.apiUtils;
 
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
@@ -11,11 +11,10 @@ import android.os.Message;
 import android.util.Log;
 import android.view.Window;
 
-import com.app.framework.data.callback.StringDialogCallback;
-import com.app.framework.loger.Loger;
-import com.app.framework.utils.DipToPx;
-import com.app.framework.utils.SharedUtil;
-import com.app.framework.utils.toast.ToastUtils;
+import com.cn.climax.i_carlib.okgo.data.callback.StringDialogCallback;
+import com.cn.climax.i_carlib.share.util.BitmapUtil;
+import com.cn.climax.i_carlib.util.ContextHolderUtil;
+import com.cn.climax.i_carlib.util.SharedUtil;
 import com.lzy.okgo.OkGo;
 
 import java.io.BufferedInputStream;
@@ -32,10 +31,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.hs.com.wovencloud.Core;
-import cn.hs.com.wovencloud.base.global.Constant;
-import cn.hs.com.wovencloud.util.BitmapUtil;
-import cn.hs.com.wovencloud.util.ContextHolderUtil;
 import okhttp3.Call;
 import okhttp3.Response;
 
@@ -74,34 +69,6 @@ public class UploadUtil {
 
     private OnUploadSucceedListen listen;
 
-    private String getApiUrl() {
-        String id = SharedUtil.getInstance(ContextHolderUtil.getContext()).get(ApiParamsKey.PASSORT_ID, ApiParamsKey.PASSORT_ID_DEFAULT);
-        int passort_id = Integer.parseInt(id);
-        String url;
-        if (passort_id <= 1000) {
-            url = "https://dp.jzyb2b.com/z_images/upload";
-        } else if (passort_id >= 5000) {
-            url = "https://app.jzyb2b.com/z_images/upload";
-        } else {
-            url = "https://app.jzyb2b.com/z_images/upload";
-        }
-        return url;
-    }
-
-    private String getApiPreUrl() {
-        String id = SharedUtil.getInstance(ContextHolderUtil.getContext()).get(ApiParamsKey.PASSORT_ID, ApiParamsKey.PASSORT_ID_DEFAULT);
-        int passort_id = Integer.parseInt(id);
-        String url;
-        if (passort_id <= 1000) {
-            url = "http://www.jzyb2b.com/z_images/";
-        } else if (passort_id >= 5000) {
-            url = "http://www.jzyb2b.com/z_images/";
-        } else {
-            url = "http://www.jzyb2b.com/z_images/";
-        }
-        return url;
-    }
-
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -118,63 +85,63 @@ public class UploadUtil {
     };
 
     private void uploadOption(final List<File> list) {
-        OkGo.post(getApiUrl()).addFileParams("userfile", list).execute(new StringDialogCallback(Core.getInstances().getCurrentActivity()) {
-            @Override
-            public void onSuccess(String s, Call call, Response response) {
-                ByteArrayInputStream tInputStringStream = null;
-                try {
-                    tInputStringStream = new ByteArrayInputStream(s.getBytes());
-                    BufferedReader tBufferedReader = new BufferedReader(new InputStreamReader(tInputStringStream));
-                    String sTempOneLine;
-                    List listMd5 = new ArrayList<>();
-                    while ((sTempOneLine = tBufferedReader.readLine()) != null) {
-                        if (sTempOneLine.contains("<h1>")) {
-                            int start = sTempOneLine.lastIndexOf(" ");
-                            String str;
-                            str = getApiPreUrl() + sTempOneLine.substring(start + 1, 32 + start + 1);
-                            listMd5.add(str);
-                        }
-                    }
-                    deleteFiles(list);
-
-                    if (isShowDialog) {
-                        if (dialog != null) {
-                            dialog.dismiss();
-                        }
-                    }
-                    if (listen != null)
-                        listen.succeed(listMd5);
-
-                    if (isShowDialog)
-                        dialog = null;
-                    if (listen != null)
-                        listen = null;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    try {
-                        assert tInputStringStream != null;
-                        tInputStringStream.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onError(Call call, Response response, Exception e) {
-                super.onError(call, response, e);
-                deleteFiles(list);
-                if (isShowDialog) {
-                    if (dialog != null) {
-                        dialog.dismiss();
-                        dialog = null;
-                    }
-                }
-                listen = null;
-                ToastUtils.show("文件上传失败");
-            }
-        });
+//        OkGo.post(getApiUrl()).addFileParams("userfile", list).execute(new StringDialogCallback(Core.getInstances().getCurrentActivity()) {
+//            @Override
+//            public void onSuccess(String s, Call call, Response response) {
+//                ByteArrayInputStream tInputStringStream = null;
+//                try {
+//                    tInputStringStream = new ByteArrayInputStream(s.getBytes());
+//                    BufferedReader tBufferedReader = new BufferedReader(new InputStreamReader(tInputStringStream));
+//                    String sTempOneLine;
+//                    List listMd5 = new ArrayList<>();
+//                    while ((sTempOneLine = tBufferedReader.readLine()) != null) {
+//                        if (sTempOneLine.contains("<h1>")) {
+//                            int start = sTempOneLine.lastIndexOf(" ");
+//                            String str;
+//                            str = getApiPreUrl() + sTempOneLine.substring(start + 1, 32 + start + 1);
+//                            listMd5.add(str);
+//                        }
+//                    }
+//                    deleteFiles(list);
+//
+//                    if (isShowDialog) {
+//                        if (dialog != null) {
+//                            dialog.dismiss();
+//                        }
+//                    }
+//                    if (listen != null)
+//                        listen.succeed(listMd5);
+//
+//                    if (isShowDialog)
+//                        dialog = null;
+//                    if (listen != null)
+//                        listen = null;
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                } finally {
+//                    try {
+//                        assert tInputStringStream != null;
+//                        tInputStringStream.close();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onError(Call call, Response response, Exception e) {
+//                super.onError(call, response, e);
+//                deleteFiles(list);
+//                if (isShowDialog) {
+//                    if (dialog != null) {
+//                        dialog.dismiss();
+//                        dialog = null;
+//                    }
+//                }
+//                listen = null;
+//                ToastUtils.show("文件上传失败");
+//            }
+//        });
     }
 
     public boolean isShowDialog() {
@@ -246,40 +213,40 @@ public class UploadUtil {
     }
 
     public void UploadFiles(final OnUploadSucceedListen onUploadSucceedListen, final List<File> listPath) {
-        listen = onUploadSucceedListen;
-        if (listPath.size() == 0) {
-            listen.succeed(new ArrayList<String>());
-            return;
-        }
-        if (isShowDialog) {
-            dialog = new ProgressDialog(Core.getInstance().getCurrentActivity());
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setCanceledOnTouchOutside(false);
-            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("请求网络中...");
-            dialog.show();
-        }
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                List<File> list = new ArrayList<>();
-                for (int i = 0; i < listPath.size(); i++) {
-                    Loger.e("debug===> " + listPath.get(i));
-//                    if (listPath.get(i).getPath().contains(getApiPreUrl())) {
-//                        fromServeUrl = listPath.get(i).getPath();
-//                        urlList.add(fromServeUrl);
-//                    } else {
-                        String newUrl = compressScale(listPath.get(i));
-                        list.add(new File(newUrl));
-//                    }
-                }
-                Message ms = new Message();
-                ms.obj = list;
-                ms.what = 0;
-                mHandler.sendMessage(ms);
-            }
-        }).start();
+//        listen = onUploadSucceedListen;
+//        if (listPath.size() == 0) {
+//            listen.succeed(new ArrayList<String>());
+//            return;
+//        }
+//        if (isShowDialog) {
+//            dialog = new ProgressDialog(Core.getInstance().getCurrentActivity());
+//            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//            dialog.setCanceledOnTouchOutside(false);
+//            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//            dialog.setMessage("请求网络中...");
+//            dialog.show();
+//        }
+//
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                List<File> list = new ArrayList<>();
+//                for (int i = 0; i < listPath.size(); i++) {
+//                    Loger.e("debug===> " + listPath.get(i));
+////                    if (listPath.get(i).getPath().contains(getApiPreUrl())) {
+////                        fromServeUrl = listPath.get(i).getPath();
+////                        urlList.add(fromServeUrl);
+////                    } else {
+//                        String newUrl = compressScale(listPath.get(i));
+//                        list.add(new File(newUrl));
+////                    }
+//                }
+//                Message ms = new Message();
+//                ms.obj = list;
+//                ms.what = 0;
+//                mHandler.sendMessage(ms);
+//            }
+//        }).start();
     }
 
     public Bitmap rotaingImageView(int angle, Bitmap bitmap) {
@@ -296,36 +263,36 @@ public class UploadUtil {
     /**
      * 图片按比例大小压缩方法
      */
-    public String compressScale(File file) {
-        Bitmap image;
-        if (file.exists()) {
-            Log.i("compressScale", "compressScale: 存在");
-            image = getBitmapFromFile(file, DipToPx.dip2px(300), DipToPx.dip2px(300));
-            int orientation = readPictureDegree(file.getPath());
-            if (Math.abs(orientation) > 0) {
-                image = rotaingImageView(orientation, image);//旋转图片
-            }
-        } else {
-            image = BitmapUtil.getBitmap(file.getPath());
-        }
-
-        //临时存储url地址
-        String newUrl = DCIM + "/" + System.currentTimeMillis() + ".png";
-
-        FileOutputStream out;
-        try {
-            out = new FileOutputStream(newUrl);
-            if (out != null) {
-                image.compress(Bitmap.CompressFormat.PNG, 90, out);
-                out.flush();
-                out.close();
-            }
-            return newUrl;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return newUrl;
-    }
+//    public String compressScale(File file) {
+//        Bitmap image;
+//        if (file.exists()) {
+//            Log.i("compressScale", "compressScale: 存在");
+//            image = getBitmapFromFile(file, DipToPx.dip2px(300), DipToPx.dip2px(300));
+//            int orientation = readPictureDegree(file.getPath());
+//            if (Math.abs(orientation) > 0) {
+//                image = rotaingImageView(orientation, image);//旋转图片
+//            }
+//        } else {
+//            image = BitmapUtil.getBitmap(file.getPath());
+//        }
+//
+//        //临时存储url地址
+//        String newUrl = DCIM + "/" + System.currentTimeMillis() + ".png";
+//
+//        FileOutputStream out;
+//        try {
+//            out = new FileOutputStream(newUrl);
+//            if (out != null) {
+//                image.compress(Bitmap.CompressFormat.PNG, 90, out);
+//                out.flush();
+//                out.close();
+//            }
+//            return newUrl;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return newUrl;
+//    }
 
     private Bitmap generateBitmap(String url) {
         return BitmapUtil.decodeUrl(url);

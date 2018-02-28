@@ -1,4 +1,4 @@
-package com.app.framework.utils;
+package com.cn.climax.i_carlib.util;
 
 import android.text.TextUtils;
 

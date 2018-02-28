@@ -1,11 +1,12 @@
-package cn.hs.com.wovencloud.data.apiUtils;
+package com.cn.climax.i_carlib.okgo.app.apiUtils;
 
-import com.app.framework.utils.SharedUtil;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.util.ContextHolderUtil;
+import com.cn.climax.i_carlib.util.SharedUtil;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.cookie.store.PersistentCookieStore;
-import com.lzy.okgo.https.HttpsUtils;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.HttpParams;
 
@@ -22,12 +23,6 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManagerFactory;
-
-import cn.hs.com.wovencloud.Core;
-import cn.hs.com.wovencloud.R;
-import cn.hs.com.wovencloud.util.ContextHolderUtil;
-import cn.hs.com.wovencloud.util.TT;
-import okhttp3.OkHttpClient;
 
 /**
  * 接口中转处理类
@@ -47,53 +42,43 @@ public class ApiParams {
         return instance;
     }
 
-    private String getSSLPwd() {
-        String id = SharedUtil.getInstance(Core.getInstances().getCurrentActivity()).get(ApiParamsKey.PASSORT_ID, ApiParamsKey.PASSORT_ID_DEFAULT);
-        int passort_id = Integer.parseInt(id);
-        String keyPassword;
-        if (passort_id <= 1000) {
-            keyPassword = "q1w2e3r4";
-        } else if (passort_id >= 5000) {
-            keyPassword = "Xhjzy5008app";
-        } else {
-            keyPassword = "Xhjzy5008app";
-        }
-        return keyPassword;
-    }
+//    private String getSSLPwd() {
+//        String id = SharedUtil.getInstance(Core.getInstances().getCurrentActivity()).get(ApiParamsKey.PASSORT_ID, ApiParamsKey.PASSORT_ID_DEFAULT);
+//        int passort_id = Integer.parseInt(id);
+//        String keyPassword;
+//        if (passort_id <= 1000) {
+//            keyPassword = "q1w2e3r4";
+//        } else if (passort_id >= 5000) {
+//            keyPassword = "Xhjzy5008app";
+//        } else {
+//            keyPassword = "Xhjzy5008app";
+//        }
+//        return keyPassword;
+//    }
 
     private int getSSLCer() {
-        String id = SharedUtil.getInstance(ContextHolderUtil.getContext()).get(ApiParamsKey.PASSORT_ID, ApiParamsKey.PASSORT_ID_DEFAULT);
-        int passort_id = Integer.parseInt(id);
-        int certify;
-        if (passort_id <= 1000) {
-            certify = R.raw.jzy20171212;
-        } else if (passort_id >= 5000) {
-            certify = R.raw.jzy_and20170109;
-        } else {
-            certify = R.raw.jzy_and20170109;
-        }
+        int certify = R.raw.keystore;
         return certify;
     }
 
-    private String getBKSCer() {
-        String id = SharedUtil.getInstance(ContextHolderUtil.getContext()).get(ApiParamsKey.PASSORT_ID, ApiParamsKey.PASSORT_ID_DEFAULT);
-        int passort_id = Integer.parseInt(id);
-        String certify;
-        if (passort_id <= 1000) {
-            certify = "client1.bks";
-        } else if (passort_id >= 5000) {
-            certify = "jzyadmin.bks";
-        } else {
-            certify = "jzyadmin.bks";
-        }
-        return certify;
-    }
+//    private String getBKSCer() {
+//        String id = SharedUtil.getInstance(ContextHolderUtil.getContext()).get(ApiParamsKey.PASSORT_ID, ApiParamsKey.PASSORT_ID_DEFAULT);
+//        int passort_id = Integer.parseInt(id);
+//        String certify;
+//        if (passort_id <= 1000) {
+//            certify = "client1.bks";
+//        } else if (passort_id >= 5000) {
+//            certify = "jzyadmin.bks";
+//        } else {
+//            certify = "jzyadmin.bks";
+//        }
+//        return certify;
+//    }
 
     /**
      * 设置服务器请求接口的公共字段
      */
     public void setOkGoHeader() {
-
         //---------这里给出的是示例代码,告诉你可以这么传,实际使用的时候,根据需要传,不需要就不传-------------//
         HttpHeaders headers = new HttpHeaders();
         //headers.put("commonHeaderKey1", "commonHeaderValue1");    //header不支持中文，不允许有特殊字符
@@ -106,8 +91,8 @@ public class ApiParams {
         //以下设置的所有参数是全局参数,同样的参数可以在请求的时候再设置一遍,那么对于该请求来讲,请求中的参数会覆盖全局参数
         //好处是全局参数统一,特定请求可以特别定制参数
         try {
-            BufferedInputStream caInput = new BufferedInputStream(Core.getInstances().getContext().getResources().openRawResource(getSSLCer()));
-            InputStream caBKSInput = Core.getInstances().getApplicationContext().getAssets().open(getBKSCer());
+            BufferedInputStream caInput = new BufferedInputStream(ContextHolderUtil.getContext().getResources().openRawResource(getSSLCer()));
+//            InputStream caBKSInput = Core.getInstances().getApplicationContext().getAssets().open(getBKSCer());
             //以下都不是必须的，根据需要自行选择,一般来说只需要 debug,缓存相关,cookie相关的 就可以了
             OkGo.getInstance()
                     // 打开该调试开关,打印级别INFO,并不是异常,是为了显眼,不需要就不要加入该行
@@ -137,8 +122,8 @@ public class ApiParams {
                     //可以设置https的证书,以下几种方案根据需要自己设置
 //                    .setCertificates()                                  //方法一：信任所有证书,不安全有风险
 //                    .setCertificates(new SafeTrustManager())            //方法二：自定义信任规则，校验服务端证书
-//                    .setCertificates(caInput)      //方法三：使用预埋证书，校验服务端证书（自签名证书）
-                    .setCertificates(caBKSInput, getSSLPwd(), caInput)// //方法四：使用bks证书和密码管理客户端证书（双向认证），使用预埋证书，校验服务端证书（自签名证书）
+                    .setCertificates(caInput)      //方法三：使用预埋证书，校验服务端证书（自签名证书）
+//                    .setCertificates(caBKSInput, getSSLPwd(), caInput)// //方法四：使用bks证书和密码管理客户端证书（双向认证），使用预埋证书，校验服务端证书（自签名证书）
 
                     //配置https的域名匹配规则，详细看demo的初始化介绍，不需要就不要加入，使用不当会导致https握手失败
 //                    .setHostnameVerifier(new SafeHostnameVerifier())

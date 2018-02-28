@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap.utils;
+package com.cn.climax.i_carlib.uiframework.bootstrap.utils;
 
 import android.graphics.drawable.Drawable;
 import android.os.Build;

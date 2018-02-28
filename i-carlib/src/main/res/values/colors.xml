@@ -5,9 +5,9 @@
     <!--<color name="colorPrimary">#4CAF50</color>-->
     <!--<color name="colorPrimaryDark">#163b18</color>-->
     <!--<color name="colorAccent">#388E3C</color>-->
-    <color name="colorPrimary">#304F7D</color>
-    <color name="colorPrimaryDark">#005eaa</color>
-    <color name="colorAccent">#0176da</color>
+    <color name="colorPrimary">#26ABCA</color>
+    <color name="colorPrimaryDark">#26ABCA</color>
+    <color name="colorAccent">#26ABCA</color>
 
     <color name="window_background_light">#ffeeeeee</color>
     <color name="window_background_dark">#ff303030</color>
@@ -48,7 +48,7 @@
     <color name="bootstrap_gray_lighter">#eceeef</color>
     <color name="bootstrap_gray_lightest">#f7f7f9</color>
     <!-- Brand -->
-    <color name="bootstrap_brand_primary">#304F7D</color>
+    <color name="bootstrap_brand_primary">#26ABCA</color>
     <color name="bootstrap_brand_success">#5cb85c</color>
     <color name="bootstrap_brand_info">#5bc0de</color>
     <color name="bootstrap_brand_warning">#f0ad4e</color>

@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap;
+package com.cn.climax.i_carlib.uiframework.bootstrap;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -17,13 +17,13 @@ import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.text.TextPaint;
 
-import com.cn.smart.i_carlib.R;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.attributes.BootstrapBrand;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.attributes.ViewGroupPosition;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapBrand;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults.ExpandDirection;
-import com.cn.smart.i_carlib.util.ColorUtils;
-import com.cn.smart.i_carlib.util.DimenUtils;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.attributes.BootstrapBrand;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.attributes.ViewGroupPosition;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapBrand;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults.ExpandDirection;
+import com.cn.climax.i_carlib.util.ColorUtils;
+import com.cn.climax.i_carlib.util.DimenUtils;
 
 /**
  * Provides a factory for generating Drawables which are used as the backgrounds for Bootstrap Views.

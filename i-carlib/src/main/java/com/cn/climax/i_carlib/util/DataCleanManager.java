@@ -1,4 +1,4 @@
-package com.app.framework.utils;
+package com.cn.climax.i_carlib.util;
 
 import android.content.Context;
 import android.os.Environment;
@@ -8,11 +8,6 @@ import java.math.BigDecimal;
 
 /**
  *获取缓存大小   清理所有缓存
- *
- * @author 熊祥
- * @date 2017/6/5
- * @email 276186694@qq.com
- *
  */
 
 

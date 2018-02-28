@@ -1,8 +1,8 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap.api.view;
+package com.cn.climax.i_carlib.uiframework.bootstrap.api.view;
 
 import android.support.annotation.NonNull;
 
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.attributes.BootstrapHeading;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.attributes.BootstrapHeading;
 
 /**
  * Views which implement this interface change their text size and padding according to the

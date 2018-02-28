@@ -1,12 +1,12 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap;
+package com.cn.climax.i_carlib.uiframework.bootstrap;
 
 import android.content.Context;
 import android.graphics.Typeface;
 
-import com.cn.smart.i_carlib.uiframework.bootstrap.font.FontAwesome;
-import com.cn.smart.i_carlib.uiframework.bootstrap.font.IconSet;
-import com.cn.smart.i_carlib.uiframework.bootstrap.font.MaterialIcons;
-import com.cn.smart.i_carlib.uiframework.bootstrap.font.Typicon;
+import com.cn.climax.i_carlib.uiframework.bootstrap.font.FontAwesome;
+import com.cn.climax.i_carlib.uiframework.bootstrap.font.IconSet;
+import com.cn.climax.i_carlib.uiframework.bootstrap.font.MaterialIcons;
+import com.cn.climax.i_carlib.uiframework.bootstrap.font.Typicon;
 
 import java.util.Collection;
 import java.util.HashMap;

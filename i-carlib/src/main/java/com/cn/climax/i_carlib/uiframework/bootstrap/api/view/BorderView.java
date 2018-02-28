@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap.api.view;
+package com.cn.climax.i_carlib.uiframework.bootstrap.api.view;
 
 /**
  * Views which implement this interface allow the border to be dynamically displayed

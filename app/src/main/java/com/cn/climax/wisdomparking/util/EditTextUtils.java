@@ -1,4 +1,4 @@
-package cn.hs.com.wovencloud.util;
+package com.cn.climax.wisdomparking.util;
 
 import android.text.InputFilter;
 import android.text.InputType;
@@ -40,8 +40,6 @@ public class EditTextUtils {
 
     /**
      * 禁止EditText输入空格
-     *
-     * @param editText
      */
     public static void setEditTextInhibitInputSpace(EditText editText) {
         InputFilter filter = new InputFilter() {
@@ -58,8 +56,6 @@ public class EditTextUtils {
 
     /**
      * 禁止EditText输入特殊字符
-     *
-     * @param editText
      */
     public static void setEditTextInhibitInputSpeChat(EditText editText) {
 

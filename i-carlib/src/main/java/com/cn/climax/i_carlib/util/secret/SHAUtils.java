@@ -1,4 +1,4 @@
-package com.cn.climax.i_carlib.util;
+package com.cn.climax.i_carlib.util.secret;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap;
+package com.cn.climax.i_carlib.uiframework.bootstrap;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,15 +7,15 @@ import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.cn.smart.i_carlib.R;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.attributes.BootstrapBrand;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapBrand;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapSize;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.BootstrapBadgeView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.BootstrapBrandView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.BootstrapSizeView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.utils.ViewUtils;
-import com.cn.smart.i_carlib.util.DimenUtils;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.attributes.BootstrapBrand;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapBrand;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapSize;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.BootstrapBadgeView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.BootstrapBrandView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.BootstrapSizeView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.utils.ViewUtils;
+import com.cn.climax.i_carlib.util.DimenUtils;
 
 /**
  * See

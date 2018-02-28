@@ -1,4 +1,4 @@
-package com.cn.climax.i_carlib.util;
+package com.cn.climax.i_carlib.util.phone;
 
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -15,7 +15,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Field;
 import java.util.UUID;
 
 /**

@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.share.core;
+package com.cn.climax.i_carlib.share.core;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -11,7 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.cn.smart.i_carlib.uiframework.sweetalert.SweetAlertDialog;
+import com.cn.climax.i_carlib.uiframework.sweetalert.SweetAlertDialog;
 
 import java.util.ArrayList;
 import java.util.List;

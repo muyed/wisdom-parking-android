@@ -1,4 +1,4 @@
-package cn.hs.com.wovencloud.base.me.activity;
+package com.cn.climax.wisdomparking.base.activity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,15 +14,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 
-import com.app.framework.app.AppActivityManager;
-import com.app.framework.utils.ResourceUtil;
-import com.app.framework.utils.SettingPrefUtil;
-import com.app.framework.utils.StatusBarUtil;
-import com.app.framework.utils.ThemeUtil;
-import com.app.framework.widget.edit.EmojiInputFilter;
-
-import cn.hs.com.wovencloud.R;
-import cn.jpush.android.api.JPushInterface;
+import com.cn.climax.i_carlib.okgo.app.AppActivityManager;
+import com.cn.climax.i_carlib.util.SettingPrefUtil;
+import com.cn.climax.i_carlib.util.StatusBarUtil;
+import com.cn.climax.i_carlib.util.ThemeUtil;
+import com.cn.climax.i_carlib.util.res.ResourceUtil;
+import com.cn.climax.wisdomparking.R;
 
 /**
  * author：leo on 2016/11/21 17:09
@@ -47,12 +44,16 @@ public abstract class RootBaseActivity extends AppCompatActivity {
     /**
      * 是否应用半透明状态栏
      */
-    protected abstract boolean isApplyStatusBarTranslucency();
+    protected boolean isApplyStatusBarTranslucency(){
+        return false;
+    }
 
     /**
      * 是否应用颜色状态栏
      */
-    protected abstract boolean isApplyStatusBarColor();
+    protected boolean isApplyStatusBarColor(){
+        return false;
+    }
 
     /**
      * 初始化UI和监听器
@@ -65,8 +66,8 @@ public abstract class RootBaseActivity extends AppCompatActivity {
         setBeforeOnCreateView();
         super.onCreate(savedInstanceState);
         setContentView(initContentView());
-        if (isSetFilters())
-            getAllViews(this);
+//        if (isSetFilters())
+//            getAllViews(this);
         setTranslucentStatus(isApplyStatusBarTranslucency());
         setStatusBarColor(isApplyStatusBarColor());
         mContext = this;
@@ -78,34 +79,32 @@ public abstract class RootBaseActivity extends AppCompatActivity {
     }
 
     //-----------------获取 activity中的所有view  禁止绝大部分EditText输入Emoji表情
-    private void getAllViews(Activity act) {
-        getAllChildViews(act.getWindow().getDecorView());
-    }
+//    private void getAllViews(Activity act) {
+//        getAllChildViews(act.getWindow().getDecorView());
+//    }
 
-    private void getAllChildViews(View view) {
-        EmojiInputFilter emojiFilter = new EmojiInputFilter();
-        InputFilter[] emojiFilters = {emojiFilter};
-        if (view instanceof ViewGroup) {
-            ViewGroup vp = (ViewGroup) view;
-            for (int i = 0; i < vp.getChildCount(); i++) {
-                View viewchild = vp.getChildAt(i);
-                if (viewchild instanceof EditText) {
-                    ((EditText) viewchild).setFilters(emojiFilters);
-                }
-                //再次 调用本身（递归）  
-                getAllChildViews(viewchild);
-            }
-        }
-    }
+//    private void getAllChildViews(View view) {
+//        EmojiInputFilter emojiFilter = new EmojiInputFilter();
+//        InputFilter[] emojiFilters = {emojiFilter};
+//        if (view instanceof ViewGroup) {
+//            ViewGroup vp = (ViewGroup) view;
+//            for (int i = 0; i < vp.getChildCount(); i++) {
+//                View viewchild = vp.getChildAt(i);
+//                if (viewchild instanceof EditText) {
+//                    ((EditText) viewchild).setFilters(emojiFilters);
+//                }
+//                //再次 调用本身（递归）
+//                getAllChildViews(viewchild);
+//            }
+//        }
+//    }
 
     protected void onResume() {
         super.onResume();
-        JPushInterface.onResume(this);
     }
 
     protected void onPause() {
         super.onPause();
-        JPushInterface.onPause(this);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.pinger.slide;
+package com.cn.climax.wisdomparking.widget.slide;
 
 import android.content.Context;
 import android.graphics.Color;

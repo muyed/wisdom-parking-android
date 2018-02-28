@@ -1,13 +1,8 @@
-package cn.hs.com.wovencloud.data.apiUtils;
+package com.cn.climax.i_carlib.okgo.app.apiUtils;
 
 
-import android.app.ActivityManager;
-import android.util.Log;
-
-import com.app.framework.utils.SharedUtil;
-
-import cn.hs.com.wovencloud.Core;
-import cn.hs.com.wovencloud.util.ContextHolderUtil;
+import com.cn.climax.i_carlib.util.ContextHolderUtil;
+import com.cn.climax.i_carlib.util.SharedUtil;
 
 /**
  * api url 接口名
@@ -30,17 +25,7 @@ public class ApiHost extends ApiHostBase {
     }
 
     private String getApiUrl() {
-        String id = SharedUtil.getInstance(ContextHolderUtil.getContext()).get(ApiParamsKey.PASSORT_ID, ApiParamsKey.PASSORT_ID_DEFAULT);
-        int passort_id = Integer.parseInt(id);
-        String url;
-        if (passort_id <= 1000) {
-            url = "https://dp.jzyb2b.com/";
-        } else if (passort_id >= 5000) {
-            url = "https://app.jzyb2b.com/";
-        } else {
-            url = "https://app.jzyb2b.com/";
-        }
-        return url;
+        return "https://101.132.75.118:8443";
     }
 
     /**
@@ -48,17 +33,50 @@ public class ApiHost extends ApiHostBase {
      */
     @Override
     protected String initApiUrlHost() {
-        return getApiUrl() + "Trade";
+        return getApiUrl();
     }
 
     /**
      * 测试地址
-     * "https://dp.jzyb2b.com/Trade";
      */
     @Override
     protected String initApiUrlHost_test() {
-        return "https://dp.jzyb2b.com/Trade";
+        return getApiUrl();
     }
+
+    //登录
+    public String login() {
+        return "/api/login";
+    }
+
+    //注册获取验证码
+    public String getVerifyCodeR(){
+        return "/api/reg/sms/";
+    }
+
+    //登录获取验证码
+    public String getVerifyCodeL(){
+        return "/api/login/sms/";
+    }
+
+    //注册
+    public String register(){
+        return "/api/reg";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     //版本更新信息获取
@@ -84,11 +102,6 @@ public class ApiHost extends ApiHostBase {
     //注册
     public String registered() {
         return "/UserPerson/registered";
-    }
-
-    //登录
-    public String login() {
-        return "/UserPerson/login";
     }
 
     //获取推荐码接口

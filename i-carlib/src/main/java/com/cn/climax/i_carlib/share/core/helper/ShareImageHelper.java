@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.share.core.helper;
+package com.cn.climax.i_carlib.share.core.helper;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -6,19 +6,19 @@ import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.cn.smart.i_carlib.R;
-import com.cn.smart.i_carlib.share.core.CarSmartShareConfiguration;
-import com.cn.smart.i_carlib.share.core.error.ShareException;
-import com.cn.smart.i_carlib.share.core.shareparam.BaseShareParam;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareImage;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamAudio;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamImage;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamText;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamVideo;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamWebPage;
-import com.cn.smart.i_carlib.share.download.IImageDownloader;
-import com.cn.smart.i_carlib.share.util.BitmapUtil;
-import com.cn.smart.i_carlib.share.util.ShareFileUtil;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.share.core.CarSmartShareConfiguration;
+import com.cn.climax.i_carlib.share.core.error.ShareException;
+import com.cn.climax.i_carlib.share.core.shareparam.BaseShareParam;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareImage;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamAudio;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamImage;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamText;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamVideo;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamWebPage;
+import com.cn.climax.i_carlib.share.download.IImageDownloader;
+import com.cn.climax.i_carlib.share.util.BitmapUtil;
+import com.cn.climax.i_carlib.share.util.ShareFileUtil;
 
 import java.io.File;
 import java.io.IOException;

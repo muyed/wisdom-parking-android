@@ -4,10 +4,10 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cn.smart.i_carlib.R;
-import com.cn.smart.i_carlib.uiframework.banner.holder.BaseHolder;
-import com.cn.smart.i_carlib.uiframework.banner.holder.XBViewHolderCreator;
-import com.cn.smart.i_carlib.uiframework.banner.view.XBLoopViewPager;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.banner.holder.BaseHolder;
+import com.cn.climax.i_carlib.uiframework.banner.holder.XBViewHolderCreator;
+import com.cn.climax.i_carlib.uiframework.banner.view.XBLoopViewPager;
 
 import java.util.List;
 

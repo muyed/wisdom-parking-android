@@ -1,4 +1,4 @@
-package com.cn.climax.i_carlib.util;
+package com.cn.climax.i_carlib.util.sqlite;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

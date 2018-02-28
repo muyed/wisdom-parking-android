@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.FrameLayout;
 
-import com.cn.smart.i_carlib.R;
+import com.cn.climax.i_carlib.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package cn.hs.com.wovencloud.util;
+package com.cn.climax.i_carlib.util;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

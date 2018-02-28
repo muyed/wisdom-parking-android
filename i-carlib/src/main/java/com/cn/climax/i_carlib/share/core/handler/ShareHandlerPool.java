@@ -1,16 +1,16 @@
-package com.cn.smart.i_carlib.share.core.handler;
+package com.cn.climax.i_carlib.share.core.handler;
 
 import android.app.Activity;
 
-import com.cn.smart.i_carlib.share.core.CarSmartShareConfiguration;
-import com.cn.smart.i_carlib.share.core.SocializeMedia;
-import com.cn.smart.i_carlib.share.core.handler.generic.CopyShareHandler;
-import com.cn.smart.i_carlib.share.core.handler.generic.GenericShareHandler;
-import com.cn.smart.i_carlib.share.core.handler.qq.QQChatShareHandler;
-import com.cn.smart.i_carlib.share.core.handler.qq.QQZoneShareHandler;
-import com.cn.smart.i_carlib.share.core.handler.sina.SinaShareTransitHandler;
-import com.cn.smart.i_carlib.share.core.handler.wx.WxChatShareHandler;
-import com.cn.smart.i_carlib.share.core.handler.wx.WxMomentShareHandler;
+import com.cn.climax.i_carlib.share.core.CarSmartShareConfiguration;
+import com.cn.climax.i_carlib.share.core.SocializeMedia;
+import com.cn.climax.i_carlib.share.core.handler.generic.CopyShareHandler;
+import com.cn.climax.i_carlib.share.core.handler.generic.GenericShareHandler;
+import com.cn.climax.i_carlib.share.core.handler.qq.QQChatShareHandler;
+import com.cn.climax.i_carlib.share.core.handler.qq.QQZoneShareHandler;
+import com.cn.climax.i_carlib.share.core.handler.sina.SinaShareTransitHandler;
+import com.cn.climax.i_carlib.share.core.handler.wx.WxChatShareHandler;
+import com.cn.climax.i_carlib.share.core.handler.wx.WxMomentShareHandler;
 
 import java.util.HashMap;
 import java.util.Map;

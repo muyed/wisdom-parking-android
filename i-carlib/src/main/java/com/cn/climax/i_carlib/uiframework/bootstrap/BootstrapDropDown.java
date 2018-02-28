@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap;
+package com.cn.climax.i_carlib.uiframework.bootstrap;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -20,18 +20,18 @@ import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.cn.smart.i_carlib.R;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.attributes.BootstrapBrand;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.attributes.ViewGroupPosition;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapSize;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults.ExpandDirection;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.BootstrapSizeView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.OutlineableView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.RoundableView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.utils.DrawableUtils;
-import com.cn.smart.i_carlib.uiframework.bootstrap.utils.ViewUtils;
-import com.cn.smart.i_carlib.util.ColorUtils;
-import com.cn.smart.i_carlib.util.DimenUtils;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.attributes.BootstrapBrand;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.attributes.ViewGroupPosition;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapSize;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults.ExpandDirection;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.BootstrapSizeView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.OutlineableView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.RoundableView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.utils.DrawableUtils;
+import com.cn.climax.i_carlib.uiframework.bootstrap.utils.ViewUtils;
+import com.cn.climax.i_carlib.util.ColorUtils;
+import com.cn.climax.i_carlib.util.DimenUtils;
 
 import java.io.Serializable;
 import java.util.regex.Pattern;

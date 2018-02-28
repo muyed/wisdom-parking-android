@@ -1,9 +1,9 @@
-package com.cn.smart.i_carlib.share.core;
+package com.cn.climax.i_carlib.share.core;
 
 import android.app.Activity;
 import android.content.Intent;
 
-import com.cn.smart.i_carlib.share.core.shareparam.BaseShareParam;
+import com.cn.climax.i_carlib.share.core.shareparam.BaseShareParam;
 
 /**
  * author：leo on 2017/1/6 09:54

@@ -1,11 +1,10 @@
-package cn.hs.com.wovencloud.data.apiUtils;
+package com.cn.climax.i_carlib.okgo.app.apiUtils;
 
 
 import android.text.TextUtils;
 
-import com.app.framework.app.AppControl;
-import com.app.framework.loger.Loger;
-
+import com.cn.climax.i_carlib.logcat.ZLog;
+import com.cn.climax.i_carlib.okgo.app.AppControl;
 
 /**
  *
@@ -54,7 +53,7 @@ public abstract class ApiHostBase {
      * 设置网络为外网【新接口——正式】
      */
     private void setFormalHost() {
-        Loger.d(TAG, "【正式】");
+        ZLog.d(TAG, "【正式】");
 
         ApiUrlHost = initApiUrlHost();
     }
@@ -63,7 +62,7 @@ public abstract class ApiHostBase {
      * 设置网络为【新接口——外网测试】
      */
     private void seTestHost() {
-        Loger.d(TAG, "【外网测试】");
+        ZLog.d(TAG, "【外网测试】");
 
         ApiUrlHost = initApiUrlHost_test();
     }

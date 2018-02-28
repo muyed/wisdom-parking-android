@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap;
+package com.cn.climax.i_carlib.uiframework.bootstrap;
 
 /**
  * Any class marked with this annotation is subject to Major API changes which may cause client code

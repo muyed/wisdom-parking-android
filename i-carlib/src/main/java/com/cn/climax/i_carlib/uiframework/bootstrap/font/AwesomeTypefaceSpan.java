@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap.font;
+package com.cn.climax.i_carlib.uiframework.bootstrap.font;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 import android.text.TextPaint;
 import android.text.style.TypefaceSpan;
 
-import com.cn.smart.i_carlib.uiframework.bootstrap.TypefaceProvider;
+import com.cn.climax.i_carlib.uiframework.bootstrap.TypefaceProvider;
 
 /**
  * author：leo on 2016/12/6 16:34

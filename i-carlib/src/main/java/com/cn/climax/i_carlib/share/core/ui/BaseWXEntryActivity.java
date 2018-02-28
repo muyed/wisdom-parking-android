@@ -1,18 +1,18 @@
-package com.cn.smart.i_carlib.share.core.ui;
+package com.cn.climax.i_carlib.share.core.ui;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.cn.smart.i_carlib.share.core.CarSmartShareConfiguration;
-import com.cn.smart.i_carlib.share.core.SocializeListeners;
-import com.cn.smart.i_carlib.share.core.SocializeMedia;
-import com.cn.smart.i_carlib.share.core.error.CarSmartShareStatusCode;
-import com.cn.smart.i_carlib.share.core.handler.AbsShareHandler;
-import com.cn.smart.i_carlib.share.core.handler.IShareHandler;
-import com.cn.smart.i_carlib.share.core.handler.ShareHandlerPool;
-import com.cn.smart.i_carlib.share.core.handler.wx.BaseWxShareHandler;
-import com.cn.smart.i_carlib.share.core.handler.wx.WxChatShareHandler;
+import com.cn.climax.i_carlib.share.core.CarSmartShareConfiguration;
+import com.cn.climax.i_carlib.share.core.SocializeListeners;
+import com.cn.climax.i_carlib.share.core.SocializeMedia;
+import com.cn.climax.i_carlib.share.core.error.CarSmartShareStatusCode;
+import com.cn.climax.i_carlib.share.core.handler.AbsShareHandler;
+import com.cn.climax.i_carlib.share.core.handler.IShareHandler;
+import com.cn.climax.i_carlib.share.core.handler.ShareHandlerPool;
+import com.cn.climax.i_carlib.share.core.handler.wx.BaseWxShareHandler;
+import com.cn.climax.i_carlib.share.core.handler.wx.WxChatShareHandler;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.openapi.IWXAPI;

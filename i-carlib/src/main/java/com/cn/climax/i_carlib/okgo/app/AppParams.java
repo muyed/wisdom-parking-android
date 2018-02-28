@@ -1,11 +1,9 @@
-package com.app.framework.app;
+package com.cn.climax.i_carlib.okgo.app;
 
 import java.nio.charset.Charset;
 
 /**
  * App 固定常量
- *
-
  */
 public class AppParams {
 

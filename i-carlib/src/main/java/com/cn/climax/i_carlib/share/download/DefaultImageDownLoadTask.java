@@ -1,11 +1,11 @@
-package com.cn.smart.i_carlib.share.download;
+package com.cn.climax.i_carlib.share.download;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 
-import com.cn.smart.i_carlib.share.util.IOUtil;
-import com.cn.smart.i_carlib.share.util.ShareFileUtil;
+import com.cn.climax.i_carlib.share.util.IOUtil;
+import com.cn.climax.i_carlib.share.util.ShareFileUtil;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

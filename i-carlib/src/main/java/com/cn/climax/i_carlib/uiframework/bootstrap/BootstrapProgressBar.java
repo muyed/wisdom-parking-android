@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap;
+package com.cn.climax.i_carlib.uiframework.bootstrap;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
@@ -24,16 +24,16 @@ import android.view.ViewParent;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
-import com.cn.smart.i_carlib.R;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.attributes.BootstrapBrand;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapBrand;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapSize;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.BootstrapBrandView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.BootstrapSizeView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.ProgressView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.RoundableView;
-import com.cn.smart.i_carlib.util.ColorUtils;
-import com.cn.smart.i_carlib.util.DimenUtils;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.attributes.BootstrapBrand;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapBrand;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapSize;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.BootstrapBrandView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.BootstrapSizeView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.ProgressView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.RoundableView;
+import com.cn.climax.i_carlib.util.ColorUtils;
+import com.cn.climax.i_carlib.util.DimenUtils;
 
 import java.io.Serializable;
 
@@ -43,7 +43,7 @@ import static android.graphics.Bitmap.Config.ARGB_8888;
  * BootstrapProgressBar displays determinate progress to the user, and is colored with BootstrapBrands.
  * Striped effects and progress update animations are supported out of the box.
  *
- * Its possible to group multiple together in an {@link com.cn.smart.i_carlib.uiframework.bootstrap.BootstrapProgressBarGroup BootstrapProgressBarGroup} to give the appearance of a <a href="http://getbootstrap.com/components/#progress-stacked">stacked</a> progressbar.
+ * Its possible to group multiple together in an {@link com.cn.climax.i_carlib.uiframework.bootstrap.BootstrapProgressBarGroup BootstrapProgressBarGroup} to give the appearance of a <a href="http://getbootstrap.com/components/#progress-stacked">stacked</a> progressbar.
  */
 public class BootstrapProgressBar extends View implements ProgressView, BootstrapBrandView,
         RoundableView, BootstrapSizeView, Animator.AnimatorListener, ValueAnimator.AnimatorUpdateListener {

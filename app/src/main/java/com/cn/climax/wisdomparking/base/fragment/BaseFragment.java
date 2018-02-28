@@ -1,4 +1,4 @@
-package com.cn.climax.wisdomparking.base.activity;
+package com.cn.climax.wisdomparking.base.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -14,13 +14,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.app.framework.utils.ResourceUtil;
-import com.app.framework.widget.edit.EmojiInputFilter;
+import com.cn.climax.i_carlib.util.res.ResourceUtil;
+import com.cn.climax.wisdomparking.R;
 
 import butterknife.ButterKnife;
-import cn.hs.com.wovencloud.R;
-import cn.hs.com.wovencloud.base.me.fragment.ProgressBarCircularIndeterminate;
-import cn.hs.com.wovencloud.base.me.fragment.ProgressFragment;
 
 
 /**
@@ -31,13 +28,6 @@ import cn.hs.com.wovencloud.base.me.fragment.ProgressFragment;
  */
 
 public abstract class BaseFragment extends ProgressFragment {
-
-//    @BindView(R.id.toolbar)
-//    Toolbar toolbar;
-//    @BindView(R.id.ivLeftHorizonalIcon)
-//    ImageView ivNavBack;
-//    @BindView(R.id.atvToolBarMainTitle)
-//    TextView atvToolBarMainTitle;
 
     private TextView tvEmpty, tvError, tvLoading;
     private Button btnReload;
@@ -66,8 +56,8 @@ public abstract class BaseFragment extends ProgressFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         getBundle(getArguments());
         bindUI(view, savedInstanceState);
-        if (isSetFilters())
-            getAllViews(getActivity());
+//        if (isSetFilters())
+//            getAllViews(getActivity());
         initData();
         super.onViewCreated(view, savedInstanceState);
     }
@@ -87,25 +77,25 @@ public abstract class BaseFragment extends ProgressFragment {
     }
 
     //-----------------获取 activity中的所有view  禁止绝大部分EditText输入Emoji表情
-    private void getAllViews(Activity act) {
-        getAllChildViews(act.getWindow().getDecorView());
-    }
-
-    private void getAllChildViews(View view) {
-        EmojiInputFilter emojiFilter = new EmojiInputFilter();
-        InputFilter[] emojiFilters = {emojiFilter};
-        if (view instanceof ViewGroup) {
-            ViewGroup vp = (ViewGroup) view;
-            for (int i = 0; i < vp.getChildCount(); i++) {
-                View viewchild = vp.getChildAt(i);
-                if (viewchild instanceof EditText) {
-                    ((EditText) viewchild).setFilters(emojiFilters);
-                }
-                //再次 调用本身（递归）
-                getAllChildViews(viewchild);
-            }
-        }
-    }
+//    private void getAllViews(Activity act) {
+//        getAllChildViews(act.getWindow().getDecorView());
+//    }
+//
+//    private void getAllChildViews(View view) {
+//        EmojiInputFilter emojiFilter = new EmojiInputFilter();
+//        InputFilter[] emojiFilters = {emojiFilter};
+//        if (view instanceof ViewGroup) {
+//            ViewGroup vp = (ViewGroup) view;
+//            for (int i = 0; i < vp.getChildCount(); i++) {
+//                View viewchild = vp.getChildAt(i);
+//                if (viewchild instanceof EditText) {
+//                    ((EditText) viewchild).setFilters(emojiFilters);
+//                }
+//                //再次 调用本身（递归）
+//                getAllChildViews(viewchild);
+//            }
+//        }
+//    }
 
 
     @Nullable

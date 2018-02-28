@@ -1,21 +1,13 @@
-package com.app.framework.utils;
+package com.cn.climax.i_carlib.util;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.app.framework.http.GsonConvert;
+import com.cn.climax.i_carlib.okgo.http.GsonConvert;
 
 import java.util.List;
 import java.util.Map;
-
-/**
- * @author 熊祥
- * @date 2017/5/23
- * @email 276186694@qq.com
- *
- */
-
 
 public class SharedUtil {
     private static final String SHARED_NAME = "JZY_HLL_SHARED";

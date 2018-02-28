@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.cn.smart.i_carlib.share.core.helper;
+package com.cn.climax.i_carlib.share.core.helper;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

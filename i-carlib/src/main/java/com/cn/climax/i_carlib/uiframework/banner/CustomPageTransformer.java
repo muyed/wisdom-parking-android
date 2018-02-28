@@ -3,21 +3,21 @@ package com.cn.climax.i_carlib.uiframework.banner;
 import android.annotation.TargetApi;
 import android.os.Build;
 
-import com.cn.smart.i_carlib.uiframework.banner.transformer.ABaseTransformer;
-import com.cn.smart.i_carlib.uiframework.banner.transformer.AccordionTransformer;
-import com.cn.smart.i_carlib.uiframework.banner.transformer.BackgroundToForegroundTransformer;
-import com.cn.smart.i_carlib.uiframework.banner.transformer.CubeInTransformer;
-import com.cn.smart.i_carlib.uiframework.banner.transformer.CubeOutTransformer;
-import com.cn.smart.i_carlib.uiframework.banner.transformer.DefaultTransformer;
-import com.cn.smart.i_carlib.uiframework.banner.transformer.DepthPageTransformer;
-import com.cn.smart.i_carlib.uiframework.banner.transformer.FlipHorizontalTransformer;
-import com.cn.smart.i_carlib.uiframework.banner.transformer.FlipVerticalTransformer;
-import com.cn.smart.i_carlib.uiframework.banner.transformer.ForegroundToBackgroundTransformer;
-import com.cn.smart.i_carlib.uiframework.banner.transformer.RotateDownTransformer;
-import com.cn.smart.i_carlib.uiframework.banner.transformer.RotateUpTransformer;
-import com.cn.smart.i_carlib.uiframework.banner.transformer.StackTransformer;
-import com.cn.smart.i_carlib.uiframework.banner.transformer.ZoomInTransformer;
-import com.cn.smart.i_carlib.uiframework.banner.transformer.ZoomOutTranformer;
+import com.cn.climax.i_carlib.uiframework.banner.transformer.ABaseTransformer;
+import com.cn.climax.i_carlib.uiframework.banner.transformer.AccordionTransformer;
+import com.cn.climax.i_carlib.uiframework.banner.transformer.BackgroundToForegroundTransformer;
+import com.cn.climax.i_carlib.uiframework.banner.transformer.CubeInTransformer;
+import com.cn.climax.i_carlib.uiframework.banner.transformer.CubeOutTransformer;
+import com.cn.climax.i_carlib.uiframework.banner.transformer.DefaultTransformer;
+import com.cn.climax.i_carlib.uiframework.banner.transformer.DepthPageTransformer;
+import com.cn.climax.i_carlib.uiframework.banner.transformer.FlipHorizontalTransformer;
+import com.cn.climax.i_carlib.uiframework.banner.transformer.FlipVerticalTransformer;
+import com.cn.climax.i_carlib.uiframework.banner.transformer.ForegroundToBackgroundTransformer;
+import com.cn.climax.i_carlib.uiframework.banner.transformer.RotateDownTransformer;
+import com.cn.climax.i_carlib.uiframework.banner.transformer.RotateUpTransformer;
+import com.cn.climax.i_carlib.uiframework.banner.transformer.StackTransformer;
+import com.cn.climax.i_carlib.uiframework.banner.transformer.ZoomInTransformer;
+import com.cn.climax.i_carlib.uiframework.banner.transformer.ZoomOutTranformer;
 
 /**
  * author: leo on 2016/6/23 0023/13:37

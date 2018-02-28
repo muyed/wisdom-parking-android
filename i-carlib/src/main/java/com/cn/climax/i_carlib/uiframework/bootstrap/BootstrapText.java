@@ -1,15 +1,15 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap;
+package com.cn.climax.i_carlib.uiframework.bootstrap;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.SpannableString;
 import android.text.Spanned;
 
-import com.cn.smart.i_carlib.uiframework.bootstrap.font.AwesomeTypefaceSpan;
-import com.cn.smart.i_carlib.uiframework.bootstrap.font.FontAwesome;
-import com.cn.smart.i_carlib.uiframework.bootstrap.font.IconSet;
-import com.cn.smart.i_carlib.uiframework.bootstrap.font.MaterialIcons;
-import com.cn.smart.i_carlib.uiframework.bootstrap.font.Typicon;
+import com.cn.climax.i_carlib.uiframework.bootstrap.font.AwesomeTypefaceSpan;
+import com.cn.climax.i_carlib.uiframework.bootstrap.font.FontAwesome;
+import com.cn.climax.i_carlib.uiframework.bootstrap.font.IconSet;
+import com.cn.climax.i_carlib.uiframework.bootstrap.font.MaterialIcons;
+import com.cn.climax.i_carlib.uiframework.bootstrap.font.Typicon;
 
 import java.io.Serializable;
 import java.util.HashMap;

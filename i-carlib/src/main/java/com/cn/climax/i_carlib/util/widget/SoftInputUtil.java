@@ -1,4 +1,4 @@
-package com.cn.climax.i_carlib.util;
+package com.cn.climax.i_carlib.util.widget;
 
 import android.content.Context;
 import android.view.View;

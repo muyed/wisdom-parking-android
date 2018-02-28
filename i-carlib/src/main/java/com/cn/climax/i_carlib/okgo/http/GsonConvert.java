@@ -1,4 +1,4 @@
-package com.app.framework.http;
+package com.cn.climax.i_carlib.okgo.http;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,7 +21,7 @@ import java.lang.reflect.Type;
 public class GsonConvert {
 
     private static Gson create() {
-        return GsonConvert.GsonHolder.gson;
+        return GsonHolder.gson;
     }
 
     private static class GsonHolder {

@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap.api.attributes;
+package com.cn.climax.i_carlib.uiframework.bootstrap.api.attributes;
 
 import android.content.Context;
 

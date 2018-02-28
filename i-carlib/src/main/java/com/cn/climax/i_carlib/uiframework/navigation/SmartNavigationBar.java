@@ -22,14 +22,15 @@ import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.cn.smart.i_carlib.R;
-import com.cn.smart.i_carlib.uiframework.navigation.behaviour.SmartNavBarFabBehaviour;
-import com.cn.smart.i_carlib.uiframework.navigation.behaviour.SmartVerticalScrollBehavior;
-import com.cn.smart.i_carlib.uiframework.navigation.utils.Utils;
+import com.cn.climax.i_carlib.uiframework.navigation.behaviour.SmartNavBarFabBehaviour;
+import com.cn.climax.i_carlib.uiframework.navigation.behaviour.SmartVerticalScrollBehavior;
+import com.cn.climax.i_carlib.uiframework.navigation.utils.Utils;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
+
+import com.cn.climax.i_carlib.R;
 
 /**
  * author：leo on 2017/3/2 15:59

@@ -1,11 +1,11 @@
-package com.cn.climax.i_carlib.util;
+package com.cn.climax.i_carlib.util.res;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 
-import com.app.framework.R;
+import com.cn.climax.i_carlib.R;
 
 /**
  * author：leo on 2016/11/21 19:13

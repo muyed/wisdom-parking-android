@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.cn.smart.i_carlib.share.core.ui;
+package com.cn.climax.i_carlib.share.core.ui;
 
 import android.content.Intent;
 import android.os.Bundle;

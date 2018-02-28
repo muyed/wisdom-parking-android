@@ -1,6 +1,6 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap.api.view;
+package com.cn.climax.i_carlib.uiframework.bootstrap.api.view;
 
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapSize;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapSize;
 
 /**
  * Classes which implement this interface allow aspects of their view to be scaled by a float factor.

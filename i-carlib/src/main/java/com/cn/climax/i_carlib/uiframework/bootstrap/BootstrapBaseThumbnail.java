@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap;
+package com.cn.climax.i_carlib.uiframework.bootstrap;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -15,14 +15,14 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.cn.smart.i_carlib.R;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.attributes.BootstrapBrand;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapSize;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.BootstrapBrandView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.BootstrapSizeView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.BorderView;
-import com.cn.smart.i_carlib.util.ColorUtils;
-import com.cn.smart.i_carlib.util.DimenUtils;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.attributes.BootstrapBrand;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapSize;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.BootstrapBrandView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.BootstrapSizeView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.BorderView;
+import com.cn.climax.i_carlib.util.ColorUtils;
+import com.cn.climax.i_carlib.util.DimenUtils;
 
 import java.io.Serializable;
 

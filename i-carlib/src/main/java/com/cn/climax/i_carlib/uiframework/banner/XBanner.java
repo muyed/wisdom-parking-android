@@ -14,12 +14,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.cn.smart.i_carlib.R;
-import com.cn.smart.i_carlib.uiframework.banner.adapter.XBPageAdapter;
-import com.cn.smart.i_carlib.uiframework.banner.holder.XBViewHolderCreator;
-import com.cn.smart.i_carlib.uiframework.banner.listener.OnItemClickListener;
-import com.cn.smart.i_carlib.uiframework.banner.listener.XBPageChangeListener;
-import com.cn.smart.i_carlib.uiframework.banner.view.XBLoopViewPager;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.banner.adapter.XBPageAdapter;
+import com.cn.climax.i_carlib.uiframework.banner.holder.XBViewHolderCreator;
+import com.cn.climax.i_carlib.uiframework.banner.listener.OnItemClickListener;
+import com.cn.climax.i_carlib.uiframework.banner.listener.XBPageChangeListener;
+import com.cn.climax.i_carlib.uiframework.banner.view.XBLoopViewPager;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;

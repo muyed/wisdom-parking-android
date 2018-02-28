@@ -11,7 +11,7 @@ import android.view.animation.Transformation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.cn.smart.i_carlib.R;
+import com.cn.climax.i_carlib.R;
 
 /**
  * Class description

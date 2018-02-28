@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <!-- ActionBarStyle -->
-
-
   <!-- red -->
   <color name="md_red_500">#e51c23</color>
   <color name="md_red_700">#d01716</color>

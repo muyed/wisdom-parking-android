@@ -1,4 +1,4 @@
-package com.app.framework.widget.popwindow;
+package com.cn.climax.i_carlib.uiframework.pop;
 
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
@@ -8,12 +8,9 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 
-import com.app.framework.R;
-import com.app.framework.app.BaseApplication;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.okgo.app.BaseApplication;
 
-/**
- * author:xiongx 2017/9/14.
- */
 
 public abstract class BasePopwindow extends PopupWindow {
 

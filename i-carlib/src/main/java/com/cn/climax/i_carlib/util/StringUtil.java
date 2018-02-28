@@ -1,4 +1,4 @@
-package cn.hs.com.wovencloud.util;
+package com.cn.climax.i_carlib.util;
 
 import java.io.BufferedReader;
 import java.io.Console;
@@ -316,6 +316,15 @@ public class StringUtil {
             }
         }
         return isChinese;
+    }
+
+    /**
+     * 是否是全数字
+     */
+    public static Boolean isNumeric(String str) {
+        Pattern pattern = Pattern.compile("[0-9]*");
+        Matcher isNum = pattern.matcher(str);
+        return isNum.matches();
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap;
+package com.cn.climax.i_carlib.uiframework.bootstrap;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,19 +12,19 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewParent;
 
-import com.cn.smart.i_carlib.R;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.attributes.BootstrapBrand;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.attributes.ViewGroupPosition;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults.ButtonMode;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapSize;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.BadgeContainerView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.BootstrapBadgeView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.BootstrapSizeView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.ButtonModeView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.OutlineableView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.RoundableView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.utils.ViewUtils;
-import com.cn.smart.i_carlib.util.DimenUtils;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.attributes.BootstrapBrand;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.attributes.ViewGroupPosition;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults.ButtonMode;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapSize;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.BadgeContainerView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.BootstrapBadgeView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.BootstrapSizeView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.ButtonModeView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.OutlineableView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.RoundableView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.utils.ViewUtils;
+import com.cn.climax.i_carlib.util.DimenUtils;
 
 import java.io.Serializable;
 
@@ -49,9 +49,9 @@ public class BootstrapButton extends AwesomeTextView
         void OnCheckedChanged(BootstrapButton bootstrapButton, boolean isChecked);
     }
 
-    private static final String TAG = "com.cn.smart.baselib.uiframework.bootstrap.BootstrapButton";
-    private static final String KEY_MODE = "com.cn.smart.baselib.uiframework.bootstrap.BootstrapButton.MODE";
-    private static final String KEY_INDEX = "com.cn.smart.baselib.uiframework.bootstrap.BootstrapButton.KEY_INDEX";
+    private static final String TAG = "com.cn.climax.baselib.uiframework.bootstrap.BootstrapButton";
+    private static final String KEY_MODE = "com.cn.climax.baselib.uiframework.bootstrap.BootstrapButton.MODE";
+    private static final String KEY_INDEX = "com.cn.climax.baselib.uiframework.bootstrap.BootstrapButton.KEY_INDEX";
 
     private int parentIndex;
     private ViewGroupPosition viewGroupPosition = ViewGroupPosition.SOLO;

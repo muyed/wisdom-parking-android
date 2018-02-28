@@ -1,4 +1,4 @@
-package cn.hs.com.wovencloud.base.me.fragment;
+package com.cn.climax.wisdomparking.base.fragment;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -12,7 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
-import cn.hs.com.wovencloud.util.DensityUtil;
+import com.cn.climax.i_carlib.util.phone.DensityUtil;
 
 /**
  * author：leo on 2016/11/25 17:42

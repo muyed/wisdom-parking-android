@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap.api.view;
+package com.cn.climax.i_carlib.uiframework.bootstrap.api.view;
 
 import android.support.annotation.Nullable;
 

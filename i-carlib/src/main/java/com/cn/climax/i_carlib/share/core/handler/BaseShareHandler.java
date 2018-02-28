@@ -1,17 +1,17 @@
 
-package com.cn.smart.i_carlib.share.core.handler;
+package com.cn.climax.i_carlib.share.core.handler;
 
 import android.app.Activity;
 
-import com.cn.smart.i_carlib.share.core.CarSmartShareConfiguration;
-import com.cn.smart.i_carlib.share.core.SocializeListeners;
-import com.cn.smart.i_carlib.share.core.error.ShareException;
-import com.cn.smart.i_carlib.share.core.shareparam.BaseShareParam;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamAudio;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamImage;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamText;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamVideo;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamWebPage;
+import com.cn.climax.i_carlib.share.core.CarSmartShareConfiguration;
+import com.cn.climax.i_carlib.share.core.SocializeListeners;
+import com.cn.climax.i_carlib.share.core.error.ShareException;
+import com.cn.climax.i_carlib.share.core.shareparam.BaseShareParam;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamAudio;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamImage;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamText;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamVideo;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamWebPage;
 
 /**
  * 定义模板步骤

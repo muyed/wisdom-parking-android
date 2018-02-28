@@ -3,7 +3,7 @@ package com.cn.climax.i_carlib.uiframework.sweetalert;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 
-import com.cn.smart.i_carlib.R;
+import com.cn.climax.i_carlib.R;
 
 /**
  * author：leo on 2016/11/17 12:55

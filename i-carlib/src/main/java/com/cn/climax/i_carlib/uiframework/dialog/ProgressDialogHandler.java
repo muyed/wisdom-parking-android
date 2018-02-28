@@ -7,7 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.TextView;
 
-import com.cn.smart.i_carlib.R;
+import com.cn.climax.i_carlib.R;
 
 /**
  * author：leo on 2016/11/17 23:26

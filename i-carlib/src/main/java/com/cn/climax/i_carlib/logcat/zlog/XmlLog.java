@@ -2,8 +2,8 @@ package com.cn.climax.i_carlib.logcat.zlog;
 
 import android.util.Log;
 
-import com.cn.smart.i_carlib.logcat.ZLog;
-import com.cn.smart.i_carlib.logcat.ZLogUtil;
+import com.cn.climax.i_carlib.logcat.ZLog;
+import com.cn.climax.i_carlib.logcat.ZLogUtil;
 
 import java.io.StringReader;
 import java.io.StringWriter;

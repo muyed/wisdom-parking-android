@@ -1,6 +1,6 @@
-package com.cn.smart.i_carlib.share.core;
+package com.cn.climax.i_carlib.share.core;
 
-import com.cn.smart.i_carlib.share.core.error.CarSmartShareStatusCode;
+import com.cn.climax.i_carlib.share.core.error.CarSmartShareStatusCode;
 
 public abstract class SocializeListeners {
 

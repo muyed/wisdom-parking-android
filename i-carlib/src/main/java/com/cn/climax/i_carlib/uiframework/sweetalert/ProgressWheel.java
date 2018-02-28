@@ -13,7 +13,7 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 
-import com.cn.smart.i_carlib.R;
+import com.cn.climax.i_carlib.R;
 
 /**
  * author：leo on 2016/11/17 13:09

@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.share.core;
+package com.cn.climax.i_carlib.share.core;
 
 import android.content.Context;
 import android.os.Environment;
@@ -6,10 +6,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 
-import com.cn.smart.i_carlib.R;
-import com.cn.smart.i_carlib.share.core.handler.sina.SinaShareHandler;
-import com.cn.smart.i_carlib.share.download.DefaultImageDownloader;
-import com.cn.smart.i_carlib.share.download.IImageDownloader;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.share.core.handler.sina.SinaShareHandler;
+import com.cn.climax.i_carlib.share.download.DefaultImageDownloader;
+import com.cn.climax.i_carlib.share.download.IImageDownloader;
 
 import java.io.File;
 import java.util.concurrent.Executor;

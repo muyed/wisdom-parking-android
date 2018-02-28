@@ -1,8 +1,8 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap.api.view;
+package com.cn.climax.i_carlib.uiframework.bootstrap.api.view;
 
 import android.support.annotation.NonNull;
 
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults.ButtonMode;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults.ButtonMode;
 
 /**
  * Views which implement this interface allow the selection mode of their buttons to be set

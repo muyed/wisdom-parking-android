@@ -1,21 +1,21 @@
-package com.cn.smart.i_carlib.share.core.handler.generic;
+package com.cn.climax.i_carlib.share.core.handler.generic;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 
-import com.cn.smart.i_carlib.share.core.CarSmartShareConfiguration;
-import com.cn.smart.i_carlib.share.core.SocializeListeners;
-import com.cn.smart.i_carlib.share.core.SocializeMedia;
-import com.cn.smart.i_carlib.share.core.error.CarSmartShareStatusCode;
-import com.cn.smart.i_carlib.share.core.error.ShareException;
-import com.cn.smart.i_carlib.share.core.handler.BaseShareHandler;
-import com.cn.smart.i_carlib.share.core.shareparam.BaseShareParam;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamAudio;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamImage;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamText;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamVideo;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamWebPage;
+import com.cn.climax.i_carlib.share.core.CarSmartShareConfiguration;
+import com.cn.climax.i_carlib.share.core.SocializeListeners;
+import com.cn.climax.i_carlib.share.core.SocializeMedia;
+import com.cn.climax.i_carlib.share.core.error.CarSmartShareStatusCode;
+import com.cn.climax.i_carlib.share.core.error.ShareException;
+import com.cn.climax.i_carlib.share.core.handler.BaseShareHandler;
+import com.cn.climax.i_carlib.share.core.shareparam.BaseShareParam;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamAudio;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamImage;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamText;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamVideo;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamWebPage;
 
 
 /**

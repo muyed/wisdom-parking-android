@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.share.core.shareparam;
+package com.cn.climax.i_carlib.share.core.shareparam;
 
 import android.os.Parcel;
 

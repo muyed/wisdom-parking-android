@@ -1,4 +1,4 @@
-package cn.hs.com.wovencloud.widget.webview;
+package com.cn.climax.wisdomparking.widget;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 
+import com.cn.climax.wisdomparking.R;
 import com.just.library.IWebLayout;
+import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 
 public class WebLayout implements IWebLayout {
 

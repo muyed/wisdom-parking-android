@@ -1,4 +1,4 @@
-package com.cn.climax.i_carlib.util;
+package com.cn.climax.i_carlib.util.permission;
 
 import android.Manifest;
 import android.content.Context;

@@ -1,7 +1,7 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap.api.view;
+package com.cn.climax.i_carlib.uiframework.bootstrap.api.view;
 
 
-import com.cn.smart.i_carlib.uiframework.bootstrap.BootstrapBadge;
+import com.cn.climax.i_carlib.uiframework.bootstrap.BootstrapBadge;
 
 /**
  * Classes which implement this interface can be used as BootstrapBadge container.

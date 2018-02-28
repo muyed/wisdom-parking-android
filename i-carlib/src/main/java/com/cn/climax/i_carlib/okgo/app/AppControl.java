@@ -1,4 +1,4 @@
-package com.app.framework.app;
+package com.cn.climax.i_carlib.okgo.app;
 
 /**
  * app全局控制开关：在application 中开启设置

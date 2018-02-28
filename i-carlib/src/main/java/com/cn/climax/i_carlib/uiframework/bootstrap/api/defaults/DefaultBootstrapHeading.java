@@ -1,11 +1,11 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults;
+package com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults;
 
 import android.content.Context;
 import android.support.annotation.DimenRes;
 
-import com.cn.smart.i_carlib.R;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.attributes.BootstrapHeading;
-import com.cn.smart.i_carlib.util.DimenUtils;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.attributes.BootstrapHeading;
+import com.cn.climax.i_carlib.util.DimenUtils;
 
 /**
  * Bootstrap provides styling for elements H1-H6, and sets their text size and padding using the

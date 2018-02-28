@@ -1,4 +1,4 @@
-package cn.hs.com.wovencloud.widget;
+package com.cn.climax.wisdomparking.widget;
 
 import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
@@ -17,9 +17,9 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Checkable;
 
-import com.app.framework.utils.DipToPx;
+import com.cn.climax.i_carlib.util.phone.DensityUtil;
+import com.cn.climax.wisdomparking.R;
 
-import cn.hs.com.wovencloud.R;
 
 /**
  * author：leo on 2017/9/14 0014 16:21
@@ -36,7 +36,7 @@ public class SmoothCheckBox extends View implements Checkable {
     private static final int COLOR_CHECKED = Color.parseColor("#FB4846");
     private static final int COLOR_FLOOR_UNCHECKED = Color.parseColor("#DFDFDF");
 
-    private static final int DEF_DRAW_SIZE = 25;
+    private static final float DEF_DRAW_SIZE = 25f;
     private static final int DEF_ANIM_DURATION = 300;
 
     private Paint mPaint, mTickPaint, mFloorPaint;
@@ -81,7 +81,7 @@ public class SmoothCheckBox extends View implements Checkable {
         mFloorColor = ta.getColor(R.styleable.SmoothCheckBox_color_unchecked_stroke, COLOR_FLOOR_UNCHECKED);
         mCheckedColor = ta.getColor(R.styleable.SmoothCheckBox_color_checked, COLOR_CHECKED);
         mUnCheckedColor = ta.getColor(R.styleable.SmoothCheckBox_color_unchecked, COLOR_UNCHECKED);
-        mStrokeWidth = ta.getDimensionPixelSize(R.styleable.SmoothCheckBox_stroke_width, DipToPx.dip2px(0));
+        mStrokeWidth = ta.getDimensionPixelSize(R.styleable.SmoothCheckBox_stroke_width, DensityUtil.dip2px(getContext(), 0f));
         ta.recycle();
 
         mFloorUnCheckedColor = mFloorColor;
@@ -194,7 +194,7 @@ public class SmoothCheckBox extends View implements Checkable {
     }
 
     private int measureSize(int measureSpec) {
-        int defSize = DipToPx.dip2px(DEF_DRAW_SIZE);
+        int defSize = DensityUtil.dip2px(getContext(), DEF_DRAW_SIZE);
         int specSize = MeasureSpec.getSize(measureSpec);
         int specMode = MeasureSpec.getMode(measureSpec);
 

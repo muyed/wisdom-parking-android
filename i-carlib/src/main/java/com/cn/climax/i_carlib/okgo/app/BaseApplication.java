@@ -1,11 +1,11 @@
-package com.app.framework.app;
+package com.cn.climax.i_carlib.okgo.app;
 
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
 
-import com.app.framework.loger.Loger;
+import com.cn.climax.i_carlib.logcat.ZLog;
 
 /**
  * Application
@@ -42,7 +42,7 @@ public abstract class BaseApplication extends Application {
         initAppControl();
 
         /** 获取Log的开启状态 （不开启，app每次重启后默认关闭，）*/
-        Loger.init(AppControl.isDeBug_IsShowLog(), AppControl.isShowLogCatCaller());
+        ZLog.init(AppControl.isDeBug_IsShowLog());
     }
 
     /**
@@ -86,7 +86,7 @@ public abstract class BaseApplication extends Application {
     @Override
     public void onTerminate() {
         super.onTerminate();
-        Loger.d(TAG, "onTerminate");
+        ZLog.d(TAG, "onTerminate");
     }
 
     /**
@@ -95,7 +95,7 @@ public abstract class BaseApplication extends Application {
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        Loger.d(TAG, "onLowMemory");
+        ZLog.d(TAG, "onLowMemory");
     }
 
     /**
@@ -106,7 +106,7 @@ public abstract class BaseApplication extends Application {
     @Override
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
-        Loger.d(TAG, "onTrimMemory");
+        ZLog.d(TAG, "onTrimMemory");
     }
 
     /**
@@ -117,7 +117,6 @@ public abstract class BaseApplication extends Application {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        Loger.d(TAG, "onConfigurationChanged");
+        ZLog.d(TAG, "onConfigurationChanged");
     }
-
 }

@@ -1,8 +1,8 @@
-package com.app.framework.app;
+package com.cn.climax.i_carlib.okgo.app;
 
 import android.app.Activity;
 
-import com.app.framework.loger.Loger;
+import com.cn.climax.i_carlib.logcat.ZLog;
 
 import java.util.Stack;
 
@@ -48,8 +48,7 @@ public class AppActivityManager {
             activityStack = new Stack<>();
         }
         activityStack.add(activity);
-        Loger.d(TAG + "ActivityList.onCreate(" + activity.getLocalClassName() + "),size() = " + activityStack.size() + ";");
-
+        ZLog.d(TAG + "ActivityList.onCreate(" + activity.getLocalClassName() + "),size() = " + activityStack.size() + ";");
     }
 
     /**
@@ -92,8 +91,7 @@ public class AppActivityManager {
     public void finishActivity() {
         Activity activity = activityStack.lastElement();
         finishActivity(activity);
-        Loger.d(TAG + "ActivityList.onDestroy栈顶(" + activity.getLocalClassName() + "),size() = " + activityStack.size() + ";");
-
+        ZLog.d(TAG + "ActivityList.onDestroy栈顶(" + activity.getLocalClassName() + "),size() = " + activityStack.size() + ";");
     }
 
     /**
@@ -103,7 +101,7 @@ public class AppActivityManager {
         if (activity != null) {
             activityStack.remove(activity);
             activity.finish();
-            Loger.d(TAG + "ActivityList.onDestroy(" + activity.getLocalClassName() + "),size() = " + activityStack.size() + ";");
+            ZLog.d(TAG + "ActivityList.onDestroy(" + activity.getLocalClassName() + "),size() = " + activityStack.size() + ";");
         }
     }
 
@@ -158,7 +156,7 @@ public class AppActivityManager {
     public void finishAllActivity() {
         for (int i = 0, size = activityStack.size(); i < size; i++) {
             if (null != activityStack.get(i)) {
-                Loger.d(TAG + "ActivityList.finish(" + activityStack.get(i).getLocalClassName() + ");");
+                ZLog.d(TAG + "ActivityList.finish(" + activityStack.get(i).getLocalClassName() + ");");
                 activityStack.get(i).finish();
                 activityStack.get(i).overridePendingTransition(0, 0);
             }

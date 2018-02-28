@@ -3,10 +3,10 @@ package com.cn.climax.i_carlib.logcat;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
-import com.cn.smart.i_carlib.logcat.zlog.BaseLog;
-import com.cn.smart.i_carlib.logcat.zlog.FileLog;
-import com.cn.smart.i_carlib.logcat.zlog.JsonLog;
-import com.cn.smart.i_carlib.logcat.zlog.XmlLog;
+import com.cn.climax.i_carlib.logcat.zlog.BaseLog;
+import com.cn.climax.i_carlib.logcat.zlog.FileLog;
+import com.cn.climax.i_carlib.logcat.zlog.JsonLog;
+import com.cn.climax.i_carlib.logcat.zlog.XmlLog;
 
 import java.io.File;
 import java.io.PrintWriter;

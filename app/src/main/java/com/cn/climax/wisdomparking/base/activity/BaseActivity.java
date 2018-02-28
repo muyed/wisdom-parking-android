@@ -1,4 +1,4 @@
-package cn.hs.com.wovencloud.base.me.activity;
+package com.cn.climax.wisdomparking.base.activity;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -15,26 +15,17 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 
-import com.aliyun.clientinforeport.util.AppUtils;
-import com.app.framework.app.AppActivityManager;
-import com.app.framework.utils.SharedUtil;
+import com.cn.climax.i_carlib.okgo.app.AppActivityManager;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
+import com.cn.climax.i_carlib.util.SharedUtil;
 import com.lzy.okgo.OkGo;
-import com.umeng.analytics.MobclickAgent;
-import com.umeng.commonsdk.UMConfigure;
+import com.sina.weibo.sdk.ApiUtils;
 
 import java.util.List;
 
 import butterknife.ButterKnife;
-import cn.hs.com.wovencloud.Core;
-import cn.hs.com.wovencloud.base.global.IGlobalLoginStateListener;
-import cn.hs.com.wovencloud.base.me.NetBroadCastReceiver;
-import cn.hs.com.wovencloud.data.apiUtils.ApiParamsKey;
-import cn.hs.com.wovencloud.data.apiUtils.ApiUtils;
-import cn.hs.com.wovencloud.data.apiUtils.WrapJsonBeanCallback;
-import cn.hs.com.wovencloud.ui.purchaser.setting.response.UserInfoBean;
 import okhttp3.Call;
 import okhttp3.Response;
-import wanjian.renderingperformance.RenderingPerformance;
 
 /**
  * author：leo on 2017/2/8 11:02
@@ -43,32 +34,12 @@ import wanjian.renderingperformance.RenderingPerformance;
  * what & why is modified:
  */
 
-public abstract class BaseActivity extends RootBaseActivity implements IGlobalLoginStateListener, NetBroadCastReceiver.NetEvent, ActivityCompat.OnRequestPermissionsResultCallback {
+public abstract class BaseActivity extends RootBaseActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
 
-    public static NetBroadCastReceiver.NetEvent event;
     private final String mPageName = "Analytics_JZY";
     private int netMobile;
     private HomeWatcherReceiver mHomeWatcherReceiver;
     private boolean isNeedFinish = false;
-
-    @Override
-    public void LogOut(Context context) {
-    }
-
-    @Override
-    public void OffLine() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-            }
-        });
-    }
-
-    @Override
-    public void onNetChange(int netMobile) {
-        this.netMobile = netMobile;
-        isNetConnect();
-    }
 
     private void isNetConnect() {
     }
@@ -84,14 +55,13 @@ public abstract class BaseActivity extends RootBaseActivity implements IGlobalLo
         registerAppHomeReceiver();
         ButterKnife.bind(this);
         mContext = this;
-        event = this;
         AppActivityManager.getAppManager().addActivity(this);
         /** 友盟统计 */
-        UMConfigure.setLogEnabled(false);
+//        UMConfigure.setLogEnabled(false);
         // SDK在统计Fragment时，需要关闭Activity自带的页面统计，
         // 然后在每个页面中重新集成页面统计的代码(包括调用了 onResume 和 onPause 的Activity)。
-        MobclickAgent.openActivityDurationTrack(false);
-        MobclickAgent.setScenarioType(mContext, MobclickAgent.EScenarioType.E_DUM_NORMAL);
+//        MobclickAgent.openActivityDurationTrack(false);
+//        MobclickAgent.setScenarioType(mContext, MobclickAgent.EScenarioType.E_DUM_NORMAL);
 
         if (!isNeedReturnRefresh())
             initUiAndListener(savedInstanceState);
@@ -117,60 +87,15 @@ public abstract class BaseActivity extends RootBaseActivity implements IGlobalLo
     @Override
     protected void onResume() {
         super.onResume();
-        MobclickAgent.onPageStart(mPageName);
-        MobclickAgent.onResume(mContext);
-
-//        RenderingPerformance.resume(this);
-
-        if (isNeedReturnRefresh())
-            initUiAndListener(null);
-        if (isNeedGotUserInfo()) {
-            String authStatus = SharedUtil.getInstance(getActivity()).get(ApiParamsKey.AUTH_STATUS);
-            if (TextUtils.isEmpty(authStatus) || !authStatus.equals("1")) {
-                Log.i(TAG, "onResume: " + authStatus);
-                ApiUtils.getInstance().getUserInfo(new WrapJsonBeanCallback<UserInfoBean>(getActivity()) {
-                    @Override
-                    protected void onJsonParseException(int code, String msg, Call call) {
-                    }
-
-                    @Override
-                    protected void onExecuteSuccess(UserInfoBean bean, Call call) {
-                        if (!TextUtils.isEmpty(bean.getSeller_id())) {
-                            SharedUtil.getInstance(getActivity()).put(ApiParamsKey.AUTH_STATUS, "1");
-                            SharedUtil.getInstance(getActivity()).put(ApiParamsKey.SELLER_ID, bean.getSeller_id());
-                            SharedUtil.getInstance(getActivity()).put(ApiParamsKey.LOGIN_SELLER_ID, bean.getSeller_id());
-                        } else {
-                            SharedUtil.getInstance(getActivity()).put(ApiParamsKey.AUTH_STATUS, "-1");
-                        }
-                    }
-
-                    @Override
-                    protected void onExecuteError(Call call, Response response, Exception e) {
-                    }
-
-                    @Override
-                    protected boolean setDialogShow() {
-                        return false;
-                    }
-                });
-            }
-        }
+//        MobclickAgent.onPageStart(mPageName);
+//        MobclickAgent.onResume(mContext);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        MobclickAgent.onPageEnd(mPageName);
-        MobclickAgent.onPause(mContext);
-
-//        RenderingPerformance.pause(this);
-    }
-
-    /**
-     * 是否需要获取用户信息 默认每个继承此基类的Activity均需要  如不需要 请返回false, 避免参数错误
-     */
-    protected boolean isNeedGotUserInfo() {
-        return true;
+//        MobclickAgent.onPageEnd(mPageName);
+//        MobclickAgent.onPause(mContext);
     }
 
     /**
@@ -195,11 +120,11 @@ public abstract class BaseActivity extends RootBaseActivity implements IGlobalLo
     }
 
     public void onKeyDownBack(int keyCode, KeyEvent event) {
-        if (Core.getInstances().getIObserveKeyListener() != null) {
-            Core.getInstances().getIObserveKeyListener().resetOnKeyDown();
-        } else {
-            finish();
-        }
+//        if (Core.getInstances().getIObserveKeyListener() != null) {
+//            Core.getInstances().getIObserveKeyListener().resetOnKeyDown();
+//        } else {
+//            finish();
+//        }
     }
 
     @Override
@@ -242,10 +167,6 @@ public abstract class BaseActivity extends RootBaseActivity implements IGlobalLo
                 Log.i("HomeWatcherReceiver ", "reason =" + reason);
                 if (TextUtils.equals(SYSTEM_DIALOG_REASON_HOME_KEY, reason)) { //todo  可能会处理双击Home键情况 TBD
                     Log.i("HomeWatcherReceiver ", "----退到后台");
-//                    if (SharedUtil.getInstance(Core.getInstances()).get("is_show_dialog", false))
-//                        SharedUtil.getInstance(context).put(ApiParamsKey.HOME_APP_KEY, true);
-//                    else
-//                        SharedUtil.getInstance(context).put(ApiParamsKey.HOME_APP_KEY, false);
                 } else if (TextUtils.equals(SYSTEM_DIALOG_REASON_RECENT_KEY, reason)) {
                     final PackageManager pm = context.getPackageManager();
                     final ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
@@ -264,13 +185,13 @@ public abstract class BaseActivity extends RootBaseActivity implements IGlobalLo
                             intentBase.setComponent(info.origActivity);
                         }
                         if (homeInfo != null) {
-                            if (AppUtils.getPackageName(context).equals(intentBase.getComponent().getPackageName())) {
-                                Log.i("HomeWatcherReceiver ", "homeInfo =" + intentBase.getComponent().getPackageName());
-                                if (SharedUtil.getInstance(Core.getInstances()).get("is_show_dialog", false))
-                                    SharedUtil.getInstance(context).put(ApiParamsKey.RECENT_APP_KEY, true);
-                                else
-                                    SharedUtil.getInstance(context).put(ApiParamsKey.RECENT_APP_KEY, false);
-                            }
+//                            if (AppUtils.getPackageName(context).equals(intentBase.getComponent().getPackageName())) {
+//                                Log.i("HomeWatcherReceiver ", "homeInfo =" + intentBase.getComponent().getPackageName());
+//                                if (SharedUtil.getInstance(Core.getInstances()).get("is_show_dialog", false))
+//                                    SharedUtil.getInstance(context).put(ApiParamsKey.RECENT_APP_KEY, true);
+//                                else
+//                                    SharedUtil.getInstance(context).put(ApiParamsKey.RECENT_APP_KEY, false);
+//                            }
                         }
                     }
                 }

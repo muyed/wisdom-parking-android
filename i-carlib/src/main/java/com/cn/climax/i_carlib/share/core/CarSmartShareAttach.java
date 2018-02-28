@@ -1,14 +1,14 @@
-package com.cn.smart.i_carlib.share.core;
+package com.cn.climax.i_carlib.share.core;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.cn.smart.i_carlib.share.core.error.CarSmartShareStatusCode;
-import com.cn.smart.i_carlib.share.core.error.ShareException;
-import com.cn.smart.i_carlib.share.core.handler.IShareHandler;
-import com.cn.smart.i_carlib.share.core.handler.ShareHandlerPool;
-import com.cn.smart.i_carlib.share.core.shareparam.BaseShareParam;
+import com.cn.climax.i_carlib.share.core.error.CarSmartShareStatusCode;
+import com.cn.climax.i_carlib.share.core.error.ShareException;
+import com.cn.climax.i_carlib.share.core.handler.IShareHandler;
+import com.cn.climax.i_carlib.share.core.handler.ShareHandlerPool;
+import com.cn.climax.i_carlib.share.core.shareparam.BaseShareParam;
 
 class CarSmartShareAttach {
 

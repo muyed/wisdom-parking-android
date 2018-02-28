@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap;
+package com.cn.climax.i_carlib.uiframework.bootstrap;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,15 +13,15 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.TextView;
 
-import com.cn.smart.i_carlib.R;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.attributes.BootstrapBrand;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapBrand;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.BootstrapBrandView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.BootstrapTextView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.font.FontAwesome;
-import com.cn.smart.i_carlib.uiframework.bootstrap.font.IconSet;
-import com.cn.smart.i_carlib.uiframework.bootstrap.font.MaterialIcons;
-import com.cn.smart.i_carlib.uiframework.bootstrap.font.Typicon;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.attributes.BootstrapBrand;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapBrand;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.BootstrapBrandView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.BootstrapTextView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.font.FontAwesome;
+import com.cn.climax.i_carlib.uiframework.bootstrap.font.IconSet;
+import com.cn.climax.i_carlib.uiframework.bootstrap.font.MaterialIcons;
+import com.cn.climax.i_carlib.uiframework.bootstrap.font.Typicon;
 
 import java.io.Serializable;
 
@@ -35,7 +35,7 @@ import java.io.Serializable;
 
 public class AwesomeTextView extends TextView implements BootstrapTextView, BootstrapBrandView {
 
-    private static final String TAG = "com.cn.smart.i_carlib.uiframework.bootstrap.AwesomeTextView";
+    private static final String TAG = "com.cn.climax.i_carlib.uiframework.bootstrap.AwesomeTextView";
 
     private BootstrapText bootstrapText;
     private BootstrapBrand bootstrapBrand;

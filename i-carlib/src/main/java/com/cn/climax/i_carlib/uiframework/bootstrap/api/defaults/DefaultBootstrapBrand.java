@@ -1,17 +1,17 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults;
+package com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults;
 
 import android.content.Context;
 
-import com.cn.smart.i_carlib.R;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.attributes.BootstrapBrand;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.attributes.BootstrapBrand;
 
-import static com.cn.smart.i_carlib.util.ColorUtils.ACTIVE_OPACITY_FACTOR_EDGE;
-import static com.cn.smart.i_carlib.util.ColorUtils.ACTIVE_OPACITY_FACTOR_FILL;
-import static com.cn.smart.i_carlib.util.ColorUtils.DISABLED_ALPHA_EDGE;
-import static com.cn.smart.i_carlib.util.ColorUtils.DISABLED_ALPHA_FILL;
-import static com.cn.smart.i_carlib.util.ColorUtils.decreaseRgbChannels;
-import static com.cn.smart.i_carlib.util.ColorUtils.increaseOpacity;
-import static com.cn.smart.i_carlib.util.ColorUtils.resolveColor;
+import static com.cn.climax.i_carlib.util.res.ColorUtils.ACTIVE_OPACITY_FACTOR_EDGE;
+import static com.cn.climax.i_carlib.util.res.ColorUtils.ACTIVE_OPACITY_FACTOR_FILL;
+import static com.cn.climax.i_carlib.util.res.ColorUtils.DISABLED_ALPHA_EDGE;
+import static com.cn.climax.i_carlib.util.res.ColorUtils.DISABLED_ALPHA_FILL;
+import static com.cn.climax.i_carlib.util.res.ColorUtils.decreaseRgbChannels;
+import static com.cn.climax.i_carlib.util.res.ColorUtils.increaseOpacity;
+import static com.cn.climax.i_carlib.util.res.ColorUtils.resolveColor;
 
 /**
  * author：leo on 2016/12/6 17:33

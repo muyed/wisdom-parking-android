@@ -9,7 +9,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.cn.smart.i_carlib.R;
+import com.cn.climax.i_carlib.R;
+
 
 /**
  * author：leo on 2017/3/3 15:41

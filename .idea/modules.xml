@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/WisdomApp.iml" filepath="$PROJECT_DIR$/WisdomApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/i-carlib/i-carlib.iml" filepath="$PROJECT_DIR$/i-carlib/i-carlib.iml" />
     </modules>
   </component>
 </project>

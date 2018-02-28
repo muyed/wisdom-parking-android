@@ -1,7 +1,7 @@
-package com.app.framework.data.callback;
+package com.cn.climax.i_carlib.okgo.data.callback;
 
-import com.app.framework.http.GsonConvert;
-import com.app.framework.utils.toast.ToastUtils;
+import com.cn.climax.i_carlib.okgo.http.GsonConvert;
+import com.cn.climax.i_carlib.util.ToastUtils;
 import com.google.gson.stream.JsonReader;
 import com.lzy.okgo.callback.AbsCallback;
 import com.lzy.okgo.request.BaseRequest;

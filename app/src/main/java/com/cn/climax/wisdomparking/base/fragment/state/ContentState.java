@@ -1,7 +1,7 @@
-package cn.hs.com.wovencloud.base.me.state;
+package com.cn.climax.wisdomparking.base.fragment.state;
 
 
-import cn.hs.com.wovencloud.R;
+import com.cn.climax.wisdomparking.R;
 
 /**
  * author：leo on 2016/11/25 16:19

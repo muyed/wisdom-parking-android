@@ -1,18 +1,17 @@
-package com.cn.climax.i_carlib.okgo.app.apiUtils;
+package com.cn.climax.wisdomparking.http;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.cn.climax.i_carlib.base.response.BaseData;
 import com.cn.climax.i_carlib.logcat.ZLog;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
 import com.cn.climax.i_carlib.okgo.data.callback.StringDialogCallback;
 import com.cn.climax.i_carlib.okgo.http.GsonConvert;
 import com.cn.climax.i_carlib.uiframework.sweetalert.SweetAlertDialog;
-import com.cn.climax.i_carlib.util.NetworkUtil;
 import com.cn.climax.i_carlib.util.TT;
 import com.cn.climax.i_carlib.util.ToastUtils;
+import com.cn.climax.wisdomparking.data.BaseBean;
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.request.BaseRequest;
 
@@ -53,67 +52,61 @@ public abstract class WrapJsonBeanCallback<T> extends StringDialogCallback {
     public void onSuccess(String s, Call call, Response response) {
         String exUrl = call.request().url().url().getPath();
         try {
-            TypeToken<BaseData<T>> token = new TypeToken<BaseData<T>>() {
+            TypeToken<BaseBean<T>> token = new TypeToken<BaseBean<T>>() {
             };
-            BaseData<T> mTBean = GsonConvert.fromJson(s, token.getType());
+            BaseBean<T> mTBean = GsonConvert.fromJson(s, token.getType());
             ZLog.e("linge -> " + exUrl);
-            int returnState = mTBean.getReturnState();
-
-            T returnDataBean = mTBean.getReturnData();
+            int returnState = mTBean.getCode();
+            T returnDataBean = mTBean.getData();
 
             if (returnDataBean instanceof List) {
-                if (returnState == 1 && mTBean.getReturnData() != null) {
+                if (returnState == 1 && mTBean.getData() != null) {
                     Type genType = getClass().getGenericSuperclass();
                     Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
                     Type type = params[0];
                     JSONObject jsonObject = new JSONObject(s);
-                    JSONArray jsonArray = jsonObject.getJSONArray("returnData");
+                    JSONArray jsonArray = jsonObject.getJSONArray("data");
                     if (jsonArray.length() > 0) {
                         T mBean = GsonConvert.fromJson(jsonArray + "", type);
                         onExecuteSuccess(mBean, call);
                     } else if (jsonArray.length() == 0) {
-                        if (jsonArray != null && !exUrl.contains("allSupplyMsg")
-                                && !exUrl.contains("getIdentifyCode") && !exUrl.contains("getSingleSellerInfo")
-                                && !exUrl.contains("getVersionInfo") && !exUrl.contains("fetch") && !exUrl.contains("getUserInfo") && !exUrl.contains("goodsInfo")) { //|| !exUrl.contains("oldSupplySellerMsg") || !exUrl.contains("followSupplyMsg")
-                            T mBean = GsonConvert.fromJson(jsonArray + "", type);
-                            onExecuteSuccess(mBean, call);
-                        } else {
-                            ToastUtils.showDebug("响应码: " + mTBean.getReturnState() + " 响应值: " + jsonArray);
-//                            if (exUrl.contains("getIdentifyCode") || exUrl.contains("getSingleSellerInfo"))
-//                                TT.("扫描的二维码无效，请重新扫描");
-//                            else {
-                                int exCode = mTBean.getReturnState();
-                                List exMsg = (List) mTBean.getReturnData();
-                                dealJsonParseException(exCode, GsonConvert.toJSONString(exMsg), call, exUrl);
-//                            }
-                        }
+//                        if (jsonArray != null && !exUrl.contains("allSupplyMsg")
+//                                && !exUrl.contains("getIdentifyCode") && !exUrl.contains("getSingleSellerInfo")
+//                                && !exUrl.contains("getVersionInfo") && !exUrl.contains("fetch") && !exUrl.contains("getUserInfo") && !exUrl.contains("goodsInfo")) { //|| !exUrl.contains("oldSupplySellerMsg") || !exUrl.contains("followSupplyMsg")
+//                            T mBean = GsonConvert.fromJson(jsonArray + "", type);
+//                            onExecuteSuccess(mBean, call);
+//                        } else {
+//                            ToastUtils.showDebug("响应码: " + mTBean.getCode() + " 响应值: " + jsonArray);
+////                            if (exUrl.contains("getIdentifyCode") || exUrl.contains("getSingleSellerInfo"))
+////                                TT.("扫描的二维码无效，请重新扫描");
+////                            else {
+//                            int exCode = mTBean.getCode();
+//                            List exMsg = (List) mTBean.getDate();
+//                            dealJsonParseException(exCode, GsonConvert.toJSONString(exMsg), call, exUrl);
+////                            }
+//                        }
                     } else {
-                        int exCode = mTBean.getReturnState();
+                        int exCode = mTBean.getCode();
                         onExecuteSuccess((T) GsonConvert.fromJson(jsonArray + "", type), call);
                         ToastUtils.showDebug("响应码: " + exCode + " 响应值: " + jsonArray + "");
                     }
                 }
             } else if (returnDataBean instanceof String) {
-                int exCode = mTBean.getReturnState();
-                String exMsg = (String) mTBean.getReturnData();
+                int exCode = mTBean.getCode();
+                String exMsg = (String) mTBean.getData();
                 dealJsonParseException(exCode, exMsg, call, exUrl);
             } else {
                 Type genType = getClass().getGenericSuperclass();
                 Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
                 Type type = params[0];
 
-                JSONObject jsonObject = new JSONObject(s).getJSONObject("returnData") == null
-                        ?
-                        (JSONObject) JSONObject.NULL
-                        :
-                        new JSONObject(s).getJSONObject("returnData");
-
-                if (returnState == 1 && jsonObject != null) {
-                    especialHandling(jsonObject, exUrl);
-                    T mBean = GsonConvert.fromJson(jsonObject.toString(), type);
-                    onExecuteSuccess(mBean, call);
+                if (returnState == 200) {
+                    BaseBean mJsonBean = GsonConvert.fromJson(s, type);
+                    T mBaseData = (T) mJsonBean.getData();
+                    onExecuteSuccess(mBaseData, call);
                 } else {
-                    ToastUtils.showDebug("响应码: " + mTBean.getReturnState() + " 响应值: " + jsonObject + "");
+                    BaseBean mJsonBean = GsonConvert.fromJson(s, type);
+                    ToastUtils.show(mJsonBean.getErrMsg());
                 }
             }
         } catch (JSONException e) {
@@ -124,40 +117,18 @@ public abstract class WrapJsonBeanCallback<T> extends StringDialogCallback {
         }
     }
 
-    public void especialHandling(JSONObject jsonObject, String exUrl) {
-        ApiHost host = ApiHost.getInstance();
-        Log.i("especialHandling", "especialHandling: " + exUrl);
-        try {
-            String key = "";
-            if (exUrl.contains(host.historyOrderR()) || exUrl.contains(host.historyOrderS())) {
-                key = "seller_info";
-            } else if (exUrl.contains(host.getGoodsListOfCart())) {
-                key = "deliver_default_addr_info";
-            }
-            if (!TextUtils.isEmpty(key)) {
-                if (jsonObject.get(key).toString().equals("[]")) {
-                    jsonObject.put(key, null);
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     @Override
     protected boolean setDialogShow() {
         return true;
     }
 
     protected void dealJsonParseException(int code, String msg, Call call, String exUrl) {
-        if (code == -8036 || code == -8022 || exUrl.contains("fetch") || exUrl.contains("getUserInfo") || exUrl.contains("getVersionInfo")) { //登录密码错误/用户信息不存在  
-            onJsonParseException(code, msg, call);
-        } else {
-            Log.i("dealJsonParseException", "dealJsonParseException: ");
-//            TT.showShortWarn(msg);
-            onJsonParseException(code, msg, call);
-        }
+//        if (code == -8036 || code == -8022 || exUrl.contains("fetch") || exUrl.contains("getUserInfo") || exUrl.contains("getVersionInfo")) { //登录密码错误/用户信息不存在
+        onJsonParseException(code, msg, call);
+//        } else {
+//            Log.i("dealJsonParseException", "dealJsonParseException: ");
+//            onJsonParseException(code, msg, call);
+//        }
     }
 
     @Override

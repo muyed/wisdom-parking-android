@@ -1,14 +1,14 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap;
+package com.cn.climax.i_carlib.uiframework.bootstrap;
 
 import android.content.Context;
 
-import com.cn.smart.i_carlib.uiframework.bootstrap.font.FontAwesome;
-import com.cn.smart.i_carlib.uiframework.bootstrap.font.IconSet;
-import com.cn.smart.i_carlib.uiframework.bootstrap.font.MaterialIcons;
-import com.cn.smart.i_carlib.uiframework.bootstrap.font.Typicon;
+import com.cn.climax.i_carlib.uiframework.bootstrap.font.FontAwesome;
+import com.cn.climax.i_carlib.uiframework.bootstrap.font.IconSet;
+import com.cn.climax.i_carlib.uiframework.bootstrap.font.MaterialIcons;
+import com.cn.climax.i_carlib.uiframework.bootstrap.font.Typicon;
 
-import static com.cn.smart.i_carlib.uiframework.bootstrap.TypefaceProvider.getRegisteredIconSets;
-import static com.cn.smart.i_carlib.uiframework.bootstrap.TypefaceProvider.retrieveRegisteredIconSet;
+import static com.cn.climax.i_carlib.uiframework.bootstrap.TypefaceProvider.getRegisteredIconSets;
+import static com.cn.climax.i_carlib.uiframework.bootstrap.TypefaceProvider.retrieveRegisteredIconSet;
 
 
 /**

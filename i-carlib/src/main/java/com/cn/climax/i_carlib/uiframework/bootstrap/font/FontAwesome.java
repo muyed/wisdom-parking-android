@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap.font;
+package com.cn.climax.i_carlib.uiframework.bootstrap.font;
 
 import android.support.annotation.StringDef;
 

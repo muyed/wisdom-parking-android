@@ -1,13 +1,13 @@
-package com.app.framework.utils.toast;
+package com.cn.climax.i_carlib.util;
 
 import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.app.framework.app.AppControl;
-import com.app.framework.app.BaseApplication;
-import com.app.framework.loger.Loger;
+import com.cn.climax.i_carlib.logcat.ZLog;
+import com.cn.climax.i_carlib.okgo.app.AppControl;
+import com.cn.climax.i_carlib.okgo.app.BaseApplication;
 
 
 /**
@@ -35,12 +35,12 @@ public class ToastUtils {
                 mToast.cancel();
                 mToast = null;
             }
-            Loger.d(text);
+            ZLog.d(text);
             mToast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
             mToast.show();
         } else {
+            ZLog.d(text);
             Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
-            Loger.d(text);
         }
     }
 
@@ -59,15 +59,15 @@ public class ToastUtils {
                     mToast.cancel();
                     mToast = null;
                 }
-                Loger.d(text);
+                ZLog.d(text);
                 mToast = Toast.makeText(activity, text, duration);
                 mToast.show();
             } else {
                 Toast.makeText(activity, text, duration).show();
-                Loger.d(text);
+                ZLog.d(text);
             }
         } else {
-            Loger.d(text);
+            ZLog.d(text);
             Toast.makeText(BaseApplication.getInstance(), text, duration).show();
         }
     }

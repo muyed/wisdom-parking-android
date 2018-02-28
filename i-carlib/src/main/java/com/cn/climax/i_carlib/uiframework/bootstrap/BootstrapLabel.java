@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap;
+package com.cn.climax.i_carlib.uiframework.bootstrap;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,12 +9,12 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 
-import com.cn.smart.i_carlib.R;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.attributes.BootstrapHeading;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapHeading;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.BootstrapHeadingView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.RoundableView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.utils.ViewUtils;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.attributes.BootstrapHeading;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults.DefaultBootstrapHeading;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.BootstrapHeadingView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.RoundableView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.utils.ViewUtils;
 
 import java.io.Serializable;
 

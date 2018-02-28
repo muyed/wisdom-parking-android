@@ -1,12 +1,12 @@
-package com.cn.climax.i_carlib.util;
+package com.cn.climax.i_carlib.util.file;
 
 
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.app.framework.app.AppParams;
-import com.app.framework.http.GsonConvert;
+import com.cn.climax.i_carlib.okgo.app.AppParams;
+import com.cn.climax.i_carlib.okgo.http.GsonConvert;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;

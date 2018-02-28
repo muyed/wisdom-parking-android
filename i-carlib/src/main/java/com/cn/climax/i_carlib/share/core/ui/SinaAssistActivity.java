@@ -1,20 +1,20 @@
-package com.cn.smart.i_carlib.share.core.ui;
+package com.cn.climax.i_carlib.share.core.ui;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 
-import com.cn.smart.i_carlib.share.core.CarSmartShare;
-import com.cn.smart.i_carlib.share.core.CarSmartShareConfiguration;
-import com.cn.smart.i_carlib.share.core.SharePlatformConfig;
-import com.cn.smart.i_carlib.share.core.SocializeListeners;
-import com.cn.smart.i_carlib.share.core.SocializeMedia;
-import com.cn.smart.i_carlib.share.core.error.CarSmartShareStatusCode;
-import com.cn.smart.i_carlib.share.core.error.ShareException;
-import com.cn.smart.i_carlib.share.core.handler.sina.SinaShareHandler;
-import com.cn.smart.i_carlib.share.core.shareparam.BaseShareParam;
-import com.cn.smart.i_carlib.share.util.SharePlatformConfigHelper;
+import com.cn.climax.i_carlib.share.core.CarSmartShare;
+import com.cn.climax.i_carlib.share.core.CarSmartShareConfiguration;
+import com.cn.climax.i_carlib.share.core.SharePlatformConfig;
+import com.cn.climax.i_carlib.share.core.SocializeListeners;
+import com.cn.climax.i_carlib.share.core.SocializeMedia;
+import com.cn.climax.i_carlib.share.core.error.CarSmartShareStatusCode;
+import com.cn.climax.i_carlib.share.core.error.ShareException;
+import com.cn.climax.i_carlib.share.core.handler.sina.SinaShareHandler;
+import com.cn.climax.i_carlib.share.core.shareparam.BaseShareParam;
+import com.cn.climax.i_carlib.share.util.SharePlatformConfigHelper;
 import com.sina.weibo.sdk.api.share.BaseResponse;
 import com.sina.weibo.sdk.api.share.IWeiboHandler;
 

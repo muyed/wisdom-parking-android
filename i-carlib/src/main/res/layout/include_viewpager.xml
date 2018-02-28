@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.cn.smart.i_carlib.uiframework.banner.view.XBLoopViewPager
+        <com.cn.climax.i_carlib.uiframework.banner.view.XBLoopViewPager
             android:id="@+id/xbLoopViewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

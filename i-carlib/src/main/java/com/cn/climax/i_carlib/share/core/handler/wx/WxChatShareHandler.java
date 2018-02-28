@@ -1,9 +1,9 @@
-package com.cn.smart.i_carlib.share.core.handler.wx;
+package com.cn.climax.i_carlib.share.core.handler.wx;
 
 import android.app.Activity;
 
-import com.cn.smart.i_carlib.share.core.CarSmartShareConfiguration;
-import com.cn.smart.i_carlib.share.core.SocializeMedia;
+import com.cn.climax.i_carlib.share.core.CarSmartShareConfiguration;
+import com.cn.climax.i_carlib.share.core.SocializeMedia;
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
 
 public class WxChatShareHandler extends BaseWxShareHandler {

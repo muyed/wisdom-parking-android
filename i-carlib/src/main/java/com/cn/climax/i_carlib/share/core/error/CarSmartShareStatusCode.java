@@ -1,5 +1,5 @@
 
-package com.cn.smart.i_carlib.share.core.error;
+package com.cn.climax.i_carlib.share.core.error;
 
 public class CarSmartShareStatusCode {
 

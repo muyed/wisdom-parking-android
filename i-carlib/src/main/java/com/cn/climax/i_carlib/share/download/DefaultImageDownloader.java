@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.share.download;
+package com.cn.climax.i_carlib.share.download;
 
 public class DefaultImageDownloader extends AbsImageDownloader {
 

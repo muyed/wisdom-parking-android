@@ -2,7 +2,7 @@ package com.cn.climax.i_carlib.logcat.zlog;
 
 import android.util.Log;
 
-import com.cn.smart.i_carlib.logcat.ZLog;
+import com.cn.climax.i_carlib.logcat.ZLog;
 
 /**
  * author：leo on 2016/11/23 10:08

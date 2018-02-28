@@ -1,4 +1,4 @@
-package cn.hs.com.wovencloud.base.me.fragment;
+package com.cn.climax.wisdomparking.base.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -10,18 +10,15 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import com.app.framework.loger.Loger;
-
-import cn.hs.com.wovencloud.R;
-import cn.hs.com.wovencloud.base.me.state.CollectState;
-import cn.hs.com.wovencloud.base.me.state.ContentState;
-import cn.hs.com.wovencloud.base.me.state.EmptyState;
-import cn.hs.com.wovencloud.base.me.state.ErrorState;
-import cn.hs.com.wovencloud.base.me.state.LoginState;
-import cn.hs.com.wovencloud.base.me.state.NonState;
-import cn.hs.com.wovencloud.base.me.state.ProgressState;
-import cn.hs.com.wovencloud.base.me.state.ShowState;
-
+import com.cn.climax.wisdomparking.R;
+import com.cn.climax.wisdomparking.base.fragment.state.CollectState;
+import com.cn.climax.wisdomparking.base.fragment.state.ContentState;
+import com.cn.climax.wisdomparking.base.fragment.state.EmptyState;
+import com.cn.climax.wisdomparking.base.fragment.state.ErrorState;
+import com.cn.climax.wisdomparking.base.fragment.state.LoginState;
+import com.cn.climax.wisdomparking.base.fragment.state.NonState;
+import com.cn.climax.wisdomparking.base.fragment.state.ProgressState;
+import com.cn.climax.wisdomparking.base.fragment.state.ShowState;
 
 /**
  * author：leo on 2016/11/25 15:46

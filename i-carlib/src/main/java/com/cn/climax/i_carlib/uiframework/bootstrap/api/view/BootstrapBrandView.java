@@ -1,8 +1,8 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap.api.view;
+package com.cn.climax.i_carlib.uiframework.bootstrap.api.view;
 
 import android.support.annotation.NonNull;
 
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.attributes.BootstrapBrand;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.attributes.BootstrapBrand;
 
 /**
  * author：leo on 2016/12/6 15:41

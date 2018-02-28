@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.share.util;
+package com.cn.climax.i_carlib.share.util;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

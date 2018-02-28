@@ -7,12 +7,13 @@ import android.support.annotation.Nullable;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.cn.smart.i_carlib.R;
-import com.cn.smart.i_carlib.uiframework.base.manager.AppManager;
-import com.cn.smart.i_carlib.util.ResourceUtil;
-import com.cn.smart.i_carlib.util.SettingPrefUtil;
-import com.cn.smart.i_carlib.util.StatusBarUtil;
-import com.cn.smart.i_carlib.util.ThemeUtil;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.base.manager.AppManager;
+import com.cn.climax.i_carlib.util.res.ResourceUtil;
+import com.cn.climax.i_carlib.util.SettingPrefUtil;
+import com.cn.climax.i_carlib.util.StatusBarUtil;
+import com.cn.climax.i_carlib.util.ThemeUtil;
+
 
 /**
  * author：leo on 2016/11/21 17:09

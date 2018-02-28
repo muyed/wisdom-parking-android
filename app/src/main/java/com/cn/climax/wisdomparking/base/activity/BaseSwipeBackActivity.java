@@ -1,4 +1,4 @@
-package cn.hs.com.wovencloud.base.me;
+package com.cn.climax.wisdomparking.base.activity;
 
 import android.content.Context;
 import android.os.Build;
@@ -16,20 +16,17 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.app.framework.app.AppActivityManager;
-import com.app.framework.app.ForbidQuickClickListener;
-import com.app.framework.utils.SettingPrefUtil;
-import com.app.framework.widget.swipeback.ISwipeBack;
-import com.app.framework.widget.swipeback.SwipeBackHelper;
-import com.app.framework.widget.swipeback.SwipeBackLayout;
-import com.app.framework.widget.swipeback.SwipeUtils;
-
-import org.greenrobot.eventbus.EventBus;
+import com.cn.climax.i_carlib.okgo.app.AppActivityManager;
+import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
+import com.cn.climax.i_carlib.uiframework.swipeback.ISwipeBack;
+import com.cn.climax.i_carlib.uiframework.swipeback.SwipeBackHelper;
+import com.cn.climax.i_carlib.uiframework.swipeback.SwipeBackLayout;
+import com.cn.climax.i_carlib.uiframework.swipeback.SwipeUtils;
+import com.cn.climax.i_carlib.util.SettingPrefUtil;
+import com.cn.climax.i_carlib.util.phone.AndroidUtils;
+import com.cn.climax.wisdomparking.R;
 
 import butterknife.BindView;
-import cn.hs.com.wovencloud.R;
-import cn.hs.com.wovencloud.base.me.activity.BaseActivity;
-import cn.hs.com.wovencloud.util.AndroidUtils;
 
 /**
  * author：leo on 2016/11/23 20:42
@@ -269,7 +266,7 @@ public abstract class BaseSwipeBackActivity extends BaseActivity implements ISwi
             } else {
                 tvCompleteOption.setVisibility(View.VISIBLE);
                 tvCompleteOption.setText(rightTitle);
-                tvCompleteOption.setTextSize(Dimension.SP, 12);
+                tvCompleteOption.setTextSize(Dimension.SP, 15);
                 tvCompleteOption.setTextColor(ContextCompat.getColor(this, R.color.white));
                 tvCompleteOption.setOnClickListener(new ForbidQuickClickListener() {
                     @Override
@@ -309,7 +306,7 @@ public abstract class BaseSwipeBackActivity extends BaseActivity implements ISwi
             } else {
                 tvCompleteOption.setVisibility(View.VISIBLE);
                 tvCompleteOption.setText(rightTitle);
-                tvCompleteOption.setTextSize(Dimension.SP, 12);
+                tvCompleteOption.setTextSize(Dimension.SP, 15);
                 tvCompleteOption.setTextColor(ContextCompat.getColor(this, R.color.white));
                 tvCompleteOption.setOnClickListener(new ForbidQuickClickListener() {
                     @Override

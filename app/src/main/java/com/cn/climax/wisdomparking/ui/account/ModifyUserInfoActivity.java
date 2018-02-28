@@ -1,4 +1,4 @@
-package cn.hs.com.wovencloud.ui.common.account;
+package com.cn.climax.wisdomparking.ui.account;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -16,16 +16,20 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.app.framework.app.ForbidQuickClickListener;
-import com.app.framework.utils.SharedUtil;
-import com.app.framework.utils.StringUtils;
-import com.app.framework.utils.glide.GlideUitl;
-import com.app.framework.widget.edit.BytesTextWatcher;
-import com.app.framework.widget.photoPicker.PhotoPickerActivity;
-import com.app.framework.widget.photoPicker.camera.CameraUtil;
-import com.app.framework.widget.popwindow.SelectAdapter;
-import com.app.framework.widget.popwindow.SelectPopwindow;
+import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.UploadUtil;
+import com.cn.climax.i_carlib.uiframework.pop.SelectAdapter;
+import com.cn.climax.i_carlib.uiframework.pop.SelectPopwindow;
+import com.cn.climax.i_carlib.util.ToastUtils;
+import com.cn.climax.i_carlib.util.glide.GlideUitl;
+import com.cn.climax.i_carlib.util.widget.SoftInputUtil;
+import com.cn.climax.wisdomparking.MainActivity;
+import com.cn.climax.wisdomparking.R;
+import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.lzy.okgo.model.HttpParams;
+
+import org.jivesoftware.smack.util.StringUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -33,21 +37,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import cn.hs.com.wovencloud.Core;
-import cn.hs.com.wovencloud.R;
-import cn.hs.com.wovencloud.base.OnCheckPermissionSucceedListent;
-import cn.hs.com.wovencloud.base.global.Constant;
-import cn.hs.com.wovencloud.base.me.BaseSwipeBackActivity;
-import cn.hs.com.wovencloud.data.apiUtils.ApiHost;
-import cn.hs.com.wovencloud.data.apiUtils.ApiManage;
-import cn.hs.com.wovencloud.data.apiUtils.ApiParamsKey;
-import cn.hs.com.wovencloud.data.apiUtils.UploadUtil;
-import cn.hs.com.wovencloud.data.apiUtils.WrapJsonBeanCallback;
-import cn.hs.com.wovencloud.data.remote.response.ModifyInfoBean;
-import cn.hs.com.wovencloud.ui.MainActivity;
-import cn.hs.com.wovencloud.util.ContextHolderUtil;
-import cn.hs.com.wovencloud.util.SoftInputUtil;
-import cn.hs.com.wovencloud.util.TT;
 import okhttp3.Call;
 import okhttp3.Response;
 import permissions.dispatcher.NeedsPermission;
@@ -71,7 +60,6 @@ public class ModifyUserInfoActivity extends BaseSwipeBackActivity {
 
     private String mNickName;
     private String logoUrl = null;
-    private boolean isModifySuccessTag = false; //是否个人信息完善成功 默认是不成功,跳转首页之后即不用进行完善操作
 
     @Override
     protected int initContentView() {
@@ -89,11 +77,6 @@ public class ModifyUserInfoActivity extends BaseSwipeBackActivity {
     }
 
     @Override
-    protected boolean isNeedGotUserInfo() {
-        return false;
-    }
-
-    @Override
     public void setSwipeBackEnable(boolean enable) {
         super.setSwipeBackEnable(false);
     }
@@ -105,7 +88,7 @@ public class ModifyUserInfoActivity extends BaseSwipeBackActivity {
 
     @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
-        etNickName.addTextChangedListener(new BytesTextWatcher(16));
+//        etNickName.addTextChangedListener(new BytesTextWatcher(16));
         initClickForbid();
     }
 
@@ -119,20 +102,20 @@ public class ModifyUserInfoActivity extends BaseSwipeBackActivity {
         protected void forbidClick(View view) {
             switch (view.getId()) {
                 case R.id.ivUserAvatar: //上传头像
-                    ModifyUserInfoActivityPermissionsDispatcher.clickPhotoWithCheck(ModifyUserInfoActivity.this, view);
+//                    ModifyUserInfoActivityPermissionsDispatcher.clickPhotoWithCheck(ModifyUserInfoActivity.this, view);
                     break;
                 case R.id.btnCommitUserInfo:
                     mNickName = etNickName.getText().toString();
                     if (mNickName.equals("")) {
-                        TT.showShortWarn("请输入昵称");
+                        ToastUtils.show("请输入昵称");
                     } else {
-                        if (StringUtils.getChartLength(mNickName) < 4) {
-                            TT.showShortWarn("昵称长度最少四位");
-                        } else if (StringUtils.getChartLength(mNickName) > 16) {
-                            TT.showShortWarn("昵称长度最长16位");
-                        } else {
+//                        if (StringUtils.getChartLength(mNickName) < 4) {
+//                            TT.showShortWarn("昵称长度最少四位");
+//                        } else if (StringUtils.getChartLength(mNickName) > 16) {
+//                            TT.showShortWarn("昵称长度最长16位");
+//                        } else {
                             modifyUserInfo(logoUrl);
-                        }
+//                        }
                         SoftInputUtil.hideSoftInput(ModifyUserInfoActivity.this, view);
                     }
                     break;
@@ -141,41 +124,41 @@ public class ModifyUserInfoActivity extends BaseSwipeBackActivity {
     }
 
     private void modifyUserInfo(final String logoUrl) {
-        HttpParams avatarHttpParams = new HttpParams();
-        if (TextUtils.isEmpty(logoUrl)) {
-            avatarHttpParams.put(ApiParamsKey.LOGO_URL, "https://p.jzyb2b.com/z_images/60a7eaefe8257f272156ed625b77f4b5");
-        } else {
-            avatarHttpParams.put(ApiParamsKey.LOGO_URL, logoUrl);
-        }
-        ApiManage.postEx(ApiHost.getInstance().modifyUserInfo())
-                .params(ApiParamsKey.USER_ID, SharedUtil.getInstance(ContextHolderUtil.getContext()).get(ApiParamsKey.USER_ID))
-                .params(avatarHttpParams)
-                .params(ApiParamsKey.USER_ALIAS_NAME, mNickName)
-                .execute(new WrapJsonBeanCallback<ModifyInfoBean>(ModifyUserInfoActivity.this) {
-                    @Override
-                    protected void onExecuteSuccess(ModifyInfoBean bean, Call call) {
-                        if (bean != null) {
-                            isModifySuccessTag = true;
-                            SharedUtil.getInstance(ModifyUserInfoActivity.this).put(ApiParamsKey.USER_ALIAS_NAME, mNickName);
-                            SharedUtil.getInstance(ModifyUserInfoActivity.this).put(ApiParamsKey.LOGO_URL, logoUrl);
-                            SharedUtil.getInstance(ModifyUserInfoActivity.this).put(ApiParamsKey.USER_ID, bean.getUser_id());
-                            SharedUtil.getInstance(ModifyUserInfoActivity.this).put(ApiParamsKey.MODIFY_TAG, mNickName);
-                            judgeToSkip();
-                        }
-                    }
-
-                    @Override
-                    protected void onJsonParseException(int code, String msg, Call call) {
-                    }
-
-                    @Override
-                    protected void onExecuteError(Call call, Response response, Exception e) {
-                    }
-                });
+//        HttpParams avatarHttpParams = new HttpParams();
+//        if (TextUtils.isEmpty(logoUrl)) {
+//            avatarHttpParams.put(ApiParamsKey.LOGO_URL, "https://p.jzyb2b.com/z_images/60a7eaefe8257f272156ed625b77f4b5");
+//        } else {
+//            avatarHttpParams.put(ApiParamsKey.LOGO_URL, logoUrl);
+//        }
+//        ApiManage.postEx(ApiHost.getInstance().modifyUserInfo())
+//                .params(ApiParamsKey.USER_ID, SharedUtil.getInstance(ContextHolderUtil.getContext()).get(ApiParamsKey.USER_ID))
+//                .params(avatarHttpParams)
+//                .params(ApiParamsKey.USER_ALIAS_NAME, mNickName)
+//                .execute(new WrapJsonBeanCallback<ModifyInfoBean>(ModifyUserInfoActivity.this) {
+//                    @Override
+//                    protected void onExecuteSuccess(ModifyInfoBean bean, Call call) {
+//                        if (bean != null) {
+//                            isModifySuccessTag = true;
+//                            SharedUtil.getInstance(ModifyUserInfoActivity.this).put(ApiParamsKey.USER_ALIAS_NAME, mNickName);
+//                            SharedUtil.getInstance(ModifyUserInfoActivity.this).put(ApiParamsKey.LOGO_URL, logoUrl);
+//                            SharedUtil.getInstance(ModifyUserInfoActivity.this).put(ApiParamsKey.USER_ID, bean.getUser_id());
+//                            SharedUtil.getInstance(ModifyUserInfoActivity.this).put(ApiParamsKey.MODIFY_TAG, mNickName);
+//                            judgeToSkip();
+//                        }
+//                    }
+//
+//                    @Override
+//                    protected void onJsonParseException(int code, String msg, Call call) {
+//                    }
+//
+//                    @Override
+//                    protected void onExecuteError(Call call, Response response, Exception e) {
+//                    }
+//                });
     }
 
     private void judgeToSkip() {
-        startActivity(new Intent(ModifyUserInfoActivity.this, MainActivity.class).putExtra("is_modify_success", true).putExtra(ApiParamsKey.IS_TOURIST, false));
+        startActivity(new Intent(ModifyUserInfoActivity.this, MainActivity.class).putExtra("is_modify_success", true));
         finish();
     }
 
@@ -184,19 +167,19 @@ public class ModifyUserInfoActivity extends BaseSwipeBackActivity {
         super.onActivityResult(requestCode, resultCode, data);
         //相册选择
         String url;
-        if (requestCode == Constant.PERSONAGE_REQUEST_CODE && resultCode == PhotoPickerActivity.PHONT_PICKER_RESULT) {
-            Bundle bundle = data.getExtras();
-            url = bundle.getString(PhotoPickerActivity.URL);
-            Log.i(TAG, "onActivityResult: " + url);
-            uploadFile(url);
-        }
-        //拍照
-        if (requestCode == Constant.REQUEST_TAKE_PHOTO_CODE && resultCode == RESULT_OK) {
-            url = CameraUtil.getInstance().getPhotoPath();
-            if (!TextUtils.isEmpty(url)) {
-                uploadFile(url);
-            }
-        }
+//        if (requestCode == Constant.PERSONAGE_REQUEST_CODE && resultCode == PhotoPickerActivity.PHONT_PICKER_RESULT) {
+//            Bundle bundle = data.getExtras();
+//            url = bundle.getString(PhotoPickerActivity.URL);
+//            Log.i(TAG, "onActivityResult: " + url);
+//            uploadFile(url);
+//        }
+//        //拍照
+//        if (requestCode == Constant.REQUEST_TAKE_PHOTO_CODE && resultCode == RESULT_OK) {
+//            url = CameraUtil.getInstance().getPhotoPath();
+//            if (!TextUtils.isEmpty(url)) {
+//                uploadFile(url);
+//            }
+//        }
     }
 
     //上传图片
@@ -226,21 +209,21 @@ public class ModifyUserInfoActivity extends BaseSwipeBackActivity {
             @Override
             public void click(int position, String txt) {
                 if (position == 1) {
-                    Intent intent = new Intent(ModifyUserInfoActivity.this, PhotoPickerActivity.class);
-                    intent.putExtra(PhotoPickerActivity.TAG, "tag");
-                    startActivityForResult(intent, Constant.PERSONAGE_REQUEST_CODE);
+//                    Intent intent = new Intent(ModifyUserInfoActivity.this, PhotoPickerActivity.class);
+//                    intent.putExtra(PhotoPickerActivity.TAG, "tag");
+//                    startActivityForResult(intent, Constant.PERSONAGE_REQUEST_CODE);
                 } else {
-                    CameraUtil.getInstance().takePhotoByMethod(Constant.REQUEST_TAKE_PHOTO_CODE);
+//                    CameraUtil.getInstance().takePhotoByMethod(Constant.REQUEST_TAKE_PHOTO_CODE);
                 }
             }
         }).showBottom(view);
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        ModifyUserInfoActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        ModifyUserInfoActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+//    }
 
     @OnShowRationale({Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA})
     void showRationaleForCamera(final PermissionRequest request) {
@@ -253,7 +236,7 @@ public class ModifyUserInfoActivity extends BaseSwipeBackActivity {
                 .setTitle("权限申请")
                 .setPositiveButton("确认")
                 .setNegativeButton("取消", null)
-                .setRequestCode(Constant.REQUEST_CAMERA_PERM)
+//                .setRequestCode(Constant.REQUEST_CAMERA_PERM)
                 .build()
                 .show();
     }
@@ -264,7 +247,7 @@ public class ModifyUserInfoActivity extends BaseSwipeBackActivity {
                 .setTitle("权限申请")
                 .setPositiveButton("确认")
                 .setNegativeButton("取消", null)
-                .setRequestCode(Constant.REQUEST_CAMERA_PERM)
+//                .setRequestCode(Constant.REQUEST_CAMERA_PERM)
                 .build()
                 .show();
     }

@@ -6,8 +6,9 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-import com.cn.smart.i_carlib.uiframework.banner.adapter.XBPageAdapter;
-import com.cn.smart.i_carlib.uiframework.banner.listener.OnItemClickListener;
+import com.cn.climax.i_carlib.uiframework.banner.adapter.XBPageAdapter;
+import com.cn.climax.i_carlib.uiframework.banner.listener.OnItemClickListener;
+
 
 /**
  * author：leo on 2017/3/1 11:26

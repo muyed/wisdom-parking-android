@@ -1,8 +1,8 @@
-package com.cn.smart.i_carlib.util;
+package com.cn.climax.i_carlib.util;
 
 import android.content.Context;
 
-import com.cn.smart.i_carlib.R;
+import com.cn.climax.i_carlib.R;
 
 /**
  * author：leo on 2016/11/21 18:24

@@ -1,9 +1,9 @@
-package com.cn.smart.i_carlib.share.download;
+package com.cn.climax.i_carlib.share.download;
 
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.cn.smart.i_carlib.share.core.error.ShareException;
+import com.cn.climax.i_carlib.share.core.error.ShareException;
 
 import java.io.File;
 

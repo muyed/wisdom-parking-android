@@ -30,11 +30,11 @@ def blockCanaryVersion = "1.1.4"
 
 ext {
         android = [
-                applicationId    : "com.cn.smart.cxzh_android",
-                compileSdkVersion: 24,
-                buildToolsVersion: "24.0.1",
-                minSdkVersion    : 16,
-                targetSdkVersion : 23,
+                applicationId    : "com.cn.climax.wisdomparking",
+                compileSdkVersion: 26,
+                buildToolsVersion: "26.0.1",
+                minSdkVersion    : 19,
+                targetSdkVersion : 26,
                 versionCode      : 1,
                 versionName      : "1.0.0",
                 abortOnLintError : false,

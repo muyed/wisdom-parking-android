@@ -1,8 +1,8 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap.api.view;
+package com.cn.climax.i_carlib.uiframework.bootstrap.api.view;
 
 import android.support.annotation.Nullable;
 
-import com.cn.smart.i_carlib.uiframework.bootstrap.BootstrapText;
+import com.cn.climax.i_carlib.uiframework.bootstrap.BootstrapText;
 
 /**
  * author：leo on 2016/12/6 14:46

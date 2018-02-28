@@ -1,4 +1,4 @@
-package com.app.framework.utils.phone;
+package com.cn.climax.i_carlib.util.phone;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -17,7 +17,7 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-import com.app.framework.loger.Loger;
+import com.cn.climax.i_carlib.logcat.ZLog;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -134,7 +134,7 @@ public class PhoneInfo {
                 mStrDeviceId = tm.getDeviceId();
             }
         }
-        Loger.d(PAGETAG, "PhoneInfo = " + "手机信息" +
+        ZLog.d(PAGETAG, "PhoneInfo = " + "手机信息" +
                 ": 状态栏高度 = " + mIntZhuangTaiLanGaoDu +
                 "、屏幕宽度 = " + mIntKuangDu +
                 "、屏幕高度 = " + mIntGaoDu +
@@ -188,7 +188,7 @@ public class PhoneInfo {
                     InetAddress inetAddress = enumIpAddr.nextElement();
 
                     String tempIP = inetAddress.getHostAddress().toString();
-                    Loger.d("WifiPreference IpAddress", "tempIP = {" + tempIP
+                    ZLog.d("WifiPreference IpAddress", "tempIP = {" + tempIP
                             + "} ;");
                     if (!inetAddress.isLoopbackAddress()) {
                         String mIP = inetAddress.getHostAddress().toString();
@@ -226,9 +226,9 @@ public class PhoneInfo {
                 .getSystemService(Context.ACTIVITY_SERVICE);
         MemoryInfo info = new MemoryInfo();
         activityManager.getMemoryInfo(info);
-        Loger.d(PAGETAG, "系统剩余内存:" + (info.availMem >> 10) + "k");
-        Loger.d(PAGETAG, "系统是否处于低内存运行：" + info.lowMemory);
-        Loger.d(PAGETAG, "当系统剩余内存低于" + info.threshold + "时就看成低内存运行");
+        ZLog.d(PAGETAG, "系统剩余内存:" + (info.availMem >> 10) + "k");
+        ZLog.d(PAGETAG, "系统是否处于低内存运行：" + info.lowMemory);
+        ZLog.d(PAGETAG, "当系统剩余内存低于" + info.threshold + "时就看成低内存运行");
         return info;
     }
 
@@ -300,11 +300,11 @@ public class PhoneInfo {
 //
         if (mStrShouJiXingHao.contains("OPPO")
                 || mStrShouJiXingHao.contains("oppo")) {
-            Loger.d(PAGETAG, "是OPPO手机！");
+            ZLog.d(PAGETAG, "是OPPO手机！");
             return true;
         }
 
-        Loger.d(PAGETAG, "不是OPPO手机！");
+        ZLog.d(PAGETAG, "不是OPPO手机！");
         return false;
     }
 

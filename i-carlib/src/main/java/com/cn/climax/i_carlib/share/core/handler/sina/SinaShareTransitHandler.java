@@ -1,16 +1,16 @@
-package com.cn.smart.i_carlib.share.core.handler.sina;
+package com.cn.climax.i_carlib.share.core.handler.sina;
 
 import android.app.Activity;
 import android.content.Intent;
 
-import com.cn.smart.i_carlib.share.core.CarSmartShareConfiguration;
-import com.cn.smart.i_carlib.share.core.SharePlatformConfig;
-import com.cn.smart.i_carlib.share.core.SocializeListeners;
-import com.cn.smart.i_carlib.share.core.SocializeMedia;
-import com.cn.smart.i_carlib.share.core.error.CarSmartShareStatusCode;
-import com.cn.smart.i_carlib.share.core.handler.AbsShareHandler;
-import com.cn.smart.i_carlib.share.core.shareparam.BaseShareParam;
-import com.cn.smart.i_carlib.share.core.ui.SinaAssistActivity;
+import com.cn.climax.i_carlib.share.core.CarSmartShareConfiguration;
+import com.cn.climax.i_carlib.share.core.SharePlatformConfig;
+import com.cn.climax.i_carlib.share.core.SocializeListeners;
+import com.cn.climax.i_carlib.share.core.SocializeMedia;
+import com.cn.climax.i_carlib.share.core.error.CarSmartShareStatusCode;
+import com.cn.climax.i_carlib.share.core.handler.AbsShareHandler;
+import com.cn.climax.i_carlib.share.core.shareparam.BaseShareParam;
+import com.cn.climax.i_carlib.share.core.ui.SinaAssistActivity;
 
 import java.util.Map;
 

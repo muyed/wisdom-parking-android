@@ -1,8 +1,8 @@
-package com.cn.smart.i_carlib.share.util;
+package com.cn.climax.i_carlib.share.util;
 
 
-import com.cn.smart.i_carlib.share.core.SharePlatformConfig;
-import com.cn.smart.i_carlib.share.core.SocializeMedia;
+import com.cn.climax.i_carlib.share.core.SharePlatformConfig;
+import com.cn.climax.i_carlib.share.core.SocializeMedia;
 
 public class SharePlatformConfigHelper {
 

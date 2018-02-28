@@ -1,4 +1,4 @@
-package com.cn.climax.i_carlib.util;
+package com.cn.climax.i_carlib.util.res;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults;
+package com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults;
 
 public enum ButtonMode {
     REGULAR,

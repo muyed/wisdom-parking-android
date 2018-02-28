@@ -1,18 +1,18 @@
-package com.cn.smart.i_carlib.share.core.handler.qq;
+package com.cn.climax.i_carlib.share.core.handler.qq;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.cn.smart.i_carlib.R;
-import com.cn.smart.i_carlib.share.core.CarSmartShareConfiguration;
-import com.cn.smart.i_carlib.share.core.SharePlatformConfig;
-import com.cn.smart.i_carlib.share.core.SocializeMedia;
-import com.cn.smart.i_carlib.share.core.error.CarSmartShareStatusCode;
-import com.cn.smart.i_carlib.share.core.error.ShareConfigException;
-import com.cn.smart.i_carlib.share.core.error.ShareException;
-import com.cn.smart.i_carlib.share.core.handler.BaseShareHandler;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.share.core.CarSmartShareConfiguration;
+import com.cn.climax.i_carlib.share.core.SharePlatformConfig;
+import com.cn.climax.i_carlib.share.core.SocializeMedia;
+import com.cn.climax.i_carlib.share.core.error.CarSmartShareStatusCode;
+import com.cn.climax.i_carlib.share.core.error.ShareConfigException;
+import com.cn.climax.i_carlib.share.core.error.ShareException;
+import com.cn.climax.i_carlib.share.core.handler.BaseShareHandler;
 import com.tencent.open.utils.Util;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;

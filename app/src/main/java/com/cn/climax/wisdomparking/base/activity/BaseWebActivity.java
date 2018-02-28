@@ -1,4 +1,4 @@
-package cn.hs.com.wovencloud.base.me.activity;
+package com.cn.climax.wisdomparking.base.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,13 +14,12 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
+import com.cn.climax.wisdomparking.R;
+import com.cn.climax.wisdomparking.widget.WebLayout;
 import com.just.library.AgentWeb;
 import com.just.library.ChromeClientCallbackManager;
 
 import butterknife.BindView;
-import cn.hs.com.wovencloud.R;
-import cn.hs.com.wovencloud.base.me.BaseSwipeBackActivity;
-import cn.hs.com.wovencloud.widget.webview.WebLayout;
 
 /**
  * author：leo on 2017/12/12 0012 22:19
@@ -60,11 +59,6 @@ public class BaseWebActivity extends BaseSwipeBackActivity {
      */
     protected String setToolbarTitle() {
         return "";
-    }
-
-    @Override
-    protected boolean isNeedGotUserInfo() {
-        return false;
     }
 
     @Override

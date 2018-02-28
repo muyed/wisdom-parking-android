@@ -1,17 +1,17 @@
 
-package com.cn.smart.i_carlib.share.core.handler;
+package com.cn.climax.i_carlib.share.core.handler;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.cn.smart.i_carlib.share.core.CarSmartShareConfiguration;
-import com.cn.smart.i_carlib.share.core.SocializeListeners;
-import com.cn.smart.i_carlib.share.core.error.CarSmartShareStatusCode;
-import com.cn.smart.i_carlib.share.core.error.ShareException;
-import com.cn.smart.i_carlib.share.core.helper.ShareImageHelper;
-import com.cn.smart.i_carlib.share.core.shareparam.BaseShareParam;
+import com.cn.climax.i_carlib.share.core.CarSmartShareConfiguration;
+import com.cn.climax.i_carlib.share.core.SocializeListeners;
+import com.cn.climax.i_carlib.share.core.error.CarSmartShareStatusCode;
+import com.cn.climax.i_carlib.share.core.error.ShareException;
+import com.cn.climax.i_carlib.share.core.helper.ShareImageHelper;
+import com.cn.climax.i_carlib.share.core.shareparam.BaseShareParam;
 import com.tencent.open.utils.ThreadManager;
 
 public abstract class AbsShareHandler implements IShareHandler {

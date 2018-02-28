@@ -1,11 +1,11 @@
-package com.cn.smart.i_carlib.share.core.handler;
+package com.cn.climax.i_carlib.share.core.handler;
 
 import android.content.Context;
 
-import com.cn.smart.i_carlib.share.core.IActivityLifecycleMirror;
-import com.cn.smart.i_carlib.share.core.SocializeListeners;
-import com.cn.smart.i_carlib.share.core.SocializeMedia;
-import com.cn.smart.i_carlib.share.core.shareparam.BaseShareParam;
+import com.cn.climax.i_carlib.share.core.IActivityLifecycleMirror;
+import com.cn.climax.i_carlib.share.core.SocializeListeners;
+import com.cn.climax.i_carlib.share.core.SocializeMedia;
+import com.cn.climax.i_carlib.share.core.shareparam.BaseShareParam;
 
 
 public interface IShareHandler extends IActivityLifecycleMirror {

@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap.api.defaults;
+package com.cn.climax.i_carlib.uiframework.bootstrap.api.defaults;
 
 /**
  * Bootstrap provides 5 sizes - XS, SM, MD, LG, and XL. In the Android implementation the scale

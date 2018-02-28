@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.uiframework.bootstrap;
+package com.cn.climax.i_carlib.uiframework.bootstrap;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -6,10 +6,11 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
-import com.cn.smart.i_carlib.R;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.ProgressView;
-import com.cn.smart.i_carlib.uiframework.bootstrap.api.view.RoundableView;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.ProgressView;
+import com.cn.climax.i_carlib.uiframework.bootstrap.api.view.RoundableView;
 
 /**
  * BootstrapProgressBarGroups are a LinearLayout which exclusively holds BootstrapProgressBars in a horizontal orientation.
@@ -108,7 +109,7 @@ public class BootstrapProgressBarGroup extends BootstrapGroup implements Progres
 
         int numChildren = getChildCount();
         for (int i = 0; i < numChildren; i++) {
-            LayoutParams layoutParams = getDefultlayoutParams();
+            LinearLayout.LayoutParams layoutParams = getDefultlayoutParams();
             layoutParams.weight = retrieveChild(i).getProgress();
             retrieveChild(i).setLayoutParams(layoutParams);
 
@@ -123,7 +124,7 @@ public class BootstrapProgressBarGroup extends BootstrapGroup implements Progres
         retrieveChild(numChildren - 1).setCornerRounding(false, true);
 
         //update empty progressbar attributes
-        LayoutParams layoutParams = getDefultlayoutParams();
+        LinearLayout.LayoutParams layoutParams = getDefultlayoutParams();
         layoutParams.weight = (float) maxProgress - cumulativeProgress;
         emptyProgressBar.setLayoutParams(layoutParams);
         emptyProgressBar.setMaxProgress(maxProgress - cumulativeProgress);
@@ -132,10 +133,10 @@ public class BootstrapProgressBarGroup extends BootstrapGroup implements Progres
         setWeightSum((float) maxProgress);
     }
 
-    private LayoutParams getDefultlayoutParams() {
+    private LinearLayout.LayoutParams getDefultlayoutParams() {
         int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0, getResources().getDisplayMetrics());
 
-        LayoutParams layoutParams = new LayoutParams(height, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(height, ViewGroup.LayoutParams.WRAP_CONTENT);
         return layoutParams;
     }
 

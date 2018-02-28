@@ -1,4 +1,4 @@
-package com.cn.smart.i_carlib.util;
+package com.cn.climax.i_carlib.util;
 
 import android.content.Context;
 import android.content.res.Resources;

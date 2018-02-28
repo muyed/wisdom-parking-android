@@ -1,22 +1,22 @@
-package com.cn.smart.i_carlib.share.core.handler.qq;
+package com.cn.climax.i_carlib.share.core.handler.qq;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 
-import com.cn.smart.i_carlib.share.core.CarSmartShareConfiguration;
-import com.cn.smart.i_carlib.share.core.SocializeListeners;
-import com.cn.smart.i_carlib.share.core.SocializeMedia;
-import com.cn.smart.i_carlib.share.core.error.InvalidParamException;
-import com.cn.smart.i_carlib.share.core.error.ShareException;
-import com.cn.smart.i_carlib.share.core.shareparam.BaseShareParam;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareImage;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamAudio;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamImage;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamText;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamVideo;
-import com.cn.smart.i_carlib.share.core.shareparam.ShareParamWebPage;
+import com.cn.climax.i_carlib.share.core.CarSmartShareConfiguration;
+import com.cn.climax.i_carlib.share.core.SocializeListeners;
+import com.cn.climax.i_carlib.share.core.SocializeMedia;
+import com.cn.climax.i_carlib.share.core.error.InvalidParamException;
+import com.cn.climax.i_carlib.share.core.error.ShareException;
+import com.cn.climax.i_carlib.share.core.shareparam.BaseShareParam;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareImage;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamAudio;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamImage;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamText;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamVideo;
+import com.cn.climax.i_carlib.share.core.shareparam.ShareParamWebPage;
 import com.tencent.connect.common.Constants;
 import com.tencent.connect.share.QzoneShare;
 import com.tencent.tauth.IUiListener;

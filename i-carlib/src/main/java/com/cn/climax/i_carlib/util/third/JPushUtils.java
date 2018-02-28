@@ -1,10 +1,12 @@
-package com.cn.climax.i_carlib.util;
+package com.cn.climax.i_carlib.util.third;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+
+import com.cn.climax.i_carlib.util.Logger;
 
 import java.util.regex.Pattern;
 
