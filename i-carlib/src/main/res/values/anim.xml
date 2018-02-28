@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="popwin_anim_style">
+        <item name="android:windowEnterAnimation">@anim/menushow</item>
+        <item name="android:windowExitAnimation">@anim/menuhide</item>
+    </style>
+
+    <style name="AnimationRightFade">
+        <item name="android:windowEnterAnimation">@anim/in_righttoleft</item>
+        <item name="android:windowExitAnimation">@anim/out_righttoleft</item>
+    </style>
+</resources>

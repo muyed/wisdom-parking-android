@@ -1,14 +1,18 @@
-package cn.hs.com.wovencloud.data.apiUtils;
+package com.cn.climax.i_carlib.okgo.app.apiUtils;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.app.framework.data.callback.StringDialogCallback;
-import com.app.framework.http.GsonConvert;
-import com.app.framework.loger.Loger;
-import com.app.framework.utils.toast.ToastUtils;
+import com.cn.climax.i_carlib.base.response.BaseData;
+import com.cn.climax.i_carlib.logcat.ZLog;
+import com.cn.climax.i_carlib.okgo.data.callback.StringDialogCallback;
+import com.cn.climax.i_carlib.okgo.http.GsonConvert;
+import com.cn.climax.i_carlib.uiframework.sweetalert.SweetAlertDialog;
+import com.cn.climax.i_carlib.util.NetworkUtil;
+import com.cn.climax.i_carlib.util.TT;
+import com.cn.climax.i_carlib.util.ToastUtils;
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.request.BaseRequest;
 
@@ -20,12 +24,6 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import cn.hs.com.wovencloud.Core;
-import cn.hs.com.wovencloud.data.remote.response.BaseData;
-import cn.hs.com.wovencloud.ui.common.account.LoginActivity;
-import cn.hs.com.wovencloud.util.NetworkUtil;
-import cn.hs.com.wovencloud.util.TT;
-import cn.hs.com.wovencloud.widget.ioser.dialog.SweetAlertDialog;
 import okhttp3.Call;
 import okhttp3.Response;
 
@@ -58,7 +56,7 @@ public abstract class WrapJsonBeanCallback<T> extends StringDialogCallback {
             TypeToken<BaseData<T>> token = new TypeToken<BaseData<T>>() {
             };
             BaseData<T> mTBean = GsonConvert.fromJson(s, token.getType());
-            Loger.e("linge -> " + exUrl);
+            ZLog.e("linge -> " + exUrl);
             int returnState = mTBean.getReturnState();
 
             T returnDataBean = mTBean.getReturnData();
@@ -81,13 +79,13 @@ public abstract class WrapJsonBeanCallback<T> extends StringDialogCallback {
                             onExecuteSuccess(mBean, call);
                         } else {
                             ToastUtils.showDebug("响应码: " + mTBean.getReturnState() + " 响应值: " + jsonArray);
-                            if (exUrl.contains("getIdentifyCode") || exUrl.contains("getSingleSellerInfo"))
-                                TT.showShortWarn("扫描的二维码无效，请重新扫描");
-                            else {
+//                            if (exUrl.contains("getIdentifyCode") || exUrl.contains("getSingleSellerInfo"))
+//                                TT.("扫描的二维码无效，请重新扫描");
+//                            else {
                                 int exCode = mTBean.getReturnState();
                                 List exMsg = (List) mTBean.getReturnData();
                                 dealJsonParseException(exCode, GsonConvert.toJSONString(exMsg), call, exUrl);
-                            }
+//                            }
                         }
                     } else {
                         int exCode = mTBean.getReturnState();
@@ -121,8 +119,8 @@ public abstract class WrapJsonBeanCallback<T> extends StringDialogCallback {
         } catch (JSONException e) {
             e.printStackTrace();
             dealJsonParseException(1, "服务端异常，请稍候...", call, exUrl);
-            Loger.e("linge : " + exUrl);
-            Loger.i(e.getMessage());
+            ZLog.e("linge : " + exUrl);
+            ZLog.i(e.getMessage());
         }
     }
 
@@ -157,18 +155,17 @@ public abstract class WrapJsonBeanCallback<T> extends StringDialogCallback {
             onJsonParseException(code, msg, call);
         } else {
             Log.i("dealJsonParseException", "dealJsonParseException: ");
-            TT.showShortWarn(msg);
+//            TT.showShortWarn(msg);
             onJsonParseException(code, msg, call);
         }
     }
 
     @Override
     public void onError(Call call, Response response, Exception e) {
-        if (!NetworkUtil.isNetworkAvailable(Core.getInstances().getCurrentContext())){
-            TT.showShortError("网络出现问题");
-        }
+//        if (!NetworkUtil.isNetworkAvailable(Core.getInstances().getCurrentContext())){
+//            TT.showShortError("网络出现问题");
+//        }
         onExecuteError(call, response, e);
-        // dialog.cancel();
     }
 
     @Override

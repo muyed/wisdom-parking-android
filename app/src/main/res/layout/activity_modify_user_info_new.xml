@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_F3F1F2">
+
+    <include
+        layout="@layout/base_blue_nav_toolbar_layout"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/allRetrieveArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="17dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:id="@+id/rlReplaceAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="180dp">
+
+            <!-- 头像 -->
+            <ImageView
+                android:id="@+id/ivUserAvatar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_icon" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivUserAvatar"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="点击上传头像"
+                android:textColor="@color/text_lighter_color"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dimen_1px"
+            android:background="@color/color_E4E4E4" />
+
+        <!-- 确认密码 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/icon_user_name_nick"
+                android:contentDescription="@string/app_name" />
+
+            <EditText
+                android:id="@+id/etNickName"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:hint="@string/string_hint_nickname"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/text_common_color"
+                android:textColorHint="@color/text_common_hint"
+                android:textCursorDrawable="@null"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCommitUserInfo"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_below="@+id/allRetrieveArea"
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/bg_btn_login"
+        android:gravity="center"
+        android:text="@string/string_commit_info_btn"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+</RelativeLayout>
