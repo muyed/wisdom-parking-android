@@ -1,5 +1,5 @@
 /* Libraries */
-def supportVersion = "24.2.1"
+def supportVersion = "26.+"
 def retrofitVersion = "2.1.0"
 def gsonVersion = '2.4'
 def okHttpVersion = "3.4.1"

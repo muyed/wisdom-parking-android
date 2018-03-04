@@ -1,4 +1,4 @@
-package com.tsy.sdk.social.util;
+package com.cn.climax.i_carlib.platform.util;
 
 import android.accounts.NetworkErrorException;
 import android.annotation.TargetApi;
@@ -20,7 +20,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * Created by tsy on 16/8/4.
+ * 网络请求工具类
  */
 public class NetUtils {
     /**

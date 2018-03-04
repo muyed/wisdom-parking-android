@@ -1,4 +1,4 @@
-package com.tsy.sdk.social.util;
+package com.cn.climax.i_carlib.platform.util;
 
 import android.util.Log;
 

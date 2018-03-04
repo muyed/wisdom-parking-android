@@ -1,4 +1,4 @@
-package com.tsy.sdk.social.qq;
+package com.cn.climax.i_carlib.platform.qq;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,23 +7,23 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 
+import com.cn.climax.i_carlib.platform.PlatformConfig;
+import com.cn.climax.i_carlib.platform.PlatformType;
+import com.cn.climax.i_carlib.platform.SSOHandler;
+import com.cn.climax.i_carlib.platform.listener.AuthListener;
+import com.cn.climax.i_carlib.platform.listener.ShareListener;
+import com.cn.climax.i_carlib.platform.share_media.IShareMedia;
+import com.cn.climax.i_carlib.platform.share_media.ShareImageMedia;
+import com.cn.climax.i_carlib.platform.share_media.ShareMusicMedia;
+import com.cn.climax.i_carlib.platform.share_media.ShareWebMedia;
+import com.cn.climax.i_carlib.platform.util.BitmapUtils;
+import com.cn.climax.i_carlib.platform.util.LogUtils;
+import com.cn.climax.i_carlib.platform.util.Utils;
 import com.tencent.connect.share.QQShare;
 import com.tencent.connect.share.QzoneShare;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
-import com.tsy.sdk.social.PlatformConfig;
-import com.tsy.sdk.social.PlatformType;
-import com.tsy.sdk.social.SSOHandler;
-import com.tsy.sdk.social.listener.AuthListener;
-import com.tsy.sdk.social.listener.ShareListener;
-import com.tsy.sdk.social.share_media.IShareMedia;
-import com.tsy.sdk.social.share_media.ShareImageMedia;
-import com.tsy.sdk.social.share_media.ShareMusicMedia;
-import com.tsy.sdk.social.share_media.ShareWebMedia;
-import com.tsy.sdk.social.util.BitmapUtils;
-import com.tsy.sdk.social.util.LogUtils;
-import com.tsy.sdk.social.util.Utils;
 
 import org.json.JSONObject;
 

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/common_dimen_122px"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/allAddressItem"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_dimen_120px"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/common_dimen_32px"
+            android:layout_height="@dimen/common_dimen_32px"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/address_icon_location" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/common_dimen_32px"
+            android:paddingTop="@dimen/common_dimen_26px"
+            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+            <TextView
+                android:id="@+id/tv_address_history_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="西溪湿地"
+                android:textColor="@color/text_darker_color"
+                android:textSize="@dimen/common_dimen_30px" />
+
+            <TextView
+                android:id="@+id/tv_address_history_road"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/common_dimen_12px"
+                android:layout_marginTop="@dimen/common_dimen_12px"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="杭州市西湖区天目山路518号"
+                android:textColor="@color/text_lighter_color"
+                android:textSize="@dimen/common_dimen_28px" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_dimen_2px"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/color_eeeeee" />
+
+</LinearLayout>

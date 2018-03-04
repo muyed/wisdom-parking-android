@@ -131,6 +131,7 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/ivWeChatLogin"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
                 android:contentDescription="@string/app_name"
@@ -145,6 +146,7 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/ivQQLogin"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
                 android:contentDescription="@string/app_name"
@@ -159,6 +161,7 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/ivSinaLogin"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
                 android:contentDescription="@string/app_name"

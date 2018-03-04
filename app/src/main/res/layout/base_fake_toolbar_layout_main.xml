@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/apk/res-auto"
+    xmlns:tools2="http://schemas.android.com/tools"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/common_dimen_150px"
+    android:background="@color/colorPrimary"
+    android:minHeight="?attr/actionBarSize"
+    android:paddingTop="@dimen/common_dimen_50px"
+    tools:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    tools:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_dimen_96px"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/ivLeftNav"
+                android:layout_width="@dimen/common_dimen_40px"
+                android:layout_height="@dimen/common_dimen_40px"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/icon_nav_location"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/allToLocation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/atvLeftTitle"
+                    android:layout_width="@dimen/common_dimen_180px"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:maxWidth="@dimen/common_dimen_180px"
+                    android:text="浙A12345"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/common_dimen_28px"
+                    android:visibility="visible"
+                    tools2:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+                <ImageView
+                    android:id="@+id/ivRightLabel"
+                    android:layout_width="@dimen/common_dimen_24px"
+                    android:layout_height="@dimen/common_dimen_24px"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_location_downward"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/atvToolBarMainTitle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/common_dimen_36px"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+        <!-- 该部分内容待定  可以作为分享 也可以作为语音搜索 etc. -->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <ImageView
+                android:id="@+id/ivSkip2MessageList"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:src="@drawable/icon_message"
+                android:visibility="visible"
+                tools2:ignore="RtlHardcoded" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.Toolbar>

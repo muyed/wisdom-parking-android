@@ -1,22 +1,21 @@
-package com.tsy.sdk.social;
+package com.cn.climax.i_carlib.platform;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.tsy.sdk.social.listener.AuthListener;
-import com.tsy.sdk.social.listener.ShareListener;
-import com.tsy.sdk.social.qq.QQHandler;
-import com.tsy.sdk.social.share_media.IShareMedia;
-import com.tsy.sdk.social.sina.SinaWBHandler;
-import com.tsy.sdk.social.weixin.WXHandler;
+import com.cn.climax.i_carlib.platform.listener.AuthListener;
+import com.cn.climax.i_carlib.platform.listener.ShareListener;
+import com.cn.climax.i_carlib.platform.qq.QQHandler;
+import com.cn.climax.i_carlib.platform.share_media.IShareMedia;
+import com.cn.climax.i_carlib.platform.sina.SinaWBHandler;
+import com.cn.climax.i_carlib.platform.weixin.WXHandler;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * api调用统一入口
- * Created by tsy on 16/8/4.
  */
 public class SocialApi {
 

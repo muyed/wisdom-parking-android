@@ -23,6 +23,7 @@
         <RelativeLayout
             android:id="@+id/rlReplaceAvatar"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="180dp">
 
             <!-- 头像 -->
@@ -47,10 +48,52 @@
 
         </RelativeLayout>
 
+        <!-- 真实姓名 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/icon_user_name_nick"
+                android:contentDescription="@string/app_name" />
+
+            <EditText
+                android:id="@+id/etUserName"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:hint="真实姓名"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/text_common_color"
+                android:textColorHint="@color/text_common_hint"
+                android:textCursorDrawable="@null"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/common_dimen_1px"
             android:background="@color/color_E4E4E4" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/white"
+            android:text="立刻进行实名认证获取高额奖券"
+            android:gravity="right"
+            android:textColor="@color/blue_2A3F6C"
+            android:paddingTop="10dp"/>
 
         <!-- 确认密码 -->
         <LinearLayout
@@ -69,14 +112,14 @@
                 android:contentDescription="@string/app_name" />
 
             <EditText
-                android:id="@+id/etNickName"
+                android:id="@+id/etPassword"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="@color/white"
-                android:hint="@string/string_hint_car_no"
+                android:hint="个人密码"
                 android:imeOptions="actionDone"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:maxLines="1"
                 android:textColor="@color/text_common_color"
                 android:textColorHint="@color/text_common_hint"
@@ -98,7 +141,7 @@
         android:layout_marginTop="18dp"
         android:background="@drawable/activity_button_blue_border"
         android:gravity="center"
-        android:text="@string/string_commit_info_btn"
+        android:text="完成注册"
         android:textColor="@color/white"
         android:textSize="14sp" />
 

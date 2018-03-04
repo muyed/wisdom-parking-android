@@ -1,11 +1,11 @@
-package com.tsy.sdk.social.listener;
+package com.cn.climax.i_carlib.platform.listener;
 
-import com.tsy.sdk.social.PlatformType;
+import com.cn.climax.i_carlib.platform.PlatformType;
 
 import java.util.Map;
 
 /**
- * Created by tsy on 16/8/4.
+ *  授权接口
  */
 public interface AuthListener {
     void onComplete(PlatformType platform_type, Map<String, String> map);

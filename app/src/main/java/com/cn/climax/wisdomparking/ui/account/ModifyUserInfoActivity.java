@@ -6,39 +6,21 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
-import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
-import com.cn.climax.i_carlib.okgo.app.apiUtils.UploadUtil;
 import com.cn.climax.i_carlib.uiframework.pop.SelectAdapter;
 import com.cn.climax.i_carlib.uiframework.pop.SelectPopwindow;
 import com.cn.climax.i_carlib.util.ToastUtils;
-import com.cn.climax.i_carlib.util.glide.GlideUitl;
 import com.cn.climax.i_carlib.util.widget.SoftInputUtil;
-import com.cn.climax.wisdomparking.MainActivity;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
-import com.lzy.okgo.model.HttpParams;
-
-import org.jivesoftware.smack.util.StringUtils;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import com.cn.climax.wisdomparking.ui.PeterMainActivity;
 
 import butterknife.BindView;
-import butterknife.OnClick;
-import okhttp3.Call;
-import okhttp3.Response;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnPermissionDenied;
@@ -54,11 +36,13 @@ public class ModifyUserInfoActivity extends BaseSwipeBackActivity {
 
     @BindView(R.id.ivUserAvatar)
     ImageView ivUserAvatar;
-    @BindView(R.id.etNickName) EditText etNickName;
+    @BindView(R.id.etUserName) EditText etUserName;
+    @BindView(R.id.etPassword) EditText etPassword;
     @BindView(R.id.btnCommitUserInfo)
     Button btnCommitUserInfo;
 
-    private String mNickName;
+    private String mUserName;
+    private String mPassword;
     private String logoUrl = null;
 
     @Override
@@ -105,9 +89,10 @@ public class ModifyUserInfoActivity extends BaseSwipeBackActivity {
 //                    ModifyUserInfoActivityPermissionsDispatcher.clickPhotoWithCheck(ModifyUserInfoActivity.this, view);
                     break;
                 case R.id.btnCommitUserInfo:
-                    mNickName = etNickName.getText().toString();
-                    if (mNickName.equals("")) {
-                        ToastUtils.show("请输入昵称");
+                    mPassword = etPassword.getText().toString();
+                    mUserName = etUserName.getText().toString();
+                    if (mPassword.equals("")) {
+                        ToastUtils.show("请输入密码");
                     } else {
 //                        if (StringUtils.getChartLength(mNickName) < 4) {
 //                            TT.showShortWarn("昵称长度最少四位");
@@ -155,10 +140,12 @@ public class ModifyUserInfoActivity extends BaseSwipeBackActivity {
 //                    protected void onExecuteError(Call call, Response response, Exception e) {
 //                    }
 //                });
+        judgeToSkip();
     }
 
     private void judgeToSkip() {
-        startActivity(new Intent(ModifyUserInfoActivity.this, MainActivity.class).putExtra("is_modify_success", true));
+        startActivity(new Intent(ModifyUserInfoActivity.this, PeterMainActivity.class).putExtra("is_modify_success", true));
+//        startActivity(new Intent(ModifyUserInfoActivity.this, HomeActivity.class).putExtra("is_modify_success", true));
         finish();
     }
 
@@ -180,22 +167,6 @@ public class ModifyUserInfoActivity extends BaseSwipeBackActivity {
 //                uploadFile(url);
 //            }
 //        }
-    }
-
-    //上传图片
-    private void uploadFile(final String url) {
-        List<File> listPath = new ArrayList();
-        listPath.add(new File(url));
-        UploadUtil.getInstance()
-                .setShowDialog(false).UploadFiles(new UploadUtil.OnUploadSucceedListen() {
-            @Override
-            public void succeed(List<String> list) {
-                if (list.size() == 1) {
-                    logoUrl = list.get(0);
-                    GlideUitl.getInstance().load(ivUserAvatar, url);
-                }
-            }
-        }, listPath);
     }
 
     @Override

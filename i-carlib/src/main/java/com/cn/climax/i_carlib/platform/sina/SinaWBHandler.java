@@ -1,10 +1,17 @@
-package com.tsy.sdk.social.sina;
+package com.cn.climax.i_carlib.platform.sina;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.cn.climax.i_carlib.platform.PlatformConfig;
+import com.cn.climax.i_carlib.platform.SSOHandler;
+import com.cn.climax.i_carlib.platform.listener.AuthListener;
+import com.cn.climax.i_carlib.platform.listener.ShareListener;
+import com.cn.climax.i_carlib.platform.share_media.IShareMedia;
+import com.cn.climax.i_carlib.platform.share_media.ShareTextImageMedia;
+import com.cn.climax.i_carlib.platform.util.LogUtils;
 import com.sina.weibo.sdk.api.ImageObject;
 import com.sina.weibo.sdk.api.TextObject;
 import com.sina.weibo.sdk.api.WeiboMultiMessage;
@@ -20,20 +27,12 @@ import com.sina.weibo.sdk.auth.sso.AccessTokenKeeper;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.sina.weibo.sdk.constant.WBConstants;
 import com.sina.weibo.sdk.exception.WeiboException;
-import com.tsy.sdk.social.PlatformConfig;
-import com.tsy.sdk.social.SSOHandler;
-import com.tsy.sdk.social.listener.AuthListener;
-import com.tsy.sdk.social.listener.ShareListener;
-import com.tsy.sdk.social.share_media.IShareMedia;
-import com.tsy.sdk.social.share_media.ShareTextImageMedia;
-import com.tsy.sdk.social.util.LogUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * 新浪微博 第三方Hnadler
- * Created by tsy on 16/9/18.
  */
 public class SinaWBHandler extends SSOHandler {
 
@@ -53,7 +52,6 @@ public class SinaWBHandler extends SSOHandler {
 
     /**
      * 设置微博 REDIRECT_URL
-     * @param redirctUrl
      */
     public static void setRedirctUrl(String redirctUrl) {
         REDIRECT_URL = redirctUrl;

@@ -1,6 +1,6 @@
-package com.tsy.sdk.social.api;
+package com.cn.climax.i_carlib.platform.api;
 
-import com.tsy.sdk.social.util.NetUtils;
+import com.cn.climax.i_carlib.platform.util.NetUtils;
 
 import org.json.JSONObject;
 
@@ -39,7 +39,7 @@ public class WXApi {
             @Override
             public void onSuccess(JSONObject response) {
                 if (response == null || response.length() == 0) {
-                    callback.onError("null respone");
+                    callback.onError("null response");
                     return;
                 }
 

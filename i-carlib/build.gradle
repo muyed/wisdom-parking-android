@@ -72,7 +72,6 @@ dependencies {
     compile dataDependencies.libSupportDesign
     compile dataDependencies.libSupportRecyclerview
     compile dataDependencies.libGson
-
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -80,15 +79,15 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile files('libs/asmack.jar')
     compile files('libs/libammsdk.jar')
-    compile files('libs/open_sdk_r5509.jar')
     compile files('libs/weiboSDKCore_3.1.4.jar')
-
     //noinspection GradleCompatible
     compile 'com.android.support:multidex:1.0.1'
-
     compile 'com.lzy.net:okgo:2.1.4'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.youth.banner:banner:1.4.10'
+    compile files('libs/qq_mta-sdk-1.6.2.jar')
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:1.4.0'
+    compile 'com.sina.weibo.sdk:core:1.0.0:openDefaultRelease@aar'
 }
 
 task nativeLibsToJar(type: Zip, description: 'create a jar archive of the native libs') {

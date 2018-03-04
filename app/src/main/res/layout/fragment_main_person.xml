@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/fake_status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/statusbar_view_height"
+        android:background="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="我的"
+        android:textColor="@color/white"
+        android:textSize="34px" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/main_bg_gradient"
+        android:orientation="vertical">
+
+        <com.cn.climax.wisdomparking.widget.CircleImageView
+            android:id="@+id/sdvAvatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            fresco:actualImageScaleType="focusCrop"
+            fresco:backgroundImage="@color/white"
+            fresco:fadeDuration="1000"
+            fresco:failureImage="@mipmap/icon_default"
+            fresco:failureImageScaleType="centerInside"
+            fresco:placeholderImage="@mipmap/icon_default"
+            fresco:placeholderImageScaleType="fitCenter"
+            fresco:roundAsCircle="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="一颗苹果"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="18058728064"
+            android:textColor="#969EA1" />
+
+        <LinearLayout
+            android:id="@+id/allGoToMyCars"
+            android:layout_width="match_parent"
+            android:layout_height="150px"
+            android:layout_margin="@dimen/common_dimen_30px"
+            android:alpha="0.8"
+            android:background="@drawable/chexinghui_logo_border"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="60px"
+                android:layout_height="60px"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="50px"
+                android:contentDescription="@string/app_name"
+                android:src="@mipmap/ic_launcher" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/common_dimen_30px"
+                android:layout_weight="2"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="浙A12345"
+                        android:textColor="@color/white" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="24px"
+                        android:layout_marginLeft="10dp"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/weirenzheng" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="福特GT 2004款 5.4 Coupe"
+                    android:textColor="#959C94"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="10dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_right_arrow" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150px"
+            android:layout_margin="@dimen/common_dimen_30px"
+            android:alpha="0.8"
+            android:background="@drawable/chexinghui_logo_border"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="60px"
+                android:layout_height="60px"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="50px"
+                android:contentDescription="@string/app_name"
+                android:src="@mipmap/ic_launcher" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/common_dimen_30px"
+                android:layout_weight="2"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的设备"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="设备正常运行"
+                    android:textColor="#959C94"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="10dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_right_arrow" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150px"
+            android:layout_margin="@dimen/common_dimen_30px"
+            android:alpha="0.8"
+            android:background="@drawable/chexinghui_logo_border"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="60px"
+                android:layout_height="60px"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="50px"
+                android:contentDescription="@string/app_name"
+                android:src="@mipmap/ic_launcher" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/common_dimen_30px"
+                android:layout_weight="2"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="设置"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="10dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_right_arrow" />
+
+        </LinearLayout>
+
+
+        <com.cn.climax.i_carlib.uiframework.bootstrap.BootstrapButton
+            android:id="@+id/bbThemeSetting"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_margin="50dp"
+            android:gravity="center"
+            android:visibility="gone"
+            app:bootstrapBrand="info"
+            app:bootstrapSize="md"
+            app:bootstrapText="设置"
+            app:roundedCorners="true" />
+    </LinearLayout>
+
+</LinearLayout>

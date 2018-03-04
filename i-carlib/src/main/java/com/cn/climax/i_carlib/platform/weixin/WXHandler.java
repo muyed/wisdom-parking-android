@@ -1,10 +1,23 @@
-package com.tsy.sdk.social.weixin;
+package com.cn.climax.i_carlib.platform.weixin;
 
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
 
+import com.cn.climax.i_carlib.platform.PlatformConfig;
+import com.cn.climax.i_carlib.platform.PlatformType;
+import com.cn.climax.i_carlib.platform.SSOHandler;
+import com.cn.climax.i_carlib.platform.listener.AuthListener;
+import com.cn.climax.i_carlib.platform.listener.ShareListener;
+import com.cn.climax.i_carlib.platform.share_media.IShareMedia;
+import com.cn.climax.i_carlib.platform.share_media.ShareImageMedia;
+import com.cn.climax.i_carlib.platform.share_media.ShareMusicMedia;
+import com.cn.climax.i_carlib.platform.share_media.ShareTextMedia;
+import com.cn.climax.i_carlib.platform.share_media.ShareVideoMedia;
+import com.cn.climax.i_carlib.platform.share_media.ShareWebMedia;
+import com.cn.climax.i_carlib.platform.util.BitmapUtils;
+import com.cn.climax.i_carlib.platform.util.LogUtils;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
@@ -19,19 +32,6 @@ import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.tsy.sdk.social.PlatformConfig;
-import com.tsy.sdk.social.PlatformType;
-import com.tsy.sdk.social.SSOHandler;
-import com.tsy.sdk.social.listener.AuthListener;
-import com.tsy.sdk.social.listener.ShareListener;
-import com.tsy.sdk.social.share_media.IShareMedia;
-import com.tsy.sdk.social.share_media.ShareImageMedia;
-import com.tsy.sdk.social.share_media.ShareMusicMedia;
-import com.tsy.sdk.social.share_media.ShareTextMedia;
-import com.tsy.sdk.social.share_media.ShareVideoMedia;
-import com.tsy.sdk.social.share_media.ShareWebMedia;
-import com.tsy.sdk.social.util.BitmapUtils;
-import com.tsy.sdk.social.util.LogUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -61,18 +61,18 @@ public class WXHandler extends SSOHandler {
     public WXHandler() {
         this.mEventHandler = new IWXAPIEventHandler() {
             public void onResp(BaseResp resp) {
-                if(!mLastTransaction.equals(resp.transaction)) {
+                if (!mLastTransaction.equals(resp.transaction)) {
                     return;
                 }
 
                 int type = resp.getType();
-                switch(type) {
+                switch (type) {
                     case ConstantsAPI.COMMAND_SENDAUTH:     //授权返回
-                        WXHandler.this.onAuthCallback((SendAuth.Resp)resp);
+                        WXHandler.this.onAuthCallback((SendAuth.Resp) resp);
                         break;
 
                     case ConstantsAPI.COMMAND_SENDMESSAGE_TO_WX:        //分享返回
-                        WXHandler.this.onShareCallback((SendMessageToWX.Resp)resp);
+                        WXHandler.this.onShareCallback((SendMessageToWX.Resp) resp);
                         break;
                 }
 
@@ -85,6 +85,7 @@ public class WXHandler extends SSOHandler {
 
     /**
      * 设置scope和state
+     *
      * @param scope
      * @param state
      */
@@ -109,10 +110,10 @@ public class WXHandler extends SSOHandler {
 
     @Override
     public void authorize(Activity activity, AuthListener authListener) {
-        if(!isInstall()) {
+        if (!isInstall()) {
             authListener.onError(this.mConfig.getName(), "wx not install");
             LogUtils.e("wx not install");
-            return ;
+            return;
         }
 
         this.mActivtiy = activity;
@@ -124,7 +125,7 @@ public class WXHandler extends SSOHandler {
         req1.transaction = buildTransaction("authorize");
         mLastTransaction = req1.transaction;
 
-        if(!this.mWXApi.sendReq(req1)) {
+        if (!this.mWXApi.sendReq(req1)) {
             this.mAuthListener.onError(this.mConfig.getName(), "sendReq fail");
             LogUtils.e("wxapi sendReq fail");
         }
@@ -140,14 +141,14 @@ public class WXHandler extends SSOHandler {
                 break;
 
             case BaseResp.ErrCode.ERR_USER_CANCEL:      //授权取消
-                if(this.mAuthListener != null) {
+                if (this.mAuthListener != null) {
                     this.mAuthListener.onCancel(PlatformType.WEIXIN);
                 }
                 break;
 
             default:    //授权失败
                 CharSequence err = TextUtils.concat(new CharSequence[]{"weixin auth error (", String.valueOf(resp.errCode), "):", resp.errStr});
-                if(mAuthListener != null) {
+                if (mAuthListener != null) {
                     mAuthListener.onError(PlatformType.WEIXIN, err.toString());
                 }
                 break;
@@ -156,19 +157,19 @@ public class WXHandler extends SSOHandler {
 
     @Override
     public void share(Activity activity, IShareMedia shareMedia, ShareListener shareListener) {
-        if(!isInstall()) {
+        if (!isInstall()) {
             shareListener.onError(this.mConfig.getName(), "wx not install");
             LogUtils.e("wx not install");
-            return ;
+            return;
         }
 
         this.mActivtiy = activity;
         this.mShareListener = shareListener;
 
         WXMediaMessage msg = new WXMediaMessage();
-        String type = "";
+        String type;
 
-        if(shareMedia instanceof ShareWebMedia) {       //网页分享
+        if (shareMedia instanceof ShareWebMedia) {       //网页分享
             ShareWebMedia shareWebMedia = (ShareWebMedia) shareMedia;
             type = "webpage";
 
@@ -180,7 +181,7 @@ public class WXHandler extends SSOHandler {
             msg.title = shareWebMedia.getTitle();
             msg.description = shareWebMedia.getDescription();
             msg.thumbData = BitmapUtils.bitmap2Bytes(shareWebMedia.getThumb());
-        } else if(shareMedia instanceof ShareTextMedia) {   //文字分享
+        } else if (shareMedia instanceof ShareTextMedia) {   //文字分享
             ShareTextMedia shareTextMedia = (ShareTextMedia) shareMedia;
             type = "text";
 
@@ -190,7 +191,7 @@ public class WXHandler extends SSOHandler {
 
             msg.mediaObject = textObject;
             msg.description = shareTextMedia.getText();
-        } else if(shareMedia instanceof ShareImageMedia) {  //图片分享
+        } else if (shareMedia instanceof ShareImageMedia) {  //图片分享
             ShareImageMedia shareImageMedia = (ShareImageMedia) shareMedia;
             type = "image";
 
@@ -205,7 +206,7 @@ public class WXHandler extends SSOHandler {
             Bitmap thumb = Bitmap.createScaledBitmap(shareImageMedia.getImage(), 200, 200, true);
             msg.thumbData = BitmapUtils.bitmap2Bytes(thumb);
             thumb.recycle();
-        } else if(shareMedia instanceof ShareMusicMedia) {  //音乐分享
+        } else if (shareMedia instanceof ShareMusicMedia) {  //音乐分享
             ShareMusicMedia shareMusicMedia = (ShareMusicMedia) shareMedia;
             type = "music";
 
@@ -216,7 +217,7 @@ public class WXHandler extends SSOHandler {
             msg.title = shareMusicMedia.getTitle();
             msg.description = shareMusicMedia.getDescription();
             msg.thumbData = BitmapUtils.bitmap2Bytes(shareMusicMedia.getThumb());
-        } else if(shareMedia instanceof ShareVideoMedia) {      //视频分享
+        } else if (shareMedia instanceof ShareVideoMedia) {      //视频分享
             ShareVideoMedia shareVideoMedia = (ShareVideoMedia) shareMedia;
             type = "video";
 
@@ -228,14 +229,14 @@ public class WXHandler extends SSOHandler {
             msg.description = shareVideoMedia.getDescription();
             msg.thumbData = BitmapUtils.bitmap2Bytes(shareVideoMedia.getThumb());
         } else {
-            if(this.mShareListener != null) {
+            if (this.mShareListener != null) {
                 this.mShareListener.onError(this.mConfig.getName(), "weixin is not support this shareMedia");
             }
-            return ;
+            return;
         }
 
         //压缩缩略图到32kb
-        if(msg.thumbData != null && msg.thumbData.length > '耀') {        //微信sdk里面判断的大小
+        if (msg.thumbData != null && msg.thumbData.length > '耀') {        //微信sdk里面判断的大小
             msg.thumbData = BitmapUtils.compressBitmap(msg.thumbData, '耀');
         }
 
@@ -245,37 +246,37 @@ public class WXHandler extends SSOHandler {
         req.transaction = buildTransaction(type);
         mLastTransaction = req.transaction;
 
-        if(this.mConfig.getName() == PlatformType.WEIXIN) {     //分享好友
+        if (this.mConfig.getName() == PlatformType.WEIXIN) {     //分享好友
             req.scene = SendMessageToWX.Req.WXSceneSession;
-        } else if(this.mConfig.getName() == PlatformType.WEIXIN_CIRCLE) {      //分享朋友圈
+        } else if (this.mConfig.getName() == PlatformType.WEIXIN_CIRCLE) {      //分享朋友圈
             req.scene = SendMessageToWX.Req.WXSceneTimeline;
         }
 
-        if(!this.mWXApi.sendReq(req)) {
-            if(this.mShareListener != null) {
+        if (!this.mWXApi.sendReq(req)) {
+            if (this.mShareListener != null) {
                 this.mShareListener.onError(this.mConfig.getName(), "sendReq fail");
             }
             LogUtils.e("wxapi sendReq fail");
         }
     }
 
-    protected void onShareCallback(com.tencent.mm.opensdk.modelmsg.SendMessageToWX.Resp resp) {
+    protected void onShareCallback(SendMessageToWX.Resp resp) {
         switch (resp.errCode) {
             case BaseResp.ErrCode.ERR_OK:       //分享成功
-                if(this.mShareListener != null) {
+                if (this.mShareListener != null) {
                     this.mShareListener.onComplete(this.mConfig.getName());
                 }
                 break;
 
             case BaseResp.ErrCode.ERR_USER_CANCEL:      //分享取消
-                if(this.mShareListener != null) {
+                if (this.mShareListener != null) {
                     this.mShareListener.onCancel(this.mConfig.getName());
                 }
                 break;
 
             default:    //分享失败
                 CharSequence err = TextUtils.concat(new CharSequence[]{"weixin share error (", String.valueOf(resp.errCode), "):", resp.errStr});
-                if(mShareListener != null) {
+                if (mShareListener != null) {
                     mShareListener.onError(this.mConfig.getName(), err.toString());
                 }
                 break;
@@ -283,7 +284,7 @@ public class WXHandler extends SSOHandler {
     }
 
     private String buildTransaction(String type) {
-        return type == null?String.valueOf(System.currentTimeMillis()):type + System.currentTimeMillis();
+        return type == null ? String.valueOf(System.currentTimeMillis()) : type + System.currentTimeMillis();
     }
 
     public IWXAPI getWXApi() {

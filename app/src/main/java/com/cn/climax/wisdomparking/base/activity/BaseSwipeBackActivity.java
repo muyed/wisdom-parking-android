@@ -39,7 +39,7 @@ public abstract class BaseSwipeBackActivity extends BaseActivity implements ISwi
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.ivLeftHorizonalIcon)
+    @BindView(R.id.ivNavBack)
     ImageView ivNavBack;
     @BindView(R.id.atvToolBarMainTitle)
     TextView atvToolBarMainTitle;

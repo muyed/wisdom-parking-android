@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/allHomeShowArea"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/main_bg_gradient"
+        android:orientation="vertical">
+
+        <include layout="@layout/base_fake_toolbar_layout_cxbd" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+
+            <!-- 车展示 model + data -->
+            <FrameLayout
+                android:id="@+id/allLoopCarInfo"
+                android:layout_width="match_parent"
+                android:layout_height="408px"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="550px"
+                    android:layout_height="188px"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/common_dimen_48px"
+                    android:src="@drawable/bg_car" />
+
+                <ImageView
+                    android:layout_width="610px"
+                    android:layout_height="128px"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="178px"
+                    android:src="@drawable/bg_stage" />
+
+                <!-- 今日里程 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="58px"
+                    android:layout_marginTop="205px"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="今日里程"
+                        android:textColor="@color/white" />
+
+                    <ImageView
+                        android:layout_width="56px"
+                        android:layout_height="56px"
+                        android:src="@drawable/function_point" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="400"
+                        android:textColor="#278FC2"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="km"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+                <!-- 平均速度 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="240px"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="平均速度"
+                        android:textColor="@color/white" />
+
+                    <ImageView
+                        android:layout_width="56px"
+                        android:layout_height="56px"
+                        android:src="@drawable/function_point" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="80"
+                        android:textColor="#278FC2"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="km/h"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+                <!-- 平均油耗 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="58px"
+                    android:layout_marginTop="205px"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="平均油耗"
+                        android:textColor="@color/white" />
+
+                    <ImageView
+                        android:layout_width="56px"
+                        android:layout_height="56px"
+                        android:src="@drawable/function_point" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5"
+                        android:textColor="#278FC2"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="l/km"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <!-- 车展示 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/allLoopCarInfo"
+                android:orientation="vertical"
+                android:padding="@dimen/common_dimen_30px">
+
+                <!-- 我的行程 -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_dimen_160px"
+                    android:layout_gravity="center_horizontal"
+                    tools:ignore="PxUsage">
+
+                    <com.cn.climax.wisdomparking.widget.My2dMapView
+                        android:id="@+id/locationMapView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/common_dimen_240px" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.8"
+                        android:background="@drawable/home_bg_border_wodexingcheng"
+                        android:contentDescription="@string/app_name" />
+
+                    <LinearLayout
+                        android:id="@+id/aflClickToMyDrive"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/common_dimen_10px"
+                        android:paddingLeft="@dimen/common_dimen_24px"
+                        android:paddingTop="@dimen/common_dimen_10px">
+
+                        <ImageView
+                            android:layout_width="@dimen/common_dimen_12px"
+                            android:layout_height="@dimen/common_dimen_12px"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="@dimen/common_dimen_16px"
+                            android:background="@drawable/main_circle_border_39bbfa"
+                            android:contentDescription="@string/app_name" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="60px"
+                            android:gravity="center_vertical"
+                            android:text="我的行程"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/common_dimen_30px"
+                    android:orientation="horizontal">
+
+                    <!-- 车辆检测 -->
+                    <FrameLayout
+                        android:id="@+id/aflClickToCarInspect"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/common_dimen_160px"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginRight="@dimen/common_dimen_64px"
+                        android:layout_weight="1"
+                        tools:ignore="RtlHardcoded">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:alpha="0.8"
+                            android:background="@drawable/function_btn_detection"
+                            android:contentDescription="@string/app_name" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:paddingBottom="@dimen/common_dimen_10px"
+                            android:paddingLeft="@dimen/common_dimen_24px"
+                            android:paddingTop="@dimen/common_dimen_10px">
+
+                            <ImageView
+                                android:layout_width="@dimen/common_dimen_12px"
+                                android:layout_height="@dimen/common_dimen_12px"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="@dimen/common_dimen_16px"
+                                android:background="@drawable/main_circle_border_fbd62a"
+                                android:contentDescription="@string/app_name" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="车辆检测"
+                                android:textColor="@color/white" />
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                    <!-- 驾驶统计 -->
+                    <FrameLayout
+                        android:id="@+id/aflClickToDriveStatistics"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/common_dimen_160px"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:alpha="0.8"
+                            android:background="@drawable/function_btn_statistics"
+                            android:contentDescription="@string/app_name" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:paddingBottom="@dimen/common_dimen_10px"
+                            android:paddingLeft="@dimen/common_dimen_24px"
+                            android:paddingTop="@dimen/common_dimen_10px">
+
+                            <ImageView
+                                android:layout_width="@dimen/common_dimen_12px"
+                                android:layout_height="@dimen/common_dimen_12px"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="@dimen/common_dimen_16px"
+                                android:background="@drawable/main_circle_border_51db57"
+                                android:contentDescription="@string/app_name" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="驾驶统计"
+                                android:textColor="@color/white" />
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/common_dimen_30px"
+                    android:orientation="horizontal">
+
+                    <!-- 发现车友 -->
+                    <FrameLayout
+                        android:id="@+id/aflClickToFindFriend"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/common_dimen_160px"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginRight="@dimen/common_dimen_64px"
+                        android:layout_weight="1"
+                        tools:ignore="RtlHardcoded">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:alpha="0.8"
+                            android:background="@drawable/function_btn_friend"
+                            android:contentDescription="@string/app_name" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:paddingBottom="@dimen/common_dimen_10px"
+                            android:paddingLeft="@dimen/common_dimen_24px"
+                            android:paddingTop="@dimen/common_dimen_10px">
+
+                            <ImageView
+                                android:layout_width="@dimen/common_dimen_12px"
+                                android:layout_height="@dimen/common_dimen_12px"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="@dimen/common_dimen_16px"
+                                android:background="@drawable/main_circle_border_f6847b"
+                                android:contentDescription="@string/app_name" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="发现车友"
+                                android:textColor="@color/white" />
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                    <!-- 目的地下发 -->
+                    <FrameLayout
+                        android:id="@+id/aflClickToNavLocation"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/common_dimen_160px"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:alpha="0.8"
+                            android:background="@drawable/function_btn_destination"
+                            android:contentDescription="@string/app_name" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:paddingBottom="@dimen/common_dimen_10px"
+                            android:paddingLeft="@dimen/common_dimen_24px"
+                            android:paddingTop="@dimen/common_dimen_10px">
+
+                            <ImageView
+                                android:layout_width="@dimen/common_dimen_12px"
+                                android:layout_height="@dimen/common_dimen_12px"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="@dimen/common_dimen_16px"
+                                android:background="@drawable/main_circle_border_7d7ed0"
+                                android:contentDescription="@string/app_name" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="目的地下发"
+                                android:textColor="@color/white" />
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <com.cn.climax.i_carlib.uiframework.banner.XBanner
+            android:id="@+id/xbanner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dimen_314px"
+            android:visibility="gone"
+            app:canLoop="true" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dimen_80px"
+            android:paddingLeft="@dimen/common_dimen_24px"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+            <!-- 日期 -->
+            <LinearLayout
+                android:id="@+id/allCalendar"
+                android:layout_width="@dimen/common_dimen_48px"
+                android:layout_height="@dimen/common_dimen_48px"
+                android:layout_centerVertical="true"
+                android:background="@drawable/home_icon_calendar"
+                android:gravity="bottom|center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18"
+                    android:textColor="@color/color_2895ca"
+                    android:textSize="@dimen/common_dimen_28px" />
+
+            </LinearLayout>
+
+            <!-- 天气 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/common_dimen_16px"
+                android:layout_toRightOf="@+id/allCalendar"
+                android:text="晴转多云 23 ~ 26 （°C）"
+                android:textColor="@color/text_common_color"
+                android:textSize="@dimen/common_dimen_26px" />
+
+            <!-- 限行 -->
+            <LinearLayout
+                android:layout_width="@dimen/common_dimen_234px"
+                android:layout_height="@dimen/common_dimen_48px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/home_bg_restrictions"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/common_dimen_20px"
+                    android:text="今日限行 4 | 6"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/common_dimen_26px" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dimen_290px"
+            android:paddingLeft="@dimen/common_dimen_24px"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dimen_246px"
+                android:orientation="horizontal">
+
+                <!-- ＬＥＦＴ　ＳＩＤＥ -->
+                <RelativeLayout
+                    android:layout_width="@dimen/common_dimen_240px"
+                    android:layout_height="@dimen/common_dimen_246px"
+                    android:background="@drawable/home_bg_car">
+
+                    <ImageView
+                        android:id="@+id/iv_default_detect"
+                        android:layout_width="@dimen/common_dimen_160px"
+                        android:layout_height="@dimen/common_dimen_160px"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="@dimen/common_dimen_22px"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/home_default_car" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_default_detect"
+                        android:gravity="center"
+                        android:text="未绑定车辆"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/common_dimen_28px"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <!-- ＲＩＧＨＴ　ＳＩＤＥ -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_dimen_246px"
+                    android:background="@drawable/home_bg_detection"
+                    android:paddingLeft="@dimen/common_dimen_88px"
+                    android:paddingTop="@dimen/common_dimen_80px"
+                    android:visibility="visible">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/iv_home_icon_hint"
+                            android:layout_width="@dimen/common_dimen_30px"
+                            android:layout_height="@dimen/common_dimen_30px"
+                            android:layout_centerVertical="true"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/home_icon_hint" />
+
+                        <TextView
+                            android:id="@+id/tv_click_to_bind"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/common_dimen_16px"
+                            android:layout_toRightOf="@+id/iv_home_icon_hint"
+                            android:text="点击完成设备绑定" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_dimen_246px"
+                    android:background="@drawable/home_bg_detection"
+                    android:paddingLeft="@dimen/common_dimen_20px"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tv_detect_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/common_dimen_20px"
+                        android:layout_toRightOf="@+id/iv_home_icon_hint"
+                        android:text="检测反馈"
+                        android:textColor="@color/text_common_color"
+                        android:textSize="@dimen/common_dimen_24px"
+                        tools:ignore="NotSibling" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_detect_title"
+                        android:layout_marginTop="@dimen/common_dimen_32px"
+                        android:text="你的爱车状况良好，没有发现任何问题"
+                        android:textColor="@color/color_26ca8a"
+                        android:textSize="@dimen/common_dimen_26px" />
+
+                    <View
+                        android:layout_width="@dimen/common_dimen_312px"
+                        android:layout_height="@dimen/common_dimen_2px"
+                        android:layout_above="@+id/all_detect_bottom"
+                        android:background="@color/register_bg_color" />
+
+                    <LinearLayout
+                        android:id="@+id/all_detect_bottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/common_dimen_106px"
+                        android:layout_alignParentBottom="true"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_detect_time_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/common_dimen_18px"
+                            android:layout_toRightOf="@+id/iv_home_icon_hint"
+                            android:text="上一次检测时间："
+                            android:textColor="@color/text_common_color"
+                            android:textSize="@dimen/common_dimen_22px" />
+
+                        <TextView
+                            android:id="@+id/tv_detect_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/common_dimen_16px"
+                            android:text="2017-03-20 18:13:24"
+                            android:textColor="@color/text_common_color"
+                            android:textSize="@dimen/common_dimen_24px" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/common_dimen_148px"
+                android:layout_height="@dimen/common_dimen_148px"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="@dimen/common_dimen_24px"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/home_btn_detection" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvNoData"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="您的爱车暂无动态"
+                android:visibility="gone"
+                tools:ignore="HardcodedText" />
+
+            <LinearLayout
+                android:id="@+id/allClickToAddressSetting"
+                android:layout_width="@dimen/common_dimen_280px"
+                android:layout_height="@dimen/common_dimen_88px"
+                android:layout_marginTop="@dimen/common_dimen_32px"
+                android:alpha="0.66"
+                android:background="@drawable/common_shape_background_blur"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvCarDrivingMileage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/common_dimen_24px"
+                    android:drawableLeft="@drawable/home_map_icon_start"
+                    android:text="瑞城花园"
+                    android:textColor="@color/text_darker_color"
+                    android:textSize="@dimen/common_dimen_24px"
+                    tools:ignore="RtlHardcoded,SmallSp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/common_dimen_24px"
+                    android:layout_marginTop="@dimen/common_dimen_16px"
+                    android:drawableLeft="@drawable/home_map_icon_end"
+                    android:text="未来科技城"
+                    android:textColor="@color/text_darker_color"
+                    android:textSize="@dimen/common_dimen_24px"
+                    tools:ignore="RtlHardcoded,SmallSp" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

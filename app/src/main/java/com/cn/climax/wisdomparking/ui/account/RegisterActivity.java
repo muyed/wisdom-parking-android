@@ -99,9 +99,13 @@ public class RegisterActivity extends BaseSwipeBackActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
-                        ToastUtils.show("验证码已发送至您的手机，请注意查收");
-                        SharedUtil.getInstance(RegisterActivity.this).put(ApiParamsKey.PHONE, mAccount);
-                        startActivity(new Intent(RegisterActivity.this, PasswordSetActivity.class));
+                        if (response.code() == 200) {
+                            ToastUtils.show("验证码已发送至您的手机，请注意查收");
+                            SharedUtil.getInstance(RegisterActivity.this).put(ApiParamsKey.PHONE, mAccount);
+                            startActivity(new Intent(RegisterActivity.this, PasswordSetActivity.class));
+                        }else{
+                            ToastUtils.show(response.message());
+                        }
                     }
                 });
     }

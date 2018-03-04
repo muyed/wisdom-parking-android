@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/apk/res-auto"
+    xmlns:tools2="http://schemas.android.com/tools"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/common_dimen_150px"
+    android:background="@color/colorPrimary"
+    android:minHeight="?attr/actionBarSize"
+    android:paddingTop="@dimen/common_dimen_50px"
+    tools:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    tools:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_dimen_96px"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/ivLeftNav"
+                android:layout_width="@dimen/common_dimen_40px"
+                android:layout_height="@dimen/common_dimen_40px"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/icon_nav_location"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:id="@+id/allToLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/atvLeftTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/common_dimen_8px"
+                    android:layout_marginRight="@dimen/common_dimen_16px"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical|left"
+                    android:maxLines="1"
+                    android:maxWidth="@dimen/common_dimen_120px"
+                    android:text="杭州"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/common_dimen_28px"
+                    android:visibility="visible"
+                    tools2:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+                <ImageView
+                    android:id="@+id/ivRightLabel"
+                    android:layout_width="@dimen/common_dimen_24px"
+                    android:layout_height="@dimen/common_dimen_24px"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_location_downward"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/atvToolBarMainSearch"
+            android:layout_width="@dimen/common_dimen_430px"
+            android:layout_height="@dimen/common_dimen_64px"
+            android:layout_marginLeft="@dimen/common_dimen_18px"
+            android:background="@drawable/home_map_search_bg"
+            android:drawableRight="@drawable/search_btn_cancel"
+            android:gravity="center_vertical"
+            android:hint="输入地址搜索"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/common_dimen_40px"
+            android:paddingRight="@dimen/common_dimen_24px"
+            android:textColor="@color/text_common_color"
+            android:textColorHint="@color/text_lighter_color"
+            android:textSize="@dimen/common_dimen_28px"
+            tools2:ignore="RtlHardcoded,RtlSymmetry" />
+
+        <TextView
+            android:id="@+id/tvClosePage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/common_dimen_24px"
+            android:layout_marginRight="@dimen/common_dimen_24px"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/white"
+            android:textSize="@dimen/common_dimen_32px"
+            tools2:ignore="RtlHardcoded,RtlSymmetry" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.Toolbar>

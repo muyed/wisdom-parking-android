@@ -5,7 +5,7 @@ import com.cn.climax.i_carlib.platform.sina.WBShareCallbackActivity;
 /**
  * author：leo on 2018/2/28 23:57
  * email： leocheung4ever@gmail.com
- * description: TODO
+ * description: 微博分享回调
  * what & why is modified:
  */
 

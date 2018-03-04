@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_address_selected"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/register_bg_color"
+    android:orientation="vertical" >
+
+    <!--<include layout="@layout/base_nav_toolbar_layout_search" />-->
+    <include layout="@layout/base_fake_toolbar_layout_search" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/common_dimen_24px"
+        android:layout_marginRight="@dimen/common_dimen_24px"
+        android:layout_marginTop="@dimen/common_dimen_24px"
+        android:background="@drawable/address_show_bg_body"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/common_dimen_38px"
+        android:paddingRight="@dimen/common_dimen_38px">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dimen_140px"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/allAddress4Home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/view_line"
+                android:orientation="horizontal"
+                tools:ignore="RtlHardcoded">
+
+                <ImageView
+                    android:layout_width="@dimen/common_dimen_32px"
+                    android:layout_height="@dimen/common_dimen_32px"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/common_dimen_32px"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/address_icon_home" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/string_main_address_home"
+                        android:textColor="@color/text_darker_color"
+                        android:textSize="@dimen/common_dimen_30px" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/common_dimen_16px"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="政新花园"
+                        android:textColor="@color/text_lighter_color"
+                        android:textSize="@dimen/common_dimen_28px" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_line"
+                android:layout_width="@dimen/common_dimen_2px"
+                android:layout_height="@dimen/common_dimen_100px"
+                android:layout_centerInParent="true"
+                android:background="@color/color_eeeeee" />
+
+            <LinearLayout
+                android:id="@+id/allAddress4Company"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/view_line"
+                tools:ignore="RtlHardcoded">
+
+                <ImageView
+                    android:layout_width="@dimen/common_dimen_32px"
+                    android:layout_height="@dimen/common_dimen_32px"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/common_dimen_32px"
+                    android:layout_marginRight="@dimen/common_dimen_32px"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/address_icon_company" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/string_main_address_company"
+                        android:textColor="@color/text_darker_color"
+                        android:textSize="@dimen/common_dimen_30px" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/common_dimen_16px"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="未来科技城·海创园18幢"
+                        android:textColor="@color/text_lighter_color"
+                        android:textSize="@dimen/common_dimen_28px" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view_line_first"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dimen_2px"
+            android:background="@color/color_eeeeee" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_history_address"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
+
+        <com.cn.climax.i_carlib.uiframework.bootstrap.BootstrapButton
+            android:id="@+id/bb_set_common_address"
+            android:layout_width="@dimen/common_dimen_500px"
+            android:layout_height="@dimen/common_dimen_100px"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/common_dimen_50px"
+            android:gravity="center"
+            app:bootstrapBrand="primary"
+            app:bootstrapSize="md"
+            app:bootstrapText="设置常用地址"
+            app:roundedCorners="false"
+            app:showOutline="true" />
+
+    </LinearLayout>
+
+</LinearLayout>

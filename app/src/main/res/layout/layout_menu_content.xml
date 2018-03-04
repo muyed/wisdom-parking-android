@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:paddingTop="@dimen/statusSize">
-
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/statusSize">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +15,7 @@
             android:id="@+id/avatar"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:src="@mipmap/icon_logo"/>
+            android:src="@mipmap/icon_logo" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -31,7 +30,7 @@
                 android:layout_marginBottom="10dp"
                 android:text="万合天宜"
                 android:textColor="@color/white"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/vip"
@@ -42,7 +41,7 @@
                 android:padding="3dp"
                 android:text="VIP"
                 android:textColor="@color/white"
-                android:textSize="12dp"/>
+                android:textSize="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -54,7 +53,7 @@
                 android:padding="3dp"
                 android:text="音乐包"
                 android:textColor="@color/white"
-                android:textSize="12dp"/>
+                android:textSize="12dp" />
 
 
         </RelativeLayout>
@@ -67,7 +66,7 @@
         android:layout_marginBottom="15dp"
         android:layout_marginEnd="105dp"
         android:layout_marginStart="15dp"
-        android:background="@color/divider"/>
+        android:background="@color/divider" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -87,7 +86,7 @@
             android:gravity="center_vertical"
             android:text="消息中心"
             android:textColor="@color/white"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
         <TextView
 
@@ -101,7 +100,7 @@
             android:gravity="center_vertical"
             android:text="皮肤"
             android:textColor="@color/white"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
 
         <TextView
@@ -115,7 +114,7 @@
             android:gravity="center_vertical"
             android:text="会员中心"
             android:textColor="@color/white"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
 
         <TextView
@@ -128,7 +127,7 @@
             android:gravity="center_vertical"
             android:text="流量包月"
             android:textColor="@color/white"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -140,7 +139,7 @@
             android:gravity="center_vertical"
             android:text="定时关闭"
             android:textColor="@color/white"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
 
         <TextView
@@ -153,7 +152,7 @@
             android:gravity="center_vertical"
             android:text="听歌识曲"
             android:textColor="@color/white"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
 
     </LinearLayout>
@@ -164,7 +163,7 @@
         android:layout_marginBottom="15dp"
         android:layout_marginEnd="105dp"
         android:layout_marginStart="15dp"
-        android:background="@color/divider"/>
+        android:background="@color/divider" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -183,14 +182,14 @@
             android:gravity="center_vertical"
             android:text="仅WIFI联网"
             android:textColor="@color/white"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
-            android:src="@mipmap/icon_toggle_open"/>
+            android:src="@mipmap/icon_toggle_open" />
 
     </RelativeLayout>
 
@@ -212,14 +211,14 @@
             android:gravity="center_vertical"
             android:text="桌面歌词"
             android:textColor="@color/white"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
-            android:src="@mipmap/icon_toggle_open"/>
+            android:src="@mipmap/icon_toggle_open" />
 
     </RelativeLayout>
 
@@ -241,14 +240,14 @@
             android:gravity="center_vertical"
             android:text="锁屏歌词"
             android:textColor="@color/white"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
-            android:src="@mipmap/icon_toggle_close"/>
+            android:src="@mipmap/icon_toggle_close" />
 
     </RelativeLayout>
 
@@ -258,7 +257,7 @@
         android:layout_marginBottom="15dp"
         android:layout_marginEnd="105dp"
         android:layout_marginStart="15dp"
-        android:background="@color/divider"/>
+        android:background="@color/divider" />
 
 
     <RelativeLayout
@@ -278,7 +277,7 @@
             android:gravity="center_vertical"
             android:text="设置"
             android:textColor="@color/white"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
 
         <TextView
@@ -293,7 +292,7 @@
             android:gravity="center_vertical"
             android:text="退出"
             android:textColor="@color/white"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
     </RelativeLayout>
 

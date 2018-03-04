@@ -1,18 +1,18 @@
-package com.tsy.sdk.social.weixin;
+package com.cn.climax.i_carlib.platform.weixin;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.cn.climax.i_carlib.platform.PlatformConfig;
+import com.cn.climax.i_carlib.platform.PlatformType;
+import com.cn.climax.i_carlib.platform.SocialApi;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
-import com.tsy.sdk.social.PlatformConfig;
-import com.tsy.sdk.social.PlatformType;
-import com.tsy.sdk.social.SocialApi;
 
 /**
- * Created by tsy on 16/8/4.
+ *微信回调
  */
 public class WXCallbackActivity extends Activity implements IWXAPIEventHandler {
 

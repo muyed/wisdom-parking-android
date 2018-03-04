@@ -1,41 +1,50 @@
 package com.cn.climax.wisdomparking.ui.account;
 
+import android.Manifest;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiManage;
-import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
+import com.cn.climax.i_carlib.platform.PlatformConfig;
+import com.cn.climax.i_carlib.platform.PlatformType;
+import com.cn.climax.i_carlib.platform.SocialApi;
+import com.cn.climax.i_carlib.platform.listener.AuthListener;
 import com.cn.climax.i_carlib.uiframework.bootstrap.AwesomeTextView;
 import com.cn.climax.i_carlib.util.SharedUtil;
 import com.cn.climax.i_carlib.util.StringUtil;
 import com.cn.climax.i_carlib.util.ToastUtils;
 import com.cn.climax.i_carlib.util.secret.SHAUtils;
-import com.cn.climax.wisdomparking.MainActivity;
+import com.cn.climax.wisdomparking.ui.HomeActivity;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.data.response.LoginResponse;
 import com.cn.climax.wisdomparking.http.WrapJsonBeanCallback;
-import com.lzy.okgo.callback.StringCallback;
+
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import okhttp3.Call;
 import okhttp3.Response;
+import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends BaseSwipeBackActivity implements View.OnClickListener {
+public class LoginActivity extends BaseSwipeBackActivity implements View.OnClickListener, EasyPermissions.PermissionCallbacks {
 
     @BindView(R.id.flReplaceLoginType)
     FrameLayout flReplaceLoginType;
@@ -43,6 +52,19 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
     AwesomeTextView atvSignInWithSnsOrPwd;
     @BindView(R.id.btnLogin)
     Button btnLogin;
+    @BindView(R.id.ivWeChatLogin)
+    ImageView ivWeChatLogin;
+    @BindView(R.id.ivQQLogin)
+    ImageView ivQQLogin;
+    @BindView(R.id.ivSinaLogin)
+    ImageView ivSinaLogin;
+
+    private long exitTime = 0;
+
+    private static final int REQUEST_LOCATION = 1;
+    private static final String WX_APPID = "your wx appid";    //申请的wx appid
+    private static final String QQ_APPID = "your qq appid";    //申请的qq appid
+    private static final String SINA_WB_APPKEY = "your sina wb appkey";       //申请的新浪微博 appkey
 
     private boolean isClickSwitch = false; //是否点击短信验证码登录 默认没有
     private LoginPWDFragment firstFragment;
@@ -52,6 +74,7 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
     private String mPassword;
     private String mMobileNo;
     private String mSnsCode;
+    private SocialApi mSocialApi;
 
     @Override
     protected void setToolBar(boolean isShowNavBack, String headerTitle, String rightTitle) {
@@ -94,13 +117,24 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
-
+        initThirdPlatform();
         initClick();
+    }
+
+    private void initThirdPlatform() {
+        PlatformConfig.setWeixin(WX_APPID);
+        PlatformConfig.setQQ(QQ_APPID);
+        PlatformConfig.setSinaWB(SINA_WB_APPKEY);
+
+        mSocialApi = SocialApi.get(getApplicationContext());
     }
 
     private void initClick() {
         atvSignInWithSnsOrPwd.setOnClickListener(this);
         btnLogin.setOnClickListener(new ForbidClick());
+        ivWeChatLogin.setOnClickListener(new ForbidClick());
+        ivQQLogin.setOnClickListener(new ForbidClick());
+        ivSinaLogin.setOnClickListener(new ForbidClick());
     }
 
     @Override
@@ -124,7 +158,64 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
                     atvSignInWithSnsOrPwd.setText("短信验证码登录");
                 }
                 break;
+            case R.id.ivWeChatLogin: //微信登录
+                mSocialApi.doOauthVerify(this, PlatformType.WEIXIN, new MyAuthListener());
+                break;
+            case R.id.ivQQLogin: //QQ登录
+                mSocialApi.doOauthVerify(this, PlatformType.QQ, new MyAuthListener());
+                break;
+            case R.id.ivSinaLogin: //新浪登录
+                mSocialApi.doOauthVerify(this, PlatformType.SINA_WB, new MyAuthListener());
+                break;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //申请权限
+        String[] perms = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        if (!EasyPermissions.hasPermissions(this, perms)) {
+            EasyPermissions.requestPermissions(this, "need access external storage", REQUEST_LOCATION, perms);
+        }
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            Toast.makeText(getApplicationContext(), "前往设置开启访问存储空间权限", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+    }
+
+    public class MyAuthListener implements AuthListener {
+        @Override
+        public void onComplete(PlatformType platform_type, Map<String, String> map) {
+            Toast.makeText(LoginActivity.this, platform_type + " login onComplete", Toast.LENGTH_SHORT).show();
+            Log.i("tsy", "login onComplete:" + map);
+        }
+
+        @Override
+        public void onError(PlatformType platform_type, String err_msg) {
+            Toast.makeText(LoginActivity.this, platform_type + " login onError:" + err_msg, Toast.LENGTH_SHORT).show();
+            Log.i("tsy", "login onError:" + err_msg);
+        }
+
+        @Override
+        public void onCancel(PlatformType platform_type) {
+            Toast.makeText(LoginActivity.this, platform_type + " login onCancel", Toast.LENGTH_SHORT).show();
+            Log.i("tsy", "login onCancel");
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mSocialApi.onActivityResult(requestCode, resultCode, data);
     }
 
     private class ForbidClick extends ForbidQuickClickListener {
@@ -132,7 +223,7 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
         protected void forbidClick(View view) {
             switch (view.getId()) {
                 case R.id.btnLogin: //登录
-                    if (secondFragment != null) {
+                    if (secondFragment != null && isClickSwitch) {
                         mMobileNo = ((EditText) secondFragment.getView().findViewById(R.id.etAccount)).getText().toString();
                         mSnsCode = ((EditText) secondFragment.getView().findViewById(R.id.etSnsCode)).getText().toString();
                         if (TextUtils.isEmpty(mMobileNo)) {
@@ -166,24 +257,42 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
 
     private void loginEvent() {
         ApiManage.post(ApiHost.getInstance().login())
-                .params(isClickSwitch ? "phone" : "username", isClickSwitch ? mMobileNo : mAccount)
-                .params(isClickSwitch ? "code" : "password", isClickSwitch ? mSnsCode : mPassword)
+                .params("username", isClickSwitch ? mMobileNo : mAccount)
+                .params("password", isClickSwitch ? mSnsCode : mPassword)
+                .params("type", "1")
                 .execute(new WrapJsonBeanCallback<LoginResponse>(LoginActivity.this) {
                     @Override
                     protected void onJsonParseException(int code, String msg, Call call) {
+                        ToastUtils.show(msg);
                     }
 
                     @Override
                     protected void onExecuteSuccess(LoginResponse bean, Call call) {
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        SharedUtil.getInstance(LoginActivity.this).put("is_login_success", true);
+                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                         finish();
                     }
 
                     @Override
                     protected void onExecuteError(Call call, Response response, Exception e) {
-
+                        ToastUtils.show(response.message());
                     }
                 });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((System.currentTimeMillis() - exitTime) > 1000) {
+                Toast.makeText(getApplicationContext(), "再按一次退出", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                SharedUtil.getInstance(getApplicationContext()).put("last_launch", System.currentTimeMillis());
+                finish();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
 

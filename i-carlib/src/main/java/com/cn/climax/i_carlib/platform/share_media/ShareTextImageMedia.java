@@ -1,10 +1,9 @@
-package com.tsy.sdk.social.share_media;
+package com.cn.climax.i_carlib.platform.share_media;
 
 import android.graphics.Bitmap;
 
 /**
  * 文字图片分享 实体类
- * Created by tsy on 16/8/11.
  */
 public class ShareTextImageMedia implements IShareMedia {
     private Bitmap mImage;

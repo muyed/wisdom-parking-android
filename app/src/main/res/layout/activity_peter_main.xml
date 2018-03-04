@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.cn.climax.wisdomparking.ui.PeterMainActivity"
+    tools:showIn="@layout/activity_peter_main">
+
+    <include layout="@layout/base_fake_toolbar_layout_main" />
+
+    <RelativeLayout
+        android:id="@+id/rlMainPage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <FrameLayout
+            android:id="@+id/flAddSmartLock"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="48dp"
+            android:background="@drawable/order_circle">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="+"
+                android:textColor="@color/blue_2A3F6C"
+                android:textSize="88sp" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvLockHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/flAddSmartLock"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="点击添加智能车位锁及行人道闸" />
+
+        <TextView
+            android:id="@+id/tvVisitorHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvLockHint"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="如果你是访客，请输入预约码"
+            android:textColor="@color/text_color_dark"
+            android:textSize="18sp" />
+
+        <include
+            layout="@layout/layout_editview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvVisitorHint"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/tvSkip2OfoMenu"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_below="@+id/editTextBodyLl"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/order_circle_scan"
+            android:gravity="center"
+            android:text="预约"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/ivSkip2Pcenter"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="32dp"
+            android:layout_marginLeft="32dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/icon_pcenter" />
+
+        <ImageView
+            android:id="@+id/ivSkip2Notify"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="32dp"
+            android:layout_marginRight="32dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/icon_notify" />
+
+    </RelativeLayout>
+
+    <!--<include layout="@layout/activity_ofo_layout" />-->
+
+    <com.cn.climax.wisdomparking.widget.ofo.view.OfoMenuLayout
+        android:id="@+id/ofo_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:background="@color/colorPrimary">
+
+            <ImageView
+                android:id="@+id/close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/close"
+                tools:ignore="VectorDrawableCompat" />
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/menu_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="60dp">
+
+            <com.cn.climax.wisdomparking.widget.ofo.view.OfoContentLayout
+                android:id="@+id/ofo_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="100dp"
+                android:orientation="vertical"
+                android:paddingLeft="48dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/folder"
+                        tools:ignore="VectorDrawableCompat" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="我的资料"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/member"
+                        tools:ignore="VectorDrawableCompat" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="我的会员"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/wallet" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="我的钱包"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/travel" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="我的行程"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/remind" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="我的消息"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </com.cn.climax.wisdomparking.widget.ofo.view.OfoContentLayout>
+
+        </FrameLayout>
+
+    </com.cn.climax.wisdomparking.widget.ofo.view.OfoMenuLayout>
+
+</RelativeLayout>

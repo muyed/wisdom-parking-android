@@ -102,6 +102,8 @@ public class PasswordSetActivity extends BaseSwipeBackActivity {
                     @Override
                     protected void onExecuteSuccess(BaseBean bean, Call call) {
                         ToastUtils.show("注册成功");
+                        startActivity(new Intent(PasswordSetActivity.this, ModifyUserInfoActivity.class));
+                        finish();
                     }
 
                     @Override

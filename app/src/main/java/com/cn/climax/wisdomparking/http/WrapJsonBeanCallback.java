@@ -104,9 +104,17 @@ public abstract class WrapJsonBeanCallback<T> extends StringDialogCallback {
                     BaseBean mJsonBean = GsonConvert.fromJson(s, type);
                     T mBaseData = (T) mJsonBean.getData();
                     onExecuteSuccess(mBaseData, call);
-                } else {
-                    BaseBean mJsonBean = GsonConvert.fromJson(s, type);
-                    ToastUtils.show(mJsonBean.getErrMsg());
+                } else if (returnState == 2) {
+                    ToastUtils.show("用户名或密码输入错误");
+                } else if (returnState == 3 || returnState == 4 || returnState == 5) {
+                    if (returnState == 3)
+                        ToastUtils.show("调用短信接口失败");
+                    else if (returnState == 4)
+                        ToastUtils.show("您调用短信接口过于频繁，请稍后再试");
+                    else
+                        ToastUtils.show("短信验证码错误");
+                } else if (returnState == 6) {
+                    ToastUtils.show("该手机号码已注册");
                 }
             }
         } catch (JSONException e) {

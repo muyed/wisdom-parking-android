@@ -1,10 +1,10 @@
-package com.tsy.sdk.social.listener;
+package com.cn.climax.i_carlib.platform.listener;
 
-import com.tsy.sdk.social.PlatformType;
+
+import com.cn.climax.i_carlib.platform.PlatformType;
 
 /**
  * 分享回调监听
- * Created by tsy on 16/8/5.
  */
 public interface ShareListener {
     void onComplete(PlatformType platform_type);

@@ -1,7 +1,7 @@
-package com.tsy.sdk.social;
+package com.cn.climax.i_carlib.platform;
 
 /**
- * Created by tsy on 16/8/4.
+ * 平台类型
  */
 public enum PlatformType {
     WEIXIN,

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:showIn="@layout/activity_home">
+
+    <com.cn.climax.wisdomparking.widget.UnScrollableViewPager
+        android:id="@+id/vp_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.cn.climax.i_carlib.uiframework.navigation.SmartNavigationBar
+        android:id="@+id/bottom_navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:carsmartInactiveColor="#E5E2E9"
+        app:carsmartActiveColor="#357D9A"
+        app:carsmartBackgroundColor="#15072C"
+        app:carsmartBackgroundStyle="background_style_static" />
+
+</LinearLayout>

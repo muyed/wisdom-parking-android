@@ -1,22 +1,21 @@
-package com.tsy.sdk.social;
+package com.cn.climax.i_carlib.platform;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * 第三方平台配置信息存储
- * Created by tsy on 16/8/4.
  */
 public class PlatformConfig {
 
-    public static Map<PlatformType, PlatformConfig.Platform> configs = new HashMap();
+    public static Map<PlatformType, Platform> configs = new HashMap();
 
     static {
-        configs.put(PlatformType.WEIXIN, new PlatformConfig.Weixin(PlatformType.WEIXIN));
-        configs.put(PlatformType.WEIXIN_CIRCLE, new PlatformConfig.Weixin(PlatformType.WEIXIN_CIRCLE));
-        configs.put(PlatformType.QQ, new PlatformConfig.QQ(PlatformType.QQ));
-        configs.put(PlatformType.QZONE, new PlatformConfig.QQ(PlatformType.QZONE));
-        configs.put(PlatformType.SINA_WB, new PlatformConfig.SinaWB(PlatformType.SINA_WB));
+        configs.put(PlatformType.WEIXIN, new Weixin(PlatformType.WEIXIN));
+        configs.put(PlatformType.WEIXIN_CIRCLE, new Weixin(PlatformType.WEIXIN_CIRCLE));
+        configs.put(PlatformType.QQ, new QQ(PlatformType.QQ));
+        configs.put(PlatformType.QZONE, new QQ(PlatformType.QZONE));
+        configs.put(PlatformType.SINA_WB, new SinaWB(PlatformType.SINA_WB));
     }
 
     public interface Platform {
@@ -24,7 +23,7 @@ public class PlatformConfig {
     }
 
     //微信
-    public static class Weixin implements PlatformConfig.Platform {
+    public static class Weixin implements Platform {
         private final PlatformType media;
         public String appId = null;
 
@@ -42,15 +41,15 @@ public class PlatformConfig {
      * @param appId
      */
     public static void setWeixin(String appId) {
-        PlatformConfig.Weixin weixin = (PlatformConfig.Weixin)configs.get(PlatformType.WEIXIN);
+        Weixin weixin = (Weixin)configs.get(PlatformType.WEIXIN);
         weixin.appId = appId;
 
-        PlatformConfig.Weixin weixin_circle = (PlatformConfig.Weixin)configs.get(PlatformType.WEIXIN_CIRCLE);
+        Weixin weixin_circle = (Weixin)configs.get(PlatformType.WEIXIN_CIRCLE);
         weixin_circle.appId = appId;
     }
 
     //qq
-    public static class QQ implements PlatformConfig.Platform {
+    public static class QQ implements Platform {
         private final PlatformType media;
         public String appId = null;
 
@@ -68,15 +67,15 @@ public class PlatformConfig {
      * @param appId
      */
     public static void setQQ(String appId) {
-        PlatformConfig.QQ qq = (PlatformConfig.QQ)configs.get(PlatformType.QQ);
+        QQ qq = (QQ)configs.get(PlatformType.QQ);
         qq.appId = appId;
 
-        PlatformConfig.QQ qzone = (PlatformConfig.QQ)configs.get(PlatformType.QZONE);
+        QQ qzone = (QQ)configs.get(PlatformType.QZONE);
         qzone.appId = appId;
     }
 
     //qq
-    public static class SinaWB implements PlatformConfig.Platform {
+    public static class SinaWB implements Platform {
         private final PlatformType media;
         public String appKey = null;
 
@@ -94,7 +93,7 @@ public class PlatformConfig {
      * @param appKey
      */
     public static void setSinaWB(String appKey) {
-        PlatformConfig.SinaWB sinaWB = (PlatformConfig.SinaWB)configs.get(PlatformType.SINA_WB);
+        SinaWB sinaWB = (SinaWB)configs.get(PlatformType.SINA_WB);
         sinaWB.appKey = appKey;
     }
 

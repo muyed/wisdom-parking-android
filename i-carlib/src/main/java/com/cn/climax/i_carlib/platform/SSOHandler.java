@@ -1,16 +1,13 @@
-package com.tsy.sdk.social;
+package com.cn.climax.i_carlib.platform;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.tsy.sdk.social.listener.AuthListener;
-import com.tsy.sdk.social.listener.ShareListener;
-import com.tsy.sdk.social.share_media.IShareMedia;
+import com.cn.climax.i_carlib.platform.listener.AuthListener;
+import com.cn.climax.i_carlib.platform.listener.ShareListener;
+import com.cn.climax.i_carlib.platform.share_media.IShareMedia;
 
-/**
- * Created by tsy on 16/8/4.
- */
 public abstract class SSOHandler {
 
     /**

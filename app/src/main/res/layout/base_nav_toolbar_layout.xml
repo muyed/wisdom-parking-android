@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/apk/res-auto"
+    xmlns:tools2="http://schemas.android.com/tools"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/common_dimen_128px"
+    android:background="@color/transparent"
+    android:minHeight="?attr/actionBarSize"
+    android:paddingTop="@dimen/common_dimen_40px"
+    tools:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    tools:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_dimen_88px"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/ivNavBack"
+                android:layout_width="@dimen/common_dimen_50px"
+                android:layout_height="@dimen/common_dimen_50px"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/btn_nav_back"
+                android:visibility="invisible" />
+
+            <com.cn.climax.i_carlib.uiframework.bootstrap.AwesomeTextView
+                android:id="@+id/atvBackTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/common_dimen_8px"
+                android:text="返回"
+                android:textColor="@color/white"
+                android:textSize="@dimen/common_dimen_28px"
+                android:visibility="invisible"
+                tools2:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+        </LinearLayout>
+
+        <com.cn.climax.i_carlib.uiframework.bootstrap.AwesomeTextView
+            android:id="@+id/atvToolBarMainTitle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/ivSwitchOption"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_alignParentRight="true"
+                android:contentDescription="@string/app_name"
+                android:paddingBottom="4dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="4dp"
+                android:src="@drawable/icon_more_white_vertical"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCompleteOption"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="查看全部订单"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.Toolbar>

@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/main_bg_gradient"
+        android:contentDescription="@string/app_name" />
+
+    <include layout="@layout/base_nav_toolbar_layout" />
+
+    <!--<com.cn.smart.cxzh_android.widget.ObservableScrollView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/common_dimen_140px"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvMineDriveTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/common_dimen_40px"
+            android:paddingLeft="@dimen/common_dimen_30px"
+            android:text="进行中"
+            android:textColor="#CCCCCC"
+            android:textSize="@dimen/common_dimen_40px" />
+
+        <LinearLayout
+            android:id="@+id/allMineCurrentCar"
+            android:layout_width="match_parent"
+            android:layout_height="360px"
+            android:layout_marginLeft="@dimen/common_dimen_30px"
+            android:layout_marginRight="@dimen/common_dimen_30px"
+            android:background="@drawable/home_mapview_border"
+            tools:ignore="RtlHardcoded">
+
+            <com.cn.climax.wisdomparking.widget.My2dMapView
+                android:id="@+id/latestMapView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/home_mapview_bg_border" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dimen_160px"
+            android:layout_marginTop="@dimen/common_dimen_32px"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/common_dimen_30px"
+            android:paddingRight="@dimen/common_dimen_30px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/common_dimen_40px"
+                android:text="已行驶"
+                android:textColor="@color/white"
+                android:textSize="@dimen/common_dimen_28px" />
+
+            <!-- 里程 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/common_dimen_64px"
+                    android:layout_height="@dimen/common_dimen_64px"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/journey_icon_mile" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_dimen_18px"
+                    android:layout_marginTop="@dimen/common_dimen_8px"
+                    android:text="里程（km）"
+                    android:textColor="#CCCCCC"
+                    android:textSize="@dimen/common_dimen_24px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.9"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/common_dimen_32px"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/common_dimen_1px"
+                android:layout_height="match_parent"
+                android:background="#4c4e72" />
+
+            <!-- 时长 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/common_dimen_64px"
+                    android:layout_height="@dimen/common_dimen_64px"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/journey_icon_time" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_dimen_18px"
+                    android:layout_marginTop="@dimen/common_dimen_8px"
+                    android:text="时长（h）"
+                    android:textColor="#C8CDD0"
+                    android:textSize="@dimen/common_dimen_24px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.8"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/common_dimen_32px"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/common_dimen_1px"
+                android:layout_height="match_parent"
+                android:background="#4c4e72" />
+
+            <!-- 均速 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/common_dimen_64px"
+                    android:layout_height="@dimen/common_dimen_64px"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/journey_icon_speed" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_dimen_18px"
+                    android:layout_marginTop="@dimen/common_dimen_8px"
+                    android:text="均速（km/h）"
+                    android:textColor="#CCC"
+                    android:textSize="@dimen/common_dimen_24px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="80"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/common_dimen_32px" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_dimen_80px"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/common_dimen_36px"
+                android:layout_height="@dimen/common_dimen_24px"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/common_dimen_30px"
+                android:layout_marginRight="10dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/icon_location" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="历史行程"
+                android:textColor="#C8CDD0"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="30px"
+                android:text="更多行程"
+                android:textColor="#C8CDD0"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="72px"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/common_dimen_48px"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/common_dimen_30px">
+
+                <ImageView
+                    android:layout_width="@dimen/common_dimen_24px"
+                    android:layout_height="@dimen/common_dimen_24px"
+                    android:background="@drawable/common_shape_blue_circle"
+                    android:contentDescription="@string/app_name" />
+
+                <View
+                    android:layout_width="@dimen/common_dimen_1px"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/common_dimen_12px"
+                    android:background="@color/color_2895ca" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/common_dimen_48px"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="07.01   13:00:42"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/common_dimen_28px" />
+
+                <!-- MapView -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/common_dimen_16px"
+                    android:layout_marginRight="@dimen/common_dimen_30px"
+                    android:layout_marginTop="@dimen/common_dimen_38px">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/home_mapview_border"
+                        android:orientation="vertical">
+
+                        <com.cn.climax.wisdomparking.widget.My2dMapView
+                            android:id="@+id/historyMapView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_above="@+id/allLatestLocation"
+                            android:layout_marginLeft="13px"
+                            android:layout_marginRight="13px"
+                            android:layout_marginTop="@dimen/common_dimen_12px"
+                            android:background="@drawable/home_mapview_bg_border" />
+
+                        <LinearLayout
+                            android:id="@+id/allLatestLocation"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/common_dimen_120px"
+                            android:layout_alignParentBottom="true"
+                            android:orientation="horizontal">
+
+                            <!-- 里程 -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="里程(km)"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/common_dimen_22px" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="3"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/common_dimen_32px"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <!-- 起始位置 -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="5"
+                                android:orientation="vertical"
+                                android:paddingBottom="@dimen/common_dimen_24px"
+                                android:paddingLeft="@dimen/common_dimen_24px"
+                                android:paddingTop="@dimen/common_dimen_24px">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/common_dimen_12px"
+                                        android:layout_height="@dimen/common_dimen_12px"
+                                        android:background="@drawable/common_shape_start_circle"
+                                        android:contentDescription="@string/app_name" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="@dimen/common_dimen_14px"
+                                        android:layout_marginRight="@dimen/common_dimen_16px"
+                                        android:gravity="center_vertical"
+                                        android:text="13:00"
+                                        android:textColor="#ccc"
+                                        android:textSize="@dimen/common_dimen_26px" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center_vertical"
+                                        android:text="文一西路未来科技城·海创园"
+                                        android:textColor="@color/white"
+                                        android:textSize="@dimen/common_dimen_26px" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/common_dimen_12px"
+                                        android:layout_height="@dimen/common_dimen_12px"
+                                        android:background="@drawable/common_shape_end_circle"
+                                        android:contentDescription="@string/app_name" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="@dimen/common_dimen_14px"
+                                        android:layout_marginRight="@dimen/common_dimen_16px"
+                                        android:gravity="center_vertical"
+                                        android:text="15:25"
+                                        android:textColor="#ccc"
+                                        android:textSize="@dimen/common_dimen_26px" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center_vertical"
+                                        android:text="政新花园"
+                                        android:textColor="@color/white"
+                                        android:textSize="@dimen/common_dimen_26px" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <!--<View-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:alpha="0.4"-->
+                        <!--android:background="#000" />-->
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--</com.cn.smart.cxzh_android.widget.ObservableScrollView>-->
+
+</RelativeLayout>

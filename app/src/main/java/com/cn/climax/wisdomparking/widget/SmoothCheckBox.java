@@ -81,7 +81,7 @@ public class SmoothCheckBox extends View implements Checkable {
         mFloorColor = ta.getColor(R.styleable.SmoothCheckBox_color_unchecked_stroke, COLOR_FLOOR_UNCHECKED);
         mCheckedColor = ta.getColor(R.styleable.SmoothCheckBox_color_checked, COLOR_CHECKED);
         mUnCheckedColor = ta.getColor(R.styleable.SmoothCheckBox_color_unchecked, COLOR_UNCHECKED);
-        mStrokeWidth = ta.getDimensionPixelSize(R.styleable.SmoothCheckBox_stroke_width, DensityUtil.dip2px(getContext(), 0f));
+        mStrokeWidth = ta.getDimensionPixelSize(R.styleable.SmoothCheckBox_smart_stroke_width, DensityUtil.dip2px(getContext(), 0f));
         ta.recycle();
 
         mFloorUnCheckedColor = mFloorColor;
