@@ -1,12 +1,10 @@
-package com.cn.climax.wisdomparking.util;
+package com.cn.climax.i_carlib.util;
 
 import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.amap.api.services.core.AMapException;
 import com.cn.climax.i_carlib.logcat.ZLog;
 import com.cn.climax.i_carlib.okgo.app.AppControl;
 import com.cn.climax.i_carlib.okgo.app.BaseApplication;
@@ -48,6 +46,7 @@ public class ToastUtils {
 
     /**
      * 正式环境可见的的Toast
+     *
      */
     public static void show(String text, int duration) {
         if ("空指针异常".equals(text) || TextUtils.isEmpty(text)) {
@@ -75,6 +74,7 @@ public class ToastUtils {
 
     /**
      * 正式环境可见的的Toast
+     *
      */
     public static void show(String text) {
         show(text, Toast.LENGTH_SHORT);
@@ -84,6 +84,7 @@ public class ToastUtils {
 
     /**
      * debug 时才能显示的Toast
+     *
      */
     public static void showDebug(String text) {
         if (!AppControl.isDeBug()) {
@@ -201,12 +202,12 @@ public class ToastUtils {
                 case 4001:
                     throw new AMapException(AMapException.AMAP_SHARE_FAILURE);
                 default:
-                    Toast.makeText(BaseApplication.getInstance(), "查询失败：" + rCode, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,"查询失败："+rCode , Toast.LENGTH_LONG).show();
                     logError("查询失败", rCode);
                     break;
             }
         } catch (Exception e) {
-            Toast.makeText(BaseApplication.getInstance(), e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
             logError(e.getMessage(), rCode);
         }
     }
@@ -226,36 +227,35 @@ public class ToastUtils {
 
     //log
     public static final String TAG = "AMAP_ERROR";
-    static final String LINE_CHAR = "=";
-    static final String BOARD_CHAR = "|";
+    static final String LINE_CHAR="=";
+    static final String BOARD_CHAR="|";
     static final int LENGTH = 80;
     static String LINE;
-
-    static {
+    static{
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < LENGTH; i++) {
-            sb.append(LINE_CHAR);
+        for(int i = 0;i<LENGTH;i++){
+            sb .append(LINE_CHAR);
         }
         LINE = sb.toString();
     }
 
-    private static void printLog(String s) {
-        if (s.length() < LENGTH - 2) {
+    private static void printLog(String s){
+        if(s.length()<LENGTH-2){
             StringBuilder sb = new StringBuilder();
             sb.append(BOARD_CHAR).append(s);
-            for (int i = 0; i < LENGTH - 2 - s.length(); i++) {
+            for(int i = 0 ;i <LENGTH-2-s.length();i++){
                 sb.append(" ");
             }
             sb.append(BOARD_CHAR);
             print(sb.toString());
-        } else {
-            String line = s.substring(0, LENGTH - 2);
-            print(BOARD_CHAR + line + BOARD_CHAR);
-            printLog(s.substring(LENGTH - 2));
+        }else{
+            String line = s.substring(0,LENGTH-2);
+            print(BOARD_CHAR+line+BOARD_CHAR);
+            printLog(s.substring(LENGTH-2));
         }
     }
 
     private static void print(String s) {
-        Log.i(TAG, s);
+        Log.i(TAG,s);
     }
 }

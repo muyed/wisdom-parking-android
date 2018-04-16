@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="64dp"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal"
+    android:padding="12dp">
+
+    <ProgressBar
+        android:id="@+id/listview_foot_progress"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+
+    <ImageView
+        android:id="@+id/footer_progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/progressbar"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/listview_foot_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="加载中..." />
+
+</LinearLayout>

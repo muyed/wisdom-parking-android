@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="@dimen/common_dimen_30px"
+        android:layout_marginTop="@dimen/common_dimen_32px"
+        android:background="@drawable/common_shape_background_blur"
+        android:orientation="vertical">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/common_dimen_20px">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="24px"
+                android:text="2017-07-01"
+                android:textColor="@color/white"
+                android:textSize="@dimen/common_dimen_30px" />
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="行程段数："
+                    android:textColor="@color/white_CEC8BC"
+                    android:textSize="@dimen/common_dimen_30px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:textColor="#f6b13a"
+                    android:textSize="@dimen/common_dimen_28px"
+                    android:textStyle="bold" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="综合评分："
+                    android:textColor="@color/white_CEC8BC"
+                    android:textSize="@dimen/common_dimen_30px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="98"
+                    android:textColor="#2db6f9"
+                    android:textSize="@dimen/common_dimen_28px"
+                    android:textStyle="bold" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dimen_2px"
+            android:background="#706C85" />
+
+        <!-- 里程 + 油耗 + 均速 + 最高时速 -->
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:paddingBottom="16px"
+            android:paddingTop="22px">
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40px"
+                    android:layout_height="40px"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/statistics_icon_s_mileage" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12px"
+                    android:text="行驶里程"
+                    android:textColor="@color/color_cccccc"
+                    android:textSize="@dimen/common_dimen_24px" />
+
+                <TextView
+                    android:id="@+id/tvMileageEach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12px"
+                    android:text="1.5km"
+                    android:textColor="@color/white"
+                    android:textSize="24px" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40px"
+                    android:layout_height="40px"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/statistics_icon_s_oilwear" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12px"
+                    android:text="本次油耗"
+                    android:textColor="@color/color_cccccc"
+                    android:textSize="@dimen/common_dimen_24px" />
+
+                <TextView
+                    android:id="@+id/tvCombined"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12px"
+                    android:text="1.0L"
+                    android:textColor="@color/white"
+                    android:textSize="24px" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40px"
+                    android:layout_height="40px"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/statistics_icon_s_average" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12px"
+                    android:text="平均时速"
+                    android:textColor="@color/color_cccccc"
+                    android:textSize="@dimen/common_dimen_24px" />
+
+                <TextView
+                    android:id="@+id/tvAverageSpeed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12px"
+                    android:text="0.8km/h"
+                    android:textColor="@color/white"
+                    android:textSize="24px" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40px"
+                    android:layout_height="40px"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/statistics_icon_maxspeed" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12px"
+                    android:text="最高时速"
+                    android:textColor="@color/color_cccccc"
+                    android:textSize="@dimen/common_dimen_24px" />
+
+                <TextView
+                    android:id="@+id/tvMaxSpeed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12px"
+                    android:text="60.8km/h"
+                    android:textColor="@color/white"
+                    android:textSize="24px" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <!-- 行驶时长 + 急加速 + 急减速 + 急转弯 -->
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingBottom="8px"
+            android:paddingTop="22px">
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40px"
+                    android:layout_height="40px"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/statistics_icon_s_time" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12px"
+                    android:text="行驶时长"
+                    android:textColor="@color/color_cccccc"
+                    android:textSize="@dimen/common_dimen_24px" />
+
+                <TextView
+                    android:id="@+id/tvDrivingTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16px"
+                    android:layout_marginTop="12px"
+                    android:text="0.5h"
+                    android:textColor="@color/white"
+                    android:textSize="24px" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40px"
+                    android:layout_height="40px"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/statistics_icon_s_speedup" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12px"
+                    android:text="急加速"
+                    android:textColor="@color/color_cccccc"
+                    android:textSize="@dimen/common_dimen_24px" />
+
+                <TextView
+                    android:id="@+id/tvSpeedUpNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16px"
+                    android:layout_marginTop="12px"
+                    android:text="2次"
+                    android:textColor="@color/white"
+                    android:textSize="24px" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40px"
+                    android:layout_height="40px"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/statistics_icon_s_slowdown" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12px"
+                    android:text="急减速"
+                    android:textColor="@color/color_cccccc"
+                    android:textSize="@dimen/common_dimen_24px" />
+
+                <TextView
+                    android:id="@+id/tvSlowDownNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16px"
+                    android:layout_marginTop="12px"
+                    android:text="2次"
+                    android:textColor="@color/white"
+                    android:textSize="24px" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40px"
+                    android:layout_height="40px"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/statistics_icon_s_turn" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12px"
+                    android:text="急转弯"
+                    android:textColor="@color/color_cccccc"
+                    android:textSize="@dimen/common_dimen_24px" />
+
+                <TextView
+                    android:id="@+id/tvTurnNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16px"
+                    android:layout_marginTop="12px"
+                    android:text="2次"
+                    android:textColor="@color/white"
+                    android:textSize="24px" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+</LinearLayout>
