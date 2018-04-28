@@ -1,6 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlSkip2Detail"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/llLocateAreaUp"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:id="@+id/tvParkingCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:text="负一层-b81722"
+            android:textColor="@color/text_darker_color"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tvParkingStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tvParkingCode"
+            android:background="@drawable/common_blue_oval_frame"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="已通过"
+            android:textColor="@color/color_31C27C"
+            android:textSize="8sp" />
+
+        <TextView
+            android:id="@+id/tvGoToBind"
+            android:layout_width="72dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/activity_button_blue_border"
+            android:gravity="center"
+            android:text="绑定车位"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llOrderAreaMiddle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llLocateAreaUp"
+        android:orientation="horizontal"
+        android:paddingBottom="6dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="6dp">
+
+        <TextView
+            android:id="@+id/tvParkingValidity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="有效期：长期有效"
+            android:textColor="@color/text_common_color"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

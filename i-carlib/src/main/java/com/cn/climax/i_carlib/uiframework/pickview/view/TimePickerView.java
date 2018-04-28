@@ -1,4 +1,4 @@
-package com.bigkoo.pickerview.view;
+package com.cn.climax.i_carlib.uiframework.pickview.view;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -9,9 +9,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bigkoo.pickerview.R;
-import com.bigkoo.pickerview.configure.PickerOptions;
-import com.bigkoo.pickerview.listener.ISelectTimeCallback;
+
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.pickview.configure.PickerOptions;
+import com.cn.climax.i_carlib.uiframework.pickview.listener.ISelectTimeCallback;
 
 import java.text.ParseException;
 import java.util.Calendar;
@@ -19,8 +20,6 @@ import java.util.Date;
 
 /**
  * 时间选择器
- * Created by Sai on 15/11/22.
- * Updated by XiaoSong on 2017-2-22.
  */
 public class TimePickerView extends BasePickerView implements View.OnClickListener {
 

@@ -1,4 +1,4 @@
-package com.app.framework.widget.xrecyclerview.indicator;
+package com.cn.climax.wisdomparking.widget.xrecyclerview.indicator;
 
 
 import android.animation.Animator;

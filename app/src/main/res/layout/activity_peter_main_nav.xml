@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#F6F6F4"
     tools:context="com.cn.climax.wisdomparking.ui.PeterMainActivity">
 
     <include layout="@layout/base_fake_toolbar_layout_main" />
@@ -13,97 +13,12 @@
         android:id="@+id/rlMainPage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:background="@color/cp_common_bg">
+        android:layout_below="@+id/toolbar">
 
-        <RelativeLayout
-            android:id="@+id/rlAboveArea"
+        <com.cn.climax.wisdomparking.widget.My2dMapView
+            android:id="@+id/mmvNavPark"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tvLogout"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="20dp"
-                android:background="@color/colorPrimary"
-                android:gravity="center"
-                android:text="LOGOUT"
-                android:visibility="gone" />
-
-            <FrameLayout
-                android:id="@+id/flAddSmartLock"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="36dp"
-                android:background="@drawable/order_circle">
-
-                <TextView
-                    android:layout_width="112dp"
-                    android:layout_height="112dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/order_circle_primary"
-                    android:gravity="center" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="+"
-                    android:textColor="@color/white"
-                    android:textSize="88sp" />
-
-            </FrameLayout>
-
-            <TextView
-                android:id="@+id/tvLockHint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/flAddSmartLock"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/home_show_bg_body"
-                android:gravity="center"
-                android:paddingBottom="8dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:paddingTop="8dp"
-                android:text="点击添加智能车位锁"
-                android:textColor="@color/text_normal_color"
-                android:textSize="13sp" />
-
-            <TextView
-                android:id="@+id/tvVisitorHint"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvLockHint"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="如果你是访客，请输入预约码"
-                android:textColor="@color/text_common_color"
-                android:textSize="14sp" />
-
-            <include
-                layout="@layout/layout_editview"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_below="@+id/tvVisitorHint"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="20dp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/editTextBodyLl"
-                android:layout_marginRight="32dp"
-                android:src="@drawable/icon_service" />
-
-        </RelativeLayout>
+            android:layout_height="match_parent" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -113,45 +28,74 @@
             android:orientation="vertical"
             android:paddingTop="6dp">
 
-            <FrameLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@color/cp_common_bg">
+                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/ivArrowDown"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/icon_arrow_down" />
+                <android.support.v7.widget.CardView
+                    android:id="@+id/ivSkip2CustomerService"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="24dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="@dimen/common_dimen_1px"
+                    app:cardPreventCornerOverlap="true">
 
-            </FrameLayout>
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/icon_service_red" />
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/ivSkip2MyLocation"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/ivSkip2CustomerService"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="@dimen/common_dimen_1px"
+                    app:cardPreventCornerOverlap="true">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/icon_my_location" />
+
+                </android.support.v7.widget.CardView>
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rlHideArea"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/ivArrowDown"
-                android:background="@color/white"
                 android:paddingBottom="20dp"
                 android:paddingTop="10dp"
                 android:visibility="visible">
 
                 <LinearLayout
                     android:id="@+id/llOrderScan"
-                    android:layout_width="88dp"
-                    android:layout_height="88dp"
+                    android:layout_width="150dp"
+                    android:layout_height="54dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="16dp"
-                    android:background="@drawable/order_circle_scan"
+                    android:background="@drawable/home_order_lock"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
                         android:contentDescription="@string/app_name"
                         android:src="@drawable/icon_order_scan" />
 
@@ -159,31 +103,33 @@
                         android:id="@+id/tvSkip2OfoMenu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="预约"
+                        android:layout_marginLeft="5dp"
+                        android:text="立即开锁"
                         android:textColor="@color/white"
-                        android:textSize="12sp" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
                 <ImageView
                     android:id="@+id/ivSkip2Pcenter"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:layout_alignParentLeft="true"
                     android:layout_below="@+id/llOrderScan"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginLeft="24dp"
                     android:contentDescription="@string/app_name"
+                    android:padding="6dp"
                     android:src="@drawable/icon_pcenter" />
 
                 <ImageView
                     android:id="@+id/ivSkip2Notify"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:layout_alignParentRight="true"
                     android:layout_below="@+id/llOrderScan"
-                    android:layout_marginRight="32dp"
+                    android:layout_marginRight="24dp"
                     android:contentDescription="@string/app_name"
+                    android:padding="6dp"
                     android:src="@drawable/icon_notify" />
 
             </RelativeLayout>
@@ -192,6 +138,7 @@
 
     </RelativeLayout>
 
-    <include layout="@layout/activity_ofo_layout" />
+    <!--<include layout="@layout/activity_ofo_layout" />-->
+    <include layout="@layout/activity_peter_layout" />
 
 </RelativeLayout>

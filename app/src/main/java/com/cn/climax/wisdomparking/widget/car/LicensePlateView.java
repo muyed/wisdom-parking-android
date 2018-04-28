@@ -1,4 +1,4 @@
-package com.winterpei;
+package com.cn.climax.wisdomparking.widget.car;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,12 +18,13 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.cn.climax.wisdomparking.R;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * @author xingyang.pei
- * @date 2018/1/5.
+ * 车牌输入
  */
 
 public class LicensePlateView extends RelativeLayout implements View.OnClickListener {
@@ -189,7 +190,7 @@ public class LicensePlateView extends RelativeLayout implements View.OnClickList
     public void setKeyboardContainerLayout(RelativeLayout layout) {
         mInflater = LayoutInflater.from(mActivity);
         mProvinceView = mInflater.inflate(R.layout.layout_keyboard_province, null);
-        RelativeLayout.LayoutParams rlParams = new RelativeLayout.LayoutParams(
+        LayoutParams rlParams = new LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         rlParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         mProvinceView.setLayoutParams(rlParams);
@@ -288,7 +289,8 @@ public class LicensePlateView extends RelativeLayout implements View.OnClickList
         }
     }
 
-    private @NonNull
+    private
+    @NonNull
     InputListener inputListener;
 
     public void setInputListener(InputListener inputListener) {

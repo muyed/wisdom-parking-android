@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatDelegate;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -52,6 +53,7 @@ public abstract class BaseActivity extends RootBaseActivity implements ActivityC
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         registerAppHomeReceiver();
         ButterKnife.bind(this);
         mContext = this;
@@ -127,17 +129,17 @@ public abstract class BaseActivity extends RootBaseActivity implements ActivityC
 //        }
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_BACK: {// 返回键 切换至桌面
-                onKeyDownBack(keyCode, event);
-                return true;
-            }
-            default:
-                return false;
-        }
-    }
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        switch (keyCode) {
+//            case KeyEvent.KEYCODE_BACK: {// 返回键 切换至桌面
+//                onKeyDownBack(keyCode, event);
+//                return true;
+//            }
+//            default:
+//                return false;
+//        }
+//    }
 
     /**
      * 监听Home键广播器

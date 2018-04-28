@@ -1,4 +1,4 @@
-package com.cn.climax.wisdomparking.ui.main.device;
+package com.cn.climax.wisdomparking.ui.main.carport;
 
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;

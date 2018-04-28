@@ -1,4 +1,4 @@
-package com.app.framework.widget.xrecyclerview;
+package com.cn.climax.wisdomparking.widget.xrecyclerview;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -17,8 +17,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
-import com.app.framework.R;
-import com.app.framework.widget.xrecyclerview.indicator.AVLoadingIndicatorView;
+import com.cn.climax.wisdomparking.R;
+import com.cn.climax.wisdomparking.widget.xrecyclerview.indicator.AVLoadingIndicatorView;
 
 import java.util.Date;
 
@@ -84,7 +84,7 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
 				R.layout.listview_header, null);
 
         mHeaderRefreshTimeContainer
-                = mContainer.findViewById(R.id.header_refresh_time_container);
+                = (LinearLayout) mContainer.findViewById(R.id.header_refresh_time_container);
 
         LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         lp.setMargins(0, 0, 0, 0);

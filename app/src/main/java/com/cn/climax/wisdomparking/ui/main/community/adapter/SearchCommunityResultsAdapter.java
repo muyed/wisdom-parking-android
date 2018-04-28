@@ -1,6 +1,8 @@
 package com.cn.climax.wisdomparking.ui.main.community.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
@@ -12,12 +14,14 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.amap.api.services.core.PoiItem;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.data.local.PoiAddressBean;
+import com.cn.climax.wisdomparking.data.response.CommunityListResponse;
 import com.cn.climax.wisdomparking.ui.main.community.NearbySearchActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,56 +31,48 @@ import butterknife.ButterKnife;
 /**
  * author：leo on 2018/4/13 0013 09:22
  * email： leocheung4ever@gmail.com
- * description: 搜索结果适配器
+ * description: 搜索小区结果适配器
  * what & why is modified:
  */
-public class SearchAddressResultsAdapter extends RecyclerView.Adapter<SearchAddressResultsAdapter.ViewHolder> {
+public class SearchCommunityResultsAdapter extends RecyclerView.Adapter<SearchCommunityResultsAdapter.ViewHolder> {
 
     private Context mContext;
-    private ArrayList<PoiAddressBean> mPoiList = new ArrayList<>();
-    private String mKeyword;
+    private List<CommunityListResponse> mCommunityList = new ArrayList<>();
 
-    public SearchAddressResultsAdapter(Context context) {
+    public SearchCommunityResultsAdapter(Context context) {
         this.mContext = context;
     }
 
     @Override
-    public SearchAddressResultsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SearchCommunityResultsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_poi_keyword_search, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(SearchAddressResultsAdapter.ViewHolder holder, int position) {
-        final PoiAddressBean poiAddressBean = mPoiList.get(position);
+    public void onBindViewHolder(SearchCommunityResultsAdapter.ViewHolder holder, int position) {
+        final CommunityListResponse commAddressBean = mCommunityList.get(position);
 
-        SpannableStringBuilder spannable = new SpannableStringBuilder(poiAddressBean.getDetailAddress());
-        Pattern p = Pattern.compile(mKeyword);
-        Matcher m = p.matcher(spannable);
-        while (m.find()) {
-            int start = m.start();
-            int end = m.end();
-            spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#38AD83")), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
-        holder.tv_detailAddress.setText(spannable);
-
-        holder.tv_content.setText(poiAddressBean.getText());
+        holder.tv_detailAddress.setText(commAddressBean.getCommunityName());
+        holder.tv_content.setText(commAddressBean.getAddr());
         holder.ll_item_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NearbySearchActivity) mContext).setDetailAddress(poiAddressBean.getDetailAddress());
+                Intent intent = new Intent();
+                intent.putExtra(ApiParamsKey.COMMUNITY_BEAN, commAddressBean);
+                ((Activity) mContext).setResult(Activity.RESULT_OK, intent);
+                ((Activity) mContext).finish();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return mPoiList != null && mPoiList.size() > 0 ? mPoiList.size() : 0;
+        return mCommunityList != null && mCommunityList.size() > 0 ? mCommunityList.size() : 0;
     }
 
-    public void setDatas(String keyword, ArrayList<PoiAddressBean> poiItems) {
-        this.mKeyword = keyword;
-        this.mPoiList = poiItems;
+    public void setDatas(List<CommunityListResponse> communityList) {
+        this.mCommunityList = communityList;
         notifyDataSetChanged();
     }
 

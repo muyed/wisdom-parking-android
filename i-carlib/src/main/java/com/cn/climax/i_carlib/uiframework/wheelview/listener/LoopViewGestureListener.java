@@ -1,9 +1,8 @@
-package com.contrarywind.listener;
+package com.cn.climax.i_carlib.uiframework.wheelview.listener;
 
 import android.view.MotionEvent;
 
-import com.contrarywind.view.WheelView;
-
+import com.cn.climax.i_carlib.uiframework.wheelview.view.WheelView;
 
 /**
  * 手势监听
@@ -11,7 +10,6 @@ import com.contrarywind.view.WheelView;
 public final class LoopViewGestureListener extends android.view.GestureDetector.SimpleOnGestureListener {
 
     private final WheelView wheelView;
-
 
     public LoopViewGestureListener(WheelView wheelView) {
         this.wheelView = wheelView;

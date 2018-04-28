@@ -1,15 +1,12 @@
-package com.contrarywind.timer;
+package com.cn.climax.i_carlib.uiframework.wheelview.timer;
 
 import android.os.Handler;
 import android.os.Message;
 
-import com.contrarywind.view.WheelView;
+import com.cn.climax.i_carlib.uiframework.wheelview.view.WheelView;
 
 /**
  * Handler 消息类
- *
- * @author 小嵩
- * date: 2017-12-23 23:20:44
  */
 public final class MessageHandler extends Handler {
     public static final int WHAT_INVALIDATE_LOOP_VIEW = 1000;

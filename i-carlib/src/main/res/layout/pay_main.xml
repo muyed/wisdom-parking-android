@@ -14,7 +14,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="com.cn.climax.wisdomparking.ui.pay.fragment.ExternalFragment"
+        android:name="com.cn.climax.i_carlib.pay.alipay.ExternalFragment"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 

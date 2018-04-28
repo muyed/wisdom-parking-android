@@ -1,74 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rlSkip2Detail"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <LinearLayout
-        android:id="@+id/llLocateAreaUp"
-        android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_weight="3"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="16dp">
 
-        <TextView
-            android:id="@+id/tvParkingCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="中海名都花园"
+                android:textColor="@color/text_color_dark"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <!-- 停车场地 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
             android:gravity="center_vertical"
-            android:text="负一层-b81722"
-            android:textColor="@color/text_color_dark"
-            android:textSize="14sp" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvParkingStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/common_blue_oval_frame"
-            android:gravity="center"
-            android:padding="2dp"
-            android:text="已通过"
-            android:textColor="@color/color_31C27C"
-            android:textSize="8sp" />
+            <TextView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:background="@drawable/common_orange_oval_bg"
+                android:gravity="center"
+                android:text="位"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:text="负四层055"
+                android:textColor="@color/text_common_color"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <!-- 车位信息 7BC15D-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:background="@drawable/common_green_oval_bg"
+                android:gravity="center"
+                android:text="地"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:text="海珠区亿安路176号"
+                android:textColor="@color/text_common_color"
+                android:textSize="13sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/llOrderAreaMiddle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/llLocateAreaUp"
-        android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvParkingValidity"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="有效期：长期有效"
-            android:textColor="@color/text_normal_color"
-            android:textSize="13sp" />
+            android:text="≤1元"
+            android:textColor="#EC975C"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="每 15 分钟"
+            android:textSize="12sp" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvParkingAddr"
-        android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:layout_below="@+id/llOrderAreaMiddle"
-        android:gravity="center_vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:text="白马服装市场"
-        android:textColor="@color/text_lighter_color"
-        android:textSize="13sp" />
-
-</RelativeLayout>
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.app.framework.widget.xrecyclerview.indicator;
+package com.cn.climax.wisdomparking.widget.xrecyclerview.indicator;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -11,7 +11,7 @@ import android.support.annotation.IntDef;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.app.framework.R;
+import com.cn.climax.wisdomparking.R;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

@@ -1,20 +1,16 @@
-package com.bigkoo.pickerview.builder;
+package com.cn.climax.i_carlib.uiframework.pickview.builder;
 
 import android.content.Context;
 import android.view.ViewGroup;
 
-import com.bigkoo.pickerview.configure.PickerOptions;
-import com.bigkoo.pickerview.listener.OnTimeSelectChangeListener;
-import com.bigkoo.pickerview.view.TimePickerView;
-import com.bigkoo.pickerview.listener.CustomListener;
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
-import com.contrarywind.view.WheelView;
+import com.cn.climax.i_carlib.uiframework.pickview.configure.PickerOptions;
+import com.cn.climax.i_carlib.uiframework.pickview.listener.CustomListener;
+import com.cn.climax.i_carlib.uiframework.pickview.listener.OnTimeSelectChangeListener;
+import com.cn.climax.i_carlib.uiframework.pickview.listener.OnTimeSelectListener;
+import com.cn.climax.i_carlib.uiframework.pickview.view.TimePickerView;
+import com.cn.climax.i_carlib.uiframework.wheelview.view.WheelView;
 
 import java.util.Calendar;
-
-/**
- * Created by xiaosongzeem on 2018/3/20.
- */
 
 public class TimePickerBuilder {
 

@@ -1,4 +1,4 @@
-package cn.park.com.friendcircle.utils;
+package com.cn.climax.wisdomparking.util;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;

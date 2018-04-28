@@ -14,9 +14,9 @@
  *  limitations under the License.
  */
 
-package com.cn.climax.i_carlib.uiframework.wheelpicker.listener;
+package com.cn.climax.i_carlib.uiframework.citypicker.listener;
 
-import com.cn.climax.i_carlib.uiframework.wheelpicker.weight.WheelView;
+import com.cn.climax.i_carlib.uiframework.citypicker.weight.WheelView;
 
 /**
  * Wheel clicked listener interface.

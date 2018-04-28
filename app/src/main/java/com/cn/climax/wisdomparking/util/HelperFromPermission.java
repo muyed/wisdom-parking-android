@@ -1,4 +1,4 @@
-package com.mycjj.android.component.util;
+package com.cn.climax.wisdomparking.util;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
+import android.util.Log;
 import android.view.Gravity;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -24,14 +25,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
-import com.baselibrary.service.ServiceManager;
-import com.baselibrary.service.base.HttpCommonService;
-import com.baselibrary.transport.model.request.ARequest;
-import com.mycjj.android.R;
-import com.mycjj.android.transport.http.model.request.personal.RecordCxzhDaraRequest;
-import com.mycjj.android.ui.base.CheJJBaseActivity;
-import com.mycjj.android.ui.carnet.base.CarNetConstants;
-import com.umeng.socialize.utils.Log;
+import com.cn.climax.wisdomparking.R;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -43,15 +37,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by ZHL on 2017/3/8.
- */
-
-public class HelperFromZhl {
-
+public class HelperFromPermission {
 
     public static final int PAY_MAX = 10000; //最大支付金额限制
-    public static final String PAY_MAX_MESSAGE = "最大输入金额为"+PAY_MAX+"元，请重新填写";
+    public static final String PAY_MAX_MESSAGE = "最大输入金额为" + PAY_MAX + "元，请重新填写";
 
     public static int getVersionCode(Context context) {
         try {
@@ -74,20 +63,20 @@ public class HelperFromZhl {
         conn.setRequestMethod("GET");
         conn.setConnectTimeout(5 * 1000);
         Bitmap bitmap = null;
-        Log.i("----tencent------","SHARING_CANCLE"+conn);
-        Log.i("----tencent------","SHARING_CANCLE"+conn.getResponseCode());
+        Log.i("----tencent------", "SHARING_CANCLE" + conn);
+        Log.i("----tencent------", "SHARING_CANCLE" + conn.getResponseCode());
         if (conn.getResponseCode() == 200) {
-            Log.i("----tencent------","SHARING_CANCLE");
+            Log.i("----tencent------", "SHARING_CANCLE");
             InputStream inputStream = conn.getInputStream();
             bitmap = BitmapFactory.decodeStream(inputStream);
-            Log.i("----tencent------","SHARING_CANCLE"+bitmap);
+            Log.i("----tencent------", "SHARING_CANCLE" + bitmap);
         }
 
         return bitmap;
     }
 
-    public static String getUnixTimeString(){
-        return System.currentTimeMillis()+"";
+    public static String getUnixTimeString() {
+        return System.currentTimeMillis() + "";
     }
 
     /***
@@ -95,34 +84,34 @@ public class HelperFromZhl {
      * @param time 时间戳
      * @return
      */
-    public static String getRelativeTime(String time){
-        try{
+    public static String getRelativeTime(String time) {
+        try {
             Date date = new Date(Long.parseLong(time) * 1000);
-            if((getNowYear() == getYearFromTime(date) && (getNowMonth() == getMonthFromTime(date)) && (getNowDay() == getDayFromTime(date)))){
+            if ((getNowYear() == getYearFromTime(date) && (getNowMonth() == getMonthFromTime(date)) && (getNowDay() == getDayFromTime(date)))) {
                 //同一年同一月同一天时间处理（今天）
-                if((getNowHour() == getHourFromTime(date))&&(getNowMinute() == getMinuteFromTime(date))){
+                if ((getNowHour() == getHourFromTime(date)) && (getNowMinute() == getMinuteFromTime(date))) {
                     return "刚刚";
-                }else if(getNowHour() == getHourFromTime(date)){
+                } else if (getNowHour() == getHourFromTime(date)) {
                     //同一个小时内
-                    if((getNowHour() - getHourFromTime(date)) < BASE_MINUTE){
+                    if ((getNowHour() - getHourFromTime(date)) < BASE_MINUTE) {
                         return (getNowMinute() - getMinuteFromTime(date)) + "分钟前";
-                    }else{
+                    } else {
                         return new SimpleDateFormat("今天 HH:mm").format(date).toString();
                     }
-                }else {
+                } else {
                     //不是同一个小时
-                    if((getNowHour() - getHourFromTime(date)) == 1){
+                    if ((getNowHour() - getHourFromTime(date)) == 1) {
 
-                        if((getNowMinute() + 60 - getMinuteFromTime(date)) < BASE_MINUTE){
+                        if ((getNowMinute() + 60 - getMinuteFromTime(date)) < BASE_MINUTE) {
                             return (getNowMinute() + 60 - getMinuteFromTime(date)) + "分钟前";
-                        }else{
+                        } else {
                             return new SimpleDateFormat("今天 HH:mm").format(date).toString();
                         }
-                    }else{
+                    } else {
                         return new SimpleDateFormat("今天 HH:mm").format(date).toString();
                     }
                 }
-            }else if(isTodayAndYesterday(Calendar.getInstance().getTime(),date)){
+            } else if (isTodayAndYesterday(Calendar.getInstance().getTime(), date)) {
                 //今天 和 昨天
                 return new SimpleDateFormat("昨天 HH:mm").format(date).toString();
                 /*if(getNowHour() == 0 && getHourFromTime(date) == 23){
@@ -134,13 +123,13 @@ public class HelperFromZhl {
                 }else{
                     return new SimpleDateFormat("昨天 HH:mm").format(date).toString();
                 }*/
-            }else if((getNowYear() == getYearFromTime(date))){
+            } else if ((getNowYear() == getYearFromTime(date))) {
                 //今年
                 return new SimpleDateFormat("MM月dd日 HH:mm").format(date).toString();
-            }else{
+            } else {
                 return new SimpleDateFormat("yyyy年MM月dd日 HH:mm").format(date).toString();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return time;
@@ -152,84 +141,86 @@ public class HelperFromZhl {
      * @param oldDate
      * @return
      */
-    private static boolean isTodayAndYesterday(Date nowDate,Date oldDate){
-        try{
-            Calendar calendar_old =Calendar.getInstance();
+    private static boolean isTodayAndYesterday(Date nowDate, Date oldDate) {
+        try {
+            Calendar calendar_old = Calendar.getInstance();
             calendar_old.setTime(oldDate);
-            calendar_old.add(Calendar.DAY_OF_MONTH,1);
-            Calendar calendar_now =Calendar.getInstance();
+            calendar_old.add(Calendar.DAY_OF_MONTH, 1);
+            Calendar calendar_now = Calendar.getInstance();
             calendar_now.setTime(nowDate);
-            if((calendar_now.get(Calendar.YEAR) == calendar_old.get(Calendar.YEAR))
+            if ((calendar_now.get(Calendar.YEAR) == calendar_old.get(Calendar.YEAR))
                     && (calendar_now.get(Calendar.MONTH) == calendar_old.get(Calendar.MONTH))
-                    && (calendar_now.get(Calendar.DAY_OF_MONTH) == calendar_old.get(Calendar.DAY_OF_MONTH))){
+                    && (calendar_now.get(Calendar.DAY_OF_MONTH) == calendar_old.get(Calendar.DAY_OF_MONTH))) {
                 return true;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
     }
 
     //获取年份
-    private static int getNowYear(){
+    private static int getNowYear() {
         return Calendar.getInstance().get(Calendar.YEAR);
     }
 
-    private static int getYearFromTime(Date date){
-        Calendar calendar =Calendar.getInstance();
+    private static int getYearFromTime(Date date) {
+        Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return calendar.get(Calendar.YEAR);
     }
 
     //获取月
-    private static int getNowMonth(){
+    private static int getNowMonth() {
         return Calendar.getInstance().get(Calendar.MONTH);
     }
-    private static int getMonthFromTime(Date date){
-        Calendar calendar =Calendar.getInstance();
+
+    private static int getMonthFromTime(Date date) {
+        Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return calendar.get(Calendar.MONTH);
     }
 
     //获取天
-    private static int getNowDay(){
+    private static int getNowDay() {
         return Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
     }
 
-    private static int getDayFromTime(Date date){
-        Calendar calendar =Calendar.getInstance();
+    private static int getDayFromTime(Date date) {
+        Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return calendar.get(Calendar.DAY_OF_MONTH);
     }
 
     //获取时
-    private static int getNowHour(){
+    private static int getNowHour() {
         return Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
     }
 
-    private static int getHourFromTime(Date date){
-        Calendar calendar =Calendar.getInstance();
+    private static int getHourFromTime(Date date) {
+        Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return calendar.get(Calendar.HOUR_OF_DAY);
     }
+
     //获取分
-    private static int getNowMinute(){
+    private static int getNowMinute() {
         return Calendar.getInstance().get(Calendar.MINUTE);
     }
 
-    private static int getMinuteFromTime(Date date){
-        Calendar calendar =Calendar.getInstance();
+    private static int getMinuteFromTime(Date date) {
+        Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return calendar.get(Calendar.MINUTE);
     }
 
     //获取秒
-    private static int getNowSecond(){
+    private static int getNowSecond() {
         return Calendar.getInstance().get(Calendar.SECOND);
     }
 
-    private static int getSecondFromTime(Date date){
-        Calendar calendar =Calendar.getInstance();
+    private static int getSecondFromTime(Date date) {
+        Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return calendar.get(Calendar.SECOND);
     }
@@ -279,10 +270,8 @@ public class HelperFromZhl {
         }
     }
 
-    public static void toOpenNetSetting(final Context context){
-
-        try{
-
+    public static void toOpenNetSetting(final Context context) {
+        try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle("网络异常,现在去设置网络？")
                     .setView(null)
@@ -300,7 +289,7 @@ public class HelperFromZhl {
                                 intent.setComponent(component);
                                 intent.setAction("android.intent.action.VIEW");
                             }
-                            intent.putExtra(CheJJBaseActivity.TO_SETTING,true);
+                            intent.putExtra("to_setting", true);
                             context.startActivity(intent);
                         }
                     })
@@ -315,55 +304,19 @@ public class HelperFromZhl {
             dialogWindow.setGravity(Gravity.CENTER);
             dialogWindow.setWindowAnimations(R.style.dialogstyle); // 添加动画
             dialog.show();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static String getParams(ARequest request){
-        StringBuffer sb = new StringBuffer();
-        try{
-            Map<String,String> map = request.getParams();
-            if(map != null && !map.isEmpty()){
-                boolean first = true;
-                for(String str : map.keySet()){
-                    if(first){
-                        sb.append("?");
-                    }else{
-                        sb.append("&");
-                    }
-                    sb.append(str + "=" + map.get(str));
-                    first = false;
-                }
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return sb.toString();
-    }
-
-    /***
-     * record cxzh request url and response data
-     * @param url
-     * @param response
-     */
-    public static void requestCXZHData(String url,String response){
-        try{
-            HttpCommonService mCommonService = ServiceManager.getInstance().getService(HttpCommonService.class);
-            RecordCxzhDaraRequest request = new RecordCxzhDaraRequest();
-            request.setRequest_url(CarNetConstants.URL+url);
-            request.setRequest_data(response);
-            mCommonService.excute(request);
-        }catch (Exception e){}
     }
 
     /**
      * 检查手机上是否安装了指定的软件
+     *
      * @param context
      * @param packageName：应用包名
      * @return
      */
-    public static boolean isAvilible(Context context, String packageName){
+    public static boolean isAvilible(Context context, String packageName) {
         //获取packagemanager
         final PackageManager packageManager = context.getPackageManager();
         //获取所有已安装程序的包信息
@@ -371,8 +324,8 @@ public class HelperFromZhl {
         //用于存储所有已安装程序的包名
         List<String> packageNames = new ArrayList<String>();
         //从pinfo中将包名字逐一取出，压入pName list中
-        if(packageInfos != null){
-            for(int i = 0; i < packageInfos.size(); i++){
+        if (packageInfos != null) {
+            for (int i = 0; i < packageInfos.size(); i++) {
                 String packName = packageInfos.get(i).packageName;
                 packageNames.add(packName);
             }
@@ -382,27 +335,26 @@ public class HelperFromZhl {
     }
 
 
-    public static int dip2px(Context context,float dpValue) {
+    public static int dip2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
 
-    public static int px2dip(Context context,float pxValue) {
+    public static int px2dip(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
 
 
-
-    public static void showPermissionDialog(final Activity mActivity,String title){
-        HelperFromZhl.showSimpleDialogForPermission(mActivity, "权限申请", "请前往【应用程序设置】-【权限管理】，开启【"+title+"】，以正常使用应用程序！",
+    public static void showPermissionDialog(final Activity mActivity, String title) {
+        HelperFromPermission.showSimpleDialogForPermission(mActivity, "权限申请", "请前往【应用程序设置】-【权限管理】，开启【" + title + "】，以正常使用应用程序！",
                 "立即设置", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface anInterface, int i) {
                         anInterface.dismiss();
                         //打开应用程序权限管理
                         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                        Uri uri = Uri.fromParts("package",mActivity.getPackageName(), null);
+                        Uri uri = Uri.fromParts("package", mActivity.getPackageName(), null);
                         intent.setData(uri);
 
                         // Start for result
@@ -419,22 +371,19 @@ public class HelperFromZhl {
 
     /**
      * 检查权限
-     * @param context
-     * @param pers
-     * @return
      */
-    public static boolean checkPermission(Context context,String pers){
+    public static boolean checkPermission(Context context, String pers) {
         return (ContextCompat.checkSelfPermission(context, pers) ==
-                    PackageManager.PERMISSION_GRANTED);
+                PackageManager.PERMISSION_GRANTED);
     }
 
     public static void showSimpleDialog(Context context, String title,
                                         String msg, String conform,
-                                        DialogInterface.OnClickListener conformListener){
+                                        DialogInterface.OnClickListener conformListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title)
                 .setMessage(msg)
-                .setPositiveButton(conform,conformListener);
+                .setPositiveButton(conform, conformListener);
         builder.setCancelable(false);
         AlertDialog dialog = builder.create();
         Window dialogWindow = dialog.getWindow();
@@ -446,15 +395,15 @@ public class HelperFromZhl {
 
 
     public static void showSimpleDialog(Context context, String title,
-                                        String msg,  String conform,
+                                        String msg, String conform,
                                         DialogInterface.OnClickListener conformListener,
                                         String cancle,
-                                        DialogInterface.OnClickListener cancleListener){
+                                        DialogInterface.OnClickListener cancleListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title)
                 .setMessage(msg)
-                .setPositiveButton(conform,conformListener)
-                .setNegativeButton(cancle,cancleListener);
+                .setPositiveButton(conform, conformListener)
+                .setNegativeButton(cancle, cancleListener);
         AlertDialog dialog = builder.create();
         dialog.setCancelable(false);
         Window dialogWindow = dialog.getWindow();
@@ -466,59 +415,60 @@ public class HelperFromZhl {
 
 
     public static void showSimpleDialog(Context context, String title,
-                                        String msg,  String conform,
+                                        String msg, String conform,
                                         DialogInterface.OnClickListener conformListener, int color_conform,
                                         String cancle,
-                                        DialogInterface.OnClickListener cancleListener, int color_cancle){
+                                        DialogInterface.OnClickListener cancleListener, int color_cancle) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title)
                 .setMessage(msg)
-                .setPositiveButton(conform,conformListener)
-                .setNegativeButton(cancle,cancleListener);
+                .setPositiveButton(conform, conformListener)
+                .setNegativeButton(cancle, cancleListener);
         AlertDialog dialog = builder.create();
         Window dialogWindow = dialog.getWindow();
         dialogWindow.setGravity(Gravity.CENTER);
         dialogWindow.setWindowAnimations(R.style.dialogstyle); // 添加动画
         dialog.show();
-        if(color_conform != 0 ){
+        if (color_conform != 0) {
             dialog.getButton(dialog.BUTTON_POSITIVE).setTextColor(color_conform);
         }
-        if(color_cancle != 0 ){
+        if (color_cancle != 0) {
             dialog.getButton(dialog.BUTTON_NEGATIVE).setTextColor(color_cancle);
         }
     }
 
     public static void showSimpleDialog(Context context, String title,
-                                        String msg,  String conform,
-                                        DialogInterface.OnClickListener conformListener, int color_conform,int gb_color_conform,
+                                        String msg, String conform,
+                                        DialogInterface.OnClickListener conformListener, int color_conform, int gb_color_conform,
                                         String cancle,
-                                        DialogInterface.OnClickListener cancleListener, int color_cancle){
+                                        DialogInterface.OnClickListener cancleListener, int color_cancle) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title)
                 .setMessage(msg)
-                .setPositiveButton(conform,conformListener)
-                .setNegativeButton(cancle,cancleListener);
+                .setPositiveButton(conform, conformListener)
+                .setNegativeButton(cancle, cancleListener);
         AlertDialog dialog = builder.create();
         Window dialogWindow = dialog.getWindow();
         dialogWindow.setGravity(Gravity.CENTER);
         dialogWindow.setWindowAnimations(R.style.dialogstyle); // 添加动画
         dialog.show();
-        if(color_conform != 0 ){
+        if (color_conform != 0) {
             dialog.getButton(dialog.BUTTON_POSITIVE).setTextColor(color_conform);
             dialog.getButton(dialog.BUTTON_POSITIVE).setBackgroundColor(gb_color_conform);
         }
-        if(color_cancle != 0 ){
+        if (color_cancle != 0) {
             dialog.getButton(dialog.BUTTON_NEGATIVE).setTextColor(color_cancle);
         }
     }
-    public static void showSimpleDialog(Context context, String title,String conform,
+
+    public static void showSimpleDialog(Context context, String title, String conform,
                                         DialogInterface.OnClickListener conformListener,
                                         String cancle,
-                                        DialogInterface.OnClickListener cancleListener){
+                                        DialogInterface.OnClickListener cancleListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title).setView(null)
-                .setPositiveButton(conform,conformListener)
-                .setNegativeButton(cancle,cancleListener);
+                .setPositiveButton(conform, conformListener)
+                .setNegativeButton(cancle, cancleListener);
         AlertDialog dialog = builder.create();
         Window dialogWindow = dialog.getWindow();
         dialogWindow.setGravity(Gravity.CENTER);
@@ -539,18 +489,18 @@ public class HelperFromZhl {
      * @param cancleListener
      */
     public static void showSimpleDialogForPermission(Context context, String title,
-                                        String msg,  String conform,
-                                        DialogInterface.OnClickListener conformListener,
-                                        String cancle,
-                                        DialogInterface.OnClickListener cancleListener){
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_pers_gps,null);
+                                                     String msg, String conform,
+                                                     DialogInterface.OnClickListener conformListener,
+                                                     String cancle,
+                                                     DialogInterface.OnClickListener cancleListener) {
+        View view = LayoutInflater.from(context).inflate(R.layout.layout_pers_gps, null);
         TextView txt = (TextView) view.findViewById(R.id.lpg_txt_msg);
         txt.setText(Html.fromHtml(msg));
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title)
                 .setView(view)
-                .setPositiveButton(conform,conformListener)
-                .setNegativeButton(cancle,cancleListener)
+                .setPositiveButton(conform, conformListener)
+                .setNegativeButton(cancle, cancleListener)
                 .setCancelable(false);
         AlertDialog dialog = builder.create();
         Window dialogWindow = dialog.getWindow();

@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.cn.climax.i_carlib.uiframework.wheelpicker.weight;
+package com.cn.climax.i_carlib.uiframework.citypicker.weight;
 
 /**
  * Wheel adapter interface

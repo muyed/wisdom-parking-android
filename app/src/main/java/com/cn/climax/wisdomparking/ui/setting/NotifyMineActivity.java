@@ -13,6 +13,11 @@ public class NotifyMineActivity extends BaseSwipeBackActivity {
     }
 
     @Override
+    protected void setToolBar(boolean isShowNavBack, String headerTitle) {
+        super.setToolBar(isShowNavBack, "我的消息");
+    }
+
+    @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
 
     }

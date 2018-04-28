@@ -1,4 +1,4 @@
-package com.app.framework.widget.xrecyclerview;
+package com.cn.climax.wisdomparking.widget.xrecyclerview;
 
 /**
  * author：leo on 2017/9/17 0017 22:58

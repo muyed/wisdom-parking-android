@@ -1,13 +1,11 @@
-package com.contrarywind.timer;
+package com.cn.climax.i_carlib.uiframework.wheelview.timer;
 
-import com.contrarywind.view.WheelView;
+import com.cn.climax.i_carlib.uiframework.wheelview.view.WheelView;
 
 import java.util.TimerTask;
 
 /**
  * 平滑滚动的实现
- *
- * @author 小嵩
  */
 public final class SmoothScrollTimerTask extends TimerTask {
 

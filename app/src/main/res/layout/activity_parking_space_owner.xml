@@ -1,9 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cn.climax.wisdomparking.ui.main.device.ParkingSpaceOwnerActivity">
+    tools:context="com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceOwnerActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/base_blue_nav_toolbar_layout" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/toolbar"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:text="请扫描设备说明书内二维码"
+        android:textColor="@color/text_common_color"
+        android:textSize="16sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvAddParkSpaceList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tvNextStep1"
+        android:layout_below="@+id/tvTitle" />
+
+    <TextView
+        android:id="@+id/tvNextStep1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="下一步"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

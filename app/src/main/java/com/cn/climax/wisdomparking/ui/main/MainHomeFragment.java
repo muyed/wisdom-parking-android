@@ -36,7 +36,7 @@ import com.cn.climax.i_carlib.uiframework.banner.holder.XBViewHolderCreator;
 import com.cn.climax.i_carlib.uiframework.banner.listener.OnItemClickListener;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.fragment.BaseFragment;
-import com.cn.climax.wisdomparking.ui.main.holder.LocalImageHolderView;
+import com.cn.climax.wisdomparking.util.holder.LocalImageHolderView;
 import com.cn.climax.wisdomparking.ui.main.home.MineTravelActivity;
 import com.cn.climax.wisdomparking.ui.main.home.city.AddressSelectedActivity;
 import com.cn.climax.wisdomparking.ui.main.home.city.CityPickerActivity;

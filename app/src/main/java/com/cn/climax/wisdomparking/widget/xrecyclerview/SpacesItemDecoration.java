@@ -1,11 +1,10 @@
-package cn.hs.com.wovencloud.ui.purchaser.enquiry.adapter;
+package com.cn.climax.wisdomparking.widget.xrecyclerview;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * author:xiongx 2017/9/13.
  * rv  item之间间距设置
  */
 

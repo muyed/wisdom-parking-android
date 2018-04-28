@@ -1,4 +1,4 @@
-package com.app.framework.widget.xrecyclerview;
+package com.cn.climax.wisdomparking.widget.xrecyclerview;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,8 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.app.framework.R;
-import com.app.framework.widget.xrecyclerview.indicator.AVLoadingIndicatorView;
+import com.cn.climax.wisdomparking.R;
+import com.cn.climax.wisdomparking.widget.xrecyclerview.indicator.AVLoadingIndicatorView;
 
 public class LoadingMoreFooter extends LinearLayout {
 

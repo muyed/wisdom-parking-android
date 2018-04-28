@@ -19,11 +19,11 @@
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
-        android:gravity="center"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/btnSubmit"
         android:layout_toRightOf="@+id/btnCancel"
+        android:gravity="center"
         android:textColor="@color/pickerview_topbar_title"
         android:textSize="@dimen/pickerview_topbar_title_textsize" />
 

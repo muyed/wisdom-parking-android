@@ -21,15 +21,25 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
+            android:paddingRight="20dp"
             android:visibility="visible">
 
-            <ImageView
-                android:id="@+id/ivLeftNav"
-                android:layout_width="@dimen/common_dimen_40px"
-                android:layout_height="@dimen/common_dimen_40px"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/icon_nav_location"
-                android:visibility="gone" />
+            <LinearLayout
+                android:id="@+id/llSkip2Publish"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingRight="20dp"
+                android:visibility="visible">
+
+                <ImageView
+                    android:layout_width="@dimen/common_dimen_40px"
+                    android:layout_height="@dimen/common_dimen_40px"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/icon_main_publish_share"
+                    android:visibility="visible" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/allToLocation"
@@ -72,7 +82,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:textColor="@color/white"
-            android:textSize="@dimen/common_dimen_36px"
+            android:textSize="17sp"
             android:textStyle="bold"
             android:visibility="visible" />
 
@@ -87,11 +97,12 @@
 
             <ImageView
                 android:id="@+id/ivSkip2MessageList"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
                 android:layout_alignParentRight="true"
+                android:contentDescription="@string/app_name"
                 android:gravity="center_vertical"
-                android:src="@drawable/icon_message"
+                android:src="@drawable/icon_home_search"
                 android:visibility="visible"
                 tools2:ignore="RtlHardcoded" />
 

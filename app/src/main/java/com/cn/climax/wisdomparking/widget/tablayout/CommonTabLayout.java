@@ -1,4 +1,4 @@
-package com.cn.smart.cxzh_android.widget.tablayout;
+package com.cn.climax.wisdomparking.widget.tablayout;
 
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
@@ -26,12 +26,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.cn.smart.cxzh_android.R;
-import com.cn.smart.cxzh_android.widget.tablayout.listener.CustomTabEntity;
-import com.cn.smart.cxzh_android.widget.tablayout.listener.OnTabSelectListener;
-import com.cn.smart.cxzh_android.widget.tablayout.utils.FragmentChangeManager;
-import com.cn.smart.cxzh_android.widget.tablayout.utils.UnreadMsgUtils;
-import com.cn.smart.cxzh_android.widget.tablayout.widget.MsgView;
+import com.cn.climax.wisdomparking.R;
+import com.cn.climax.wisdomparking.widget.tablayout.listener.CustomTabEntity;
+import com.cn.climax.wisdomparking.widget.tablayout.listener.OnTabSelectListener;
+import com.cn.climax.wisdomparking.widget.tablayout.utils.FragmentChangeManager;
+import com.cn.climax.wisdomparking.widget.tablayout.utils.UnreadMsgUtils;
+import com.cn.climax.wisdomparking.widget.tablayout.widget.MsgView;
 
 import java.util.ArrayList;
 

@@ -1,11 +1,11 @@
-package com.cn.climax.wisdomparking.ui.main.order;
+package com.cn.climax.wisdomparking.ui.main.device;
 
 import android.os.Bundle;
 
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 
-public class OrderLockProgressActivity extends BaseSwipeBackActivity {
+public class ReleaseLockProgressActivity extends BaseSwipeBackActivity {
 
     @Override
     protected int initContentView() {

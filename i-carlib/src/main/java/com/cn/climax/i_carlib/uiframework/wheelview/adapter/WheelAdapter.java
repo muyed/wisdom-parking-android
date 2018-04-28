@@ -1,4 +1,4 @@
-package com.contrarywind.adapter;
+package com.cn.climax.i_carlib.uiframework.wheelview.adapter;
 
 
 public interface WheelAdapter<T> {

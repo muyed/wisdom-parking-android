@@ -56,8 +56,8 @@ public class OfoMenuLayout extends RelativeLayout {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        titleView = getChildAt(0);
-        contentView = getChildAt(1);
+        contentView = getChildAt(0);
+        titleView = getChildAt(1);
     }
 
     //定义动画部分

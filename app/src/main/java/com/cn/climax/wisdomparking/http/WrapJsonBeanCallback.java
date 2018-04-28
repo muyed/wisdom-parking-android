@@ -60,7 +60,7 @@ public abstract class WrapJsonBeanCallback<T> extends StringDialogCallback {
             T returnDataBean = mTBean.getData();
 
             if (returnDataBean instanceof List) {
-                if (returnState == 1 && mTBean.getData() != null) {
+                if (returnState == 200 && mTBean.getData() != null) {
                     Type genType = getClass().getGenericSuperclass();
                     Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
                     Type type = params[0];
@@ -70,21 +70,10 @@ public abstract class WrapJsonBeanCallback<T> extends StringDialogCallback {
                         T mBean = GsonConvert.fromJson(jsonArray + "", type);
                         onExecuteSuccess(mBean, call);
                     } else if (jsonArray.length() == 0) {
-//                        if (jsonArray != null && !exUrl.contains("allSupplyMsg")
-//                                && !exUrl.contains("getIdentifyCode") && !exUrl.contains("getSingleSellerInfo")
-//                                && !exUrl.contains("getVersionInfo") && !exUrl.contains("fetch") && !exUrl.contains("getUserInfo") && !exUrl.contains("goodsInfo")) { //|| !exUrl.contains("oldSupplySellerMsg") || !exUrl.contains("followSupplyMsg")
-//                            T mBean = GsonConvert.fromJson(jsonArray + "", type);
-//                            onExecuteSuccess(mBean, call);
-//                        } else {
-//                            ToastUtils.showDebug("响应码: " + mTBean.getCode() + " 响应值: " + jsonArray);
-////                            if (exUrl.contains("getIdentifyCode") || exUrl.contains("getSingleSellerInfo"))
-////                                TT.("扫描的二维码无效，请重新扫描");
-////                            else {
-//                            int exCode = mTBean.getCode();
-//                            List exMsg = (List) mTBean.getDate();
-//                            dealJsonParseException(exCode, GsonConvert.toJSONString(exMsg), call, exUrl);
-////                            }
-//                        }
+                        if (jsonArray != null) { //|| !exUrl.contains("oldSupplySellerMsg") || !exUrl.contains("followSupplyMsg")
+                            T mBean = GsonConvert.fromJson(jsonArray + "", type);
+                            onExecuteSuccess(mBean, call);
+                        }
                     } else {
                         int exCode = mTBean.getCode();
                         onExecuteSuccess((T) GsonConvert.fromJson(jsonArray + "", type), call);
@@ -94,7 +83,10 @@ public abstract class WrapJsonBeanCallback<T> extends StringDialogCallback {
             } else if (returnDataBean instanceof String) {
                 int exCode = mTBean.getCode();
                 String exMsg = (String) mTBean.getData();
-                dealJsonParseException(exCode, exMsg, call, exUrl);
+                if (exUrl.contains("/carport/bind"))
+                    onExecuteSuccess(mTBean.getData(), call);
+                else
+                    dealJsonParseException(exCode, exMsg, call, exUrl);
             } else {
                 Type genType = getClass().getGenericSuperclass();
                 Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
@@ -102,19 +94,38 @@ public abstract class WrapJsonBeanCallback<T> extends StringDialogCallback {
 
                 if (returnState == 200) {
                     BaseBean mJsonBean = GsonConvert.fromJson(s, type);
-                    T mBaseData = (T) mJsonBean.getData();
-                    onExecuteSuccess(mBaseData, call);
-                } else if (returnState == 2) {
-                    ToastUtils.show("用户名或密码输入错误");
-                } else if (returnState == 3 || returnState == 4 || returnState == 5) {
-                    if (returnState == 3)
-                        ToastUtils.show("调用短信接口失败");
-                    else if (returnState == 4)
-                        ToastUtils.show("您调用短信接口过于频繁，请稍后再试");
+                    T mBaseData;
+                    if (exUrl.contains("/api/login"))
+                        mBaseData = (T) mJsonBean.getData();
                     else
-                        ToastUtils.show("短信验证码错误");
-                } else if (returnState == 6) {
-                    ToastUtils.show("该手机号码已注册");
+                        mBaseData = (T) mJsonBean;
+                    onExecuteSuccess(mBaseData, call);
+                } else {
+                    BaseBean mJsonBean = GsonConvert.fromJson(s, type);
+                    T mBaseData = (T) mJsonBean;
+                    onExecuteSuccess(mBaseData, call);
+                    if (returnState == 2) {
+                        ToastUtils.show("用户名或密码输入错误");
+                    } else if (returnState == 3 || returnState == 4 || returnState == 5) {
+                        if (returnState == 3)
+                            ToastUtils.show("调用短信接口失败");
+                        else if (returnState == 4)
+                            ToastUtils.show("您调用短信接口过于频繁，请稍后再试");
+                        else
+                            ToastUtils.show("短信验证码错误");
+                    } else if (returnState == 6) {
+                        if (exUrl.contains("/carport/bind"))
+                            ToastUtils.show("该车位已绑定");
+                        else if (exUrl.contains("/share/publish"))
+                            ToastUtils.show("该时间段内已存在共享单");
+                        else
+                            ToastUtils.show("该手机号码已注册");
+                    } else if (returnState == 7) {
+                        if (exUrl.contains("/share/publish"))
+                            ToastUtils.show("您未持有该车锁");
+                    } else if (returnState == 8) {
+                        ToastUtils.show(mJsonBean.getErrMsg());
+                    }
                 }
             }
         } catch (JSONException e) {

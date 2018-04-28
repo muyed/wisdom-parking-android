@@ -1,9 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.cn.climax.wisdomparking.ui.account.RetrievePwdActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/base_blue_nav_toolbar_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        tools:ignore="RtlHardcoded">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/line_button_gray_border"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:background="@drawable/icon_register_password"
+                android:contentDescription="@string/app_name"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="@dimen/common_dimen_1px"
+                android:layout_height="27dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/text_common_hint"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/etUserName"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:hint="请输入手机号"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/text_common_color"
+                android:textColorHint="@color/text_common_hint"
+                android:textCursorDrawable="@null"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="12dp"
+                android:layout_weight="2"
+                android:background="@drawable/line_button_gray_border"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/common_dimen_100px"
+                    android:layout_height="40dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/icon_register_captcha"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/etVerifyCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@null"
+                    android:hint="@string/string_register_hint_verify_code"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textColor="@color/text_common_color"
+                    android:textColorHint="@color/text_common_hint"
+                    android:textCursorDrawable="@null"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <com.cn.climax.wisdomparking.widget.counttime.AwesomeCountDownTimer
+                android:id="@+id/btnVerify"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                app:bootstrapBrand="danger"
+                app:bootstrapSize="sm"
+                app:bootstrapText="@string/string_register_verifycode"
+                app:roundedCorners="false"
+                app:showOutline="false" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/line_button_gray_border"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:background="@drawable/icon_register_password"
+                android:contentDescription="@string/app_name"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="@dimen/common_dimen_1px"
+                android:layout_height="27dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/text_common_hint"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/string_register_hint_password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/text_common_color"
+                android:textColorHint="@color/text_common_hint"
+                android:textCursorDrawable="@null"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:id="@+id/ivAccountClear"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:contentDescription="@string/app_name"
+                android:padding="3dp"
+                android:src="@drawable/icon_account_clear"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_below="@+id/allRegisterNoteArea"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/activity_button_blue_border"
+            android:gravity="center"
+            android:text="提交"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

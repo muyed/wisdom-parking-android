@@ -1,6 +1,6 @@
 package com.cn.climax.wisdomparking.data.response;
 
-import com.cn.climax.i_carlib.base.response.AbsJavaBean;
+import com.cn.climax.i_carlib.okgo.data.AbsJavaBean;
 
 /**
  * author：leo on 2018/2/24 22:02

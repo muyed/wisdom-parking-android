@@ -1,5 +1,6 @@
 package com.cn.climax.wisdomparking.widget.ofo;
 
+import android.annotation.SuppressLint;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.Image;
@@ -24,22 +25,22 @@ import com.cn.climax.wisdomparking.widget.ofo.view.OfoMenuLayout;
 public class OfoMenuActivity extends BaseActivity {
 
     //最外层的view，用来管理title和content的动画
-    OfoMenuLayout ofoMenuLayout;
-    //contennt中列表view，主要是控制自己的动画
-    OfoContentLayout ofoContentLayout;
-    FrameLayout menu;
-    RelativeLayout rlMainPage;
-    ImageView ivSkip2Pcenter;
-    int count;
-//    protected int type = MenuBrawable.CONVEX;
+    protected OfoMenuLayout ofoMenuLayout;
+    //content中列表view，主要是控制自己的动画
+    protected OfoContentLayout ofoContentLayout;
+    protected FrameLayout menu;
+    protected ImageView ivSkip2Pcenter;
+    protected int count;
+
+    protected boolean isOpenPCenter = false; //是否点击打开个人设置界面 默认未打开
 
     protected int getType() {
-        return MenuBrawable.CONVEX;
+        return MenuBrawable.NONE;
     }
 
     @Override
     protected int initContentView() {
-        return R.layout.activity_peter_main;
+        return R.layout.activity_peter_main_nav;
     }
 
     @Override
@@ -47,6 +48,7 @@ public class OfoMenuActivity extends BaseActivity {
 
     }
 
+    @SuppressLint("InlinedApi")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,14 +62,12 @@ public class OfoMenuActivity extends BaseActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
         }
-        rlMainPage = ((RelativeLayout) findViewById(R.id.rlMainPage));
         ofoMenuLayout = ((OfoMenuLayout) findViewById(R.id.ofo_menu));
         ivSkip2Pcenter = ((ImageView) findViewById(R.id.ivSkip2Pcenter));
         ofoContentLayout = ((OfoContentLayout) findViewById(R.id.ofo_content));
         menu = (FrameLayout) findViewById(R.id.menu_content);
         final MenuBrawable menuBrawable = new MenuBrawable(BitmapFactory.decodeResource(getResources(), R.mipmap.default_avatar_img), OfoMenuActivity.this, menu, getType());
         menu.setBackground(menuBrawable);
-
         menuBrawable.setOnBitmapClickListener(new MenuBrawable.OnBitmapClickListener() {
             @Override
             public void bitmapClick() {
@@ -84,6 +84,7 @@ public class OfoMenuActivity extends BaseActivity {
         findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isOpenPCenter = false;
                 ofoMenuLayout.close();
             }
         });
@@ -91,6 +92,7 @@ public class OfoMenuActivity extends BaseActivity {
         ivSkip2Pcenter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                isOpenPCenter = true;
                 //启动menu
                 ofoMenuLayout.setVisibility(View.VISIBLE);
                 ofoMenuLayout.open();

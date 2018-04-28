@@ -1,14 +1,11 @@
-package com.contrarywind.timer;
+package com.cn.climax.i_carlib.uiframework.wheelview.timer;
 
-import com.contrarywind.view.WheelView;
+import com.cn.climax.i_carlib.uiframework.wheelview.view.WheelView;
 
 import java.util.TimerTask;
 
 /**
  * 滚动惯性的实现
- *
- * @author 小嵩
- * date:  2017-12-23 23:20:44
  */
 public final class InertiaTimerTask extends TimerTask {
 

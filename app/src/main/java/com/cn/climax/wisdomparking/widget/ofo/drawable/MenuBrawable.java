@@ -15,6 +15,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -44,6 +45,8 @@ public class MenuBrawable extends Drawable {
 
     private Path circleBitmapPath;
     private View mParent;
+    //没有弧度
+    public static final int NONE = 0;
     //弧度样子是凹进去的
     public static final int CONCAVE = 1;
     //弧度是凸出来的
@@ -65,7 +68,8 @@ public class MenuBrawable extends Drawable {
         startOffset = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, START_OFFSET, context.getResources().getDisplayMetrics());
         mPath = new Path();
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(Color.WHITE);
+//        paint.setColor(Color.WHITE);
+        paint.setColor(Color.parseColor("#F5F5F5"));
         paint.setStyle(Paint.Style.FILL);
         mBitmapRegion = new Region();
     }
@@ -88,7 +92,7 @@ public class MenuBrawable extends Drawable {
 //        canvas.save();
 //        canvas.clipPath(circleBitmapPath);
         //在sfmode之后画的是src
-        canvas.drawBitmap(bitmap, bitmapCneter[0] - bitmapXY / 2, bitmapCneter[1] - bitmapXY / 2, mBitmapPaint);
+//        canvas.drawBitmap(bitmap, bitmapCneter[0] - bitmapXY / 2, bitmapCneter[1] - bitmapXY / 2, mBitmapPaint);
         mBitmapPaint.setXfermode(null);
         canvas.restoreToCount(layer);
     }
@@ -111,8 +115,10 @@ public class MenuBrawable extends Drawable {
         mPath.reset();
         if (mRadian == CONVEX) {
             mPath = createConvexPath(getBounds());
-        } else {
+        } else if (mRadian == CONCAVE) {
             mPath = createConcavePath(getBounds());
+        } else {
+            mPath = createConcavePath(new Rect());
         }
         invalidateSelf();
     }
@@ -123,12 +129,14 @@ public class MenuBrawable extends Drawable {
         super.onBoundsChange(bounds);
         if (mRadian == CONVEX) {
             mPath = createConvexPath(bounds);
-        } else {
+        } else if (mRadian == CONCAVE) {
             mPath = createConcavePath(bounds);
+        } else {
+            mPath = createNonePath(bounds);
         }
         if (bitmap != null) {
             mBitmapPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            mBitmapPaint.setColor(Color.WHITE);
+            mBitmapPaint.setColor(Color.parseColor("#F5F5F5"));
             int size = Math.min(bitmap.getWidth(), bitmap.getHeight());
             float scale = (float) (bitmapXY * 1.0 / size);
             Matrix matrix = new Matrix();
@@ -180,6 +188,30 @@ public class MenuBrawable extends Drawable {
             path.lineTo(bounds.left, bounds.bottom);
             path.lineTo(bounds.left, startTop);
             concavePath = path;
+        }
+        return concavePath;
+    }
+
+    private Path createNonePath(Rect bounds) {
+        if (concavePath == null) {
+//            float[] measurePoint = new float[2];
+            Path measurePath = new Path();
+            measurePath.moveTo(bounds.left, bounds.top);
+//            measurePath.quadTo(bounds.centerX(), bounds.top + arcY, bounds.right, bounds.top);
+            measurePath.lineTo(bounds.right, bounds.top);
+//            PathMeasure pathMeasure = new PathMeasure();
+//            pathMeasure.setPath(measurePath, false);
+//            pathMeasure.getPosTan(bounds.centerX(), measurePoint, null);
+//            float startTop = bounds.top + arcY + -measurePoint[1];
+
+//            Path path = new Path();
+//            path.reset();
+//            path.moveTo(bounds.left, startTop);
+//            path.quadTo(bounds.centerX(), startTop + arcY, bounds.right, startTop);
+//            path.lineTo(bounds.right, bounds.top);
+//            path.lineTo(bounds.left, bounds.bottom);
+//            path.lineTo(bounds.left, startTop);
+            concavePath = measurePath;
         }
         return concavePath;
     }

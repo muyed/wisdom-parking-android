@@ -1,4 +1,4 @@
-package com.app.framework.widget.xrecyclerview.indicator;
+package com.cn.climax.wisdomparking.widget.xrecyclerview.indicator;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
@@ -8,9 +8,6 @@ import android.graphics.Paint;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Jack on 2015/10/16.
- */
 public class BallPulseIndicator extends BaseIndicatorController{
 
     public static final float SCALE=1.0f;

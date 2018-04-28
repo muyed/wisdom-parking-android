@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cn.climax.wisdomparking.ui.main.device.ParkingSpaceMineActivity">
+    tools:context="com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceMineActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/base_blue_nav_toolbar_layout" />
+
+    <com.cn.climax.wisdomparking.widget.xrecyclerview.XRecyclerView
+        android:id="@+id/xrvParkingListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/llSkip2AuthParkingSpace"
+        android:layout_below="@+id/toolbar" />
+
+    <LinearLayout
+        android:id="@+id/llSkip2AuthParkingSpace"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/icon_add_parking_space" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="认证车位"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

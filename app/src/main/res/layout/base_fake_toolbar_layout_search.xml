@@ -17,17 +17,54 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/llNavBackToPre"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:paddingRight="12dp">
+
+            <ImageView
+                android:id="@+id/ivLeftHorizonalIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/icon_arrow_left_white"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/atvToolBarMainSearch"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/common_dimen_64px"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/home_map_search_bg"
+            android:drawableRight="@drawable/search_btn_cancel"
+            android:gravity="center_vertical"
+            android:hint="请搜索小区"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/common_dimen_40px"
+            android:paddingRight="@dimen/common_dimen_24px"
+            android:textColor="@color/text_common_color"
+            android:textColorHint="@color/text_common_hint"
+            android:textSize="@dimen/common_dimen_26px"
+            tools2:ignore="RtlHardcoded,RtlSymmetry" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/common_dimen_24px"
+            android:paddingRight="@dimen/common_dimen_24px">
 
             <ImageView
                 android:id="@+id/ivLeftNav"
-                android:layout_width="@dimen/common_dimen_40px"
-                android:layout_height="@dimen/common_dimen_40px"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/icon_nav_location"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/allToLocation"
@@ -40,14 +77,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/common_dimen_8px"
-                    android:layout_marginRight="@dimen/common_dimen_16px"
+                    android:layout_marginRight="@dimen/common_dimen_8px"
                     android:ellipsize="end"
                     android:gravity="center_vertical|left"
                     android:maxLines="1"
                     android:maxWidth="@dimen/common_dimen_120px"
-                    android:text="杭州"
+                    android:text="无锡"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/common_dimen_28px"
+                    android:textSize="13sp"
                     android:visibility="visible"
                     tools2:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
 
@@ -57,40 +94,11 @@
                     android:layout_height="@dimen/common_dimen_24px"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/ic_location_downward"
-                    android:visibility="visible" />
+                    android:visibility="gone" />
 
             </LinearLayout>
 
         </LinearLayout>
-
-        <EditText
-            android:id="@+id/atvToolBarMainSearch"
-            android:layout_width="@dimen/common_dimen_430px"
-            android:layout_height="@dimen/common_dimen_64px"
-            android:layout_marginLeft="@dimen/common_dimen_18px"
-            android:background="@drawable/home_map_search_bg"
-            android:drawableRight="@drawable/search_btn_cancel"
-            android:gravity="center_vertical"
-            android:hint="输入地址搜索"
-            android:maxLines="1"
-            android:paddingLeft="@dimen/common_dimen_40px"
-            android:paddingRight="@dimen/common_dimen_24px"
-            android:textColor="@color/text_common_color"
-            android:textColorHint="@color/text_lighter_color"
-            android:textSize="@dimen/common_dimen_28px"
-            tools2:ignore="RtlHardcoded,RtlSymmetry" />
-
-        <TextView
-            android:id="@+id/tvClosePage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/common_dimen_24px"
-            android:layout_marginRight="@dimen/common_dimen_24px"
-            android:gravity="center"
-            android:text="取消"
-            android:textColor="@color/white"
-            android:textSize="@dimen/common_dimen_32px"
-            tools2:ignore="RtlHardcoded,RtlSymmetry" />
 
     </LinearLayout>
 

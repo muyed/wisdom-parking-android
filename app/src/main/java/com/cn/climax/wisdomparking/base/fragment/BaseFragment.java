@@ -113,8 +113,8 @@ public abstract class BaseFragment extends ProgressFragment {
     @Override
     public View onCreateContentEmptyView(LayoutInflater inflater) {
         View empty = inflater.inflate(R.layout.view_empty_layout, null);
-        tvEmpty = empty.findViewById(R.id.tvEmpty);
-        btnReload = empty.findViewById(R.id.btnReload);
+        tvEmpty = (TextView) empty.findViewById(R.id.tvEmpty);
+        btnReload = (Button) empty.findViewById(R.id.btnReload);
         empty.findViewById(R.id.btnReload).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,7 +128,7 @@ public abstract class BaseFragment extends ProgressFragment {
     @Override
     public View onCreateContentErrorView(LayoutInflater inflater) {
         View error = inflater.inflate(R.layout.view_error_layout, null);
-        tvError = error.findViewById(R.id.tvError);
+        tvError = (TextView) error.findViewById(R.id.tvError);
         error.findViewById(R.id.btnReload).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,9 +142,9 @@ public abstract class BaseFragment extends ProgressFragment {
     @Override
     public View onCreateProgressView(LayoutInflater inflater) {
         View loading = inflater.inflate(R.layout.view_loading_layout, null);
-        tvLoading = loading.findViewById(R.id.tvLoading);
+        tvLoading = (TextView) loading.findViewById(R.id.tvLoading);
         ProgressBarCircularIndeterminate progressBar =
-                loading.findViewById(R.id.progress_view);
+                (ProgressBarCircularIndeterminate) loading.findViewById(R.id.progress_view);
         progressBar.setBackgroundColor(ResourceUtil.getThemeColor(getActivity()));
         return loading;
     }

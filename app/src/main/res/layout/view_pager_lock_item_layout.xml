@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/transparent"
+    android:gravity="center"
+    android:orientation="vertical">
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tvCarSpaceLockNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:drawableRight="@drawable/icon_lock_car_space"
+        android:text="车位锁一 "
+        android:textColor="@color/selectable_item_background_general_light_pressed"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/tvCarSpaceLockRemark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvCarSpaceLockNo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:text="备注的名称"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+</RelativeLayout>

@@ -2,6 +2,7 @@ package com.cn.climax.wisdomparking.ui.account;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
@@ -16,8 +17,13 @@ import com.cn.climax.i_carlib.uiframework.bootstrap.BootstrapButton;
 import com.cn.climax.i_carlib.util.SharedUtil;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
+import com.cn.climax.wisdomparking.ui.PeterMainActivity;
 import com.cn.climax.wisdomparking.widget.counttime.AwesomeCountDownTimer;
 import com.lzy.okgo.callback.StringCallback;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -52,8 +58,11 @@ public class PasswordSetActivity extends BaseSwipeBackActivity {
 
     @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
-        btnVerify.setStartCountDownText("再次获取");
-        btnVerify.startCountDownTimer(60000, 1000);
+//        btnVerify.setStartCountDownText("再次获取");
+//        btnVerify.startCountDownTimer(60000, 1000);
+
+        mVerifyCode = getIntent().getStringExtra("regist_code");
+        mMobileNo = SharedUtil.getInstance(PasswordSetActivity.this).get(ApiParamsKey.PHONE);
     }
 
     @OnClick({R.id.btnVerify, R.id.btnRegister})
@@ -63,12 +72,15 @@ public class PasswordSetActivity extends BaseSwipeBackActivity {
                 getVerifyCode();
                 break;
             case R.id.btnRegister: //注册
-                mMobileNo = SharedUtil.getInstance(PasswordSetActivity.this).get(ApiParamsKey.PHONE);
                 mUserName = etUserName.getText().toString();
-                mVerifyCode = etVerifyCode.getText().toString();
                 mPassword = etPassword.getText().toString();
-
-                registerApp();
+                if (TextUtils.isEmpty(mUserName)) {
+                    ToastUtils.show("请输入用户名");
+                } else if (TextUtils.isEmpty(mPassword)) {
+                    ToastUtils.show("请输入密码");
+                } else {
+                    registerApp();
+                }
                 break;
         }
     }
@@ -88,11 +100,16 @@ public class PasswordSetActivity extends BaseSwipeBackActivity {
     }
 
     private void registerApp() {
+
+        HashMap<String, String> httpParams = new HashMap<>();
+        httpParams.put(ApiParamsKey.PHONE, mMobileNo);
+        httpParams.put(ApiParamsKey.USER_NAME, mUserName);
+        httpParams.put(ApiParamsKey.VERIFY_CODE, mVerifyCode);
+        httpParams.put(ApiParamsKey.PASSWORD, mPassword);
+        JSONObject json = new JSONObject(httpParams);
+        
         ApiManage.post(ApiHost.getInstance().register())
-                .params(ApiParamsKey.USER_NAME, mUserName)
-                .params(ApiParamsKey.PHONE, mMobileNo)
-                .params(ApiParamsKey.VERIFY_CODE, mVerifyCode)
-                .params(ApiParamsKey.PASSWORD, mPassword)
+                .upJson(json.toString())
                 .execute(new WrapJsonBeanCallback<BaseBean>(PasswordSetActivity.this) {
                     @Override
                     protected void onJsonParseException(int code, String msg, Call call) {
@@ -102,7 +119,8 @@ public class PasswordSetActivity extends BaseSwipeBackActivity {
                     @Override
                     protected void onExecuteSuccess(BaseBean bean, Call call) {
                         ToastUtils.show("注册成功");
-                        startActivity(new Intent(PasswordSetActivity.this, ModifyUserInfoActivity.class));
+                        startActivity(new Intent(PasswordSetActivity.this, PeterMainActivity.class));
+//                        startActivity(new Intent(PasswordSetActivity.this, ModifyUserInfoActivity.class));
                         finish();
                     }
 

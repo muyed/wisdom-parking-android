@@ -39,7 +39,7 @@ public abstract class BaseSwipeBackActivity extends BaseActivity implements ISwi
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.ivNavBack)
+    @BindView(R.id.ivLeftHorizonalIcon)
     ImageView ivNavBack;
     @BindView(R.id.atvToolBarMainTitle)
     TextView atvToolBarMainTitle;
@@ -50,6 +50,9 @@ public abstract class BaseSwipeBackActivity extends BaseActivity implements ISwi
 
     private SwipeBackHelper mHelper;
     private SwipeBackLayout mSwipeBackLayout;
+
+    protected int mPageIndex = 1;
+    protected int mPageSize = 10;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -177,7 +180,7 @@ public abstract class BaseSwipeBackActivity extends BaseActivity implements ISwi
      * 默认不显示标题
      */
     protected String isShowHeaderTitle() {
-        return "";
+        return "彼得潘实业";
     }
 
     /**

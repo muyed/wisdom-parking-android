@@ -1,4 +1,4 @@
-package com.cn.climax.wisdomparking.ui.main.device;
+package com.cn.climax.wisdomparking.ui.main.carport;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,16 +10,36 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiManage;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
+import com.cn.climax.i_carlib.util.SharedUtil;
+import com.cn.climax.i_carlib.util.ToastUtils;
 import com.cn.climax.i_carlib.util.phone.ScreenUtil;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.Constant;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
+import com.cn.climax.wisdomparking.data.response.ParkingSpaceMineBean;
+import com.cn.climax.wisdomparking.data.response.ParkingSpaceMineListBean;
+import com.cn.climax.wisdomparking.ui.account.RegisterActivity;
+import com.cn.climax.wisdomparking.ui.main.device.AddDeviceActivity;
 import com.cn.climax.wisdomparking.ui.main.device.adapter.ParkingSpaceMineAdapter;
 import com.cn.climax.wisdomparking.widget.xrecyclerview.ProgressStyle;
 import com.cn.climax.wisdomparking.widget.xrecyclerview.SpacesItemDecoration;
 import com.cn.climax.wisdomparking.widget.xrecyclerview.XRecyclerView;
+import com.lzy.okgo.callback.StringCallback;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class ParkingSpaceMineActivity extends BaseSwipeBackActivity {
 
@@ -42,9 +62,8 @@ public class ParkingSpaceMineActivity extends BaseSwipeBackActivity {
 
     @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
-        initListView();
-
         llSkip2AuthParkingSpace.setOnClickListener(new CommonClick());
+        initListView();
     }
 
     private void initListView() {
@@ -82,13 +101,33 @@ public class ParkingSpaceMineActivity extends BaseSwipeBackActivity {
         xrvParkingListView.setAdapter(mAdapter);
     }
 
-    private void listParkings(int tag) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                xrvParkingListView.refreshComplete();
-            }
-        }, 1300);
+    private void listParkings(final int tag) {
+        ApiManage.get(ApiHost.getInstance().getMyCarport())
+                .tag(this)// 请求的 tag, 主要用于取消对应的请求
+                .cacheKey("cacheKey")
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        if (response.code() == 200) {
+                            try {
+                                JSONObject json = new JSONObject(s);
+                                List<ParkingSpaceMineBean> parkingSpaceMineBeanList =  com.alibaba.fastjson.JSONObject.parseArray(String.valueOf(json.get("data")), ParkingSpaceMineBean.class);
+                                if (tag == Constant.REFRESH){
+                                    mAdapter.setDatas(parkingSpaceMineBeanList);
+                                    xrvParkingListView.refreshComplete();
+                                }else{
+                                    
+                                }
+                                
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            ToastUtils.show(response.message());
+                        }
+                    }
+                });
+
     }
 
     private class CommonClick extends ForbidQuickClickListener {
@@ -104,6 +143,6 @@ public class ParkingSpaceMineActivity extends BaseSwipeBackActivity {
     }
 
     private void authParkingSpace() {
-        startActivity(new Intent(ParkingSpaceMineActivity.this, IdentityParkingSpaceActivity.class));
+        startActivity(new Intent(ParkingSpaceMineActivity.this, AddDeviceActivity.class));
     }
 }

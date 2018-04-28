@@ -1,15 +1,35 @@
 package com.cn.climax.wisdomparking.ui.main.community;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.cn.climax.wisdomparking.R;
+import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 
-public class AddCommunitySuccessActivity extends AppCompatActivity {
+public class AddCommunitySuccessActivity extends BaseSwipeBackActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_community_success);
+    protected void setToolBar(boolean isShowNavBack, String headerTitle, String rightTitle) {
+        super.setToolBar(isShowNavBack, "小区认证", "完成");
     }
+
+    @Override
+    protected String isSHowRightTitle() {
+        return "完成";
+    }
+
+    @Override
+    protected int initContentView() {
+        return R.layout.activity_add_community_success;
+    }
+
+    @Override
+    protected void initUiAndListener(Bundle savedInstanceState) {
+        setOnClickRightListener(new OnClickRightBarListener() {
+            @Override
+            public void click() {
+                
+            }
+        });
+    }
+
 }

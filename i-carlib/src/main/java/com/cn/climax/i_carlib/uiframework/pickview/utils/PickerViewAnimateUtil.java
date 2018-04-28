@@ -1,14 +1,12 @@
-package com.bigkoo.pickerview.utils;
+package com.cn.climax.i_carlib.uiframework.pickview.utils;
 
 import android.view.Gravity;
 
-import com.bigkoo.pickerview.R;
+import com.cn.climax.i_carlib.R;
 
-/**
- * Created by Sai on 15/8/9.
- */
 public class PickerViewAnimateUtil {
     private static final int INVALID = -1;
+
     /**
      * Get default animation resource when not defined by the user
      *

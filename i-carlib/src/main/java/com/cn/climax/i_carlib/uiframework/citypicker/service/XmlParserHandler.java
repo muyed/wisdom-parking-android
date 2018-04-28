@@ -1,8 +1,8 @@
-package com.cn.climax.i_carlib.uiframework.wheelpicker.service;
+package com.cn.climax.i_carlib.uiframework.citypicker.service;
 
-import com.cn.climax.i_carlib.uiframework.wheelpicker.model.CityModel;
-import com.cn.climax.i_carlib.uiframework.wheelpicker.model.DistrictModel;
-import com.cn.climax.i_carlib.uiframework.wheelpicker.model.ProvinceModel;
+import com.cn.climax.i_carlib.uiframework.citypicker.model.CityModel;
+import com.cn.climax.i_carlib.uiframework.citypicker.model.DistrictModel;
+import com.cn.climax.i_carlib.uiframework.citypicker.model.ProvinceModel;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

@@ -1,7 +1,6 @@
-package cn.hs.com.wovencloud.util;
+package com.cn.climax.wisdomparking.util;
 
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -618,5 +617,15 @@ public class StringUtil {
             formatStr = formatStr + "0";
         }
         return new DecimalFormat(formatStr).format(v);
+    }
+
+    public static boolean isCarPlateNo(String str) { //31
+        Pattern p;
+        Matcher m;
+        boolean b;
+        p = Pattern.compile("^[京,津,渝,沪,冀,晋,辽,吉,黑,苏,浙,皖,闽,赣,鲁,豫,鄂,湘,粤,琼,川,贵,云,陕,秦,甘,陇,青,台,蒙,桂,宁,新,藏,澳,军,海,航,警][A-Z][0-9,A-Z]{5}$"); // 验证车牌号
+        m = p.matcher(str);
+        b = m.matches();
+        return b;
     }
 }

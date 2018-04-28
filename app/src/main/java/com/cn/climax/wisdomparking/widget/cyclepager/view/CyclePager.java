@@ -1,4 +1,4 @@
-package com.jijc.cyclepagerlibrary.view;
+package com.cn.climax.wisdomparking.widget.cyclepager.view;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -7,9 +7,7 @@ import android.os.SystemClock;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 
-import com.jijc.cyclepagerlibrary.util.UIUtils;
+import com.cn.climax.wisdomparking.widget.cyclepager.util.UIUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -34,8 +32,6 @@ import java.util.TimerTask;
  * 3.startRoll(...) 开启自动轮播，自动轮播间隔时间（单位：毫秒） 设置为0时不自动轮播。<br>
  * 4.stopRoll(...) 停止自动轮播、有特殊要求的情况下可以使用此方法。<br>
  * 5.setPageTransformer(...) 设置ViewPager切换效果，开发者可自定义切换效果。<br>
- * Created by jijc on 2016/12/21. <br>
- * PackageName: com.jijc.cyclepagerlibrary.view <br>
  */
 public class CyclePager<T> extends ViewPager {
     private LinearLayout ll_pointer;

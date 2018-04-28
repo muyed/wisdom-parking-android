@@ -1,9 +1,272 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F8F8F8"
     tools:context="com.cn.climax.wisdomparking.ui.main.share.PublishShareParkingActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/base_blue_nav_toolbar_layout" />
+
+    <LinearLayout
+        android:id="@+id/llPublishArea"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btnPublishParking"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/toolbar"
+        android:orientation="vertical">
+
+        <!-- 详情 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingLeft="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="粤海集团大厦"
+                    android:textColor="@color/text_color_dark"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="详情"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/icon_right_gray_arrow" />
+
+            </LinearLayout>
+
+            <!-- 停车场地 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:background="@drawable/common_blue_oval_bg"
+                    android:gravity="center"
+                    android:text="场"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:text="白马服装市场"
+                    android:textColor="@color/text_common_hint"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <!-- 车位信息 7BC15D-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:background="@drawable/common_green_oval_bg"
+                    android:gravity="center"
+                    android:text="位"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:text="苏B3LT69"
+                    android:textColor="@color/text_common_hint"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingLeft="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="起租时间"
+                    android:textColor="@color/text_darker_color" />
+
+                <TextView
+                    android:id="@+id/tvSelectStartTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="2018-04-15 13:14"
+                    android:textColor="@color/text_common_hint" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dimen_1px"
+                android:background="@color/xx_gray5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="停租时间"
+                    android:textColor="@color/text_darker_color" />
+
+                <TextView
+                    android:id="@+id/tvSelectStopTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="2018-04-15 13:14"
+                    android:textColor="@color/text_common_hint" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dimen_1px"
+                android:background="@color/xx_gray5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="出租价格"
+                    android:textColor="@color/text_darker_color" />
+
+                <EditText
+                    android:id="@+id/etInputPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@null"
+                    android:hint="请输入价格(元)"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/text_darker_color"
+                    android:textColorHint="@color/text_common_hint"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dimen_1px"
+            android:background="@color/xx_gray5" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="备注"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dimen_1px"
+            android:background="@color/xx_gray5" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="10dp">
+
+            <EditText
+                android:id="@+id/etInputPublishRemark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="top"
+                android:hint="请输入车位位置、租用提醒等备注内容"
+                android:minHeight="88dp"
+                android:textColorHint="@color/text_common_hint"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/etInputPublishRemark"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="6dp"
+                android:text="0/50"
+                android:textColor="@color/text_common_hint"
+                android:textSize="13sp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnPublishParking"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/activity_button_blue_border"
+        android:gravity="center"
+        android:text="发布车位"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+</RelativeLayout>

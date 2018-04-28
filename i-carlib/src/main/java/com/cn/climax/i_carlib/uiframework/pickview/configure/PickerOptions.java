@@ -1,23 +1,22 @@
-package com.bigkoo.pickerview.configure;
+package com.cn.climax.i_carlib.uiframework.pickview.configure;
 
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.Gravity;
 import android.view.ViewGroup;
 
-import com.bigkoo.pickerview.listener.OnOptionsSelectChangeListener;
-import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
-import com.bigkoo.pickerview.R;
-import com.bigkoo.pickerview.listener.CustomListener;
-import com.bigkoo.pickerview.listener.OnTimeSelectChangeListener;
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
-import com.contrarywind.view.WheelView;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.pickview.listener.CustomListener;
+import com.cn.climax.i_carlib.uiframework.pickview.listener.OnOptionsSelectChangeListener;
+import com.cn.climax.i_carlib.uiframework.pickview.listener.OnOptionsSelectListener;
+import com.cn.climax.i_carlib.uiframework.pickview.listener.OnTimeSelectChangeListener;
+import com.cn.climax.i_carlib.uiframework.pickview.listener.OnTimeSelectListener;
+import com.cn.climax.i_carlib.uiframework.wheelview.view.WheelView;
 
 import java.util.Calendar;
 
 /**
  * 配置类
- * Created by xiaosongzeem on 2018/3/8.
  */
 
 public class PickerOptions {

@@ -220,7 +220,7 @@ public class SmoothCheckBox extends View implements Checkable {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         mWidth = getMeasuredWidth();
-        mStrokeWidth = (mStrokeWidth == 0 ? getMeasuredWidth() / 10 : mStrokeWidth);
+        mStrokeWidth = (mStrokeWidth == 0 ? getMeasuredWidth() / 18 : mStrokeWidth);
         mStrokeWidth = mStrokeWidth > getMeasuredWidth() / 5 ? getMeasuredWidth() / 5 : mStrokeWidth;
         mStrokeWidth = (mStrokeWidth < 3) ? 3 : mStrokeWidth;
         mCenterPoint.x = mWidth / 2;

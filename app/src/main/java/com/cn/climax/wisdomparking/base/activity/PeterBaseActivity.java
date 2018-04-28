@@ -1,4 +1,4 @@
-package cn.park.com.friendcircle.activity;
+package com.cn.climax.wisdomparking.base.activity;
 
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -7,12 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 
-import cn.park.com.friendcircle.R;
-import cn.park.com.friendcircle.utils.SystemBarUtil;
+import com.cn.climax.wisdomparking.R;
+import com.cn.climax.wisdomparking.util.SystemBarUtil;
+
 import pub.devrel.easypermissions.EasyPermissions;
 
-public class YWActivity extends AppCompatActivity {
-
+public class PeterBaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

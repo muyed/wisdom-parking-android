@@ -1,4 +1,4 @@
-package cn.hs.com.wovencloud.base.me.manager;
+package com.cn.climax.wisdomparking.base.help;
 
 import android.content.Context;
 import android.graphics.Rect;

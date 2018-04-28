@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.cn.climax.i_carlib.uiframework.wheelpicker.weight.adapters;
+package com.cn.climax.i_carlib.uiframework.citypicker.weight.adapters;
 
 import android.database.DataSetObserver;
 import android.view.View;

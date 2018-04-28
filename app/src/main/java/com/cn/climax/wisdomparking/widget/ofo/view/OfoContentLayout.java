@@ -77,12 +77,9 @@ public class OfoContentLayout extends LinearLayout {
                 public void onGlobalLayout() {
                     child.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     //终点坐标按照每个child的起点坐标+递增15dp
-                    endOffset.add(child.getTop() + ((int) child.getTag()) *
-                            TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, getContext().getResources().getDisplayMetrics()));
+                    endOffset.add(child.getTop() + ((int) child.getTag()) * TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, getContext().getResources().getDisplayMetrics()));
                 }
             });
         }
-
     }
-
 }

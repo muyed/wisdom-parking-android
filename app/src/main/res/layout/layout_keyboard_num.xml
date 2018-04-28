@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom|center_horizontal"
@@ -20,61 +19,52 @@
         <TextView
             android:id="@+id/select_num_100_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="0"
-            />
+            android:text="0" />
 
         <TextView
             android:id="@+id/select_num_101_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="1"
-            />
+            android:text="1" />
 
         <TextView
             android:id="@+id/select_num_102_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="2"
-            />
+            android:text="2" />
 
         <TextView
             android:id="@+id/select_num_103_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="3"
-            />
+            android:text="3" />
 
         <TextView
             android:id="@+id/select_num_104_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="4"
-            />
+            android:text="4" />
 
         <TextView
             android:id="@+id/select_num_105_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="5"
-            />
+            android:text="5" />
 
         <TextView
             android:id="@+id/select_num_106_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="6"/>
+            android:text="6" />
 
         <TextView
             android:id="@+id/select_num_107_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="7"
-            />
+            android:text="7" />
 
         <TextView
             android:id="@+id/select_num_108_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="8"
-            />
+            android:text="8" />
 
         <TextView
             android:id="@+id/select_num_109_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="9"
-            />
+            android:text="9" />
 
 
     </LinearLayout>
@@ -90,61 +80,52 @@
         <TextView
             android:id="@+id/select_num_200_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="Q"
-            />
+            android:text="Q" />
 
         <TextView
             android:id="@+id/select_num_201_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="W"
-            />
+            android:text="W" />
 
         <TextView
             android:id="@+id/select_num_202_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="E"
-            />
+            android:text="E" />
 
         <TextView
             android:id="@+id/select_num_203_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="R"
-            />
+            android:text="R" />
 
         <TextView
             android:id="@+id/select_num_204_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="T"
-            />
+            android:text="T" />
 
         <TextView
             android:id="@+id/select_num_205_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="Y"
-            />
+            android:text="Y" />
 
         <TextView
             android:id="@+id/select_num_206_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="U"/>
+            android:text="U" />
 
         <TextView
             android:id="@+id/select_num_207_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="P"
-            />
+            android:text="P" />
 
         <TextView
             android:id="@+id/select_num_208_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="港"
-            />
+            android:text="港" />
 
         <TextView
             android:id="@+id/select_num_209_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="澳"
-            />
+            android:text="澳" />
 
 
     </LinearLayout>
@@ -161,61 +142,52 @@
         <TextView
             android:id="@+id/select_num_300_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="A"
-            />
+            android:text="A" />
 
         <TextView
             android:id="@+id/select_num_301_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="S"
-            />
+            android:text="S" />
 
         <TextView
             android:id="@+id/select_num_302_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="D"
-            />
+            android:text="D" />
 
         <TextView
             android:id="@+id/select_num_303_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="F"
-            />
+            android:text="F" />
 
         <TextView
             android:id="@+id/select_num_304_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="G"
-            />
+            android:text="G" />
 
         <TextView
             android:id="@+id/select_num_305_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="H"
-            />
+            android:text="H" />
 
         <TextView
             android:id="@+id/select_num_306_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="J"/>
+            android:text="J" />
 
         <TextView
             android:id="@+id/select_num_307_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="K"
-            />
+            android:text="K" />
 
         <TextView
             android:id="@+id/select_num_308_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="L"
-            />
+            android:text="L" />
 
         <TextView
             android:id="@+id/select_num_309_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="学"
-            />
+            android:text="学" />
 
 
     </LinearLayout>
@@ -231,43 +203,37 @@
         <TextView
             android:id="@+id/select_num_400_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="Z"
-            />
+            android:text="Z" />
 
         <TextView
             android:id="@+id/select_num_401_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="X"
-            />
+            android:text="X" />
 
         <TextView
             android:id="@+id/select_num_402_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="C"
-            />
+            android:text="C" />
 
         <TextView
             android:id="@+id/select_num_403_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="V"
-            />
+            android:text="V" />
 
         <TextView
             android:id="@+id/select_num_404_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="B"
-            />
+            android:text="B" />
 
         <TextView
             android:id="@+id/select_num_405_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="N"
-            />
+            android:text="N" />
 
         <TextView
             android:id="@+id/select_num_406_tv"
             style="@style/license_plate_num_textStyle"
-            android:text="M"/>
+            android:text="M" />
 
         <TextView
             android:id="@+id/select_num_delete_tv"
@@ -278,7 +244,6 @@
             android:layout_marginRight="5dp"
             android:layout_weight="3"
             android:drawableRight="@drawable/icon_keyboard_delete"
-            android:text=""
-            />
+            android:text="" />
     </LinearLayout>
 </LinearLayout>

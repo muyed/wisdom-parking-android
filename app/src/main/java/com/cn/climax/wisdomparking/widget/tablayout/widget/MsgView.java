@@ -1,4 +1,4 @@
-package com.cn.smart.cxzh_android.widget.tablayout.widget;
+package com.cn.climax.wisdomparking.widget.tablayout.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,7 +9,8 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-import com.cn.smart.cxzh_android.R;
+import com.cn.climax.wisdomparking.R;
+
 
 /** 用于需要圆角矩形框背景的TextView的情况,减少直接使用TextView时引入的shape资源文件 */
 public class MsgView extends TextView {

@@ -1,4 +1,4 @@
-package com.contrarywind.view;
+package com.cn.climax.i_carlib.uiframework.wheelview.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -17,13 +17,14 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.contrarywind.adapter.WheelAdapter;
-import com.contrarywind.interfaces.IPickerViewData;
-import com.contrarywind.listener.LoopViewGestureListener;
-import com.contrarywind.listener.OnItemSelectedListener;
-import com.contrarywind.timer.InertiaTimerTask;
-import com.contrarywind.timer.MessageHandler;
-import com.contrarywind.timer.SmoothScrollTimerTask;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.wheelview.adapter.WheelAdapter;
+import com.cn.climax.i_carlib.uiframework.wheelview.interfaces.IPickerViewData;
+import com.cn.climax.i_carlib.uiframework.wheelview.listener.LoopViewGestureListener;
+import com.cn.climax.i_carlib.uiframework.wheelview.listener.OnItemSelectedListener;
+import com.cn.climax.i_carlib.uiframework.wheelview.timer.InertiaTimerTask;
+import com.cn.climax.i_carlib.uiframework.wheelview.timer.MessageHandler;
+import com.cn.climax.i_carlib.uiframework.wheelview.timer.SmoothScrollTimerTask;
 
 import java.util.Locale;
 import java.util.concurrent.Executors;
@@ -78,7 +79,7 @@ public class WheelView extends View {
     private int dividerColor;
 
     // 条目间距倍数
-    private float lineSpacingMultiplier = 1.6F;
+    private float lineSpacingMultiplier = 1.8F;
     private boolean isLoop;
 
     // 第一条线Y坐标值

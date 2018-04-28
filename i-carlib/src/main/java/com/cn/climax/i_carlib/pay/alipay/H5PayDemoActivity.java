@@ -1,4 +1,4 @@
-package com.alipay.sdk.pay.demo;
+package com.cn.climax.i_carlib.pay.alipay;
 
 import com.alipay.sdk.app.PayTask;
 import com.alipay.sdk.util.H5PayResultModel;

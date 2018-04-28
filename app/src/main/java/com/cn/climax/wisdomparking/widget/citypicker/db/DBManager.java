@@ -95,7 +95,7 @@ public class DBManager {
      */
     public List<City> searchCity(final String keyword) {
         SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(DB_PATH + DB_NAME, null);
-        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + "where name like \"%" + keyword
+        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where name like \"%" + keyword
                 + "%\" or pinyin like \"%" + keyword + "%\"", null);
         List<City> result = new ArrayList<>();
         City city;

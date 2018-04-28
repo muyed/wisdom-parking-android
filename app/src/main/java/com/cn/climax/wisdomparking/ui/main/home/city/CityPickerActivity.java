@@ -19,6 +19,7 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseActivity;
+import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.widget.citypicker.adapter.CityListAdapter;
 import com.cn.climax.wisdomparking.widget.citypicker.adapter.ResultListAdapter;
 import com.cn.climax.wisdomparking.widget.citypicker.db.DBManager;
@@ -39,7 +40,7 @@ import butterknife.OnClick;
  * what & why is modified:
  */
 
-public class CityPickerActivity extends BaseActivity {
+public class CityPickerActivity extends BaseSwipeBackActivity {
 
     public static final String KEY_PICKED_CITY = "picked_city";
 
@@ -190,12 +191,9 @@ public class CityPickerActivity extends BaseActivity {
         finish();
     }
 
-    @OnClick({R.id.back, R.id.iv_search_clear})
+    @OnClick({R.id.iv_search_clear})
     void click(View view) {
         switch (view.getId()) {
-            case R.id.back:
-                finish();
-                break;
             case R.id.iv_search_clear:
                 searchBox.setText("");
                 clearBtn.setVisibility(View.GONE);

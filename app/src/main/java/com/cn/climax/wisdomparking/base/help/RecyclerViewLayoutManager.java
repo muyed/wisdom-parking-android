@@ -1,11 +1,8 @@
-package cn.hs.com.wovencloud.base.me.manager;
+package com.cn.climax.wisdomparking.base.help;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.AttributeSet;
-
-import com.alibaba.android.vlayout.VirtualLayoutManager;
 
 /**
  * author：leo on 2017/3/10 16:01

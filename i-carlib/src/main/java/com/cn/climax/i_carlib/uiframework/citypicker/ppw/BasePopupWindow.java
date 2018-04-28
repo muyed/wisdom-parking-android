@@ -1,13 +1,13 @@
-package com.cn.climax.i_carlib.uiframework.wheelpicker.ppw;
+package com.cn.climax.i_carlib.uiframework.citypicker.ppw;
 
 import android.app.Activity;
 import android.widget.PopupWindow;
 
 import com.cn.climax.i_carlib.R;
-import com.cn.climax.i_carlib.uiframework.wheelpicker.model.CityModel;
-import com.cn.climax.i_carlib.uiframework.wheelpicker.model.DistrictModel;
-import com.cn.climax.i_carlib.uiframework.wheelpicker.model.ProvinceModel;
-import com.cn.climax.i_carlib.uiframework.wheelpicker.service.XmlParserHandler;
+import com.cn.climax.i_carlib.uiframework.citypicker.model.CityModel;
+import com.cn.climax.i_carlib.uiframework.citypicker.model.DistrictModel;
+import com.cn.climax.i_carlib.uiframework.citypicker.model.ProvinceModel;
+import com.cn.climax.i_carlib.uiframework.citypicker.service.XmlParserHandler;
 
 import java.io.InputStream;
 import java.util.HashMap;

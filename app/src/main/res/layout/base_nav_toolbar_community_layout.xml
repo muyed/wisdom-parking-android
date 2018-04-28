@@ -4,33 +4,34 @@
     xmlns:tools2="http://schemas.android.com/tools"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/common_dimen_128px"
-    android:background="@color/transparent"
-    android:minHeight="?attr/actionBarSize"
-    android:paddingTop="@dimen/common_dimen_40px"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    tools:layout_collapseMode="pin"
+    tools:layout_scrollFlags="scroll"
     tools:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     tools:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <com.zhy.autolayout.AutoLinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/common_dimen_88px"
+        android:layout_height="48dp"
         android:orientation="horizontal">
 
-        <com.zhy.autolayout.AutoLinearLayout
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp">
 
             <ImageView
                 android:id="@+id/ivNavBack"
-                android:layout_width="@dimen/common_dimen_50px"
-                android:layout_height="@dimen/common_dimen_50px"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/btn_nav_back"
+                android:src="@drawable/icon_arrow_left_white"
                 android:visibility="visible" />
 
-            <com.cn.smart.i_carlib.uiframework.bootstrap.AwesomeTextView
+            <TextView
                 android:id="@+id/atvBackTitle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -42,17 +43,17 @@
                 android:visibility="invisible"
                 tools2:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
 
-        </com.zhy.autolayout.AutoLinearLayout>
+        </LinearLayout>
 
 
-        <com.zhy.autolayout.AutoLinearLayout
+        <LinearLayout
             android:id="@+id/atvToolBarMainTitle"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:gravity="center">
 
-            <com.cn.smart.cxzh_android.widget.tablayout.SegmentTabLayout
+            <com.cn.climax.wisdomparking.widget.tablayout.SegmentTabLayout
                 android:id="@+id/stlTimeTab"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -60,15 +61,15 @@
                 tools:tl_indicator_color="#ffffff"
                 tools:tl_indicator_corner_radius="4dp" />
 
-        </com.zhy.autolayout.AutoLinearLayout>
+        </LinearLayout>
 
-        <com.zhy.autolayout.AutoLinearLayout
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
             tools2:ignore="UseCompoundDrawables" />
 
-    </com.zhy.autolayout.AutoLinearLayout>
+    </LinearLayout>
 
 </android.support.v7.widget.Toolbar>

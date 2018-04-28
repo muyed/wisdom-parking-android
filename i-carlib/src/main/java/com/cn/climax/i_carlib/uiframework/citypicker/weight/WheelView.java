@@ -1,4 +1,4 @@
-package com.cn.climax.i_carlib.uiframework.wheelpicker.weight;
+package com.cn.climax.i_carlib.uiframework.citypicker.weight;
 
 import android.content.Context;
 import android.database.DataSetObserver;
@@ -15,10 +15,10 @@ import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
 
 import com.cn.climax.i_carlib.R;
-import com.cn.climax.i_carlib.uiframework.wheelpicker.listener.OnWheelChangedListener;
-import com.cn.climax.i_carlib.uiframework.wheelpicker.listener.OnWheelClickedListener;
-import com.cn.climax.i_carlib.uiframework.wheelpicker.listener.OnWheelScrollListener;
-import com.cn.climax.i_carlib.uiframework.wheelpicker.weight.adapters.WheelViewAdapter;
+import com.cn.climax.i_carlib.uiframework.citypicker.listener.OnWheelChangedListener;
+import com.cn.climax.i_carlib.uiframework.citypicker.listener.OnWheelClickedListener;
+import com.cn.climax.i_carlib.uiframework.citypicker.listener.OnWheelScrollListener;
+import com.cn.climax.i_carlib.uiframework.citypicker.weight.adapters.WheelViewAdapter;
 
 import java.util.LinkedList;
 import java.util.List;

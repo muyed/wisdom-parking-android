@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.cn.climax.wisdomparking.ui.main.order.OrderLockActivity">
+    android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/base_blue_nav_toolbar_layout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+
+        <com.cn.climax.wisdomparking.widget.RadarDiffuseView
+            android:id="@+id/radar_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            app:diffusePaint_Color="@color/yellow_inner"
+            app:innerCircle_Radius="20dp"
+            app:innerPaint_Color="@color/yellow_inner"
+            app:openDiffseBoolean="true"
+            app:radarBool="false" />
+
+        <include layout="@layout/center" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

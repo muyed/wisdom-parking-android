@@ -1,4 +1,4 @@
-package me.curzbin.library;
+package com.cn.climax.wisdomparking.widget.bottomdialog;
 
 import android.content.Context;
 

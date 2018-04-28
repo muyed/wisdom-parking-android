@@ -1,4 +1,4 @@
-package com.cn.smart.cxzh_android.widget.tablayout;
+package com.cn.climax.wisdomparking.widget.tablayout;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -6,9 +6,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
-import com.cn.smart.cxzh_android.R;
+import com.cn.climax.i_carlib.uiframework.citypicker.listener.OnCityWheelComfirmListener;
+import com.cn.climax.i_carlib.uiframework.citypicker.ppw.CityWheelPickerPopupWindow;
+import com.cn.climax.wisdomparking.R;
+
 
 @SuppressLint("ValidFragment")
 public class SimpleTimeCardFragment extends Fragment {
@@ -28,9 +32,20 @@ public class SimpleTimeCardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.layout_time_tab_card, null);
-//        TextView card_title_tv = (TextView) v.findViewById(R.id.card_title_tv);
-//        card_title_tv.setText(mTitle);
-
+        LinearLayout selectedAddr = (LinearLayout) v.findViewById(R.id.llSelectedAddress);
+        final CityWheelPickerPopupWindow wheelPickerPopupWindow = new CityWheelPickerPopupWindow(getActivity());
+        wheelPickerPopupWindow.setListener(new OnCityWheelComfirmListener() {
+            @Override
+            public void onSelected(String Province, String City, String District, String PostCode) {
+                Toast.makeText(getContext(), Province + City + District, Toast.LENGTH_LONG).show();
+            }
+        });
+        selectedAddr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                wheelPickerPopupWindow.show();
+            }
+        });
         return v;
     }
 }

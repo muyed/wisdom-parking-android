@@ -1,4 +1,4 @@
-package com.bigkoo.pickerview.view;
+package com.cn.climax.i_carlib.uiframework.pickview.view;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -9,14 +9,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bigkoo.pickerview.R;
-import com.bigkoo.pickerview.configure.PickerOptions;
+
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.pickview.configure.PickerOptions;
 
 import java.util.List;
 
 /**
  * 条件选择器
- * Created by Sai on 15/11/22.
  */
 public class OptionsPickerView<T> extends BasePickerView implements View.OnClickListener {
 

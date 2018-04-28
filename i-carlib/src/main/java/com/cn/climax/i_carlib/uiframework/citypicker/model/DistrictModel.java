@@ -1,4 +1,4 @@
-package com.cn.climax.i_carlib.uiframework.wheelpicker.model;
+package com.cn.climax.i_carlib.uiframework.citypicker.model;
 
 public class DistrictModel {
     private String name;

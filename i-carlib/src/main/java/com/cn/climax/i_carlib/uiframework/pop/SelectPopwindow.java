@@ -29,7 +29,7 @@ public class SelectPopwindow extends BasePopwindow {
 
     @Override
     public void initView(View view) {
-        RecyclerView rv = view.findViewById(R.id.selectRV);
+        RecyclerView rv = (RecyclerView) view.findViewById(R.id.selectRV);
         rv.setLayoutManager(new LinearLayoutManager(BaseApplication.getInstance().getContext()));
         rv.setAdapter(new SelectAdapter(strings, click, this));
         view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {

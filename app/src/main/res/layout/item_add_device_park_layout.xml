@@ -1,6 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/common_dimen_1px"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="28dp"
+        android:paddingRight="28dp">
+
+        <TextView
+            android:id="@+id/tvParkNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="车位一" />
+
+        <ImageView
+            android:id="@+id/ivAddParkSpace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="2dp"
+            android:contentDescription="@string/app_name"
+            android:padding="4dp"
+            android:src="@drawable/icon_add_park" />
+
+    </RelativeLayout>
+
+    <!-- 设备编号 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="28dp"
+        android:paddingRight="28dp">
+
+        <TextView
+            android:layout_width="88dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="设备编号" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:background="@drawable/edit_text_frame"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp">
+
+            <EditText
+                android:id="@+id/etDeviceNo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/ivDeviceScan"
+                android:background="@null"
+                android:inputType="number" />
+
+            <ImageView
+                android:id="@+id/ivDeviceScan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/icon_scan_add" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!-- 设备验证码 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="28dp"
+        android:paddingRight="28dp">
+
+        <TextView
+            android:layout_width="88dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="设备验证码" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:background="@drawable/edit_text_frame"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp">
+
+            <EditText
+                android:id="@+id/etDeviceVerifyCode"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/ivDeviceScanCode"
+                android:background="@null"
+                android:inputType="number" />
+
+            <ImageView
+                android:id="@+id/ivDeviceScanCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/icon_scan_add" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvDeviceMoneyHint"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="28dp"
+        android:text="此设备还未支付过设备押金"
+        android:textColor="@color/red_7"
+        android:textSize="11sp" />
 
 </LinearLayout>

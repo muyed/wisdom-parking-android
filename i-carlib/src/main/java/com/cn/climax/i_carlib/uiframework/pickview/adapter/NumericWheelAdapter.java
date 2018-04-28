@@ -1,7 +1,7 @@
-package com.bigkoo.pickerview.adapter;
+package com.cn.climax.i_carlib.uiframework.pickview.adapter;
 
 
-import com.contrarywind.adapter.WheelAdapter;
+import com.cn.climax.i_carlib.uiframework.wheelview.adapter.WheelAdapter;
 
 /**
  * Numeric Wheel adapter.

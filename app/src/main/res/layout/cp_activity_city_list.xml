@@ -6,7 +6,8 @@
     android:background="@color/cp_content_bg"
     android:orientation="vertical">
 
-    <include layout="@layout/cp_common_title_bar" />
+    <!--<include layout="@layout/cp_common_title_bar" />-->
+    <include layout="@layout/base_blue_nav_toolbar_layout" />
 
     <include layout="@layout/cp_view_search" />
 

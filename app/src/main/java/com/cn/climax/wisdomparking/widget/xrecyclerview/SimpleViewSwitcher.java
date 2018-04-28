@@ -1,4 +1,4 @@
-package com.app.framework.widget.xrecyclerview;
+package com.cn.climax.wisdomparking.widget.xrecyclerview;
 
 import android.content.Context;
 import android.util.AttributeSet;

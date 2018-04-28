@@ -23,6 +23,21 @@
     <dimen name="text_size_20">20sp</dimen>
     <dimen name="text_size_21">21sp</dimen>
 
+    <!-- ======================================== XRecyclerView ==================================== -->
+    <dimen name="textandiconmargin">10dp</dimen>
+    <!-- ======================================== XRecyclerView ==================================== -->
+
+    <dimen name="app_normal_margin">10dp</dimen>
+    <dimen name="app_plus_margin">12dp</dimen>
+    <dimen name="app_tiny_margin">4dp</dimen>
+
+    <dimen name="font_larger">16sp</dimen>
+    <dimen name="font_normal">14sp</dimen>
+    <dimen name="font_small">10sp</dimen>
+
+    <dimen name="bottom_dialog_top_icon">38dp</dimen>
+    <dimen name="bottom_dialog_left_icon">32dp</dimen>
+
     <!--　－－－－－－－－－－－－－　ＡＵＴＯ　ＬＡＹＯＵＴ　－－－－－－－－－－－－－－－－ -->
     <dimen name="register_bg_height">350dp</dimen>
     <dimen name="login_header_height">320dp</dimen>
@@ -90,6 +105,15 @@
     <dimen name="common_dimen_1px">1px</dimen>
     <!--　－－－－－－－－－－－－－　ＡＵＴＯ　ＬＡＹＯＵＴ　－－－－－－－－－－－－－－－－ -->
 
+    <dimen name="ksw_md_thumb_ripple_size">42dp</dimen>
+    <dimen name="ksw_md_thumb_solid_inset">11dp</dimen>
+    <dimen name="ksw_md_thumb_shadow_inset">11dp</dimen>
+    <dimen name="ksw_md_thumb_shadow_inset_top">11dp</dimen>
+    <dimen name="ksw_md_thumb_shadow_inset_bottom">10dp</dimen>
+
+    <dimen name="ksw_md_thumb_solid_size">20dp</dimen>
+    <dimen name="ksw_md_thumb_shadow_size">21dp</dimen>
+    <dimen name="ksw_md_thumb_shadow_offset">2dp</dimen>
 
     <!-- 日历定义的一些尺寸 -->
     <dimen name="text_size_day">14sp</dimen>

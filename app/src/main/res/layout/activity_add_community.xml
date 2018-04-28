@@ -1,9 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.cn.climax.wisdomparking.ui.main.community.AddCommunityActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/base_blue_nav_toolbar_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <!-- 小区名 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:paddingLeft="15dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="小区名"
+                android:textColor="@color/text_darker_color" />
+
+            <LinearLayout
+                android:id="@+id/llSelectedAddress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvDisplayCommunityAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="选择小区地址"
+                    android:textColor="@color/text_common_hint"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/icon_right_gray_arrow" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dimen_1px"
+            android:background="@color/view_common_color" />
+
+        <!-- 楼号 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:paddingLeft="15dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="楼号"
+                android:textColor="@color/text_darker_color" />
+
+            <EditText
+                android:id="@+id/etDisplayFloorNo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="例：5号楼"
+                android:inputType="text"
+                android:textColor="@color/text_darker_color"
+                android:textColorHint="@color/text_common_hint"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="楼"
+                android:textColor="@color/text_darker_color"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dimen_1px"
+            android:background="@color/view_common_color" />
+
+        <!-- 单元号 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:paddingLeft="15dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="单元号"
+                android:textColor="@color/text_darker_color" />
+
+            <EditText
+                android:id="@+id/etDisplayUnitNo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="例：E单元"
+                android:inputType="text"
+                android:textColor="@color/text_darker_color"
+                android:textColorHint="@color/text_common_hint"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="单元"
+                android:textColor="@color/text_darker_color"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dimen_1px"
+            android:background="@color/view_common_color" />
+
+        <!-- 门牌号码 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:paddingLeft="15dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="门牌号"
+                android:textColor="@color/text_darker_color" />
+
+            <EditText
+                android:id="@+id/etDisplayRoomNo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="例：203室"
+                android:inputType="text"
+                android:textColor="@color/text_darker_color"
+                android:textColorHint="@color/text_common_hint"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="室"
+                android:textColor="@color/text_darker_color"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnConfirmAndSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_below="@+id/llSwitchArea"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/activity_button_blue_border"
+        android:gravity="center"
+        android:text="确定并提交"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+</LinearLayout>

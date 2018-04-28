@@ -29,7 +29,7 @@ public class ACheckBox extends View implements Checkable {
 
     private final double mSin27 = Math.sin(Math.toRadians(27));
     private final double mSin63 = Math.sin(Math.toRadians(63));
-    private final int mDuration = 500;
+    private final int mDuration = 300;
     private final int defaultSize = 40;
     private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int radius;

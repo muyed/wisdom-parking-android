@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 
-public class IdentityParkingSpaceActivity extends BaseSwipeBackActivity {
+public class ParkingSpaceIdentityActivity extends BaseSwipeBackActivity {
 
     @Override
     protected void setToolBar(boolean isShowNavBack, String headerTitle) {

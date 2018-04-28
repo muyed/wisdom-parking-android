@@ -1,12 +1,10 @@
-package cn.hs.com.wovencloud.base.me.manager;
+package com.cn.climax.wisdomparking.base.help;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.app.framework.loger.Loger;
 
 /**
  * author：leo on 2017/9/13 0013 01:13
@@ -47,9 +45,6 @@ public class CustomLinearLayoutManager extends LinearLayoutManager {
         int width = 0;
         int height = 0;
 
-
-        Loger.d("state:" + state.toString());
-
         for (int i = 0; i < getItemCount(); i++) {
 
             try {
@@ -76,9 +71,9 @@ public class CustomLinearLayoutManager extends LinearLayoutManager {
         }
 
 
-        Loger.d("ll width:" + width + ";widthSize:" + widthSize + ";widthSpec:" + widthSpec);
-        Loger.d("ll height:" + width + ";heightSize:" + heightSize + ";heightSpec:" + heightSpec);
-        Loger.d("ll widthMode:" + widthMode + ";heightMode:" + heightMode);
+//        Loger.d("ll width:" + width + ";widthSize:" + widthSize + ";widthSpec:" + widthSpec);
+//        Loger.d("ll height:" + width + ";heightSize:" + heightSize + ";heightSpec:" + heightSpec);
+//        Loger.d("ll widthMode:" + widthMode + ";heightMode:" + heightMode);
 
         switch (widthMode) {
             case View.MeasureSpec.EXACTLY:

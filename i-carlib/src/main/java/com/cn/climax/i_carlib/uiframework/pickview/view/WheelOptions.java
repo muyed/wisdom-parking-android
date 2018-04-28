@@ -1,13 +1,13 @@
-package com.bigkoo.pickerview.view;
+package com.cn.climax.i_carlib.uiframework.pickview.view;
 
 import android.graphics.Typeface;
 import android.view.View;
 
-import com.bigkoo.pickerview.R;
-import com.bigkoo.pickerview.adapter.ArrayWheelAdapter;
-import com.bigkoo.pickerview.listener.OnOptionsSelectChangeListener;
-import com.contrarywind.listener.OnItemSelectedListener;
-import com.contrarywind.view.WheelView;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.pickview.adapter.ArrayWheelAdapter;
+import com.cn.climax.i_carlib.uiframework.pickview.listener.OnOptionsSelectChangeListener;
+import com.cn.climax.i_carlib.uiframework.wheelview.listener.OnItemSelectedListener;
+import com.cn.climax.i_carlib.uiframework.wheelview.view.WheelView;
 
 import java.util.List;
 

@@ -1,7 +1,11 @@
 package com.cn.climax.wisdomparking.widget;
 
+import android.support.v4.content.ContextCompat;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
+
+import com.cn.climax.wisdomparking.R;
+import com.cn.climax.wisdomparking.base.Core;
 
 /**
  * author：leo on 2017/3/8 11:44
@@ -14,7 +18,8 @@ public abstract class NoUnderlineSpan extends ClickableSpan {
 
     @Override
     public void updateDrawState(TextPaint ds) {
+        ds.setColor(ContextCompat.getColor(Core.getInstances().getCurrentContext(), R.color.colorPrimary));
 //        ds.setColor(ds.linkColor);
-        ds.setUnderlineText(false);
+//        ds.setUnderlineText(false);
     }
 }

@@ -14,4 +14,6 @@
     <integer name="transformer_stack">11</integer>
     <integer name="transformer_zoom_in">12</integer>
     <integer name="transformer_zoom_out">13</integer>
+
+    <integer name="animation_default_duration">300</integer>
 </resources>

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -15,7 +15,7 @@
         <item name="android:paddingRight">@dimen/side_letter_bar_width</item>
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/cp_gray</item>
     </style>
 
@@ -26,4 +26,95 @@
         <attr name="checked" format="boolean" />
     </declare-styleable>
 
+    <style name="SwitchButtonMD">
+        <item name="kswThumbDrawable">@drawable/md_thumb</item>
+        <item name="kswBackColor">@color/md_back_color</item>
+        <item name="kswThumbRangeRatio">1.45</item>
+        <item name="kswThumbMarginLeft">-16dp</item>
+        <item name="kswThumbMarginTop">-14dp</item>
+        <item name="kswThumbMarginRight">-16dp</item>
+        <item name="kswThumbMarginBottom">-14dp</item>
+        <item name="kswThumbWidth">@dimen/ksw_md_thumb_ripple_size</item>
+        <item name="kswThumbHeight">@dimen/ksw_md_thumb_ripple_size</item>
+    </style>
+
+    <style name="license_plate_editStyle">
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">48dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorMainBlue</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="license_plate_province_textStyle">
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:background">@drawable/license_plate_keyboard_text_bg</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+    </style>
+
+    <style name="dialogstyle" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/dialog_enter</item>
+        <item name="@android:windowExitAnimation">@anim/dialog_exit</item>
+    </style>
+
+    <style name="license_plate_num_textStyle">
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:background">@drawable/license_plate_keyboard_text_bg</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginLeft">3dp</item>
+        <item name="android:layout_marginRight">3dp</item>
+    </style>
+
+
+    <style name="Title">
+        <item name="android:textSize">@dimen/font_larger</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Button" parent="Base.Widget.AppCompat.Button.Borderless" />
+
+    <style name="Button.Normal">
+        <item name="android:minWidth">10dp</item>
+        <item name="android:minHeight">10dp</item>
+        <item name="android:paddingTop">@dimen/app_normal_margin</item>
+        <item name="android:paddingBottom">@dimen/app_normal_margin</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+
+    <style name="BottomDialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+        <item name="android:gravity">bottom</item>
+    </style>
+
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
 </resources>

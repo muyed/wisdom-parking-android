@@ -1,4 +1,4 @@
-package com.cn.climax.i_carlib.uiframework.wheelpicker.ppw;
+package com.cn.climax.i_carlib.uiframework.citypicker.ppw;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,10 +11,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cn.climax.i_carlib.R;
-import com.cn.climax.i_carlib.uiframework.wheelpicker.listener.OnCityWheelComfirmListener;
-import com.cn.climax.i_carlib.uiframework.wheelpicker.listener.OnWheelChangedListener;
-import com.cn.climax.i_carlib.uiframework.wheelpicker.weight.WheelView;
-import com.cn.climax.i_carlib.uiframework.wheelpicker.weight.adapters.ArrayWheelAdapter;
+import com.cn.climax.i_carlib.uiframework.citypicker.listener.OnCityWheelComfirmListener;
+import com.cn.climax.i_carlib.uiframework.citypicker.listener.OnWheelChangedListener;
+import com.cn.climax.i_carlib.uiframework.citypicker.weight.WheelView;
+import com.cn.climax.i_carlib.uiframework.citypicker.weight.adapters.ArrayWheelAdapter;
 
 public class CityWheelPickerPopupWindow extends BasePopupWindow implements View.OnClickListener, OnWheelChangedListener {
     

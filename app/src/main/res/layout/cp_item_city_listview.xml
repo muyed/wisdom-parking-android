@@ -10,19 +10,19 @@
         android:id="@+id/tv_item_city_listview_letter"
         style="@style/LetterIndexTextViewStyle"
         android:clickable="false"
-        android:textSize="18sp" />
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/tv_item_city_listview_name"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="44dp"
         android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:gravity="center_vertical"
         android:paddingLeft="16dp"
         android:paddingRight="@dimen/side_letter_bar_width"
         android:textColor="@color/cp_gray_deep"
-        android:textSize="@dimen/text_size_16" />
+        android:textSize="@dimen/text_size_13" />
 
     <View
         android:layout_width="match_parent"

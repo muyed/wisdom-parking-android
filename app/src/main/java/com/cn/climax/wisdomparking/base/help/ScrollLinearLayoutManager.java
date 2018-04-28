@@ -1,4 +1,4 @@
-package cn.hs.com.wovencloud.base.me.manager;
+package com.cn.climax.wisdomparking.base.help;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 /**
  * author：leo on 2017/11/20 0020 23:19
  * email： leocheung4ever@gmail.com
- * description: TODO
+ * description: 解决滑动冲突
  * what & why is modified:
  */
 public class ScrollLinearLayoutManager extends LinearLayoutManager {

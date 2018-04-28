@@ -1,4 +1,4 @@
-package com.bigkoo.pickerview.view;
+package com.cn.climax.i_carlib.uiframework.pickview.view;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -16,13 +16,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 
-import com.bigkoo.pickerview.R;
-import com.bigkoo.pickerview.configure.PickerOptions;
-import com.bigkoo.pickerview.listener.OnDismissListener;
-import com.bigkoo.pickerview.utils.PickerViewAnimateUtil;
+import com.cn.climax.i_carlib.R;
+import com.cn.climax.i_carlib.uiframework.pickview.configure.PickerOptions;
+import com.cn.climax.i_carlib.uiframework.pickview.listener.OnDismissListener;
+import com.cn.climax.i_carlib.uiframework.pickview.utils.PickerViewAnimateUtil;
 
 /**
- * Created by Sai on 15/11/22.
  * 精仿iOSPickerViewController控件
  */
 public class BasePickerView {

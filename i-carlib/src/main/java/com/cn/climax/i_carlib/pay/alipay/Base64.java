@@ -1,4 +1,4 @@
-package com.cn.climax.i_carlib.pay.alipay.util;
+package com.cn.climax.i_carlib.pay.alipay;
 
 public final class Base64 {
 

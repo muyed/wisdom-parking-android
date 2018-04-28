@@ -21,7 +21,7 @@ public class WebLayout implements IWebLayout {
         this.mActivity = activity;
         mTwinklingRefreshLayout = (TwinklingRefreshLayout) LayoutInflater.from(activity).inflate(R.layout.fragment_twk_web, null);
         mTwinklingRefreshLayout.setPureScrollModeOn();
-        mWebView = mTwinklingRefreshLayout.findViewById(R.id.webView);
+        mWebView = (WebView) mTwinklingRefreshLayout.findViewById(R.id.webView);
     }
 
     @NonNull

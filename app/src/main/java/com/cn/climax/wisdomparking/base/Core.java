@@ -9,6 +9,8 @@ import com.cn.climax.i_carlib.okgo.app.BaseApplication;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParams;
 import com.cn.climax.wisdomparking.BuildConfig;
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechUtility;
 import com.lzy.okgo.OkGo;
 
 import java.util.LinkedList;
@@ -43,7 +45,12 @@ public class Core extends BaseApplication {
         instances = this;
 
         initRongYun();
+        initXunFei();
 
+    }
+
+    private void initXunFei() {
+        SpeechUtility.createUtility(this, SpeechConstant.APPID + "=5ae43498");
     }
 
     /*初始化融云IM*/

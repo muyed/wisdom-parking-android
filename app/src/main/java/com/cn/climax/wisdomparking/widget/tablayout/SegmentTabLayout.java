@@ -1,4 +1,4 @@
-package com.cn.smart.cxzh_android.widget.tablayout;
+package com.cn.climax.wisdomparking.widget.tablayout;
 
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.util.TypedValue;
@@ -23,11 +24,11 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.cn.smart.cxzh_android.R;
-import com.cn.smart.cxzh_android.widget.tablayout.listener.OnTabSelectListener;
-import com.cn.smart.cxzh_android.widget.tablayout.utils.FragmentChangeManager;
-import com.cn.smart.cxzh_android.widget.tablayout.utils.UnreadMsgUtils;
-import com.cn.smart.cxzh_android.widget.tablayout.widget.MsgView;
+import com.cn.climax.wisdomparking.R;
+import com.cn.climax.wisdomparking.widget.tablayout.listener.OnTabSelectListener;
+import com.cn.climax.wisdomparking.widget.tablayout.utils.FragmentChangeManager;
+import com.cn.climax.wisdomparking.widget.tablayout.utils.UnreadMsgUtils;
+import com.cn.climax.wisdomparking.widget.tablayout.widget.MsgView;
 
 import java.util.ArrayList;
 
@@ -129,7 +130,7 @@ public class SegmentTabLayout extends FrameLayout implements ValueAnimator.Anima
     private void obtainAttributes(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SegmentTabLayout);
 
-        mIndicatorColor = ta.getColor(R.styleable.SegmentTabLayout_tl_indicator_color, Color.parseColor("#222831"));
+        mIndicatorColor = ta.getColor(R.styleable.SegmentTabLayout_tl_indicator_color, ContextCompat.getColor(getContext(), R.color.colorPrimary));
         mIndicatorHeight = ta.getDimension(R.styleable.SegmentTabLayout_tl_indicator_height, -1);
         mIndicatorCornerRadius = ta.getDimension(R.styleable.SegmentTabLayout_tl_indicator_corner_radius, -1);
         mIndicatorMarginLeft = ta.getDimension(R.styleable.SegmentTabLayout_tl_indicator_margin_left, dp2px(0));
@@ -145,7 +146,7 @@ public class SegmentTabLayout extends FrameLayout implements ValueAnimator.Anima
         mDividerPadding = ta.getDimension(R.styleable.SegmentTabLayout_tl_divider_padding, 0);
 
         mTextsize = ta.getDimension(R.styleable.SegmentTabLayout_tl_textsize, sp2px(13f));
-        mTextSelectColor = ta.getColor(R.styleable.SegmentTabLayout_tl_textSelectColor, Color.parseColor("#1F184B"));
+        mTextSelectColor = ta.getColor(R.styleable.SegmentTabLayout_tl_textSelectColor, ContextCompat.getColor(getContext(), R.color.colorPrimary));
         mTextUnselectColor = ta.getColor(R.styleable.SegmentTabLayout_tl_textUnselectColor, mIndicatorColor);
         mTextBold = ta.getInt(R.styleable.SegmentTabLayout_tl_textBold, TEXT_BOLD_NONE);
         mTextAllCaps = ta.getBoolean(R.styleable.SegmentTabLayout_tl_textAllCaps, false);

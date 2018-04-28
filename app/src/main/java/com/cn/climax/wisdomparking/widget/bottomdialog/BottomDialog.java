@@ -1,4 +1,4 @@
-package me.curzbin.library;
+package com.cn.climax.wisdomparking.widget.bottomdialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -21,14 +21,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
+import com.cn.climax.wisdomparking.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class BottomDialog {
+
     public static final int HORIZONTAL = OrientationHelper.HORIZONTAL;
     public static final int VERTICAL = OrientationHelper.VERTICAL;
 
@@ -66,6 +71,16 @@ public class BottomDialog {
         return this;
     }
 
+    public BottomDialog nav(OnSkip2NavigationListener listener) {
+        customDialog.nav(listener);
+        return this;
+    }
+
+    public BottomDialog match(OnSkip2MatchListener listener) {
+        customDialog.match(listener);
+        return this;
+    }
+
     public BottomDialog orientation(int orientation) {
         customDialog.orientation(orientation);
         return this;
@@ -93,7 +108,21 @@ public class BottomDialog {
         private LinearLayout container;
         private TextView titleView;
 
+        private TextView tvNavStartAddr;
+        private TextView tvNavStartDate;
+        private TextView tvNavStartWeek;
+        private TextView tvNavEndAddr;
+        private TextView tvNavEndDate;
+        private TextView tvNavEndWeek;
+        private TextView tvUnitPrice;
+        private TextView tvNavCurrentParkingSpace;
+        private TextView tvSkip2Match;
+        private ImageView ivNav2DestAddr;
+
         private DialogAdapter adapter;
+
+        private OnSkip2NavigationListener listener;
+        private OnSkip2MatchListener matchListener;
 
         private int padding;
         private int topPadding;
@@ -126,12 +155,35 @@ public class BottomDialog {
             background = (LinearLayout) findViewById(R.id.background);
             titleView = (TextView) findViewById(R.id.title);
             container = (LinearLayout) findViewById(R.id.container);
-            findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+
+            tvNavStartAddr = (TextView) findViewById(R.id.tvNavStartAddr);
+            tvNavStartDate = (TextView) findViewById(R.id.tvNavStartDate);
+            tvNavStartWeek = (TextView) findViewById(R.id.tvNavStartWeek);
+            tvNavEndAddr = (TextView) findViewById(R.id.tvNavEndAddr);
+            tvNavEndDate = (TextView) findViewById(R.id.tvNavEndDate);
+            tvNavEndWeek = (TextView) findViewById(R.id.tvNavEndWeek);
+            tvUnitPrice = (TextView) findViewById(R.id.tvUnitPrice);
+            tvNavCurrentParkingSpace = (TextView) findViewById(R.id.tvNavCurrentParkingSpace);
+            tvSkip2Match = (TextView) findViewById(R.id.tvSkip2Match);
+
+            ivNav2DestAddr = (ImageView) findViewById(R.id.ivNav2DestAddr);
+
+            ivNav2DestAddr.setOnClickListener(new ForbidQuickClickListener() {
                 @Override
-                public void onClick(View view) {
-                    dismiss();
+                protected void forbidClick(View view) {
+                    if (listener != null)
+                        listener.nav();
                 }
             });
+
+            tvSkip2Match.setOnClickListener(new ForbidQuickClickListener() {
+                @Override
+                protected void forbidClick(View view) {
+                    if (matchListener != null)
+                        matchListener.match();
+                }
+            });
+
         }
 
         void addItems(List<Item> items, OnItemClickListener onItemClickListener) {
@@ -167,6 +219,14 @@ public class BottomDialog {
         public void layout(int layout) {
             this.layout = layout;
             if (adapter != null) adapter.setLayout(layout);
+        }
+
+        public void nav(OnSkip2NavigationListener listener) {
+            this.listener = listener;
+        }
+        
+        public void match(OnSkip2MatchListener listener) {
+            this.matchListener = listener;
         }
 
         public void orientation(int orientation) {
@@ -365,5 +425,33 @@ public class BottomDialog {
                 }
             }
         }
+    }
+
+    public interface OnSkip2NavigationListener {
+        void nav();
+    }
+
+    public interface OnSkip2MatchListener {
+        void match();
+    }
+
+    private OnSkip2NavigationListener navigationListener;
+
+    private OnSkip2MatchListener matchListener;
+
+    public OnSkip2NavigationListener getNavigationListener() {
+        return navigationListener;
+    }
+
+    public void setNavigationListener(OnSkip2NavigationListener navigationListener) {
+        this.navigationListener = navigationListener;
+    }
+
+    public OnSkip2MatchListener getMatchListener() {
+        return matchListener;
+    }
+
+    public void setMatchListener(OnSkip2MatchListener matchListener) {
+        this.matchListener = matchListener;
     }
 }

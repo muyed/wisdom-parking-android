@@ -1,4 +1,4 @@
-package com.fynn.switcher;
+package com.cn.climax.wisdomparking.widget;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -18,9 +18,8 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Checkable;
 
-/**
- * Created by Fynn on 2016/5/13.
- */
+import com.cn.climax.wisdomparking.R;
+
 public class Switch extends View implements Checkable {
     private static final int ANIMATION_DURATION = 300;
 
@@ -84,8 +83,8 @@ public class Switch extends View implements Checkable {
         spotPadding = a.getDimensionPixelSize(R.styleable.Switch_spotPadding, dp2px(DEFAULT_SPOT_PADDING));
         switchOnStrokeColor = a.getColor(R.styleable.Switch_switchOnStrokeColor, switchOnColor);
         switchOffStrokeColor = a.getColor(R.styleable.Switch_switchOffStrokeColor, switchOffColor);
-        duration = a.getInteger(R.styleable.Switch_duration, ANIMATION_DURATION);
-        mChecked = a.getBoolean(R.styleable.Switch_checked, false);
+        duration = a.getInteger(R.styleable.Switch_switchDuration, ANIMATION_DURATION);
+        mChecked = a.getBoolean(R.styleable.Switch_switchChecked, false);
         a.recycle();
 
         state = mChecked ? State.SWITCH_ON : State.SWITCH_OFF;

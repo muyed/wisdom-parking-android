@@ -1,11 +1,9 @@
-package com.jijc.cyclepagerlibrary.util;
+package com.cn.climax.wisdomparking.widget.cyclepager.util;
 
 import android.content.Context;
 
 /**
  * Description:UI工具类
- * Created by jijc on 2016/12/23.
- * PackageName: com.jijc.cyclepagerlibrary.util
  */
 public class UIUtils {
     /**

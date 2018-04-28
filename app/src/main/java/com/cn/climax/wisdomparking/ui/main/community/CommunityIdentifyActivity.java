@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 
-public class IdentifyCommunityActivity extends BaseSwipeBackActivity {
+public class CommunityIdentifyActivity extends BaseSwipeBackActivity {
 
     @BindView(R.id.lock_viewPager)
     CyclePager lockViewPager;
@@ -90,10 +90,10 @@ public class IdentifyCommunityActivity extends BaseSwipeBackActivity {
         protected void forbidClick(View view) {
             switch (view.getId()) {
                 case R.id.llSkip2Share: //共享车位锁
-                    startActivity(new Intent(IdentifyCommunityActivity.this, PublishShareParkingActivity.class));
+                    startActivity(new Intent(CommunityIdentifyActivity.this, PublishShareParkingActivity.class));
                     break;
                 case R.id.llReleaseLock: //解锁车位锁
-                    startActivity(new Intent(IdentifyCommunityActivity.this, ReleaseLockActivity.class));
+                    startActivity(new Intent(CommunityIdentifyActivity.this, ReleaseLockActivity.class));
                     break;
             }
         }

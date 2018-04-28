@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <layer-list>
-            <item>
-                <shape>
-                    <corners android:radius="6dp" />
-                    <solid android:color="@color/cp_shadow"/>
-                </shape>
-            </item>
-        </layer-list>
-    </item>
-</selector>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="2dp" />
+    <stroke
+        android:width="@dimen/common_dimen_1px"
+        android:color="@color/color_CCD9DF" />
+</shape>

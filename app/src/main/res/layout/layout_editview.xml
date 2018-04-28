@@ -2,17 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/editTextBodyLl"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#f6f6f6"
+    android:layout_height="48dp"
+    android:layout_marginLeft="32dp"
+    android:layout_marginRight="32dp"
+    android:background="@drawable/home_input_lock_bg"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="8dp"
+    android:paddingBottom="5dp"
+    android:paddingLeft="18dp"
+    android:paddingRight="18dp"
+    android:paddingTop="5dp"
     android:visibility="visible">
 
     <EditText
-        android:id="@+id/circleEt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/etInputInviteCode"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@null"
         android:hint="输入预约码"
@@ -24,6 +29,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="4dp"
         android:contentDescription="@null"
-        android:src="@drawable/selector_send" />
+        android:src="@drawable/icon_account_clear" />
 
 </LinearLayout>

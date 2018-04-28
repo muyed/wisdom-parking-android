@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.cn.climax.i_carlib.uiframework.wheelpicker.weight.adapters;
+package com.cn.climax.i_carlib.uiframework.citypicker.weight.adapters;
 
 import android.content.Context;
 import android.text.TextUtils;

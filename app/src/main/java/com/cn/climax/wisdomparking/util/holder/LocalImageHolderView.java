@@ -1,4 +1,4 @@
-package com.cn.climax.wisdomparking.ui.main.holder;
+package com.cn.climax.wisdomparking.util.holder;
 
 import android.content.Context;
 import android.view.View;

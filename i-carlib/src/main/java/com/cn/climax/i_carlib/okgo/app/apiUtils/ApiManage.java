@@ -1,12 +1,6 @@
 package com.cn.climax.i_carlib.okgo.app.apiUtils;
 
-import android.content.Intent;
-import android.text.TextUtils;
-
-import com.cn.climax.i_carlib.okgo.app.BaseApplication;
-import com.cn.climax.i_carlib.util.SharedUtil;
 import com.lzy.okgo.OkGo;
-import com.lzy.okgo.model.HttpParams;
 import com.lzy.okgo.request.DeleteRequest;
 import com.lzy.okgo.request.GetRequest;
 import com.lzy.okgo.request.HeadRequest;

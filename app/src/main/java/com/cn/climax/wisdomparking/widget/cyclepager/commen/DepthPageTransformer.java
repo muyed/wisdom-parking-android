@@ -1,12 +1,10 @@
-package com.jijc.cyclepagerlibrary.commen;
+package com.cn.climax.wisdomparking.widget.cyclepager.commen;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
 /**
  * Description:切换效果
- * Created by jijc on 2016/12/22.
- * PackageName: com.jijc.cyclepagerlibrary.commen
  */
 public class DepthPageTransformer implements ViewPager.PageTransformer{
     private static final float MIN_SCALE = 0.75f;

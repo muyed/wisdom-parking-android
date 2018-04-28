@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/WisdomApp.iml" filepath="$PROJECT_DIR$/WisdomApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/i-carlib/i-carlib.iml" filepath="$PROJECT_DIR$/i-carlib/i-carlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wisdom-parking-android.iml" filepath="$PROJECT_DIR$/wisdom-parking-android.iml" />
     </modules>
   </component>
 </project>

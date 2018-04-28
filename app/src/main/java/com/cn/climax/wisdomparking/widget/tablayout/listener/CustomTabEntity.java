@@ -1,4 +1,4 @@
-package com.cn.smart.cxzh_android.widget.tablayout.listener;
+package com.cn.climax.wisdomparking.widget.tablayout.listener;
 
 import android.support.annotation.DrawableRes;
 

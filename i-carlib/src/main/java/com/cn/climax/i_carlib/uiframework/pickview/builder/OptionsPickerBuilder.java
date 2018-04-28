@@ -1,19 +1,16 @@
-package com.bigkoo.pickerview.builder;
+package com.cn.climax.i_carlib.uiframework.pickview.builder;
 
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.ViewGroup;
 
-import com.bigkoo.pickerview.configure.PickerOptions;
-import com.bigkoo.pickerview.listener.CustomListener;
-import com.bigkoo.pickerview.listener.OnOptionsSelectChangeListener;
-import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
-import com.bigkoo.pickerview.view.OptionsPickerView;
-import com.contrarywind.view.WheelView;
+import com.cn.climax.i_carlib.uiframework.pickview.configure.PickerOptions;
+import com.cn.climax.i_carlib.uiframework.pickview.listener.CustomListener;
+import com.cn.climax.i_carlib.uiframework.pickview.listener.OnOptionsSelectChangeListener;
+import com.cn.climax.i_carlib.uiframework.pickview.listener.OnOptionsSelectListener;
+import com.cn.climax.i_carlib.uiframework.pickview.view.OptionsPickerView;
+import com.cn.climax.i_carlib.uiframework.wheelview.view.WheelView;
 
-/**
- * Created by xiaosongzeem on 2018/3/20.
- */
 
 public class OptionsPickerBuilder {
 
@@ -153,8 +150,6 @@ public class OptionsPickerBuilder {
 
     /**
      * Set item divider line type.
-     *
-     * @param dividerType enum Type {@link WheelView.DividerType}
      */
     public OptionsPickerBuilder setDividerType(WheelView.DividerType dividerType) {
         mPickerOptions.dividerType = dividerType;

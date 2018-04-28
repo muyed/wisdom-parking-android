@@ -8,17 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.data.response.CommunityAuthListResponse;
-import com.cn.climax.wisdomparking.data.response.CommunityListResponse;
 import com.cn.climax.wisdomparking.ui.main.community.CommunityAuthedActivity;
 import com.cn.climax.wisdomparking.ui.main.community.CommunityDeniedActivity;
 import com.cn.climax.wisdomparking.ui.main.device.AddDeviceActivity;
-import com.cn.climax.wisdomparking.ui.main.order.OrderMineDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,24 +29,25 @@ import butterknife.ButterKnife;
  * description: 我的小区适配器
  * what & why is modified:
  */
-public class CommunityAuthAdapter extends RecyclerView.Adapter<CommunityAuthAdapter.OrderViewHolder> {
+public class CommunityAuthDetailAdapter extends RecyclerView.Adapter<CommunityAuthDetailAdapter.OrderViewHolder> {
 
     private Context mContext;
     private List<CommunityAuthListResponse> mCommunityListBean = new ArrayList<>();
+    private CommunityAuthListResponse mCommunityDetailBean;
 
-    public CommunityAuthAdapter(Context context) {
+    public CommunityAuthDetailAdapter(Context context) {
         this.mContext = context;
     }
 
     @Override
-    public CommunityAuthAdapter.OrderViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CommunityAuthDetailAdapter.OrderViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_mine_community_auth_layout, parent, false);
         return new OrderViewHolder(view);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(CommunityAuthAdapter.OrderViewHolder holder, final int position) {
+    public void onBindViewHolder(CommunityAuthDetailAdapter.OrderViewHolder holder, final int position) {
         holder.llSkip2Detail.setOnClickListener(new ForbidQuickClickListener() {
             @Override
             protected void forbidClick(View view) {
@@ -138,6 +136,11 @@ public class CommunityAuthAdapter extends RecyclerView.Adapter<CommunityAuthAdap
 
     public void addDatas(List<CommunityAuthListResponse> communityListBean) {
         this.mCommunityListBean.addAll(communityListBean);
+        notifyDataSetChanged();
+    }
+
+    public void setDetailData(CommunityAuthListResponse communityDetail) {
+        this.mCommunityDetailBean = communityDetail;
         notifyDataSetChanged();
     }
 

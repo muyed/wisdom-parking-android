@@ -1,11 +1,11 @@
-package com.cn.smart.cxzh_android.widget.tablayout.utils;
+package com.cn.climax.wisdomparking.widget.tablayout.utils;
 
 
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.cn.smart.cxzh_android.widget.tablayout.widget.MsgView;
+import com.cn.climax.wisdomparking.widget.tablayout.widget.MsgView;
 
 /**
  * 未读消息提示View,显示小红点或者带有数字的红点:

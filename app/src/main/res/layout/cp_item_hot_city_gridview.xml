@@ -12,6 +12,6 @@
         android:background="?android:attr/selectableItemBackground"
         android:gravity="center"
         android:textColor="@color/cp_gray_deep"
-        android:textSize="@dimen/text_size_16" />
+        android:textSize="@dimen/text_size_13" />
 
 </RelativeLayout>

@@ -36,8 +36,10 @@ public class ModifyUserInfoActivity extends BaseSwipeBackActivity {
 
     @BindView(R.id.ivUserAvatar)
     ImageView ivUserAvatar;
-    @BindView(R.id.etUserName) EditText etUserName;
-    @BindView(R.id.etPassword) EditText etPassword;
+    @BindView(R.id.etUserName)
+    EditText etUserName;
+    @BindView(R.id.etPassword)
+    EditText etPassword;
     @BindView(R.id.btnCommitUserInfo)
     Button btnCommitUserInfo;
 
@@ -99,7 +101,7 @@ public class ModifyUserInfoActivity extends BaseSwipeBackActivity {
 //                        } else if (StringUtils.getChartLength(mNickName) > 16) {
 //                            TT.showShortWarn("昵称长度最长16位");
 //                        } else {
-                            modifyUserInfo(logoUrl);
+                        modifyUserInfo(logoUrl);
 //                        }
                         SoftInputUtil.hideSoftInput(ModifyUserInfoActivity.this, view);
                     }

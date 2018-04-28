@@ -46,8 +46,8 @@ public class LoginSNSFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_login_with_sns, null);
-        etAccount = view.findViewById(R.id.etAccount);
-        btnVerify = view.findViewById(R.id.btnVerify);
+        etAccount = (EditText) view.findViewById(R.id.etAccount);
+        btnVerify = (AwesomeCountDownTimer) view.findViewById(R.id.btnVerify);
         return view;
     }
 

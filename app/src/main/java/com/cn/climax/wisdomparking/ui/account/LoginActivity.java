@@ -4,7 +4,9 @@ import android.Manifest;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v13.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiManage;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
 import com.cn.climax.i_carlib.platform.PlatformConfig;
 import com.cn.climax.i_carlib.platform.PlatformType;
 import com.cn.climax.i_carlib.platform.SocialApi;
@@ -32,12 +35,25 @@ import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.data.response.LoginResponse;
 import com.cn.climax.wisdomparking.http.WrapJsonBeanCallback;
+import com.cn.climax.wisdomparking.ui.PeterMainActivity;
+import com.cn.climax.wisdomparking.util.HelperFromPermission;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.HttpParams;
 
+import org.json.JSONObject;
+
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
 import okhttp3.Call;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -58,6 +74,8 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
     ImageView ivQQLogin;
     @BindView(R.id.ivSinaLogin)
     ImageView ivSinaLogin;
+    @BindView(R.id.btnRegister2New)
+    Button btnRegister2New;
 
     private long exitTime = 0;
 
@@ -67,8 +85,8 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
     private static final String SINA_WB_APPKEY = "your sina wb appkey";       //申请的新浪微博 appkey
 
     private boolean isClickSwitch = false; //是否点击短信验证码登录 默认没有
-    private LoginPWDFragment firstFragment;
     private FragmentTransaction transaction;
+    private LoginPWDFragment firstFragment;
     private LoginSNSFragment secondFragment;
     private String mAccount;
     private String mPassword;
@@ -77,13 +95,8 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
     private SocialApi mSocialApi;
 
     @Override
-    protected void setToolBar(boolean isShowNavBack, String headerTitle, String rightTitle) {
-        super.setToolBar(true, "登录", rightTitle);
-    }
-
-    @Override
-    protected String isSHowRightTitle() {
-        return "注册";
+    protected void setToolBar(boolean isShowNavBack, String headerTitle) {
+        super.setToolBar(false, "登录");
     }
 
     @Override
@@ -102,6 +115,11 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
     }
 
     @Override
+    public void setSwipeBackEnable(boolean enable) {
+        super.setSwipeBackEnable(false);
+    }
+
+    @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
         Log.e("onCreate: SHAUtils", SHAUtils.getSHA1(LoginActivity.this));
 
@@ -111,12 +129,6 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
         transaction.replace(R.id.flReplaceLoginType, firstFragment);
         transaction.commit();
 
-        setOnClickRightListener(new OnClickRightBarListener() {
-            @Override
-            public void click() {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-            }
-        });
         initThirdPlatform();
         initClick();
     }
@@ -132,6 +144,8 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
     private void initClick() {
         atvSignInWithSnsOrPwd.setOnClickListener(this);
         btnLogin.setOnClickListener(new ForbidClick());
+        btnRegister2New.setOnClickListener(new ForbidClick());
+
         ivWeChatLogin.setOnClickListener(new ForbidClick());
         ivQQLogin.setOnClickListener(new ForbidClick());
         ivSinaLogin.setOnClickListener(new ForbidClick());
@@ -148,24 +162,15 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
                             .setCustomAnimations(R.animator.animator_enter, R.animator.animator_exit)
                             .replace(R.id.flReplaceLoginType, secondFragment)
                             .commit();
-                    atvSignInWithSnsOrPwd.setText("服务密码登录");
+                    atvSignInWithSnsOrPwd.setText("切换至密码登录");
                 } else {
                     isClickSwitch = false;
                     firstFragment = new LoginPWDFragment();
                     getFragmentManager().beginTransaction()
                             .setCustomAnimations(R.animator.animator_enter, R.animator.animator_exit)
                             .replace(R.id.flReplaceLoginType, firstFragment).commit();
-                    atvSignInWithSnsOrPwd.setText("短信验证码登录");
+                    atvSignInWithSnsOrPwd.setText("切换至手机登录");
                 }
-                break;
-            case R.id.ivWeChatLogin: //微信登录
-                mSocialApi.doOauthVerify(this, PlatformType.WEIXIN, new MyAuthListener());
-                break;
-            case R.id.ivQQLogin: //QQ登录
-                mSocialApi.doOauthVerify(this, PlatformType.QQ, new MyAuthListener());
-                break;
-            case R.id.ivSinaLogin: //新浪登录
-                mSocialApi.doOauthVerify(this, PlatformType.SINA_WB, new MyAuthListener());
                 break;
         }
     }
@@ -251,15 +256,31 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
                         }
                     }
                     break;
+                case R.id.btnRegister2New://注册新用户
+                    startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                    break;
+                case R.id.ivWeChatLogin: //微信登录
+                    mSocialApi.doOauthVerify(LoginActivity.this, PlatformType.WEIXIN, new MyAuthListener());
+                    break;
+                case R.id.ivQQLogin: //QQ登录
+                    mSocialApi.doOauthVerify(LoginActivity.this, PlatformType.QQ, new MyAuthListener());
+                    break;
+                case R.id.ivSinaLogin: //新浪登录
+                    mSocialApi.doOauthVerify(LoginActivity.this, PlatformType.SINA_WB, new MyAuthListener());
+                    break;
             }
         }
     }
 
     private void loginEvent() {
+        HashMap<String, String> httpParams = new HashMap<>();
+        httpParams.put(ApiParamsKey.USER_NAME, isClickSwitch ? mMobileNo : mAccount);
+        httpParams.put(ApiParamsKey.PASSWORD, isClickSwitch ? mSnsCode : mPassword);
+        httpParams.put(ApiParamsKey.TYPE, "1");
+        JSONObject json = new JSONObject(httpParams);
+
         ApiManage.post(ApiHost.getInstance().login())
-                .params("username", isClickSwitch ? mMobileNo : mAccount)
-                .params("password", isClickSwitch ? mSnsCode : mPassword)
-                .params("type", "1")
+                .upJson(json.toString())
                 .execute(new WrapJsonBeanCallback<LoginResponse>(LoginActivity.this) {
                     @Override
                     protected void onJsonParseException(int code, String msg, Call call) {
@@ -269,7 +290,11 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
                     @Override
                     protected void onExecuteSuccess(LoginResponse bean, Call call) {
                         SharedUtil.getInstance(LoginActivity.this).put("is_login_success", true);
-                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                        SharedUtil.getInstance(LoginActivity.this).put(ApiParamsKey.USER_NAME, isClickSwitch ? mMobileNo : mAccount);
+                        SharedUtil.getInstance(LoginActivity.this).put(ApiParamsKey.IS_AUTH, !TextUtils.isEmpty(bean.getRealName()));
+                        SharedUtil.getInstance(LoginActivity.this).put(ApiParamsKey.IS_AUTH_COMMUNITY, bean != null && bean.getCommunityList() != null && bean.getCommunityList().size() > 0);
+                        SharedUtil.getInstance(LoginActivity.this).put(ApiParamsKey.IS_AUTH_PARKING_SPACE, bean != null && bean.getUserCarportList() != null && bean.getUserCarportList().size() > 0);
+                        startActivity(new Intent(LoginActivity.this, PeterMainActivity.class).putExtra("user_info_bean", bean));
                         finish();
                     }
 

@@ -12,6 +12,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/toolbar"
         android:background="@color/white"
         android:fadeScrollbars="true"
@@ -22,46 +24,79 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <com.cn.climax.wisdomparking.widget.CircleView
+                android:id="@+id/cvLoginAvatar"
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/icon_circle_black_border"
+                android:src="@drawable/img_logo" />
+
             <FrameLayout
                 android:id="@+id/flReplaceLoginType"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/cvLoginAvatar" />
 
-            <com.cn.climax.i_carlib.uiframework.bootstrap.AwesomeTextView
-                android:id="@+id/atvSignInWithSnsOrPwd"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/llSwitchArea"
+                android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:layout_below="@+id/flReplaceLoginType"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="32dp"
-                android:gravity="start|center_vertical"
-                app:bootstrapText="短信验证码登录" />
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical">
+
+                <com.cn.climax.i_carlib.uiframework.bootstrap.AwesomeTextView
+                    android:id="@+id/atvSignInWithSnsOrPwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="start|center_vertical"
+                    android:textSize="12sp"
+                    app:bootstrapText="切换至手机登录" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="3dp"
+                    android:background="@drawable/icon_circle_yellow"
+                    android:contentDescription="@string/app_name"
+                    android:padding="3dp"
+                    android:src="@drawable/icon_switch_login_style" />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
-                android:layout_below="@+id/atvSignInWithSnsOrPwd"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginTop="32dp"
+                android:layout_below="@+id/llSwitchArea"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/activity_button_blue_border"
                 android:gravity="center"
                 android:text="@string/string_login_btn"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/atvFindMe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+            <Button
+                android:id="@+id/btnRegister2New"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
                 android:layout_below="@+id/btnLogin"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/string_login_forgot_password"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/home_input_lock_bg"
+                android:gravity="center"
+                android:text="注册新账户"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/text_size_14" />
+                android:textSize="14sp" />
 
         </RelativeLayout>
 
@@ -132,8 +167,8 @@
 
             <ImageView
                 android:id="@+id/ivWeChatLogin"
-                android:layout_width="54dp"
-                android:layout_height="54dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/icon_wechat" />
 
@@ -147,8 +182,8 @@
 
             <ImageView
                 android:id="@+id/ivQQLogin"
-                android:layout_width="54dp"
-                android:layout_height="54dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/icon_qq" />
 
@@ -162,8 +197,8 @@
 
             <ImageView
                 android:id="@+id/ivSinaLogin"
-                android:layout_width="54dp"
-                android:layout_height="54dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/icon_qq" />
 

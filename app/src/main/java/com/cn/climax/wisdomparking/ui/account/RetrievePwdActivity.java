@@ -1,15 +1,25 @@
 package com.cn.climax.wisdomparking.ui.account;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.cn.climax.wisdomparking.R;
+import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 
-public class RetrievePwdActivity extends AppCompatActivity {
+public class RetrievePwdActivity extends BaseSwipeBackActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_retrieve_pwd);
+    protected int initContentView() {
+        return R.layout.activity_retrieve_pwd;
     }
+
+    @Override
+    protected void setToolBar(boolean isShowNavBack, String headerTitle) {
+        super.setToolBar(isShowNavBack, "找回密码");
+    }
+
+    @Override
+    protected void initUiAndListener(Bundle savedInstanceState) {
+
+    }
+
 }

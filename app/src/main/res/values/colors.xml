@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#26ABCA</color>
-    <color name="colorPrimaryDark">#28A8C7</color>
-    <color name="colorAccent">#26ABCA</color>
+    <color name="colorPrimary">#00BCD5</color>
+    <color name="colorPrimaryDark">#00BCD5</color>
+    <color name="colorAccent">#EFC02F</color>
 
     <!-- common -->
     <color name="color_31c27c">#31c27c</color>
@@ -23,12 +23,25 @@
     <color name="color_eeeeee">#EEEEEE</color>
     <color name="color_cccccc">#cccccc</color>
     <color name="divider">#88FFFFFF</color>
+    <color name="color_31C27C">#31C27C</color>
+    <color name="color_52c41a">#52c41a</color>
+    <color name="color_b7eb8f">#b7eb8f</color>
+    <color name="color_f5222d">#f5222d</color>
+    <color name="color_ffa39e">#ffa39e</color>
+    <color name="color_08C2B7">#08C2B7</color>
 
     <!-- text color -->
     <color name="text_darker_color">#333333</color>
+    <color name="text_normal_color">#454545</color>
     <color name="text_common_color">#666666</color>
     <color name="text_lighter_color">#999999</color>
     <color name="text_common_hint">#AAAAAA</color>
+    <color name="view_common_color">#F4F4F4</color>
+
+    <color name="red_6">#FF0000</color>
+    <color name="red_7">#E62E2E</color>
+
+    <color name="basic_color_primary">#00BCD5</color>
 
     <!-- button -->
     <color name="buttonRetryBackground">#30000000</color>
@@ -93,7 +106,7 @@
     <color name="blue_4">#3366CC</color>
     <color name="blue_5">#333366</color>
 
-    <color name="blue_2A3F6C">#2A3F6C</color>
+    <color name="blue_2A3F6C">#ff999999</color>
     <color name="blue_4D6991">#4D6991</color>
     <color name="white_CEC8BC">#CEC8BC</color>
 
@@ -110,4 +123,26 @@
     <color name="text_common_black_dark">#333333</color>
     <color name="color_E4E4E4">#E4E4E4</color>
 
+    <color name="yellow_inner">@color/colorPrimary</color>
+    <color name="yellow_out">@color/colorPrimary</color>
+
+    <!-- switcher -->
+    <color name="ksw_md_ripple_normal">#1E000000</color>
+    <color name="ksw_md_ripple_checked">#33019285</color>
+    <color name="ksw_md_solid_shadow">#33000000</color>
+    <color name="ksw_md_solid_normal">#ECECEC</color>
+    <color name="ksw_md_solid_checked">#019285</color>
+    <color name="ksw_md_solid_disable">#FFFFFF</color>
+    <color name="ksw_md_solid_checked_disable">#aaaaaa</color>
+
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorKeyboardBlue">#7DAFFF</color>
+    <color name="colorMainBlue">#7CAFFF</color>
+    <color name="colorKeyboardGray">#CCCCCC</color>
+    <color name="colorCodeGray">#8B99AE</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorKeyboardBg">#CCD0D7</color>
+
+    <color name="gray_light">#f2f2f2</color>
+    <color name="gray_font_dark">#646464</color>
 </resources>

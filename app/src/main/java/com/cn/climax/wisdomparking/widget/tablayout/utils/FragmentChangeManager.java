@@ -1,4 +1,4 @@
-package com.cn.smart.cxzh_android.widget.tablayout.utils;
+package com.cn.climax.wisdomparking.widget.tablayout.utils;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

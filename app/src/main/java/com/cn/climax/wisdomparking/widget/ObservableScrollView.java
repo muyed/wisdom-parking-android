@@ -1,4 +1,4 @@
-package cn.hs.com.wovencloud.widget.pullzoom;
+package com.cn.climax.wisdomparking.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;

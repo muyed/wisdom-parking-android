@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="36dp"
+    android:layout_height="32dp"
     android:layout_marginBottom="8dp"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
@@ -30,8 +30,8 @@
         android:inputType="text"
         android:maxLines="1"
         android:textColor="@color/cp_gray"
-        android:textColorHint="@color/cp_gray"
-        android:textSize="14sp" />
+        android:textColorHint="@color/text_common_hint"
+        android:textSize="13sp" />
 
     <ImageView
         android:id="@+id/iv_search_clear"

@@ -1,24 +1,30 @@
-package com.cn.smart.cxzh_android.base;
+package com.cn.climax.wisdomparking.base.activity;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.Dimension;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.cn.smart.cxzh_android.R;
-import com.cn.smart.i_carlib.uiframework.base.manager.AppManager;
-import com.cn.smart.i_carlib.uiframework.bootstrap.AwesomeTextView;
-import com.cn.smart.i_carlib.uiframework.swipeback.ISwipeBack;
-import com.cn.smart.i_carlib.uiframework.swipeback.SwipeBackHelper;
-import com.cn.smart.i_carlib.uiframework.swipeback.SwipeBackLayout;
-import com.cn.smart.i_carlib.uiframework.swipeback.SwipeUtils;
-import com.cn.smart.i_carlib.util.SettingPrefUtil;
+
+import com.cn.climax.i_carlib.okgo.app.AppActivityManager;
+import com.cn.climax.i_carlib.uiframework.base.manager.AppManager;
+import com.cn.climax.i_carlib.uiframework.swipeback.ISwipeBack;
+import com.cn.climax.i_carlib.uiframework.swipeback.SwipeBackHelper;
+import com.cn.climax.i_carlib.uiframework.swipeback.SwipeBackLayout;
+import com.cn.climax.i_carlib.uiframework.swipeback.SwipeUtils;
+import com.cn.climax.i_carlib.util.SettingPrefUtil;
+import com.cn.climax.i_carlib.util.phone.AndroidUtils;
+import com.cn.climax.wisdomparking.R;
 
 import butterknife.BindView;
 
@@ -31,6 +37,8 @@ import butterknife.BindView;
 
 public abstract class CustomSwipeBackActivity extends BaseActivity implements ISwipeBack {
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.ivNavBack)
     ImageView ivNavBack;
 
@@ -44,6 +52,12 @@ public abstract class CustomSwipeBackActivity extends BaseActivity implements IS
         super.onCreate(savedInstanceState);
         mHelper = new SwipeBackHelper(this);
         mHelper.onActivityCreate();
+        //设置透明状态栏
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            toolbar.setPadding(0, AndroidUtils.getStatusBarHeight(this), 0, 0);
+        }
+        toolbar.setContentInsetsAbsolute(0, 0);
 
         mSwipeBackLayout = getSwipeBackLayout();
         mSwipeBackLayout.addSwipeListener(new SwipeBackLayout.SwipeListener() {
@@ -132,7 +146,7 @@ public abstract class CustomSwipeBackActivity extends BaseActivity implements IS
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        AppManager.getAppManager().finishActivity(this);
+        AppActivityManager.getAppManager().finishActivity(this);
     }
 
     /**
