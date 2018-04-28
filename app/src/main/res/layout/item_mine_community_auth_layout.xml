@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlSkip2Detail"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llLocateAreaUp"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:id="@+id/tvParkingCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="负一层-b81722"
+            android:textColor="@color/text_color_dark"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvParkingStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/common_blue_oval_frame"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="已通过"
+            android:textColor="@color/color_31C27C"
+            android:textSize="8sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llOrderAreaMiddle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llLocateAreaUp"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:id="@+id/tvParkingValidity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="有效期：长期有效"
+            android:textColor="@color/text_normal_color"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvParkingAddr"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_below="@+id/llOrderAreaMiddle"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="白马服装市场"
+        android:textColor="@color/text_lighter_color"
+        android:textSize="13sp" />
+
+</RelativeLayout>
