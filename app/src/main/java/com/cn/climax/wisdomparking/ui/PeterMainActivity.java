@@ -211,7 +211,8 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
             if (!TextUtils.isEmpty(SharedUtil.getInstance(PeterMainActivity.this).get(ApiParamsKey.USER_NAME))) {
                 tvSkipLoginReg.setVisibility(View.GONE);
                 tvAccount.setVisibility(View.VISIBLE);
-                tvAccount.setText(SharedUtil.getInstance(PeterMainActivity.this).get(ApiParamsKey.USER_NAME));
+//                tvAccount.setText(SharedUtil.getInstance(PeterMainActivity.this).get(ApiParamsKey.USER_NAME));
+                tvAccount.setText("退出登录");
             } else {
                 tvSkipLoginReg.setVisibility(View.VISIBLE);
                 tvAccount.setVisibility(View.GONE);
@@ -239,6 +240,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
             tvCommunityIdentityStatus.setText("请认证");
             tvCommunityIdentityStatus.setTextColor(ContextCompat.getColor(this, R.color.color_fd604f));
         }
+
     }
 
     private void initMapView() {
@@ -274,6 +276,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
         llSkip2Publish.setOnClickListener(new CommClick()); //头像设置
         cvCenterAvatar.setOnClickListener(new CommClick()); //头像设置
         tvSkipLoginReg.setOnClickListener(new CommClick()); //登录/注册
+        tvAccount.setOnClickListener(new CommClick()); //退出登录
         llSkip2MoneyBag.setOnClickListener(new CommClick()); //我的钱包
         llSkip2MineCar.setOnClickListener(new CommClick()); //我的车辆
         llSkip2MineParkingSpace.setOnClickListener(new CommClick()); //我的车位
@@ -642,6 +645,9 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                     break;
 
                 case R.id.cvCenterAvatar:
+                    break;
+                case R.id.tvAccount: //退出登录
+                    startActivity(new Intent(PeterMainActivity.this, LoginActivity.class));
                     break;
                 case R.id.tvSkipLoginReg: //登录/注册
                     startActivity(new Intent(PeterMainActivity.this, LoginActivity.class));
