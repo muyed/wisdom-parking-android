@@ -291,6 +291,7 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
                     protected void onExecuteSuccess(LoginResponse bean, Call call) {
                         SharedUtil.getInstance(LoginActivity.this).put("is_login_success", true);
                         SharedUtil.getInstance(LoginActivity.this).put(ApiParamsKey.USER_NAME, isClickSwitch ? mMobileNo : mAccount);
+                        SharedUtil.getInstance(LoginActivity.this).put(ApiParamsKey.PASSWORD, isClickSwitch ? mSnsCode : mPassword);
                         SharedUtil.getInstance(LoginActivity.this).put(ApiParamsKey.IS_AUTH, !TextUtils.isEmpty(bean.getRealName()));
                         SharedUtil.getInstance(LoginActivity.this).put(ApiParamsKey.IS_AUTH_COMMUNITY, bean != null && bean.getCommunityList() != null && bean.getCommunityList().size() > 0);
                         SharedUtil.getInstance(LoginActivity.this).put(ApiParamsKey.IS_AUTH_PARKING_SPACE, bean != null && bean.getUserCarportList() != null && bean.getUserCarportList().size() > 0);

@@ -13,8 +13,12 @@ import com.cn.climax.i_carlib.util.phone.ScreenUtil;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.base.help.RecyclerViewLayoutManager;
+import com.cn.climax.wisdomparking.data.response.LoginResponse;
 import com.cn.climax.wisdomparking.ui.main.device.adapter.LicenseManagerAdapter;
 import com.cn.climax.wisdomparking.widget.xrecyclerview.SpacesItemDecoration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -24,8 +28,9 @@ public class LicenseManagerListActivity extends BaseSwipeBackActivity {
     RecyclerView xrvLicenseListView;
     @BindView(R.id.llSkip2AddCarLicense)
     LinearLayout llSkip2AddCarLicense;
-    
+
     private LicenseManagerAdapter mAdapter;
+    private List<LoginResponse.UserCarportListBean> mUserCarportList = new ArrayList<>();
 
     @Override
     protected void setToolBar(boolean isShowNavBack, String headerTitle) {
@@ -39,6 +44,8 @@ public class LicenseManagerListActivity extends BaseSwipeBackActivity {
 
     @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
+        mUserCarportList = (List<LoginResponse.UserCarportListBean>) getIntent().getSerializableExtra("user_carport_list");
+
         RecyclerViewLayoutManager layoutManager = new RecyclerViewLayoutManager(this) {
             @Override
             public RecyclerView.LayoutParams generateDefaultLayoutParams() {
@@ -49,7 +56,7 @@ public class LicenseManagerListActivity extends BaseSwipeBackActivity {
         xrvLicenseListView.setLayoutManager(layoutManager);
         xrvLicenseListView.addItemDecoration(new SpacesItemDecoration(0, ScreenUtil.dip2px(this, 0.5f), 0, 0));
 
-        mAdapter = new LicenseManagerAdapter(this);
+        mAdapter = new LicenseManagerAdapter(this, mUserCarportList);
         xrvLicenseListView.setAdapter(mAdapter);
 
         llSkip2AddCarLicense.setOnClickListener(new ForbidQuickClickListener() {

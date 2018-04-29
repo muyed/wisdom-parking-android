@@ -6,4 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.cn.climax.wisdomparking.ui.main.device.ReleaseLockActivity">
 
+    <include layout="@layout/base_blue_nav_toolbar_layout" />
+
 </RelativeLayout>

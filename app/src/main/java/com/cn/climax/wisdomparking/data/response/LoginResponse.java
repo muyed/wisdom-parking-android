@@ -16,14 +16,14 @@ public class LoginResponse extends BaseBean<LoginResponse> {
 
 
     /**
-     * realName : muye
+     * realName : 张林
      * accountCashConf : 0.01
-     * communityList : [{"addr":"萍水西街我也不知道多少号","area":"拱墅区","carportList":[{"bind":true,"bindCode":"898151","carportNum":"384-2001","communityId":2,"communityModuleId":1,"createTime":null,"id":1,"latitude":234.3464335465,"lockStatus":1,"longitude":23.9826428475,"meid":"1","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null},{"bind":true,"bindCode":"111111","carportNum":"384-2201","communityId":2,"communityModuleId":2,"createTime":null,"id":2,"latitude":23.9826428475,"lockStatus":1,"longitude":23.9826428444,"meid":"2","modifyTime":null,"ranges":null,"shareStatus":1,"sorts":null},{"bind":true,"bindCode":"222222","carportNum":"344-4444","communityId":2,"communityModuleId":2,"createTime":null,"id":3,"latitude":222.222222222,"lockStatus":1,"longitude":123.33333333,"meid":"3","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null}],"city":"杭州市","communityId":2,"communityName":"方家花苑","communityType":2,"province":"浙江省","reason":null,"type":2}]
+     * communityList : [{"addr":"萍水西街我也不知道多少号","area":"拱墅区","carportList":[{"bind":true,"bindCode":"898151","carportNum":"384-2001","communityId":2,"communityModuleId":1,"createTime":null,"id":1,"latitude":234.3464335465,"lockStatus":1,"longitude":23.9826428475,"meid":"1","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null},{"bind":true,"bindCode":"111111","carportNum":"384-2201","communityId":2,"communityModuleId":2,"createTime":null,"id":2,"latitude":23.9826428475,"lockStatus":1,"longitude":23.9826428444,"meid":"2","modifyTime":null,"ranges":null,"shareStatus":1,"sorts":null},{"bind":true,"bindCode":"222222","carportNum":"344-4444","communityId":2,"communityModuleId":2,"createTime":null,"id":3,"latitude":222.222222222,"lockStatus":1,"longitude":123.33333333,"meid":"3","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null}],"city":"杭州市","communityId":2,"communityName":"方家花苑","communityType":2,"province":"浙江省","reason":null,"type":1},{"addr":"萍水西街我也不知道多少号","area":"拱墅区","carportList":[{"bind":true,"bindCode":"898151","carportNum":"384-2001","communityId":2,"communityModuleId":1,"createTime":null,"id":1,"latitude":234.3464335465,"lockStatus":1,"longitude":23.9826428475,"meid":"1","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null},{"bind":true,"bindCode":"111111","carportNum":"384-2201","communityId":2,"communityModuleId":2,"createTime":null,"id":2,"latitude":23.9826428475,"lockStatus":1,"longitude":23.9826428444,"meid":"2","modifyTime":null,"ranges":null,"shareStatus":1,"sorts":null},{"bind":true,"bindCode":"222222","carportNum":"344-4444","communityId":2,"communityModuleId":2,"createTime":null,"id":3,"latitude":222.222222222,"lockStatus":1,"longitude":123.33333333,"meid":"3","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null}],"city":"杭州市","communityId":2,"communityName":"方家花苑","communityType":2,"province":"浙江省","reason":null,"type":2},{"addr":"萍水西街我也不知道多少号","area":"拱墅区","carportList":[{"bind":true,"bindCode":"898151","carportNum":"384-2001","communityId":2,"communityModuleId":1,"createTime":null,"id":1,"latitude":234.3464335465,"lockStatus":1,"longitude":23.9826428475,"meid":"1","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null},{"bind":true,"bindCode":"111111","carportNum":"384-2201","communityId":2,"communityModuleId":2,"createTime":null,"id":2,"latitude":23.9826428475,"lockStatus":1,"longitude":23.9826428444,"meid":"2","modifyTime":null,"ranges":null,"shareStatus":1,"sorts":null},{"bind":true,"bindCode":"222222","carportNum":"344-4444","communityId":2,"communityModuleId":2,"createTime":null,"id":3,"latitude":222.222222222,"lockStatus":1,"longitude":123.33333333,"meid":"3","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null}],"city":"杭州市","communityId":2,"communityName":"方家花苑","communityType":2,"province":"浙江省","reason":null,"type":3}]
      * overdueMultipleConf : 2
-     * identityCard : 3208888888888
+     * identityCard : 321282199002211218
      * carportCashConf : 0.01
-     * userCarportList : [{"alias":"我是昵称","carportId":1,"createTime":1522593549000,"deposit":0.01,"id":1,"modifyTime":1523278361000,"parent":null,"payNum":"CD20180401223909773229","ranges":null,"sorts":null,"status":1,"userId":21},{"alias":null,"carportId":2,"createTime":1524071944000,"deposit":0.01,"id":5,"modifyTime":1524071965000,"parent":null,"payNum":"CD20180419011904676859","ranges":null,"sorts":null,"status":1,"userId":21},{"alias":null,"carportId":3,"createTime":1524131215000,"deposit":0.01,"id":6,"modifyTime":null,"parent":null,"payNum":"CD20180419174655802813","ranges":null,"sorts":null,"status":0,"userId":21}]
-     * account : {"balance":0,"cash":0.01,"createTime":1523266773000,"id":1,"modifyTime":1523459333000,"ranges":null,"sorts":null,"userId":21}
+     * userCarportList : [{"alias":null,"carportId":1,"createTime":1524061004000,"deposit":0.01,"id":2,"modifyTime":null,"parent":null,"payNum":"CD20180418221644213319","ranges":null,"sorts":null,"status":0,"userId":19},{"alias":null,"carportId":2,"createTime":1524061748000,"deposit":0.01,"id":3,"modifyTime":1524061764000,"parent":null,"payNum":"CD20180418222908320695","ranges":null,"sorts":null,"status":1,"userId":19},{"alias":null,"carportId":3,"createTime":1524066339000,"deposit":0.01,"id":4,"modifyTime":null,"parent":null,"payNum":"CD20180418234539356044","ranges":null,"sorts":null,"status":0,"userId":19}]
+     * account : null
      * payDeadlineMinConf : 6
      */
 
@@ -32,7 +32,7 @@ public class LoginResponse extends BaseBean<LoginResponse> {
     private int overdueMultipleConf;
     private String identityCard;
     private double carportCashConf;
-    private AccountBean account;
+    private String account;
     private int payDeadlineMinConf;
     private List<CommunityListBean> communityList;
     private List<UserCarportListBean> userCarportList;
@@ -77,11 +77,11 @@ public class LoginResponse extends BaseBean<LoginResponse> {
         this.carportCashConf = carportCashConf;
     }
 
-    public AccountBean getAccount() {
+    public String getAccount() {
         return account;
     }
 
-    public void setAccount(AccountBean account) {
+    public void setAccount(String account) {
         this.account = account;
     }
 
@@ -109,92 +109,6 @@ public class LoginResponse extends BaseBean<LoginResponse> {
         this.userCarportList = userCarportList;
     }
 
-    public static class AccountBean implements Serializable{
-        /**
-         * balance : 0
-         * cash : 0.01
-         * createTime : 1523266773000
-         * id : 1
-         * modifyTime : 1523459333000
-         * ranges : null
-         * sorts : null
-         * userId : 21
-         */
-
-        private int balance;
-        private double cash;
-        private long createTime;
-        private int id;
-        private long modifyTime;
-        private String ranges;
-        private String sorts;
-        private int userId;
-
-        public int getBalance() {
-            return balance;
-        }
-
-        public void setBalance(int balance) {
-            this.balance = balance;
-        }
-
-        public double getCash() {
-            return cash;
-        }
-
-        public void setCash(double cash) {
-            this.cash = cash;
-        }
-
-        public long getCreateTime() {
-            return createTime;
-        }
-
-        public void setCreateTime(long createTime) {
-            this.createTime = createTime;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public long getModifyTime() {
-            return modifyTime;
-        }
-
-        public void setModifyTime(long modifyTime) {
-            this.modifyTime = modifyTime;
-        }
-
-        public String getRanges() {
-            return ranges;
-        }
-
-        public void setRanges(String ranges) {
-            this.ranges = ranges;
-        }
-
-        public String getSorts() {
-            return sorts;
-        }
-
-        public void setSorts(String sorts) {
-            this.sorts = sorts;
-        }
-
-        public int getUserId() {
-            return userId;
-        }
-
-        public void setUserId(int userId) {
-            this.userId = userId;
-        }
-    }
-
     public static class CommunityListBean implements Serializable{
         /**
          * addr : 萍水西街我也不知道多少号
@@ -206,7 +120,7 @@ public class LoginResponse extends BaseBean<LoginResponse> {
          * communityType : 2
          * province : 浙江省
          * reason : null
-         * type : 2
+         * type : 1
          */
 
         private String addr;
@@ -459,18 +373,18 @@ public class LoginResponse extends BaseBean<LoginResponse> {
 
     public static class UserCarportListBean implements Serializable{
         /**
-         * alias : 我是昵称
+         * alias : null
          * carportId : 1
-         * createTime : 1522593549000
+         * createTime : 1524061004000
          * deposit : 0.01
-         * id : 1
-         * modifyTime : 1523278361000
+         * id : 2
+         * modifyTime : null
          * parent : null
-         * payNum : CD20180401223909773229
+         * payNum : CD20180418221644213319
          * ranges : null
          * sorts : null
-         * status : 1
-         * userId : 21
+         * status : 0
+         * userId : 19
          */
 
         private String alias;
@@ -478,7 +392,7 @@ public class LoginResponse extends BaseBean<LoginResponse> {
         private long createTime;
         private double deposit;
         private int id;
-        private long modifyTime;
+        private String modifyTime;
         private String parent;
         private String payNum;
         private String ranges;
@@ -526,11 +440,11 @@ public class LoginResponse extends BaseBean<LoginResponse> {
             this.id = id;
         }
 
-        public long getModifyTime() {
+        public String getModifyTime() {
             return modifyTime;
         }
 
-        public void setModifyTime(long modifyTime) {
+        public void setModifyTime(String modifyTime) {
             this.modifyTime = modifyTime;
         }
 

@@ -1,20 +1,25 @@
 package com.cn.climax.wisdomparking.http;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.cn.climax.i_carlib.logcat.ZLog;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
 import com.cn.climax.i_carlib.okgo.data.callback.StringDialogCallback;
 import com.cn.climax.i_carlib.okgo.http.GsonConvert;
 import com.cn.climax.i_carlib.uiframework.sweetalert.SweetAlertDialog;
+import com.cn.climax.i_carlib.util.SharedUtil;
 import com.cn.climax.i_carlib.util.TT;
 import com.cn.climax.i_carlib.util.ToastUtils;
 import com.cn.climax.wisdomparking.data.BaseBean;
+import com.cn.climax.wisdomparking.ui.account.LoginActivity;
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.request.BaseRequest;
 
+import org.bouncycastle.pqc.jcajce.provider.McEliece;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -105,7 +110,13 @@ public abstract class WrapJsonBeanCallback<T> extends StringDialogCallback {
                     T mBaseData = (T) mJsonBean;
                     onExecuteSuccess(mBaseData, call);
                     if (returnState == 2) {
-                        ToastUtils.show("用户名或密码输入错误");
+                        if (TextUtils.isEmpty(SharedUtil.getInstance(mCurrentActivity).get(ApiParamsKey.PASSWORD))) {
+                            ToastUtils.show("登录失效，请重新登录");
+                            mCurrentActivity.startActivity(new Intent(mCurrentActivity, LoginActivity.class));
+                            mCurrentActivity.finish();
+                        } else {
+                            ToastUtils.show("用户名或密码输入错误");
+                        }
                     } else if (returnState == 3 || returnState == 4 || returnState == 5) {
                         if (returnState == 3)
                             ToastUtils.show("调用短信接口失败");

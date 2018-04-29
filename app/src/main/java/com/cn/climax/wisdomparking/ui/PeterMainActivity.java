@@ -52,11 +52,14 @@ import com.amap.api.services.route.RideRouteResult;
 import com.amap.api.services.route.RouteSearch;
 import com.amap.api.services.route.WalkRouteResult;
 import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiManage;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
 import com.cn.climax.i_carlib.util.SharedUtil;
 import com.cn.climax.i_carlib.util.ToastUtils;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.data.response.LoginResponse;
+import com.cn.climax.wisdomparking.http.WrapJsonBeanCallback;
 import com.cn.climax.wisdomparking.ui.account.LoginActivity;
 import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceImmMatchingActivity;
 import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceMatchActivity;
@@ -84,12 +87,18 @@ import com.cn.climax.wisdomparking.widget.bottomdialog.Item;
 import com.cn.climax.wisdomparking.widget.bottomdialog.OnItemClickListener;
 import com.cn.climax.wisdomparking.widget.ofo.OfoConvcaveMenuActivity;
 
+import org.json.JSONObject;
+
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLocationListener, LocationSource, PoiSearch.OnPoiSearchListener, AMap.OnMarkerClickListener, RouteSearch.OnRouteSearchListener {
 
@@ -208,21 +217,60 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                     return;
                 }
             }
+            mmvNavPark.onCreate(savedInstanceState); //必须写
+            
+            if (mUserInfoBean == null) {
+                loginEvent();
+            }else{
+                initView();
+            }
             if (!TextUtils.isEmpty(SharedUtil.getInstance(PeterMainActivity.this).get(ApiParamsKey.USER_NAME))) {
+//                tvAccount.setText(SharedUtil.getInstance(PeterMainActivity.this).get(ApiParamsKey.USER_NAME));
                 tvSkipLoginReg.setVisibility(View.GONE);
                 tvAccount.setVisibility(View.VISIBLE);
-//                tvAccount.setText(SharedUtil.getInstance(PeterMainActivity.this).get(ApiParamsKey.USER_NAME));
                 tvAccount.setText("退出登录");
             } else {
                 tvSkipLoginReg.setVisibility(View.VISIBLE);
                 tvAccount.setVisibility(View.GONE);
             }
-
-            mmvNavPark.onCreate(savedInstanceState); //必须写
-            initMapView();
-
-            initInfo();
         }
+    }
+
+    private void initView() {
+        initMapView();
+        initInfo();
+    }
+
+    private void loginEvent() {
+        HashMap<String, String> httpParams = new HashMap<>();
+        httpParams.put(ApiParamsKey.USER_NAME, SharedUtil.getInstance(PeterMainActivity.this).get(ApiParamsKey.USER_NAME));
+        httpParams.put(ApiParamsKey.PASSWORD, SharedUtil.getInstance(PeterMainActivity.this).get(ApiParamsKey.PASSWORD));
+        httpParams.put(ApiParamsKey.TYPE, "1");
+        JSONObject json = new JSONObject(httpParams);
+
+        ApiManage.post(ApiHost.getInstance().login())
+                .upJson(json.toString())
+                .execute(new WrapJsonBeanCallback<LoginResponse>(PeterMainActivity.this) {
+                    @Override
+                    protected void onJsonParseException(int code, String msg, Call call) {
+                        ToastUtils.show(msg);
+                    }
+
+                    @Override
+                    protected void onExecuteSuccess(LoginResponse bean, Call call) {
+                        SharedUtil.getInstance(PeterMainActivity.this).put("is_login_success", true);
+                        SharedUtil.getInstance(PeterMainActivity.this).put(ApiParamsKey.IS_AUTH, !TextUtils.isEmpty(bean.getRealName()));
+                        SharedUtil.getInstance(PeterMainActivity.this).put(ApiParamsKey.IS_AUTH_COMMUNITY, bean != null && bean.getCommunityList() != null && bean.getCommunityList().size() > 0);
+                        SharedUtil.getInstance(PeterMainActivity.this).put(ApiParamsKey.IS_AUTH_PARKING_SPACE, bean != null && bean.getUserCarportList() != null && bean.getUserCarportList().size() > 0);
+                        mUserInfoBean = bean;
+                        initView();
+                    }
+
+                    @Override
+                    protected void onExecuteError(Call call, Response response, Exception e) {
+                        ToastUtils.show(response.message());
+                    }
+                });
     }
 
     private void initInfo() {
@@ -240,6 +288,27 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
             tvCommunityIdentityStatus.setText("请认证");
             tvCommunityIdentityStatus.setTextColor(ContextCompat.getColor(this, R.color.color_fd604f));
         }
+
+        ivSkip2MessageList.setOnClickListener(new CommClick());
+        ivSkip2CustomerService.setOnClickListener(new CommClick());
+        ivSkip2MyLocation.setOnClickListener(new CommClick());
+        ivSkip2Notify.setOnClickListener(new CommClick());
+        llOrderScan.setOnClickListener(new CommClick());
+
+        llSkip2Publish.setOnClickListener(new CommClick()); //头像设置
+        cvCenterAvatar.setOnClickListener(new CommClick()); //头像设置
+        tvSkipLoginReg.setOnClickListener(new CommClick()); //登录/注册
+        tvAccount.setOnClickListener(new CommClick()); //退出登录
+        llSkip2MoneyBag.setOnClickListener(new CommClick()); //我的钱包
+        llSkip2MineCar.setOnClickListener(new CommClick()); //我的车辆
+        llSkip2MineParkingSpace.setOnClickListener(new CommClick()); //我的车位
+        llSkip2MineOrder.setOnClickListener(new CommClick()); //我的订单
+        llSkip2MineDevice.setOnClickListener(new CommClick()); //我的设备
+        llSkip2MineService.setOnClickListener(new CommClick()); //我的客服
+        llSkip2IdentityInfo.setOnClickListener(new CommClick()); //身份信息
+        llSkip2IdentityCommunity.setOnClickListener(new CommClick()); //小区认证
+        llSkip2CommonProblems.setOnClickListener(new CommClick()); //常见问题
+        llSkip2MoreOption.setOnClickListener(new CommClick()); //更多
 
     }
 
@@ -266,27 +335,6 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
         mLocationOption.setInterval(2000);
         mNavLocationClient.setLocationOption(mLocationOption);
         mNavLocationClient.startLocation();
-
-        ivSkip2MessageList.setOnClickListener(new CommClick());
-        ivSkip2CustomerService.setOnClickListener(new CommClick());
-        ivSkip2MyLocation.setOnClickListener(new CommClick());
-        ivSkip2Notify.setOnClickListener(new CommClick());
-        llOrderScan.setOnClickListener(new CommClick());
-
-        llSkip2Publish.setOnClickListener(new CommClick()); //头像设置
-        cvCenterAvatar.setOnClickListener(new CommClick()); //头像设置
-        tvSkipLoginReg.setOnClickListener(new CommClick()); //登录/注册
-        tvAccount.setOnClickListener(new CommClick()); //退出登录
-        llSkip2MoneyBag.setOnClickListener(new CommClick()); //我的钱包
-        llSkip2MineCar.setOnClickListener(new CommClick()); //我的车辆
-        llSkip2MineParkingSpace.setOnClickListener(new CommClick()); //我的车位
-        llSkip2MineOrder.setOnClickListener(new CommClick()); //我的订单
-        llSkip2MineDevice.setOnClickListener(new CommClick()); //我的设备
-        llSkip2MineService.setOnClickListener(new CommClick()); //我的客服
-        llSkip2IdentityInfo.setOnClickListener(new CommClick()); //身份信息
-        llSkip2IdentityCommunity.setOnClickListener(new CommClick()); //小区认证
-        llSkip2CommonProblems.setOnClickListener(new CommClick()); //常见问题
-        llSkip2MoreOption.setOnClickListener(new CommClick()); //更多
     }
 
     @Override
@@ -667,9 +715,9 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
                         return;
                     if (mUserInfoBean != null && mUserInfoBean.getUserCarportList() != null && mUserInfoBean.getUserCarportList().size() > 0) {
-                        startActivity(new Intent(PeterMainActivity.this, AddLicensePlateActivity.class));
+                        startActivity(new Intent(PeterMainActivity.this, LicenseManagerListActivity.class).putExtra("user_carport_list", (Serializable) mUserInfoBean.getUserCarportList()));
                     } else {
-                        startActivity(new Intent(PeterMainActivity.this, LicenseManagerListActivity.class));
+                        startActivity(new Intent(PeterMainActivity.this, AddLicensePlateActivity.class));
                     }
                     break;
                 case R.id.llSkip2MineOrder: //我的订单
