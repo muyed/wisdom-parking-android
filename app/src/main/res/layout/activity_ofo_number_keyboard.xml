@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:paddingTop="48dp">
+
+    <TextView
+        android:id="@+id/tv_summary"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:background="@color/gray"
+        android:gravity="center"
+        android:text="计费说明：1元/小时"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_number"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tv_summary"
+        android:gravity="center"
+        android:text="车牌号一般为4-8位的数字" />
+
+    <EditText
+        android:id="@+id/et_numberplate"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tv_number" />
+
+    <Button
+        android:id="@+id/bt_change_keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/et_numberplate"
+        android:text="切换随机数字键盘" />
+
+    <Button
+        android:id="@+id/bt_sure"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/bt_change_keyboard"
+        android:text="立即用车" />
+
+    <com.cn.climax.wisdomparking.widget.numberkeyboard.OfoKeyboardView
+        android:id="@+id/keyboard_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:keyBackground="@drawable/bg_keyboardview"
+        android:keyPreviewOffset="0dp"
+        android:keyTextColor="#000"
+        android:paddingTop="0dp"
+        android:shadowColor="#fff"
+        android:shadowRadius="0.0" />
+</RelativeLayout>

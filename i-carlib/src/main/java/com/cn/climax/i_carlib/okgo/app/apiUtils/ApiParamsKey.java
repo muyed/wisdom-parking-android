@@ -36,8 +36,17 @@ public class ApiParamsKey {
     public static final String HOUSE_NO = "houseNo"; //门牌号
     
     public static final String IS_AUTH_PARKING_SPACE = "is_auth_parking_space"; //是否车位认证
+    public static final String IS_ADD_CAR_LICENSE = "is_add_car_license"; //是否添加过车牌
 
     public static final String PAGE_INDEX = "pageNo"; //分页页码
     public static final String PAGE_SIZE = "pageSize"; //分页行数
+    
+    //共享单
+    public static final String PARKING_SHARE_ID = "parkingShareId"; //共享单id
+    public static final String APPOINTMENT_START_TIME = "appointmentStartTime"; //预约开始停车时间 yyyy-MM-dd HH:mm:ss
+    public static final String APPOINTMENT_STOP_TIME = "appointmentStopTime"; //预约停车结束时间 yyyy-MM-dd HH:mm:ss
+    public static final String CAR_LICENSE_NUM = "carLicense"; //预约停车车牌
+    
+    public static final String ID = "id"; //车锁ID
     
 }

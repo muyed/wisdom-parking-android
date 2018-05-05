@@ -11,9 +11,6 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
 
-        renderscriptTargetApi 15
-        renderscriptSupportModeEnabled true
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -45,7 +42,6 @@ android {
     sourceSets {
         main {
             aidl.srcDirs = ['src']
-            renderscript.srcDirs = ['src']
             jniLibs.srcDirs = ['libs']
             assets.srcDirs = ['assets']
         }
@@ -98,15 +94,15 @@ dependencies {
     compile files('libs/alipaySdk-20180403.jar')
 }
 
-task nativeLibsToJar(type: Zip, description: 'create a jar archive of the native libs') {
-    destinationDir file("$buildDir/native-libs")
-    baseName 'native-libs'
-    extension 'jar'
-    from fileTree(dir: 'libs', include: '**/*.so')
-    from fileTree(dir: 'renderscript', include: '**/*.so')
-    into 'lib/'
-}
+//task nativeLibsToJar(type: Zip, description: 'create a jar archive of the native libs') {
+//    destinationDir file("$buildDir/native-libs")
+//    baseName 'native-libs'
+//    extension 'jar'
+//    from fileTree(dir: 'libs', include: '**/*.so')
+//    from fileTree(dir: 'renderscript', include: '**/*.so')
+//    into 'lib/'
+//}
 
-tasks.withType(JavaCompile) {
-    compileTask -> compileTask.dependsOn(nativeLibsToJar)
-}
+//tasks.withType(JavaCompile) {
+//    compileTask -> compileTask.dependsOn(nativeLibsToJar)
+//}

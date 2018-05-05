@@ -122,12 +122,27 @@ public class ApiHost extends ApiHostBase {
 
     //我的车牌列表
     public String getMyCarLicenseList() {
-        return "/api/myCarLicense";
+        return "/api/carLicense/myCarLicense";
     }
     
     //删除车牌号
     public String deleteCarLicense() {
-        return "/api/carLicense/del";
+        return "/api/carLicense/del/";
+    }
+    
+    //根据指定经纬度查询距离最近的共享单
+    public String loadByDistance() {
+        return "/api/share/loadByDistance/"; //{longitude}/{latitude}/{limit}
+    }
+    
+    //匹配共享单（创建停车单）
+    public String matching() {
+        return "/api/ticket/matching"; 
+    }
+    
+    //打开车锁
+    public String unLock() {
+        return "/api/carport/unLock";  
     }
 
 }

@@ -173,7 +173,9 @@
         <activity android:name=".ui.main.nav.Navigation2DActivity" />
         <activity android:name=".ui.main.carport.ParkingSpaceMatchActivity" />
         <activity android:name=".ui.main.device.LicenseManagerListActivity" />
-        <activity android:name=".ui.main.carport.ParkingSpaceImmMatchingActivity"></activity>
+        <activity android:name=".ui.main.carport.ParkingSpaceImmMatchingActivity" />
+        <activity android:name=".ui.setting.RelativeUsActivity" />
+        <activity android:name=".ui.main.NewOfoKeyBoardActivity"></activity>
     </application>
 
 </manifest>

@@ -1,1 +1,1 @@
-include ':app', ':i-carlib'
+include ':app', ':i-carlib', ':zxing'

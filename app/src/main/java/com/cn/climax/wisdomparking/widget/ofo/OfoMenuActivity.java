@@ -26,13 +26,17 @@ public class OfoMenuActivity extends BaseActivity {
 
     //最外层的view，用来管理title和content的动画
     protected OfoMenuLayout ofoMenuLayout;
+    protected OfoMenuLayout ofoMenuKeyBoardLayout;
     //content中列表view，主要是控制自己的动画
     protected OfoContentLayout ofoContentLayout;
+    protected OfoContentLayout ofoContentKeyboardLayout;
     protected FrameLayout menu;
+    protected FrameLayout menuKeyboard;
     protected ImageView ivSkip2Pcenter;
     protected int count;
 
     protected boolean isOpenPCenter = false; //是否点击打开个人设置界面 默认未打开
+    protected boolean isOpenInputCenter = false; //是否点击打开输入界面 默认未打开
 
     protected int getType() {
         return MenuBrawable.NONE;
@@ -62,10 +66,15 @@ public class OfoMenuActivity extends BaseActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
         }
-        ofoMenuLayout = ((OfoMenuLayout) findViewById(R.id.ofo_menu));
         ivSkip2Pcenter = ((ImageView) findViewById(R.id.ivSkip2Pcenter));
+        ofoMenuLayout = ((OfoMenuLayout) findViewById(R.id.ofo_menu));
         ofoContentLayout = ((OfoContentLayout) findViewById(R.id.ofo_content));
         menu = (FrameLayout) findViewById(R.id.menu_content);
+
+        ofoMenuKeyBoardLayout = ((OfoMenuLayout) findViewById(R.id.ofo_menu_keyboard));
+        ofoContentKeyboardLayout = ((OfoContentLayout) findViewById(R.id.ofo_content_keyboard));
+        menuKeyboard = (FrameLayout) findViewById(R.id.menu_content_keyboard);
+        
         final MenuBrawable menuBrawable = new MenuBrawable(BitmapFactory.decodeResource(getResources(), R.mipmap.default_avatar_img), OfoMenuActivity.this, menu, getType());
         menu.setBackground(menuBrawable);
         menuBrawable.setOnBitmapClickListener(new MenuBrawable.OnBitmapClickListener() {
@@ -112,6 +121,20 @@ public class OfoMenuActivity extends BaseActivity {
         });
         //给menu设置content部分
         ofoMenuLayout.setOfoContentLayout(ofoContentLayout);
+
+        //menu的监听
+        ofoMenuKeyBoardLayout.setOfoMenuStatusListener(new OfoMenuLayout.OfoMenuStatusListener() {
+            @Override
+            public void onOpen() {
+
+            }
+
+            @Override
+            public void onClose() {
+            }
+        });
+        //给menu设置content部分
+        ofoMenuKeyBoardLayout.setOfoContentKeyboardLayout(ofoContentKeyboardLayout);
     }
 
     @Override
@@ -120,6 +143,17 @@ public class OfoMenuActivity extends BaseActivity {
             ofoMenuLayout.close();
             return;
         }
+        if (ofoMenuKeyBoardLayout.isOpen()) {
+            ofoMenuKeyBoardLayout.closeKeyboard();
+            return;
+        }
         super.onBackPressed();
     }
+
+    public void openKeyboard() {
+        //启动menu
+        ofoMenuKeyBoardLayout.setVisibility(View.VISIBLE);
+        ofoMenuKeyBoardLayout.openKeyboard();
+    }
 }
+

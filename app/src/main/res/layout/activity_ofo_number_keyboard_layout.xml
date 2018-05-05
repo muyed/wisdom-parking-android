@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cn.climax.wisdomparking.widget.ofo.view.OfoMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ofo_menu_keyboard"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="invisible">
+
+    <FrameLayout
+        android:id="@+id/menu_content_keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+        android:background="@color/white">
+
+        <com.cn.climax.wisdomparking.widget.ofo.view.OfoContentLayout
+            android:id="@+id/ofo_content_keyboard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/activity_ofo_number_keyboard" />
+
+        </com.cn.climax.wisdomparking.widget.ofo.view.OfoContentLayout>
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/avatarParent"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:background="@color/transparent">
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="40dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/close" />
+
+    </RelativeLayout>
+
+</com.cn.climax.wisdomparking.widget.ofo.view.OfoMenuLayout>

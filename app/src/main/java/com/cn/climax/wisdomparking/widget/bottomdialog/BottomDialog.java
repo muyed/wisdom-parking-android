@@ -1,10 +1,12 @@
 package com.cn.climax.wisdomparking.widget.bottomdialog;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.view.SupportMenuInflater;
@@ -25,8 +27,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.amap.api.location.AMapLocation;
 import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
 import com.cn.climax.wisdomparking.R;
+import com.cn.climax.wisdomparking.data.response.NearbyParkingMineBean;
+import com.cn.climax.wisdomparking.util.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -78,6 +83,11 @@ public class BottomDialog {
 
     public BottomDialog match(OnSkip2MatchListener listener) {
         customDialog.match(listener);
+        return this;
+    }
+
+    public BottomDialog setData(AMapLocation myLocation, NearbyParkingMineBean parkingMineBean) {
+        customDialog.setData(myLocation, parkingMineBean);
         return this;
     }
 
@@ -135,7 +145,6 @@ public class BottomDialog {
 
         CustomDialog(Context context) {
             super(context, R.style.BottomDialog);
-
             init();
         }
 
@@ -165,7 +174,6 @@ public class BottomDialog {
             tvUnitPrice = (TextView) findViewById(R.id.tvUnitPrice);
             tvNavCurrentParkingSpace = (TextView) findViewById(R.id.tvNavCurrentParkingSpace);
             tvSkip2Match = (TextView) findViewById(R.id.tvSkip2Match);
-
             ivNav2DestAddr = (ImageView) findViewById(R.id.ivNav2DestAddr);
 
             ivNav2DestAddr.setOnClickListener(new ForbidQuickClickListener() {
@@ -173,6 +181,7 @@ public class BottomDialog {
                 protected void forbidClick(View view) {
                     if (listener != null)
                         listener.nav();
+                    dismiss();
                 }
             });
 
@@ -181,9 +190,9 @@ public class BottomDialog {
                 protected void forbidClick(View view) {
                     if (matchListener != null)
                         matchListener.match();
+                    dismiss();
                 }
             });
-
         }
 
         void addItems(List<Item> items, OnItemClickListener onItemClickListener) {
@@ -224,9 +233,23 @@ public class BottomDialog {
         public void nav(OnSkip2NavigationListener listener) {
             this.listener = listener;
         }
-        
+
         public void match(OnSkip2MatchListener listener) {
             this.matchListener = listener;
+        }
+
+        @SuppressLint("SetTextI18n")
+        public void setData(AMapLocation myLocation, NearbyParkingMineBean parkingMineBean) {
+            tvNavStartAddr.setText(myLocation.getAddress());
+            tvNavStartDate.setText(TimeUtils.getCurrentDate(parkingMineBean.getStartTime()));
+            tvNavStartWeek.setText(TimeUtils.getDateAndDayOfWeek(TimeUtils.getTimeStamp(parkingMineBean.getStartTime(), "yyyy-MM-dd HH:mm:ss")) + " " + TimeUtils.getCurrentHour(parkingMineBean.getStartTime()));
+
+            tvNavEndAddr.setText(parkingMineBean.getAddr());
+            tvNavEndDate.setText(TimeUtils.getCurrentDate(parkingMineBean.getStopTime()));
+            tvNavEndWeek.setText(TimeUtils.getDateAndDayOfWeek(TimeUtils.getTimeStamp(parkingMineBean.getStopTime(), "yyyy-MM-dd HH:mm:ss")) + " " + TimeUtils.getCurrentHour(parkingMineBean.getStopTime()));
+
+            tvUnitPrice.setText(parkingMineBean.getPrice() + "元/小时");
+            tvNavCurrentParkingSpace.setText("车位 " + parkingMineBean.getCarportNum());
         }
 
         public void orientation(int orientation) {
@@ -439,10 +462,6 @@ public class BottomDialog {
 
     private OnSkip2MatchListener matchListener;
 
-    public OnSkip2NavigationListener getNavigationListener() {
-        return navigationListener;
-    }
-
     public void setNavigationListener(OnSkip2NavigationListener navigationListener) {
         this.navigationListener = navigationListener;
     }
@@ -454,4 +473,5 @@ public class BottomDialog {
     public void setMatchListener(OnSkip2MatchListener matchListener) {
         this.matchListener = matchListener;
     }
+
 }

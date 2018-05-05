@@ -22,6 +22,8 @@ import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.core.SuggestionCity;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
+import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
+import com.cn.climax.wisdomparking.base.activity.BaseSwipeCustomActivity;
 import com.cn.climax.wisdomparking.data.local.PoiAddressBean;
 import com.cn.climax.wisdomparking.util.ToastUtils;
 import com.cn.climax.wisdomparking.R;
@@ -37,7 +39,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class NearbySearchActivity extends BaseSwipeBackActivity {
+public class NearbySearchActivity extends BaseSwipeCustomActivity {
 
     @BindView(R.id.llNavBackToPre)
     LinearLayout llNavBackToPre;

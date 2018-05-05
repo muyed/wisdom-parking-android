@@ -30,6 +30,7 @@ import com.cn.climax.i_carlib.util.SharedUtil;
 import com.cn.climax.i_carlib.util.StringUtil;
 import com.cn.climax.i_carlib.util.ToastUtils;
 import com.cn.climax.i_carlib.util.secret.SHAUtils;
+import com.cn.climax.wisdomparking.data.response.CarLicenseMineBean;
 import com.cn.climax.wisdomparking.ui.HomeActivity;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
@@ -41,6 +42,7 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.HttpParams;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -295,13 +297,43 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
                         SharedUtil.getInstance(LoginActivity.this).put(ApiParamsKey.IS_AUTH, !TextUtils.isEmpty(bean.getRealName()));
                         SharedUtil.getInstance(LoginActivity.this).put(ApiParamsKey.IS_AUTH_COMMUNITY, bean != null && bean.getCommunityList() != null && bean.getCommunityList().size() > 0);
                         SharedUtil.getInstance(LoginActivity.this).put(ApiParamsKey.IS_AUTH_PARKING_SPACE, bean != null && bean.getUserCarportList() != null && bean.getUserCarportList().size() > 0);
-                        startActivity(new Intent(LoginActivity.this, PeterMainActivity.class).putExtra("user_info_bean", bean));
-                        finish();
+                        judgeUserIsAddCarLicense(bean);
                     }
 
                     @Override
                     protected void onExecuteError(Call call, Response response, Exception e) {
                         ToastUtils.show(response.message());
+                    }
+                });
+    }
+
+    private void judgeUserIsAddCarLicense(final LoginResponse bean) {
+        ApiManage.get(ApiHost.getInstance().getMyCarLicenseList())
+                .tag(this)// 请求的 tag, 主要用于取消对应的请求
+                .cacheKey("cacheKey")
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        if (response.code() == 200) {
+                            try {
+                                JSONObject json = new JSONObject(s);
+                                List<CarLicenseMineBean> carLicenseMineBeen = com.alibaba.fastjson.JSONObject.parseArray(String.valueOf(json.get("data")), CarLicenseMineBean.class);
+
+                                if (carLicenseMineBeen != null && carLicenseMineBeen.size() > 0) {
+                                    SharedUtil.getInstance(LoginActivity.this).put(ApiParamsKey.IS_ADD_CAR_LICENSE, true);
+                                } else {
+                                    SharedUtil.getInstance(LoginActivity.this).put(ApiParamsKey.IS_ADD_CAR_LICENSE, false);
+                                }
+                                startActivity(new Intent(LoginActivity.this, PeterMainActivity.class).putExtra("user_info_bean", bean));
+                                finish();
+                            } catch (JSONException e) {
+                                SharedUtil.getInstance(LoginActivity.this).put(ApiParamsKey.IS_ADD_CAR_LICENSE, false);
+                                e.printStackTrace();
+                            }
+                        } else {
+                            SharedUtil.getInstance(LoginActivity.this).put(ApiParamsKey.IS_ADD_CAR_LICENSE, false);
+                            ToastUtils.show(response.message());
+                        }
                     }
                 });
     }

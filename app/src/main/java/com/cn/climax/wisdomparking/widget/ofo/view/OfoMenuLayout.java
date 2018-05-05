@@ -10,10 +10,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.cn.climax.wisdomparking.R;
+
 public class OfoMenuLayout extends RelativeLayout {
 
     private View titleView;
     private View contentView;
+    private View contentKeyboardView;
     //动画对象
     private ObjectAnimator titleAnimator, contentAnimator;
     //title起始和终止坐标，主要为动画做准备
@@ -26,6 +29,7 @@ public class OfoMenuLayout extends RelativeLayout {
     private boolean contentAnimationing;
     //content中列表内容布局，它里面也有自己的动画
     private OfoContentLayout ofoContentLayout;
+    private OfoContentLayout ofoContentKeyboardLayout;
 
     public boolean isOpen() {
         return isOpen;
@@ -56,7 +60,10 @@ public class OfoMenuLayout extends RelativeLayout {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        contentView = getChildAt(0);
+        if (getChildAt(0).getId() == R.id.menu_content)
+            contentView = getChildAt(0);
+        if (getChildAt(0).getId() == R.id.menu_content_keyboard)
+            contentKeyboardView = getChildAt(0);
         titleView = getChildAt(1);
     }
 
@@ -111,7 +118,7 @@ public class OfoMenuLayout extends RelativeLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return titleAnimationing || contentAnimationing || ofoContentLayout.isAnimationing();
+        return titleAnimationing || contentAnimationing || ofoContentLayout.isAnimationing() || (ofoContentKeyboardLayout != null && ofoContentKeyboardLayout.isAnimationing());
     }
 
     //菜单打开的动画
@@ -126,6 +133,19 @@ public class OfoMenuLayout extends RelativeLayout {
         titleAnimator.start();
         contentAnimator.start();
         ofoContentLayout.open();
+    }
+
+    public void openKeyboard() {
+        int titleHeight = titleView.getLayoutParams().height;
+        titleStartY = -titleHeight;
+        titleEndY = 0;
+
+        contentStartY = getHeight() + contentKeyboardView.getHeight();
+        contentEndY = 0;
+        definitAnimation();
+        titleAnimator.start();
+        contentAnimator.start();
+        ofoContentKeyboardLayout.open();
     }
 
     //菜单关闭的动画
@@ -143,12 +163,31 @@ public class OfoMenuLayout extends RelativeLayout {
         contentAnimator.start();
     }
 
+    //菜单关闭的动画
+    public void closeKeyboard() {
+        int titleHeight = titleView.getLayoutParams().height;
+        titleStartY = 0;
+        titleEndY = -titleHeight;
+
+        contentStartY = 0;
+        contentEndY = getHeight() + contentKeyboardView.getHeight();
+
+        definitAnimation();
+
+        titleAnimator.start();
+        contentAnimator.start();
+    }
+
     public void setOfoMenuStatusListener(OfoMenuStatusListener ofoMenuStatusListener) {
         this.ofoMenuStatusListener = ofoMenuStatusListener;
     }
 
     public void setOfoContentLayout(OfoContentLayout ofoContentLayout) {
         this.ofoContentLayout = ofoContentLayout;
+    }
+
+    public void setOfoContentKeyboardLayout(OfoContentLayout ofoContentLayout) {
+        this.ofoContentKeyboardLayout = ofoContentLayout;
     }
 
 }

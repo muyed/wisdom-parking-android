@@ -134,6 +134,8 @@ public abstract class WrapJsonBeanCallback<T> extends StringDialogCallback {
                     } else if (returnState == 7) {
                         if (exUrl.contains("/share/publish"))
                             ToastUtils.show("您未持有该车锁");
+                        if (exUrl.contains("/ticket/matching"))
+                            ToastUtils.show("附近未找到匹配车位");
                     } else if (returnState == 8) {
                         ToastUtils.show(mJsonBean.getErrMsg());
                     }

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cn.climax.wisdomparking.R;
+import com.cn.climax.wisdomparking.data.response.CarLicenseMineBean;
 import com.cn.climax.wisdomparking.data.response.LoginResponse;
 
 import java.util.ArrayList;
@@ -24,12 +25,11 @@ import butterknife.ButterKnife;
  */
 public class LicenseManagerAdapter extends RecyclerView.Adapter<LicenseManagerAdapter.ViewHolder> {
 
-    private List<LoginResponse.UserCarportListBean> mUserCarportList = new ArrayList<>();
     private Context mContext;
+    private List<CarLicenseMineBean> mCarLicenseList = new ArrayList<>();
 
-    public LicenseManagerAdapter(Context context, List<LoginResponse.UserCarportListBean> userCarportList) {
+    public LicenseManagerAdapter(Context context) {
         this.mContext = context;
-        this.mUserCarportList = userCarportList;
     }
 
     @Override
@@ -40,12 +40,17 @@ public class LicenseManagerAdapter extends RecyclerView.Adapter<LicenseManagerAd
 
     @Override
     public void onBindViewHolder(LicenseManagerAdapter.ViewHolder holder, int position) {
-//holder.tvCarLicenseNo.setText(mUserCarportList.get(position).getDeposit());
+        holder.tvCarLicenseNo.setText(mCarLicenseList.get(position).getLicense());
     }
 
     @Override
     public int getItemCount() {
-        return mUserCarportList != null && mUserCarportList.size() > 0 ? mUserCarportList.size() : 0;
+        return mCarLicenseList != null && mCarLicenseList.size() > 0 ? mCarLicenseList.size() : 0;
+    }
+
+    public void setDatas(List<CarLicenseMineBean> licenseMineBeen) {
+        this.mCarLicenseList = licenseMineBeen;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

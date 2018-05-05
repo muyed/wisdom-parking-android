@@ -10,8 +10,8 @@
         android:id="@+id/rlCheckPayWay"
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:paddingLeft="18dp"
-        android:paddingRight="18dp">
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
         <ImageView
             android:id="@+id/ivPayIcon"

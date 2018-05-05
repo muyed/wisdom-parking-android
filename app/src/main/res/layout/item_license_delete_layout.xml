@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llSalesItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/common_dimen_1px"
+    android:background="@color/white"
+    android:orientation="horizontal">
+
+    <com.cn.climax.wisdomparking.widget.swipemenu.SwipeMenuItemLayout
+        android:id="@+id/smil_root"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="@dimen/common_dimen_1px"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/llSalesContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvCarLicenseNo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="苏B2LT68"
+                android:textColor="@color/text_color_dark"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llDeleteSales"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <TextView
+                android:id="@+id/tvDeleteSalesman"
+                android:layout_width="78dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/button_red_shape_small"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="删除"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </com.cn.climax.wisdomparking.widget.swipemenu.SwipeMenuItemLayout>
+
+</LinearLayout>
+

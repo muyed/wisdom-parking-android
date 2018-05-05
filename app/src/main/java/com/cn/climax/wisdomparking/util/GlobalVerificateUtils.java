@@ -40,16 +40,9 @@ public class GlobalVerificateUtils {
         } else if (!GlobalVerificateUtils.getInstance(context).isAuthParkingSpace()) {
             context.startActivity(new Intent(context, AddDeviceActivity.class));
             return false;
-        }
-        return true;
-    }
-
-    public boolean isEnableOptionScan(Context context) {
-        if (!GlobalVerificateUtils.getInstance(context).isAuth()) { //如果没有认证 个人认证->车辆添加->直接扫描解锁
-            context.startActivity(new Intent(context, AuthenticateCertActivity.class));
+        }else if (!GlobalVerificateUtils.getInstance(context).isAddCarLicense()){
+            context.startActivity(new Intent(context, AddLicensePlateActivity.class));
             return false;
-//        } else {
-//            context.startActivity(new Intent(context, AddLicensePlateActivity.class));
         }
         return true;
     }
@@ -64,5 +57,9 @@ public class GlobalVerificateUtils {
 
     public boolean isAuthParkingSpace() {
         return SharedUtil.getInstance(Core.getInstances()).get(ApiParamsKey.IS_AUTH_PARKING_SPACE, false);
+    }
+    
+    public boolean isAddCarLicense() {
+        return SharedUtil.getInstance(Core.getInstances()).get(ApiParamsKey.IS_ADD_CAR_LICENSE, false);
     }
 }

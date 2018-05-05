@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/i-carlib/i-carlib.iml" filepath="$PROJECT_DIR$/i-carlib/i-carlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/wisdom-parking-android.iml" filepath="$PROJECT_DIR$/wisdom-parking-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zxing/zxing.iml" filepath="$PROJECT_DIR$/zxing/zxing.iml" />
     </modules>
   </component>
 </project>

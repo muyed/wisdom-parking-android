@@ -1,6 +1,5 @@
 package com.cn.climax.wisdomparking.base.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,9 +9,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.cn.climax.i_carlib.okgo.app.AppActivityManager;
 import com.cn.climax.i_carlib.uiframework.swipeback.ISwipeBack;
@@ -35,55 +31,13 @@ import butterknife.BindView;
 
 public abstract class BaseSwipeCustomActivity extends BaseActivity implements ISwipeBack {
 
-    public interface ORIENTATION {
-        int VERTICAL_LEFT = 0;
-        int HORIZONTAL_LEFT = 1;
-        int VERTICAL_RIGHT = 2;
-        int HORIZONTAL_RIGHT = 3;
-    }
-
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-//    @BindView(R.id.llNavSearchHeader)
-//    LinearLayout llNavSearchHeader;
-
-//    @BindView(R.id.allLeftHorizonalOpt)
-//    LinearLayout mLeftHorizonalOpt;
-//    @BindView(R.id.allLeftVerticalOpt)
-//    LinearLayout mLeftVerticalOpt;
-    @BindView(R.id.ivLeftHorizonalIcon)
-    ImageView ivLeftHorizonalIcon;
-    @BindView(R.id.tvLeftHorizonalTitle)
-    TextView tvLeftHorizonalTitle;
-//    @BindView(R.id.ivLeftVerticalIcon)
-//    ImageView ivLeftVerticalIcon;
-//    @BindView(R.id.tvLeftVerticalTitle)
-//    TextView tvLeftVerticalTitle;
-
-//    @BindView(R.id.allRightHorizonalOpt)
-//    LinearLayout mRightHorizonalOpt;
-//    @BindView(R.id.allRightVerticalOpt)
-//    LinearLayout mRightVerticalOpt;
-//    @BindView(R.id.ivRightHorizonalIcon)
-//    ImageView ivRightHorizonalIcon;
-//    @BindView(R.id.tvRightHorizonalTitle)
-//    TextView tvRightHorizonalTitle;
-//    @BindView(R.id.ivRightVerticalIcon)
-//    ImageView ivRightVerticalIcon;
-//    @BindView(R.id.tvRightVerticalTitle)
-//    TextView tvRightVerticalTitle;
 
     private static final int VIBRATE_DURATION = 20;
 
     private SwipeBackHelper mHelper;
     private SwipeBackLayout mSwipeBackLayout;
-
-    private int rightVertical;
-    private boolean isShowRightIcon;
-    private boolean isShowRightText;
-
-    private boolean isShowLeftIcon;
-    private boolean isShowLeftText;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -116,18 +70,6 @@ public abstract class BaseSwipeCustomActivity extends BaseActivity implements IS
                     vibrate(VIBRATE_DURATION);
             }
         });
-
-        if (needLeftVerticalOpt(isShowLeftIcon, isShowLeftText))
-            setLeftVerticalOpt();
-        else {
-//            setLeftHorizonalOpt(isShowLeftIcon, isShowLeftText);
-            setToolBar(isShowNavBack(), this);
-        }
-        if (needRightOpt(rightVertical, isShowRightIcon, isShowRightText)) {
-            setRightVerticalOpt(isShowRightIcon, isShowRightText);
-        } else {
-            setRightHorizonalOpt(isShowRightIcon, isShowRightText);
-        }
     }
 
     @Override
@@ -187,26 +129,6 @@ public abstract class BaseSwipeCustomActivity extends BaseActivity implements IS
         }
     }
 
-    protected void setToolBar(boolean isShowNavBack, final Activity activity) {
-        if (!isShowNavBack) {
-            ivLeftHorizonalIcon.setVisibility(View.INVISIBLE);
-            ivLeftHorizonalIcon.setClickable(false);
-            ivLeftHorizonalIcon.setEnabled(false);
-            ivLeftHorizonalIcon.setOnClickListener(null);
-        } else {
-            ivLeftHorizonalIcon.setVisibility(View.VISIBLE);
-            ivLeftHorizonalIcon.setClickable(true);
-            ivLeftHorizonalIcon.setEnabled(true);
-            ivLeftHorizonalIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                    KeyboardUtil.getInstance().hiddenKeyboard(activity);
-                }
-            });
-        }
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -251,64 +173,5 @@ public abstract class BaseSwipeCustomActivity extends BaseActivity implements IS
                 0, duration
         };
         vibrator.vibrate(pattern, -1);
-    }
-
-    /**
-     * 默认带返回的水平布局 显示
-     */
-    protected boolean needLeftHorizonalOpt(boolean isShowIcon, boolean isShowText) {
-        return isShowIcon || isShowText;
-    }
-
-    protected boolean needLeftVerticalOpt(boolean isShowIcon, boolean isShowText) {
-        return isShowIcon || isShowText;
-    }
-
-    /**
-     * 默认
-     */
-    protected boolean needRightHorizonalOpt(int horizontalRight, boolean isShowIcon, boolean isShowText) {
-        return horizontalRight == 3 && (isShowIcon || isShowText);
-    }
-
-    protected boolean needRightOpt(int verticalRight, boolean isShowIcon, boolean isShowText) {
-        this.rightVertical = verticalRight;
-        this.isShowRightIcon = isShowIcon;
-        this.isShowRightText = isShowText;
-        return verticalRight == 2 && (isShowIcon || isShowText);
-    }
-
-    /**
-     * 设置左边垂直带Icon 相关操作
-     */
-    private void setLeftVerticalOpt() {
-//        mLeftVerticalOpt.setVisibility(View.VISIBLE);
-//        ivLeftVerticalIcon.setVisibility(isShowLeftIcon ? View.VISIBLE : View.GONE);
-//        tvLeftVerticalTitle.setVisibility(isShowLeftText ? View.VISIBLE : View.GONE);
-//        mLeftHorizonalOpt.setVisibility(View.GONE);
-    }
-
-    /**
-     * 设置左边水平带Icon 相关操作
-     */
-    private void setLeftHorizonalOpt() {
-//        mLeftVerticalOpt.setVisibility(View.GONE);
-//        mLeftHorizonalOpt.setVisibility(View.VISIBLE);
-//        ivLeftHorizonalIcon.setVisibility(isShowLeftIcon ? View.VISIBLE : View.GONE);
-//        tvLeftHorizonalTitle.setVisibility(isShowLeftText ? View.VISIBLE : View.GONE);
-    }
-
-    private void setRightVerticalOpt(boolean isShowRightIcon, boolean isShowRightText) {
-//        mRightVerticalOpt.setVisibility(View.VISIBLE);
-//        ivRightVerticalIcon.setVisibility(isShowRightIcon ? View.VISIBLE : View.GONE);
-//        tvRightVerticalTitle.setVisibility(isShowRightText ? View.VISIBLE : View.GONE);
-//        mRightHorizonalOpt.setVisibility(View.GONE);
-    }
-
-    private void setRightHorizonalOpt(boolean isShowRightIcon, boolean isShowRightText) {
-//        mRightVerticalOpt.setVisibility(View.GONE);
-//        mRightHorizonalOpt.setVisibility(View.VISIBLE);
-//        ivRightHorizonalIcon.setVisibility(isShowRightIcon ? View.VISIBLE : View.GONE);
-//        tvRightHorizonalTitle.setVisibility(isShowRightText ? View.VISIBLE : View.GONE);
     }
 }

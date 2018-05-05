@@ -14,16 +14,15 @@ import java.util.List;
 
 public class LoginResponse extends BaseBean<LoginResponse> {
 
-
     /**
-     * realName : 张林
+     * realName : 郭猛
      * accountCashConf : 0.01
-     * communityList : [{"addr":"萍水西街我也不知道多少号","area":"拱墅区","carportList":[{"bind":true,"bindCode":"898151","carportNum":"384-2001","communityId":2,"communityModuleId":1,"createTime":null,"id":1,"latitude":234.3464335465,"lockStatus":1,"longitude":23.9826428475,"meid":"1","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null},{"bind":true,"bindCode":"111111","carportNum":"384-2201","communityId":2,"communityModuleId":2,"createTime":null,"id":2,"latitude":23.9826428475,"lockStatus":1,"longitude":23.9826428444,"meid":"2","modifyTime":null,"ranges":null,"shareStatus":1,"sorts":null},{"bind":true,"bindCode":"222222","carportNum":"344-4444","communityId":2,"communityModuleId":2,"createTime":null,"id":3,"latitude":222.222222222,"lockStatus":1,"longitude":123.33333333,"meid":"3","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null}],"city":"杭州市","communityId":2,"communityName":"方家花苑","communityType":2,"province":"浙江省","reason":null,"type":1},{"addr":"萍水西街我也不知道多少号","area":"拱墅区","carportList":[{"bind":true,"bindCode":"898151","carportNum":"384-2001","communityId":2,"communityModuleId":1,"createTime":null,"id":1,"latitude":234.3464335465,"lockStatus":1,"longitude":23.9826428475,"meid":"1","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null},{"bind":true,"bindCode":"111111","carportNum":"384-2201","communityId":2,"communityModuleId":2,"createTime":null,"id":2,"latitude":23.9826428475,"lockStatus":1,"longitude":23.9826428444,"meid":"2","modifyTime":null,"ranges":null,"shareStatus":1,"sorts":null},{"bind":true,"bindCode":"222222","carportNum":"344-4444","communityId":2,"communityModuleId":2,"createTime":null,"id":3,"latitude":222.222222222,"lockStatus":1,"longitude":123.33333333,"meid":"3","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null}],"city":"杭州市","communityId":2,"communityName":"方家花苑","communityType":2,"province":"浙江省","reason":null,"type":2},{"addr":"萍水西街我也不知道多少号","area":"拱墅区","carportList":[{"bind":true,"bindCode":"898151","carportNum":"384-2001","communityId":2,"communityModuleId":1,"createTime":null,"id":1,"latitude":234.3464335465,"lockStatus":1,"longitude":23.9826428475,"meid":"1","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null},{"bind":true,"bindCode":"111111","carportNum":"384-2201","communityId":2,"communityModuleId":2,"createTime":null,"id":2,"latitude":23.9826428475,"lockStatus":1,"longitude":23.9826428444,"meid":"2","modifyTime":null,"ranges":null,"shareStatus":1,"sorts":null},{"bind":true,"bindCode":"222222","carportNum":"344-4444","communityId":2,"communityModuleId":2,"createTime":null,"id":3,"latitude":222.222222222,"lockStatus":1,"longitude":123.33333333,"meid":"3","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null}],"city":"杭州市","communityId":2,"communityName":"方家花苑","communityType":2,"province":"浙江省","reason":null,"type":3}]
+     * communityList : [{"addr":"萍水西街我也不知道多少号","area":"拱墅区","carportList":[{"bind":false,"bindCode":"898151","carportNum":"384-2001","communityId":2,"communityModuleId":1,"createTime":null,"id":1,"latitude":234.3464335465,"lockStatus":1,"longitude":23.9826428475,"meid":"1","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null},{"bind":false,"bindCode":"111111","carportNum":"384-2201","communityId":2,"communityModuleId":2,"createTime":null,"id":2,"latitude":23.9826428475,"lockStatus":1,"longitude":23.9826428444,"meid":"2","modifyTime":null,"ranges":null,"shareStatus":1,"sorts":null},{"bind":false,"bindCode":"222222","carportNum":"344-4444","communityId":2,"communityModuleId":2,"createTime":null,"id":3,"latitude":222.222222222,"lockStatus":1,"longitude":123.33333333,"meid":"3","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null}],"city":"杭州市","communityId":2,"communityName":"方家花苑","communityType":2,"province":"浙江省","reason":null,"type":2}]
      * overdueMultipleConf : 2
-     * identityCard : 321282199002211218
+     * identityCard : 410225199306035536
      * carportCashConf : 0.01
      * userCarportList : [{"alias":null,"carportId":1,"createTime":1524061004000,"deposit":0.01,"id":2,"modifyTime":null,"parent":null,"payNum":"CD20180418221644213319","ranges":null,"sorts":null,"status":0,"userId":19},{"alias":null,"carportId":2,"createTime":1524061748000,"deposit":0.01,"id":3,"modifyTime":1524061764000,"parent":null,"payNum":"CD20180418222908320695","ranges":null,"sorts":null,"status":1,"userId":19},{"alias":null,"carportId":3,"createTime":1524066339000,"deposit":0.01,"id":4,"modifyTime":null,"parent":null,"payNum":"CD20180418234539356044","ranges":null,"sorts":null,"status":0,"userId":19}]
-     * account : null
+     * account : {"balance":0,"cash":0,"createTime":1524378407000,"id":2,"modifyTime":1525345581000,"ranges":null,"sorts":null,"userId":22}
      * payDeadlineMinConf : 6
      */
 
@@ -32,7 +31,7 @@ public class LoginResponse extends BaseBean<LoginResponse> {
     private int overdueMultipleConf;
     private String identityCard;
     private double carportCashConf;
-    private String account;
+    private AccountBean account;
     private int payDeadlineMinConf;
     private List<CommunityListBean> communityList;
     private List<UserCarportListBean> userCarportList;
@@ -77,11 +76,11 @@ public class LoginResponse extends BaseBean<LoginResponse> {
         this.carportCashConf = carportCashConf;
     }
 
-    public String getAccount() {
+    public AccountBean getAccount() {
         return account;
     }
 
-    public void setAccount(String account) {
+    public void setAccount(AccountBean account) {
         this.account = account;
     }
 
@@ -109,18 +108,104 @@ public class LoginResponse extends BaseBean<LoginResponse> {
         this.userCarportList = userCarportList;
     }
 
+    public static class AccountBean implements Serializable{
+        /**
+         * balance : 0
+         * cash : 0
+         * createTime : 1524378407000
+         * id : 2
+         * modifyTime : 1525345581000
+         * ranges : null
+         * sorts : null
+         * userId : 22
+         */
+
+        private int balance;
+        private int cash;
+        private long createTime;
+        private int id;
+        private long modifyTime;
+        private String ranges;
+        private String sorts;
+        private int userId;
+
+        public int getBalance() {
+            return balance;
+        }
+
+        public void setBalance(int balance) {
+            this.balance = balance;
+        }
+
+        public int getCash() {
+            return cash;
+        }
+
+        public void setCash(int cash) {
+            this.cash = cash;
+        }
+
+        public long getCreateTime() {
+            return createTime;
+        }
+
+        public void setCreateTime(long createTime) {
+            this.createTime = createTime;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public long getModifyTime() {
+            return modifyTime;
+        }
+
+        public void setModifyTime(long modifyTime) {
+            this.modifyTime = modifyTime;
+        }
+
+        public String getRanges() {
+            return ranges;
+        }
+
+        public void setRanges(String ranges) {
+            this.ranges = ranges;
+        }
+
+        public String getSorts() {
+            return sorts;
+        }
+
+        public void setSorts(String sorts) {
+            this.sorts = sorts;
+        }
+
+        public int getUserId() {
+            return userId;
+        }
+
+        public void setUserId(int userId) {
+            this.userId = userId;
+        }
+    }
+
     public static class CommunityListBean implements Serializable{
         /**
          * addr : 萍水西街我也不知道多少号
          * area : 拱墅区
-         * carportList : [{"bind":true,"bindCode":"898151","carportNum":"384-2001","communityId":2,"communityModuleId":1,"createTime":null,"id":1,"latitude":234.3464335465,"lockStatus":1,"longitude":23.9826428475,"meid":"1","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null},{"bind":true,"bindCode":"111111","carportNum":"384-2201","communityId":2,"communityModuleId":2,"createTime":null,"id":2,"latitude":23.9826428475,"lockStatus":1,"longitude":23.9826428444,"meid":"2","modifyTime":null,"ranges":null,"shareStatus":1,"sorts":null},{"bind":true,"bindCode":"222222","carportNum":"344-4444","communityId":2,"communityModuleId":2,"createTime":null,"id":3,"latitude":222.222222222,"lockStatus":1,"longitude":123.33333333,"meid":"3","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null}]
+         * carportList : [{"bind":false,"bindCode":"898151","carportNum":"384-2001","communityId":2,"communityModuleId":1,"createTime":null,"id":1,"latitude":234.3464335465,"lockStatus":1,"longitude":23.9826428475,"meid":"1","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null},{"bind":false,"bindCode":"111111","carportNum":"384-2201","communityId":2,"communityModuleId":2,"createTime":null,"id":2,"latitude":23.9826428475,"lockStatus":1,"longitude":23.9826428444,"meid":"2","modifyTime":null,"ranges":null,"shareStatus":1,"sorts":null},{"bind":false,"bindCode":"222222","carportNum":"344-4444","communityId":2,"communityModuleId":2,"createTime":null,"id":3,"latitude":222.222222222,"lockStatus":1,"longitude":123.33333333,"meid":"3","modifyTime":null,"ranges":null,"shareStatus":0,"sorts":null}]
          * city : 杭州市
          * communityId : 2
          * communityName : 方家花苑
          * communityType : 2
          * province : 浙江省
          * reason : null
-         * type : 1
+         * type : 2
          */
 
         private String addr;
@@ -216,7 +301,7 @@ public class LoginResponse extends BaseBean<LoginResponse> {
 
         public static class CarportListBean implements Serializable{
             /**
-             * bind : true
+             * bind : false
              * bindCode : 898151
              * carportNum : 384-2001
              * communityId : 2

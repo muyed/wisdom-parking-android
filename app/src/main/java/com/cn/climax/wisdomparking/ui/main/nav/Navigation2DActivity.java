@@ -70,8 +70,10 @@ public class Navigation2DActivity extends PeterBaseActivity implements
 
         //设置模拟导航的行车速度
         mAMapNavi.setEmulatorNaviSpeed(50);
-        mStartLatlng = new NaviLatLng(34.193455, 108.88618);
-        mEndLatlng = new NaviLatLng(34.193455, 108.88000);
+//        mStartLatlng = new NaviLatLng(34.193455, 108.88618);
+//        mEndLatlng = new NaviLatLng(34.193455, 108.88000);
+        mStartLatlng = getIntent().getParcelableExtra("start_navi_point");
+        mEndLatlng = getIntent().getParcelableExtra("end_navi_point");
         mStartList.add(mStartLatlng);
         mEndList.add(mEndLatlng);
     }
@@ -110,7 +112,7 @@ public class Navigation2DActivity extends PeterBaseActivity implements
 
     @Override
     public void onInitNaviSuccess() {
-//初始化
+        //初始化
         /**
          * 方法: int strategy=mAMapNavi.strategyConvert(congestion, avoidhightspeed, cost, hightspeed, multipleroute); 参数:
          *

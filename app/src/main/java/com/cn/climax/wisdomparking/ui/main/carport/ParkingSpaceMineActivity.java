@@ -2,7 +2,6 @@ package com.cn.climax.wisdomparking.ui.main.carport;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,16 +11,12 @@ import android.widget.LinearLayout;
 import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiManage;
-import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
-import com.cn.climax.i_carlib.util.SharedUtil;
 import com.cn.climax.i_carlib.util.ToastUtils;
 import com.cn.climax.i_carlib.util.phone.ScreenUtil;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.Constant;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.data.response.ParkingSpaceMineBean;
-import com.cn.climax.wisdomparking.data.response.ParkingSpaceMineListBean;
-import com.cn.climax.wisdomparking.ui.account.RegisterActivity;
 import com.cn.climax.wisdomparking.ui.main.device.AddDeviceActivity;
 import com.cn.climax.wisdomparking.ui.main.device.adapter.ParkingSpaceMineAdapter;
 import com.cn.climax.wisdomparking.widget.xrecyclerview.ProgressStyle;
@@ -29,12 +24,9 @@ import com.cn.climax.wisdomparking.widget.xrecyclerview.SpacesItemDecoration;
 import com.cn.climax.wisdomparking.widget.xrecyclerview.XRecyclerView;
 import com.lzy.okgo.callback.StringCallback;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;

@@ -140,5 +140,7 @@
 
     <!--<include layout="@layout/activity_ofo_layout" />-->
     <include layout="@layout/activity_peter_layout" />
+    
+    <include layout="@layout/activity_ofo_number_keyboard_layout" />
 
 </RelativeLayout>

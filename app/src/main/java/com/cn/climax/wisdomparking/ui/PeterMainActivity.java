@@ -3,11 +3,14 @@ package com.cn.climax.wisdomparking.ui;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v13.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -40,6 +43,7 @@ import com.amap.api.maps2d.model.Marker;
 import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
 import com.amap.api.maps2d.overlay.DrivingRouteOverlay;
+import com.amap.api.navi.model.NaviLatLng;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.core.SuggestionCity;
@@ -58,9 +62,13 @@ import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
 import com.cn.climax.i_carlib.util.SharedUtil;
 import com.cn.climax.i_carlib.util.ToastUtils;
 import com.cn.climax.wisdomparking.R;
+import com.cn.climax.wisdomparking.data.response.CarLicenseMineBean;
 import com.cn.climax.wisdomparking.data.response.LoginResponse;
+import com.cn.climax.wisdomparking.data.response.NearbyParkingMineBean;
+import com.cn.climax.wisdomparking.data.response.PublishShareOrder;
 import com.cn.climax.wisdomparking.http.WrapJsonBeanCallback;
 import com.cn.climax.wisdomparking.ui.account.LoginActivity;
+import com.cn.climax.wisdomparking.ui.main.NewOfoKeyBoardActivity;
 import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceImmMatchingActivity;
 import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceMatchActivity;
 import com.cn.climax.wisdomparking.ui.main.community.AuthCommunityListActivity;
@@ -69,6 +77,7 @@ import com.cn.climax.wisdomparking.ui.main.community.NearbySearchActivity;
 import com.cn.climax.wisdomparking.ui.main.device.AddLicensePlateActivity;
 import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceMineActivity;
 import com.cn.climax.wisdomparking.ui.main.device.LicenseManagerListActivity;
+import com.cn.climax.wisdomparking.ui.main.device.ReleaseLockActivity;
 import com.cn.climax.wisdomparking.ui.main.nav.Navigation2DActivity;
 import com.cn.climax.wisdomparking.ui.main.order.OrderMineActivity;
 import com.cn.climax.wisdomparking.ui.main.share.PublishShareParkingActivity;
@@ -83,10 +92,13 @@ import com.cn.climax.wisdomparking.util.HelperFromPermission;
 import com.cn.climax.wisdomparking.widget.CircleView;
 import com.cn.climax.wisdomparking.widget.My2dMapView;
 import com.cn.climax.wisdomparking.widget.bottomdialog.BottomDialog;
-import com.cn.climax.wisdomparking.widget.bottomdialog.Item;
-import com.cn.climax.wisdomparking.widget.bottomdialog.OnItemClickListener;
 import com.cn.climax.wisdomparking.widget.ofo.OfoConvcaveMenuActivity;
+import com.lzy.okgo.callback.StringCallback;
+import com.yanzhenjie.permission.Action;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
@@ -97,10 +109,15 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
+import cn.park.com.zxing.android.CaptureActivity;
+import cn.park.com.zxing.bean.ZxingConfig;
+import cn.park.com.zxing.common.Constant;
 import okhttp3.Call;
 import okhttp3.Response;
 
 public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLocationListener, LocationSource, PoiSearch.OnPoiSearchListener, AMap.OnMarkerClickListener, RouteSearch.OnRouteSearchListener {
+
+    private int REQUEST_CODE_SCAN = 111;
 
     @BindView(R.id.llSkip2Publish)
     LinearLayout llSkip2Publish;
@@ -161,7 +178,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
     private boolean isFirstNavLoc = true;
 
     //    private static final String SEARCH_KEYWORD = "停车场";
-    private static final String SEARCH_KEYWORD = "小学";
+    private static final String SEARCH_KEYWORD = "";
     private static final String POI_SEARCH_TYPE = "";
 
     private PoiSearch.Query query;
@@ -182,8 +199,9 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
     private LoginResponse mUserInfoBean;
     boolean isGoToLogin;
 
-    private List<MarkerOptions> markers = new ArrayList<>();
     private List<Marker> mMarkerList = new ArrayList<>();
+    private List<NearbyParkingMineBean> mNearbyParkingMineBeen = new ArrayList<>();
+    private AMapLocation mAmapLocation;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -218,10 +236,10 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 }
             }
             mmvNavPark.onCreate(savedInstanceState); //必须写
-            
+
             if (mUserInfoBean == null) {
                 loginEvent();
-            }else{
+            } else {
                 initView();
             }
             if (!TextUtils.isEmpty(SharedUtil.getInstance(PeterMainActivity.this).get(ApiParamsKey.USER_NAME))) {
@@ -262,6 +280,8 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                         SharedUtil.getInstance(PeterMainActivity.this).put(ApiParamsKey.IS_AUTH, !TextUtils.isEmpty(bean.getRealName()));
                         SharedUtil.getInstance(PeterMainActivity.this).put(ApiParamsKey.IS_AUTH_COMMUNITY, bean != null && bean.getCommunityList() != null && bean.getCommunityList().size() > 0);
                         SharedUtil.getInstance(PeterMainActivity.this).put(ApiParamsKey.IS_AUTH_PARKING_SPACE, bean != null && bean.getUserCarportList() != null && bean.getUserCarportList().size() > 0);
+
+                        judgeUserIsAddCarLicense();
                         mUserInfoBean = bean;
                         initView();
                     }
@@ -269,6 +289,35 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                     @Override
                     protected void onExecuteError(Call call, Response response, Exception e) {
                         ToastUtils.show(response.message());
+                    }
+                });
+    }
+
+    private void judgeUserIsAddCarLicense() {
+        ApiManage.get(ApiHost.getInstance().getMyCarLicenseList())
+                .tag(this)// 请求的 tag, 主要用于取消对应的请求
+                .cacheKey("cacheKey")
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        if (response.code() == 200) {
+                            try {
+                                JSONObject json = new JSONObject(s);
+                                List<CarLicenseMineBean> carLicenseMineBeen = com.alibaba.fastjson.JSONObject.parseArray(String.valueOf(json.get("data")), CarLicenseMineBean.class);
+
+                                if (carLicenseMineBeen != null && carLicenseMineBeen.size() > 0) {
+                                    SharedUtil.getInstance(PeterMainActivity.this).put(ApiParamsKey.IS_ADD_CAR_LICENSE, true);
+                                } else {
+                                    SharedUtil.getInstance(PeterMainActivity.this).put(ApiParamsKey.IS_ADD_CAR_LICENSE, false);
+                                }
+                            } catch (JSONException e) {
+                                SharedUtil.getInstance(PeterMainActivity.this).put(ApiParamsKey.IS_ADD_CAR_LICENSE, false);
+                                e.printStackTrace();
+                            }
+                        } else {
+                            SharedUtil.getInstance(PeterMainActivity.this).put(ApiParamsKey.IS_ADD_CAR_LICENSE, false);
+                            ToastUtils.show(response.message());
+                        }
                     }
                 });
     }
@@ -295,7 +344,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
         ivSkip2Notify.setOnClickListener(new CommClick());
         llOrderScan.setOnClickListener(new CommClick());
 
-        llSkip2Publish.setOnClickListener(new CommClick()); //头像设置
+        llSkip2Publish.setOnClickListener(new CommClick()); //发布共享单
         cvCenterAvatar.setOnClickListener(new CommClick()); //头像设置
         tvSkipLoginReg.setOnClickListener(new CommClick()); //登录/注册
         tvAccount.setOnClickListener(new CommClick()); //退出登录
@@ -345,6 +394,11 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                     ofoMenuLayout.close();
                     isOpenPCenter = false;
                 }
+            } else if (isOpenInputCenter) {
+                if (ofoMenuKeyBoardLayout.isOpen()) {
+                    ofoMenuKeyBoardLayout.close();
+                    isOpenInputCenter = false;
+                }
             } else {
                 if ((System.currentTimeMillis() - exitTime) > 1000) {
                     Toast.makeText(getApplicationContext(), "再按一次退出", Toast.LENGTH_SHORT).show();
@@ -369,7 +423,8 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 amapLocation.getLongitude();//获取经度
                 amapLocation.getAccuracy(); //获取精度信息
                 amapLocation.getCityCode(); //获得城市编码
-                @SuppressLint("SimpleDateFormat") SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                @SuppressLint("SimpleDateFormat")
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date date = new Date(amapLocation.getTime());
                 df.format(date);//定位时间
 
@@ -390,22 +445,12 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                             new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude())));
                     //点击定位按钮 能够将地图的中心移动到定位点
                     mNavListener.onLocationChanged(amapLocation);
-
                     mLatLng = new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude());
 
-                    //开始POI搜索
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            //设置搜索条件
-                            query = new PoiSearch.Query(SEARCH_KEYWORD, POI_SEARCH_TYPE, amapLocation.getCityCode());
-                            query.setPageSize(10); //设置每页最多返回poi item
-                            query.setPageNum(currentPage);
-                            //构造PoiSearch对象,设置监听
-                            poiSearch = new PoiSearch(PeterMainActivity.this, query);
-
-//                        prepareSearchKeyword(amapLocation); //关键字检索POI
-                            prepareSearchPeriphery(amapLocation); //检索周边POI
+                            getNearbyByLatLng(amapLocation, mLatLng);
                         }
                     });
 
@@ -420,24 +465,77 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
         }
     }
 
+    private void getNearbyByLatLng(final AMapLocation amapLocation, LatLng latLng) {
+        ApiManage.get(ApiHost.getInstance().loadByDistance() + latLng.longitude + "/" + latLng.latitude + "/" + "10")
+                .tag(this)
+                .cacheKey("cacheKey")
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        if (response.code() == 200) {
+                            try {
+                                JSONObject json = new JSONObject(s);
+                                mNearbyParkingMineBeen = com.alibaba.fastjson.JSONObject.parseArray(String.valueOf(json.get("data")), NearbyParkingMineBean.class);
+                                if (mNearbyParkingMineBeen != null && mNearbyParkingMineBeen.size() > 0) {
+                                    //根据指定经纬度 地图显示
+                                    prepareSearchNearbyParking(amapLocation, mNearbyParkingMineBeen);
+                                } else {
+                                    Toast.makeText(PeterMainActivity.this, "附近暂无可用车位", Toast.LENGTH_LONG).show();
+                                }
+
+                                //开始POI搜索
+//                                searchByPoi(amapLocation);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            ToastUtils.show(response.message());
+                        }
+                    }
+                });
+    }
+
+    private void prepareSearchNearbyParking(AMapLocation amapLocation, List<NearbyParkingMineBean> parkingMineBeanList) {
+        this.mAmapLocation = amapLocation;
+        boundBuilder = new LatLngBounds.Builder();
+        String iconName = "icon_poi_marker_parking";
+        int iconId = getResources().getIdentifier(iconName, "drawable", this.getPackageName());
+        for (int j = 0; j < parkingMineBeanList.size(); j++) {
+            MarkerOptions markerOptions = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(iconId));
+            markerOptions.position(new LatLng(parkingMineBeanList.get(j).getLatitude(), parkingMineBeanList.get(j).getLongitude()));
+            markerOptions.title(parkingMineBeanList.get(j).getCity()).snippet(parkingMineBeanList.get(j).getCity() + "：" + parkingMineBeanList.get(j).getLatitude() + "，" + parkingMineBeanList.get(j).getLongitude());
+            markerOptions.draggable(true);//设置Marker可拖动
+            Marker marker = aNavMap.addMarker(markerOptions);
+            marker.setObject(j);
+            //为了POI填充整个地图区域
+            boundBuilder.include(new LatLng(parkingMineBeanList.get(j).getLatitude(), parkingMineBeanList.get(j).getLongitude()));
+            mMarkerList.add(marker);
+        }
+        LatLngBounds bounds = boundBuilder.build();
+        // 移动地图，所有marker自适应显示。LatLngBounds与地图边缘10像素的填充区域
+        aNavMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 10));
+    }
+
+    private void searchByPoi(AMapLocation amapLocation) {
+        //设置搜索条件
+        query = new PoiSearch.Query(SEARCH_KEYWORD, POI_SEARCH_TYPE, amapLocation.getCityCode());
+        query.setPageSize(10); //设置每页最多返回poi item
+        query.setPageNum(currentPage);
+        //构造PoiSearch对象,设置监听
+        poiSearch = new PoiSearch(PeterMainActivity.this, query);
+        prepareSearchPeriphery(amapLocation); //检索周边POI
+    }
+
     public void location() {
         aNavMap.moveCamera(CameraUpdateFactory.changeLatLng(mLatLng));
     }
 
     private void prepareSearchPeriphery(AMapLocation amapLocation) {
-        poiSearch.setBound(new PoiSearch.SearchBound(new LatLonPoint(amapLocation.getLatitude(),
-                amapLocation.getLongitude()), 3000));//设置周边搜索的中心点以及半径
+        poiSearch.setBound(new PoiSearch.SearchBound(new LatLonPoint(amapLocation.getLatitude(), amapLocation.getLongitude()), 3000));//设置周边搜索的中心点以及半径
         poiSearch.setOnPoiSearchListener(this);
         //调用异步搜索POI方法发送请求
         poiSearch.searchPOIAsyn();
     }
-
-    private void prepareSearchKeyword(AMapLocation amapLocation) {
-        poiSearch.setOnPoiSearchListener(this);
-        //调用异步搜索POI方法发送请求
-        poiSearch.searchPOIAsyn();
-    }
-
 
     @Override
     public void activate(OnLocationChangedListener onLocationChangedListener) {
@@ -488,73 +586,33 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
         for (int i = 0; i < mMarkerList.size(); i++) {
             if (marker.equals(mMarkerList.get(i))) {
                 if (aNavMap != null) {
+                    final int finalI = i;
                     new BottomDialog(PeterMainActivity.this)
                             .layout(BottomDialog.GRID)
                             .orientation(BottomDialog.VERTICAL)
                             .nav(new BottomDialog.OnSkip2NavigationListener() {
                                 @Override
                                 public void nav() {
-                                    startActivity(new Intent(PeterMainActivity.this, Navigation2DActivity.class));
+                                    NaviLatLng startNavi = new NaviLatLng(mAmapLocation.getLatitude(), mAmapLocation.getLongitude());
+                                    NaviLatLng endNavi = new NaviLatLng(mNearbyParkingMineBeen.get(finalI).getLatitude(), mNearbyParkingMineBeen.get(finalI).getLongitude());
+                                    startActivity(new Intent(PeterMainActivity.this, Navigation2DActivity.class)
+                                            .putExtra("start_navi_point", startNavi)
+                                            .putExtra("end_navi_point", endNavi));
                                 }
                             })
                             .match(new BottomDialog.OnSkip2MatchListener() {
                                 @Override
                                 public void match() {
-                                    startActivity(new Intent(PeterMainActivity.this, ParkingSpaceImmMatchingActivity.class));
+                                    startActivity(new Intent(PeterMainActivity.this, ParkingSpaceImmMatchingActivity.class).putExtra("destination_navi_info", mNearbyParkingMineBeen.get(finalI)));
                                 }
                             })
+                            .setData(mAmapLocation, mNearbyParkingMineBeen.get(i))
                             .show();
-
-//                    jumpPoint(marker, i);
                 }
                 return true;
             }
         }
         return false;
-    }
-
-    public void jumpPoint(final Marker marker, int index) {
-        final Handler handler = new Handler();
-        final long start = SystemClock.uptimeMillis();
-        Projection proj = aNavMap.getProjection();
-        final LatLng latLng = getPositionFormList(index);
-        Point startPoint = proj.toScreenLocation(latLng);
-        startPoint.offset(0, -50);
-        final LatLng startLatLng = proj.fromScreenLocation(startPoint);
-        final long duration = 1500;
-
-        final Interpolator interpolator = new BounceInterpolator();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                long elapsed = SystemClock.uptimeMillis() - start;
-                float t = interpolator.getInterpolation((float) elapsed
-                        / duration);
-                double lng = t * latLng.longitude + (1 - t)
-                        * startLatLng.longitude;
-                double lat = t * latLng.latitude + (1 - t)
-                        * startLatLng.latitude;
-                marker.setPosition(new LatLng(lat, lng));
-                if (t < 1.0) {
-                    handler.postDelayed(this, 16);
-                }
-            }
-        });
-    }
-
-    private LatLng getPositionFormList(int index) {
-        LatLng latLng = null;
-//        String[] coordinatearr = strutils.convertStrToArraySize(hslist.get(index));
-//        if (coordinatearr != null) {
-//            if (coordinatearr.length > 0) {
-//                String longitude = coordinatearr[3];
-//                String latitude = coordinatearr[4];
-//                double dlong = Double.valueOf(longitude).doubleValue();
-//                double dlat = Double.valueOf(latitude).doubleValue();
-//                latLng = new LatLng(dlat, dlong);
-//            }
-//        }
-        return latLng;
     }
 
     @Override
@@ -564,7 +622,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 if (result.getQuery().equals(query)) { //是否是同一条
                     poiResult = result;
                     //取得搜索到的poiitem有多少页
-//                    int resultPages = poiResult.getPageCount();
+                    int resultPages = poiResult.getPageCount();
                     //取得第一页的poiitem数据
                     poiItems = poiResult.getPois();
                     //当搜索不到poiitem数据时,会返回含有搜索关键字的城市信息
@@ -686,10 +744,9 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                     startActivity(new Intent(PeterMainActivity.this, NotifyMineActivity.class));
                     break;
                 case R.id.llOrderScan: //扫描开锁
-//                    if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
-//                        return;
-//                    startActivity(new Intent(PeterMainActivity.this, ParkingSpaceAppointmentActivity.class));
-                    startActivity(new Intent(PeterMainActivity.this, AddLicensePlateActivity.class));
+                    if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
+                        return;
+                    judgePermission();
                     break;
 
                 case R.id.cvCenterAvatar:
@@ -703,7 +760,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 case R.id.llSkip2MoneyBag: //我的钱包
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
                         return;
-                    startActivity(new Intent(PeterMainActivity.this, WalletMineActivity.class));
+                    startActivity(new Intent(PeterMainActivity.this, WalletMineActivity.class).putExtra("user_account_info", mUserInfoBean.getAccountCashConf()));
                     break;
                 case R.id.llSkip2MineDevice: //我的设备
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
@@ -714,11 +771,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 case R.id.llSkip2MineCar: //我的车辆
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
                         return;
-                    if (mUserInfoBean != null && mUserInfoBean.getUserCarportList() != null && mUserInfoBean.getUserCarportList().size() > 0) {
-                        startActivity(new Intent(PeterMainActivity.this, LicenseManagerListActivity.class).putExtra("user_carport_list", (Serializable) mUserInfoBean.getUserCarportList()));
-                    } else {
-                        startActivity(new Intent(PeterMainActivity.this, AddLicensePlateActivity.class));
-                    }
+                    startActivity(new Intent(PeterMainActivity.this, LicenseManagerListActivity.class).putExtra("user_carport_list", (Serializable) mUserInfoBean.getUserCarportList()));
                     break;
                 case R.id.llSkip2MineOrder: //我的订单
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
@@ -746,7 +799,6 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 case R.id.llSkip2IdentityCommunity: //考虑多小区情况 小区认证
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
                         return;
-//                    startActivity(new Intent(PeterMainActivity.this, AddCommunityActivity.class));
                     startActivity(new Intent(PeterMainActivity.this, AuthCommunityListActivity.class));
                     break;
                 case R.id.llSkip2MineParkingSpace: //我的车位
@@ -754,6 +806,94 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                         return;
                     startActivity(new Intent(PeterMainActivity.this, ParkingSpaceMineActivity.class));
                     break;
+            }
+        }
+    }
+
+    private void judgePermission() {
+        // releaseLock();
+        AndPermission.with(this)
+                .permission(Permission.CAMERA, Permission.READ_EXTERNAL_STORAGE)
+                .onGranted(new Action() {
+                    @Override
+                    public void onAction(List<String> permissions) {
+                        Intent intent = new Intent(PeterMainActivity.this, CaptureActivity.class);
+                                /*ZxingConfig是配置类  可以设置是否显示底部布局，闪光灯，相册，是否播放提示音  震动等动能
+                                 * 也可以不传这个参数
+                                 * 不传的话  默认都为默认不震动  其他都为true
+                                 * */
+                        ZxingConfig config = new ZxingConfig();
+                        config.setPlayBeep(true);
+                        config.setShake(true);
+                        config.setShowFlashLight(true);
+                        intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
+                        startActivityForResult(intent, REQUEST_CODE_SCAN);
+                    }
+                })
+                .onDenied(new Action() {
+                    @Override
+                    public void onAction(List<String> permissions) {
+                        Uri packageURI = Uri.parse("package:" + getPackageName());
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        Toast.makeText(PeterMainActivity.this, "没有权限无法扫描呦", Toast.LENGTH_LONG).show();
+                    }
+                }).start();
+    }
+
+    private void releaseLock() {
+        HashMap<String, String> unLockMap = new HashMap<>();
+        unLockMap.put(ApiParamsKey.ID, "5");
+        JSONObject json = new JSONObject(unLockMap);
+
+        ApiManage.post(ApiHost.getInstance().unLock())
+                .upJson(json.toString())
+                .execute(new WrapJsonBeanCallback<PublishShareOrder>(PeterMainActivity.this) {
+                    @Override
+                    protected void onJsonParseException(int code, String msg, Call call) {
+                    }
+
+                    @Override
+                    protected void onExecuteSuccess(PublishShareOrder bean, Call call) {
+                        if (bean.getCode() == 200) {
+                            startActivity(new Intent(PeterMainActivity.this, ReleaseLockActivity.class));
+                        }
+                    }
+
+                    @Override
+                    protected void onExecuteError(Call call, Response response, Exception e) {
+                    }
+
+                    @Override
+                    protected boolean setDialogShow() {
+                        return false;
+                    }
+                });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // 扫描二维码/条码回传
+        if (requestCode == REQUEST_CODE_SCAN && resultCode == RESULT_OK) {
+            if (data != null) {
+                String content = data.getStringExtra(Constant.CODED_CONTENT);
+                ToastUtils.show("扫描结果为：" + content);
+            }
+        }
+        if (requestCode == REQUEST_CODE_SCAN && resultCode == 999) {
+            if (data != null) {
+                boolean isFromCapture = data.getBooleanExtra("is_from_capture", false);
+                if (isFromCapture) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            openKeyboard();
+                        }
+                    }, 1000);
+                }
+//                    startActivity(new Intent(PeterMainActivity.this, NewOfoKeyBoardActivity.class));
             }
         }
     }

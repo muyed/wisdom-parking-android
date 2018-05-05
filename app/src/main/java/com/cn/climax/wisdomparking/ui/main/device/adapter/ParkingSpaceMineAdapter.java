@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.data.response.ParkingSpaceMineBean;
-import com.cn.climax.wisdomparking.data.response.ParkingSpaceMineListBean;
 import com.cn.climax.wisdomparking.ui.main.order.OrderMineDetailActivity;
 
 import java.util.ArrayList;
