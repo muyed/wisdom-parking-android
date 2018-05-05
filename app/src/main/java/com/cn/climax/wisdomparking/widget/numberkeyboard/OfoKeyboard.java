@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Random;
 
 public class OfoKeyboard {
+    
     private Activity activity;
     private Keyboard keyboard;
     private OfoKeyboardView keyboardView;

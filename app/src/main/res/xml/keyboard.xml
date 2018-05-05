@@ -48,9 +48,12 @@
             android:keyLabel="确定" />
     </Row>
     <Row>
+        <!--<Key-->
+            <!--android:codes="46"-->
+            <!--android:keyLabel="." />-->
         <Key
             android:codes="46"
-            android:keyLabel="." />
+            android:keyLabel="" />
         <Key
             android:codes="48"
             android:keyLabel="0" />

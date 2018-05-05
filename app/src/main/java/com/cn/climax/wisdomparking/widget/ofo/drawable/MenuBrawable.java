@@ -20,7 +20,11 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.cn.climax.wisdomparking.R;
+
 public class MenuBrawable extends Drawable {
+    private Context mContext;
+    private int mBgColor;
     //外层弧形path
     private Path mPath;
     //图片对象
@@ -58,24 +62,25 @@ public class MenuBrawable extends Drawable {
     private Path convexPath;
     private Path concavePath;
 
-    public MenuBrawable(Bitmap bitmap, Context context, View parent, int radian) {
+    public MenuBrawable(Bitmap bitmap, Context context, View parent, int radian, int bgColor) {
         this.bitmap = bitmap;
+        this.mContext = context;
         this.mParent = parent;
         this.mRadian = radian;
+        this.mBgColor = bgColor;
         arcY = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, HEIGHTEST_Y, context.getResources().getDisplayMetrics());
         bitmapXY = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, BITMAP_XY, context.getResources().getDisplayMetrics());
         bitmapOffset = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, context.getResources().getDisplayMetrics());
         startOffset = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, START_OFFSET, context.getResources().getDisplayMetrics());
         mPath = new Path();
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-//        paint.setColor(Color.WHITE);
-        paint.setColor(Color.parseColor("#F5F5F5"));
+        paint.setColor(ContextCompat.getColor(context, bgColor));
         paint.setStyle(Paint.Style.FILL);
         mBitmapRegion = new Region();
     }
 
     public MenuBrawable(Bitmap bitmap, Context context, View parent) {
-        this(bitmap, context, parent, CONVEX);
+        this(bitmap, context, parent, CONVEX, R.color.color_f5f5f5);
     }
 
     @Override
@@ -136,7 +141,9 @@ public class MenuBrawable extends Drawable {
         }
         if (bitmap != null) {
             mBitmapPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            mBitmapPaint.setColor(Color.parseColor("#F5F5F5"));
+            if (mBgColor == R.color.white)
+                mBgColor = R.color.transparent;
+            mBitmapPaint.setColor(ContextCompat.getColor(mContext, mBgColor));
             int size = Math.min(bitmap.getWidth(), bitmap.getHeight());
             float scale = (float) (bitmapXY * 1.0 / size);
             Matrix matrix = new Matrix();
@@ -194,23 +201,9 @@ public class MenuBrawable extends Drawable {
 
     private Path createNonePath(Rect bounds) {
         if (concavePath == null) {
-//            float[] measurePoint = new float[2];
             Path measurePath = new Path();
             measurePath.moveTo(bounds.left, bounds.top);
-//            measurePath.quadTo(bounds.centerX(), bounds.top + arcY, bounds.right, bounds.top);
             measurePath.lineTo(bounds.right, bounds.top);
-//            PathMeasure pathMeasure = new PathMeasure();
-//            pathMeasure.setPath(measurePath, false);
-//            pathMeasure.getPosTan(bounds.centerX(), measurePoint, null);
-//            float startTop = bounds.top + arcY + -measurePoint[1];
-
-//            Path path = new Path();
-//            path.reset();
-//            path.moveTo(bounds.left, startTop);
-//            path.quadTo(bounds.centerX(), startTop + arcY, bounds.right, startTop);
-//            path.lineTo(bounds.right, bounds.top);
-//            path.lineTo(bounds.left, bounds.bottom);
-//            path.lineTo(bounds.left, startTop);
             concavePath = measurePath;
         }
         return concavePath;

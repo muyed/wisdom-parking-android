@@ -6,17 +6,67 @@
     android:orientation="vertical"
     android:visibility="invisible">
 
+    <RelativeLayout
+        android:id="@+id/avatarParent"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:background="@color/transparent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dimen_150px"
+            android:background="@color/colorPrimary"
+            android:gravity="center_vertical"
+            android:minHeight="?attr/actionBarSize"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/common_dimen_50px">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="24dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/close"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="彼得潘实业"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/close_keyboard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="24dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/close" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
     <FrameLayout
         android:id="@+id/menu_content_keyboard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="200dp"
-        android:background="@color/white">
+        android:layout_marginTop="120dp">
 
         <com.cn.climax.wisdomparking.widget.ofo.view.OfoContentLayout
             android:id="@+id/ofo_content_keyboard"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="100dp"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <include layout="@layout/activity_ofo_number_keyboard" />
@@ -24,23 +74,5 @@
         </com.cn.climax.wisdomparking.widget.ofo.view.OfoContentLayout>
 
     </FrameLayout>
-
-    <RelativeLayout
-        android:id="@+id/avatarParent"
-        android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:background="@color/transparent">
-
-        <ImageView
-            android:id="@+id/close"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="24dp"
-            android:layout_marginTop="40dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/close" />
-
-    </RelativeLayout>
 
 </com.cn.climax.wisdomparking.widget.ofo.view.OfoMenuLayout>

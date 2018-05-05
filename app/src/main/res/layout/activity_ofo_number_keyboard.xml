@@ -1,52 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:paddingLeft="24dp"
-    android:paddingRight="24dp"
-    android:paddingTop="48dp">
-
-    <TextView
-        android:id="@+id/tv_summary"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:background="@color/gray"
-        android:gravity="center"
-        android:text="计费说明：1元/小时"
-        android:textSize="18sp"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/tv_number"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@+id/tv_summary"
-        android:gravity="center"
-        android:text="车牌号一般为4-8位的数字" />
+    android:paddingTop="12dp">
 
     <EditText
         android:id="@+id/et_numberplate"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/tv_number" />
-
-    <Button
-        android:id="@+id/bt_change_keyboard"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/et_numberplate"
-        android:text="切换随机数字键盘" />
+        android:layout_height="44dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/home_input_lock_bg"
+        android:cursorVisible="true"
+        android:gravity="center"
+        android:hint="请输入车牌号"
+        android:inputType="number"
+        android:textColorHint="@color/text_common_hint"
+        android:textCursorDrawable="@drawable/cursor_location_drawable"
+        android:textSize="13sp" />
 
     <Button
         android:id="@+id/bt_sure"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/bt_change_keyboard"
-        android:text="立即用车" />
+        android:layout_height="44dp"
+        android:layout_below="@+id/et_numberplate"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/activity_button_disable_grey_border"
+        android:text="立即用车"
+        android:textColor="@color/text_common_color"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/keyboard_view"
+        android:layout_below="@+id/bt_sure"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/llOpenLight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/aivScanLight"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/ic_close_light" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="手电筒"
+                android:textColor="@color/text_lighter_color"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llOpenVoice"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/aivScanVoice"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/icon_scan_voice" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="声音"
+                android:textColor="@color/text_lighter_color"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llOpenScanCode"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/icon_scan_code" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="扫码解锁"
+                android:textColor="@color/text_lighter_color"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <com.cn.climax.wisdomparking.widget.numberkeyboard.OfoKeyboardView
         android:id="@+id/keyboard_view"
@@ -61,4 +127,5 @@
         android:paddingTop="0dp"
         android:shadowColor="#fff"
         android:shadowRadius="0.0" />
+
 </RelativeLayout>

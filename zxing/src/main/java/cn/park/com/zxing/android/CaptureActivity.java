@@ -114,8 +114,6 @@ public class CaptureActivity extends AppCompatActivity implements SurfaceHolder.
         beepManager = new BeepManager(this);
         beepManager.setPlayBeep(config.isPlayBeep());
         beepManager.setVibrate(config.isShake());
-
-
     }
 
 
@@ -307,7 +305,6 @@ public class CaptureActivity extends AppCompatActivity implements SurfaceHolder.
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width,
                                int height) {
-
     }
 
     @Override

@@ -36,8 +36,7 @@ import cn.park.com.zxing.view.ViewfinderResultPointCallback;
  */
 public final class CaptureActivityHandler extends Handler {
 
-    private static final String TAG = CaptureActivityHandler.class
-            .getSimpleName();
+    private static final String TAG = CaptureActivityHandler.class.getSimpleName();
 
     private final CaptureActivity activity;
     private final DecodeThread decodeThread;
@@ -48,9 +47,9 @@ public final class CaptureActivityHandler extends Handler {
         PREVIEW, SUCCESS, DONE
     }
 
-    public CaptureActivityHandler(CaptureActivity activity,CameraManager cameraManager) {
+    public CaptureActivityHandler(CaptureActivity activity, CameraManager cameraManager) {
         this.activity = activity;
-        decodeThread = new DecodeThread(activity,  new ViewfinderResultPointCallback(
+        decodeThread = new DecodeThread(activity, new ViewfinderResultPointCallback(
                 activity.getViewfinderView()));
         decodeThread.start();
         state = State.SUCCESS;

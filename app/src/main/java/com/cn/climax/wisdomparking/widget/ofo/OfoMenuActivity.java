@@ -41,6 +41,10 @@ public class OfoMenuActivity extends BaseActivity {
     protected int getType() {
         return MenuBrawable.NONE;
     }
+    
+    protected int getKeyboardType() {
+        return MenuBrawable.CONVEX;
+    }
 
     @Override
     protected int initContentView() {
@@ -75,8 +79,10 @@ public class OfoMenuActivity extends BaseActivity {
         ofoContentKeyboardLayout = ((OfoContentLayout) findViewById(R.id.ofo_content_keyboard));
         menuKeyboard = (FrameLayout) findViewById(R.id.menu_content_keyboard);
         
-        final MenuBrawable menuBrawable = new MenuBrawable(BitmapFactory.decodeResource(getResources(), R.mipmap.default_avatar_img), OfoMenuActivity.this, menu, getType());
+        final MenuBrawable menuBrawable = new MenuBrawable(BitmapFactory.decodeResource(getResources(), R.mipmap.default_avatar_img), OfoMenuActivity.this, menu, getType(), R.color.color_f5f5f5);
+        final MenuBrawable menuKeyboardBrawable = new MenuBrawable(BitmapFactory.decodeResource(getResources(), R.drawable.transparent), OfoMenuActivity.this, menuKeyboard, getKeyboardType(), R.color.white);
         menu.setBackground(menuBrawable);
+        menuKeyboard.setBackground(menuKeyboardBrawable);
         menuBrawable.setOnBitmapClickListener(new MenuBrawable.OnBitmapClickListener() {
             @Override
             public void bitmapClick() {
@@ -95,6 +101,15 @@ public class OfoMenuActivity extends BaseActivity {
             public void onClick(View v) {
                 isOpenPCenter = false;
                 ofoMenuLayout.close();
+            }
+        });
+        
+        //关闭menu
+        findViewById(R.id.close_keyboard).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isOpenInputCenter = false;
+                ofoMenuKeyBoardLayout.closeKeyboard();
             }
         });
 

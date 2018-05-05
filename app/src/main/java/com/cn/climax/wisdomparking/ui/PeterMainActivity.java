@@ -2,25 +2,28 @@ package com.cn.climax.wisdomparking.ui;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.graphics.Point;
+import android.hardware.Camera;
+import android.hardware.camera2.CameraAccessException;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v13.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.CardView;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.animation.BounceInterpolator;
-import android.view.animation.Interpolator;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,7 +36,6 @@ import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps2d.AMap;
 import com.amap.api.maps2d.CameraUpdateFactory;
 import com.amap.api.maps2d.LocationSource;
-import com.amap.api.maps2d.Projection;
 import com.amap.api.maps2d.UiSettings;
 import com.amap.api.maps2d.model.BitmapDescriptor;
 import com.amap.api.maps2d.model.BitmapDescriptorFactory;
@@ -68,13 +70,10 @@ import com.cn.climax.wisdomparking.data.response.NearbyParkingMineBean;
 import com.cn.climax.wisdomparking.data.response.PublishShareOrder;
 import com.cn.climax.wisdomparking.http.WrapJsonBeanCallback;
 import com.cn.climax.wisdomparking.ui.account.LoginActivity;
-import com.cn.climax.wisdomparking.ui.main.NewOfoKeyBoardActivity;
 import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceImmMatchingActivity;
-import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceMatchActivity;
 import com.cn.climax.wisdomparking.ui.main.community.AuthCommunityListActivity;
 import com.cn.climax.wisdomparking.ui.main.community.CommunityIdentifyActivity;
 import com.cn.climax.wisdomparking.ui.main.community.NearbySearchActivity;
-import com.cn.climax.wisdomparking.ui.main.device.AddLicensePlateActivity;
 import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceMineActivity;
 import com.cn.climax.wisdomparking.ui.main.device.LicenseManagerListActivity;
 import com.cn.climax.wisdomparking.ui.main.device.ReleaseLockActivity;
@@ -87,11 +86,13 @@ import com.cn.climax.wisdomparking.ui.setting.CustomerServiceMineActivity;
 import com.cn.climax.wisdomparking.ui.setting.MoreOptionsActivity;
 import com.cn.climax.wisdomparking.ui.setting.NotifyMineActivity;
 import com.cn.climax.wisdomparking.ui.setting.WalletMineActivity;
+import com.cn.climax.wisdomparking.util.FlashUtils;
 import com.cn.climax.wisdomparking.util.GlobalVerificateUtils;
 import com.cn.climax.wisdomparking.util.HelperFromPermission;
 import com.cn.climax.wisdomparking.widget.CircleView;
 import com.cn.climax.wisdomparking.widget.My2dMapView;
 import com.cn.climax.wisdomparking.widget.bottomdialog.BottomDialog;
+import com.cn.climax.wisdomparking.widget.numberkeyboard.OfoKeyboard;
 import com.cn.climax.wisdomparking.widget.ofo.OfoConvcaveMenuActivity;
 import com.lzy.okgo.callback.StringCallback;
 import com.yanzhenjie.permission.Action;
@@ -101,6 +102,7 @@ import com.yanzhenjie.permission.Permission;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -110,7 +112,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import cn.park.com.zxing.android.CaptureActivity;
+import cn.park.com.zxing.android.CaptureActivityHandler;
 import cn.park.com.zxing.bean.ZxingConfig;
+import cn.park.com.zxing.camera.CameraManager;
 import cn.park.com.zxing.common.Constant;
 import okhttp3.Call;
 import okhttp3.Response;
@@ -171,6 +175,21 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
     @BindView(R.id.tvAccount)
     TextView tvAccount;
 
+    @BindView(R.id.et_numberplate)
+    EditText etNumberplate;
+    @BindView(R.id.bt_sure)
+    Button mBtnSure;
+    @BindView(R.id.llOpenLight)
+    LinearLayout llOpenLight; //手电筒
+    @BindView(R.id.aivScanLight)
+    AppCompatImageView aivScanLight; //手电筒
+    @BindView(R.id.llOpenVoice)
+    LinearLayout llOpenVoice; //声音
+    @BindView(R.id.aivScanVoice)
+    AppCompatImageView aivScanVoice; //声音
+    @BindView(R.id.llOpenScanCode)
+    LinearLayout llOpenScanCode; //扫码解锁
+
     private long exitTime = 0;
     private AMapLocationClient mNavLocationClient;
     private AMap aNavMap;
@@ -202,6 +221,13 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
     private List<Marker> mMarkerList = new ArrayList<>();
     private List<NearbyParkingMineBean> mNearbyParkingMineBeen = new ArrayList<>();
     private AMapLocation mAmapLocation;
+    private OfoKeyboard mKeyboardView;
+
+
+    private CameraManager cameraManager;// 声明CameraManager对象
+    private Camera m_Camera = null;// 声明Camera对象
+    private ZxingConfig config = new ZxingConfig();
+    private boolean isClickVoice = true; //扫描是否开启声音 默认开启
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -257,6 +283,59 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
     private void initView() {
         initMapView();
         initInfo();
+        initInputKeyboard();
+    }
+
+    private void initInputKeyboard() {
+        mKeyboardView = new OfoKeyboard(PeterMainActivity.this);
+        etNumberplate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mKeyboardView.attachTo(etNumberplate, false);
+            }
+        });
+        etNumberplate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() > 0) {
+                    mBtnSure.setTextColor(ContextCompat.getColor(PeterMainActivity.this, R.color.white));
+                    mBtnSure.setBackgroundResource(R.drawable.activity_button_blue_border);
+                } else {
+                    mBtnSure.setTextColor(ContextCompat.getColor(PeterMainActivity.this, R.color.text_common_color));
+                    mBtnSure.setBackgroundResource(R.drawable.activity_button_disable_grey_border);
+                }
+            }
+        });
+
+        llOpenLight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FlashUtils.getInstance().switchFlash(aivScanLight);
+            }
+        });
+        llOpenVoice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isClickVoice) {
+                    isClickVoice = false;
+                    config.setPlayBeep(false);
+                    aivScanVoice.setImageResource(R.drawable.icon_scan_voice_close);
+                } else {
+                    isClickVoice = true;
+                    config.setPlayBeep(true);
+                    aivScanVoice.setImageResource(R.drawable.icon_scan_voice);
+                }
+            }
+        });
+        llOpenScanCode.setOnClickListener(new CommClick());
     }
 
     private void loginEvent() {
@@ -579,6 +658,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
             poiResult = null;
             aNavMap.clear();
         }
+        FlashUtils.getInstance().finishFlashUtils();
     }
 
     @Override
@@ -722,6 +802,12 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
         @Override
         protected void forbidClick(View view) {
             switch (view.getId()) {
+                case R.id.llOpenScanCode: //去扫码
+                    if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
+                        return;
+                    judgePermission(true);
+                    break;
+
                 case R.id.llSkip2Publish: //发布共享单
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
                         return;
@@ -746,7 +832,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 case R.id.llOrderScan: //扫描开锁
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
                         return;
-                    judgePermission();
+                    judgePermission(false);
                     break;
 
                 case R.id.cvCenterAvatar:
@@ -810,7 +896,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
         }
     }
 
-    private void judgePermission() {
+    private void judgePermission(final boolean isCloseView) {
         // releaseLock();
         AndPermission.with(this)
                 .permission(Permission.CAMERA, Permission.READ_EXTERNAL_STORAGE)
@@ -822,12 +908,13 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                                  * 也可以不传这个参数
                                  * 不传的话  默认都为默认不震动  其他都为true
                                  * */
-                        ZxingConfig config = new ZxingConfig();
-                        config.setPlayBeep(true);
                         config.setShake(true);
                         config.setShowFlashLight(true);
                         intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
                         startActivityForResult(intent, REQUEST_CODE_SCAN);
+
+                        if (isCloseView)
+                            ofoMenuKeyBoardLayout.closeKeyboard();
                     }
                 })
                 .onDenied(new Action() {
@@ -890,10 +977,10 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                         @Override
                         public void run() {
                             openKeyboard();
+                            mKeyboardView.attachTo(etNumberplate, false);
                         }
-                    }, 1000);
+                    }, 160);
                 }
-//                    startActivity(new Intent(PeterMainActivity.this, NewOfoKeyBoardActivity.class));
             }
         }
     }

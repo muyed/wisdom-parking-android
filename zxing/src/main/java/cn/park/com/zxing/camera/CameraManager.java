@@ -138,7 +138,59 @@ public final class CameraManager {
                 }
             }
         }
+    }
 
+    public synchronized void openDriver() throws IOException {
+        Camera theCamera = camera;
+        if (theCamera == null) {
+            if (requestedCameraId >= 0) {
+                theCamera = OpenCameraInterface.open(requestedCameraId);
+            } else {
+                theCamera = OpenCameraInterface.open();
+            }
+
+            if (theCamera == null) {
+                throw new IOException();
+            }
+            camera = theCamera;
+        }
+
+        if (!initialized) {
+            initialized = true;
+            configManager.initFromCameraParameters(theCamera);
+            if (requestedFramingRectWidth > 0 && requestedFramingRectHeight > 0) {
+                setManualFramingRect(requestedFramingRectWidth,
+                        requestedFramingRectHeight);
+                requestedFramingRectWidth = 0;
+                requestedFramingRectHeight = 0;
+            }
+        }
+
+        Camera.Parameters parameters = theCamera.getParameters();
+        String parametersFlattened = parameters == null ? null : parameters
+                .flatten(); // Save these, temporarily
+        try {
+            configManager.setDesiredCameraParameters(theCamera);
+        } catch (RuntimeException re) {
+            // Driver failed
+            Log.w(TAG,
+                    "Camera rejected parameters. Setting only minimal safe-mode parameters");
+            Log.i(TAG, "Resetting to saved camera params: "
+                    + parametersFlattened);
+            // Reset:
+            if (parametersFlattened != null) {
+                parameters = theCamera.getParameters();
+                parameters.unflatten(parametersFlattened);
+                try {
+                    theCamera.setParameters(parameters);
+                    configManager.setDesiredCameraParameters(theCamera);
+                } catch (RuntimeException re2) {
+                    // Well, darn. Give up
+                    Log.w(TAG,
+                            "Camera rejected even safe-mode parameters! No configuration");
+                }
+            }
+        }
     }
 
     public synchronized boolean isOpen() {
@@ -163,22 +215,14 @@ public final class CameraManager {
 
     /*切换闪光灯*/
     public void switchFlashLight(CaptureActivityHandler handler) {
-        //  Log.i("打开闪光灯", "openFlashLight");
-
         Camera.Parameters parameters = camera.getParameters();
-
         Message msg = new Message();
-
         String flashMode = parameters.getFlashMode();
 
         if (flashMode.equals(Camera.Parameters.FLASH_MODE_TORCH)) {
             /*关闭闪光灯*/
             parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
-
             msg.what = Constant.FLASH_CLOSE;
-
-
-
         } else {
             /*打开闪光灯*/
             parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
@@ -352,8 +396,9 @@ public final class CameraManager {
 //        return new PlanarYUVLuminanceSource(data, width, height, rect.left,
 //                rect.top, rect.width(), rect.height(), false);
         return new PlanarYUVLuminanceSource(data, width, height, 0,
-               0, width, height, false);
+                0, width, height, false);
     }
+
     public static CameraManager get() {
         return cameraManager;
     }

@@ -60,11 +60,14 @@ public class OfoMenuLayout extends RelativeLayout {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        if (getChildAt(0).getId() == R.id.menu_content)
+        if (getChildAt(0).getId() == R.id.menu_content) {
             contentView = getChildAt(0);
-        if (getChildAt(0).getId() == R.id.menu_content_keyboard)
-            contentKeyboardView = getChildAt(0);
-        titleView = getChildAt(1);
+            titleView = getChildAt(1);
+        }
+        if (getChildAt(0).getId() == R.id.avatarParent) {
+            titleView = getChildAt(0);
+            contentKeyboardView = getChildAt(1);
+        }
     }
 
     //定义动画部分
@@ -73,7 +76,11 @@ public class OfoMenuLayout extends RelativeLayout {
         titleAnimator = ObjectAnimator.ofPropertyValuesHolder(titleView, titlePropertyValuesHolder);
         titleAnimator.setDuration(300);
 
-        contentAnimator = ObjectAnimator.ofFloat(contentView, "translationY", contentStartY, contentEndY);
+        if (contentView != null)
+            contentAnimator = ObjectAnimator.ofFloat(contentView, "translationY", contentStartY, contentEndY);
+        else
+            contentAnimator = ObjectAnimator.ofFloat(contentKeyboardView, "translationY", contentStartY, contentEndY);
+
         contentAnimator.setDuration(500);
 
         titleAnimator.addListener(new AnimatorListenerAdapter() {
@@ -118,7 +125,7 @@ public class OfoMenuLayout extends RelativeLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return titleAnimationing || contentAnimationing || ofoContentLayout.isAnimationing() || (ofoContentKeyboardLayout != null && ofoContentKeyboardLayout.isAnimationing());
+        return titleAnimationing || contentAnimationing || (ofoContentLayout != null && ofoContentLayout.isAnimationing()) || (ofoContentKeyboardLayout != null && ofoContentKeyboardLayout.isAnimationing());
     }
 
     //菜单打开的动画
