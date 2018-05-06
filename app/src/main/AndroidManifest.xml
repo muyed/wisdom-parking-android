@@ -175,6 +175,11 @@
         <activity android:name=".ui.main.device.LicenseManagerListActivity" />
         <activity android:name=".ui.main.carport.ParkingSpaceImmMatchingActivity" />
         <activity android:name=".ui.setting.RelativeUsActivity" />
+        <activity android:name=".ui.setting.DepositMineActivity" />
+        <activity android:name=".ui.setting.BankCardListActivity" />
+        <activity android:name=".ui.setting.BankCardAddActivity" />
+        <activity android:name=".ui.setting.WithDrawalBalanceActivity" />
+        <activity android:name=".ui.setting.WithDrawalActivity"></activity>
     </application>
 
 </manifest>

@@ -148,7 +148,7 @@
     <TextView
         android:id="@+id/tvConfirm2Submit"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="44dp"
         android:layout_below="@+id/allRetrieveArea"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"

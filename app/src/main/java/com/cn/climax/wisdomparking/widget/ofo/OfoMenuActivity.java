@@ -14,13 +14,17 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseActivity;
+import com.cn.climax.wisdomparking.widget.numberkeyboard.OfoKeyboardView;
 import com.cn.climax.wisdomparking.widget.ofo.drawable.MenuBrawable;
 import com.cn.climax.wisdomparking.widget.ofo.view.OfoContentLayout;
 import com.cn.climax.wisdomparking.widget.ofo.view.OfoMenuLayout;
+
+import butterknife.BindView;
 
 public class OfoMenuActivity extends BaseActivity {
 
@@ -33,15 +37,17 @@ public class OfoMenuActivity extends BaseActivity {
     protected FrameLayout menu;
     protected FrameLayout menuKeyboard;
     protected ImageView ivSkip2Pcenter;
-    protected int count;
+    protected LinearLayout llSkip2Publish;
+    protected ImageView ivSkip2MessageList;
 
+    protected int count;
     protected boolean isOpenPCenter = false; //是否点击打开个人设置界面 默认未打开
     protected boolean isOpenInputCenter = false; //是否点击打开输入界面 默认未打开
 
     protected int getType() {
         return MenuBrawable.NONE;
     }
-    
+
     protected int getKeyboardType() {
         return MenuBrawable.CONVEX;
     }
@@ -53,7 +59,6 @@ public class OfoMenuActivity extends BaseActivity {
 
     @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
-
     }
 
     @SuppressLint("InlinedApi")
@@ -70,7 +75,11 @@ public class OfoMenuActivity extends BaseActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
         }
+        llSkip2Publish = ((LinearLayout) findViewById(R.id.llSkip2Publish));
+        ivSkip2MessageList = ((ImageView) findViewById(R.id.ivSkip2MessageList));
+        
         ivSkip2Pcenter = ((ImageView) findViewById(R.id.ivSkip2Pcenter));
+
         ofoMenuLayout = ((OfoMenuLayout) findViewById(R.id.ofo_menu));
         ofoContentLayout = ((OfoContentLayout) findViewById(R.id.ofo_content));
         menu = (FrameLayout) findViewById(R.id.menu_content);
@@ -78,6 +87,8 @@ public class OfoMenuActivity extends BaseActivity {
         ofoMenuKeyBoardLayout = ((OfoMenuLayout) findViewById(R.id.ofo_menu_keyboard));
         ofoContentKeyboardLayout = ((OfoContentLayout) findViewById(R.id.ofo_content_keyboard));
         menuKeyboard = (FrameLayout) findViewById(R.id.menu_content_keyboard);
+
+        llSkip2Publish.setVisibility(View.VISIBLE);
         
         final MenuBrawable menuBrawable = new MenuBrawable(BitmapFactory.decodeResource(getResources(), R.mipmap.default_avatar_img), OfoMenuActivity.this, menu, getType(), R.color.color_f5f5f5);
         final MenuBrawable menuKeyboardBrawable = new MenuBrawable(BitmapFactory.decodeResource(getResources(), R.drawable.transparent), OfoMenuActivity.this, menuKeyboard, getKeyboardType(), R.color.white);
@@ -101,15 +112,21 @@ public class OfoMenuActivity extends BaseActivity {
             public void onClick(View v) {
                 isOpenPCenter = false;
                 ofoMenuLayout.close();
+
+                llSkip2Publish.setClickable(true);
+                ivSkip2MessageList.setClickable(true);
             }
         });
-        
+
         //关闭menu
         findViewById(R.id.close_keyboard).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isOpenInputCenter = false;
                 ofoMenuKeyBoardLayout.closeKeyboard();
+
+                llSkip2Publish.setClickable(true);
+                ivSkip2MessageList.setClickable(true);
             }
         });
 
@@ -120,6 +137,9 @@ public class OfoMenuActivity extends BaseActivity {
                 //启动menu
                 ofoMenuLayout.setVisibility(View.VISIBLE);
                 ofoMenuLayout.open();
+
+                llSkip2Publish.setClickable(false);
+                ivSkip2MessageList.setClickable(false);
             }
         });
         //menu的监听
@@ -131,7 +151,6 @@ public class OfoMenuActivity extends BaseActivity {
 
             @Override
             public void onClose() {
-//                startConcaveBtn.setVisibility(View.VISIBLE);
             }
         });
         //给menu设置content部分
@@ -156,9 +175,13 @@ public class OfoMenuActivity extends BaseActivity {
     public void onBackPressed() {
         if (ofoMenuLayout.isOpen()) {
             ofoMenuLayout.close();
+            llSkip2Publish.setClickable(true);
+            ivSkip2MessageList.setClickable(true);
             return;
         }
         if (ofoMenuKeyBoardLayout.isOpen()) {
+            llSkip2Publish.setClickable(true);
+            ivSkip2MessageList.setClickable(true);
             ofoMenuKeyBoardLayout.closeKeyboard();
             return;
         }
@@ -169,6 +192,9 @@ public class OfoMenuActivity extends BaseActivity {
         //启动menu
         ofoMenuKeyBoardLayout.setVisibility(View.VISIBLE);
         ofoMenuKeyBoardLayout.openKeyboard();
+
+        llSkip2Publish.setClickable(false);
+        ivSkip2MessageList.setClickable(false);
     }
 }
 

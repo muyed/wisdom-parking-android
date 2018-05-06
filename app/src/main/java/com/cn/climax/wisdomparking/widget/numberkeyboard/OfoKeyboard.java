@@ -7,6 +7,7 @@ import android.inputmethodservice.KeyboardView;
 import android.os.Build;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -21,7 +22,7 @@ import java.util.List;
 import java.util.Random;
 
 public class OfoKeyboard {
-    
+
     private Activity activity;
     private Keyboard keyboard;
     private OfoKeyboardView keyboardView;
@@ -34,7 +35,7 @@ public class OfoKeyboard {
     }
 
     //点击事件触发
-    public void attachTo(EditText editText, boolean isRandom) {
+    public void attachTo(EditText editText, boolean isRandom, String inputContent) {
 
         /*
         切换键盘需要重新new Keyboard对象，否则键盘不会改变,keyboardView放到构造函数里面，避免每次点击重新new 对象，提高性能
@@ -44,11 +45,11 @@ public class OfoKeyboard {
         Log.i(">>>>>", "attachTo");
         this.editText = editText;
         hideSystemSofeKeyboard(activity, editText);
-        showSoftKeyboard();
+        showSoftKeyboard(inputContent);
     }
 
 
-    private void showSoftKeyboard() {
+    private void showSoftKeyboard(String inputContent) {
         if (keyboard == null) {
             keyboard = new Keyboard(activity, R.xml.keyboard);
         }
@@ -63,10 +64,86 @@ public class OfoKeyboard {
         keyboardView.setEnabled(true);
         keyboardView.setPreviewEnabled(false);
         keyboardView.setVisibility(View.VISIBLE);
-        keyboardView.setOnKeyboardActionListener(listener);
+        keyboardView.setOnKeyboardActionListener(new KeyboardListener(inputContent));
+    }
+
+    private class KeyboardListener implements KeyboardView.OnKeyboardActionListener {
+
+        private String inputContent;
+
+        public KeyboardListener(String inputContent) {
+            this.inputContent = inputContent;
+        }
+
+        @Override
+        public void onPress(int primaryCode) {
+
+        }
+
+        @Override
+        public void onRelease(int primaryCode) {
+
+        }
+
+        @Override
+        public void onKey(int primaryCode, int[] keyCodes) {
+            Editable editable = editText.getText();
+            int start = editText.getSelectionStart();
+            if (primaryCode == Keyboard.KEYCODE_DELETE)//key  codes 为-5
+            {
+                if (editable != null && editable.length() > 0) {
+                    if (start > 0) {
+                        editable.delete(start - 1, start);
+                    }
+                }
+            } else if (primaryCode == Keyboard.KEYCODE_CANCEL) {
+                hideKeyBoard();
+                if (mCancelClick != null) {
+                    mCancelClick.onCancelClick();
+                }
+            } else if (primaryCode == Keyboard.KEYCODE_DONE) {
+                if (!TextUtils.isEmpty(inputContent)) {
+                    hideKeyBoard();
+                }
+                if (mOkClick != null) {
+                    mOkClick.onOkClick();
+                }
+            } else {
+                Log.i(">>>>>>", primaryCode + "1");
+                Log.i(">>>>>>", (char) primaryCode + "2");
+                editable.insert(start, Character.toString((char) primaryCode));
+            }
+        }
+
+        @Override
+        public void onText(CharSequence text) {
+
+        }
+
+        @Override
+        public void swipeLeft() {
+
+        }
+
+        @Override
+        public void swipeRight() {
+
+        }
+
+        @Override
+        public void swipeDown() {
+
+        }
+
+        @Override
+        public void swipeUp() {
+
+        }
     }
 
     private KeyboardView.OnKeyboardActionListener listener = new KeyboardView.OnKeyboardActionListener() {
+
+
         @Override
         public void onPress(int primaryCode) {
 
@@ -229,4 +306,5 @@ public class OfoKeyboard {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
     }
+
 }

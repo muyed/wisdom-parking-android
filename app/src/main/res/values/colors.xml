@@ -49,6 +49,7 @@
 
     <!-- button -->
     <color name="buttonRetryBackground">#30000000</color>
+    <color name="buttonWhiteBackground">#F0FFFFFF</color>
     <color name="button_retry_background_stroke">#50000000</color>
 
     <!-- tip net state -->

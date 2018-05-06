@@ -81,8 +81,10 @@ import com.cn.climax.wisdomparking.ui.main.nav.Navigation2DActivity;
 import com.cn.climax.wisdomparking.ui.main.order.OrderMineActivity;
 import com.cn.climax.wisdomparking.ui.main.share.PublishShareParkingActivity;
 import com.cn.climax.wisdomparking.ui.setting.AuthenticateCertActivity;
+import com.cn.climax.wisdomparking.ui.setting.BankCardListActivity;
 import com.cn.climax.wisdomparking.ui.setting.CommonProblemsActivity;
 import com.cn.climax.wisdomparking.ui.setting.CustomerServiceMineActivity;
+import com.cn.climax.wisdomparking.ui.setting.DepositMineActivity;
 import com.cn.climax.wisdomparking.ui.setting.MoreOptionsActivity;
 import com.cn.climax.wisdomparking.ui.setting.NotifyMineActivity;
 import com.cn.climax.wisdomparking.ui.setting.WalletMineActivity;
@@ -104,6 +106,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -123,8 +126,6 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
 
     private int REQUEST_CODE_SCAN = 111;
 
-    @BindView(R.id.llSkip2Publish)
-    LinearLayout llSkip2Publish;
     @BindView(R.id.atvToolBarMainTitle)
     TextView atvToolBarMainTitle;
     @BindView(R.id.mmvNavPark)
@@ -139,15 +140,16 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
     @BindView(R.id.ivSkip2MyLocation)
     CardView ivSkip2MyLocation;
 
-    @BindView(R.id.ivSkip2MessageList)
-    ImageView ivSkip2MessageList;
-
     @BindView(R.id.cvCenterAvatar)
     CircleView cvCenterAvatar;
     @BindView(R.id.tvSkipLoginReg)
     TextView tvSkipLoginReg; //登录/注册
     @BindView(R.id.llSkip2MoneyBag)
     LinearLayout llSkip2MoneyBag; //我的钱包
+    @BindView(R.id.llSkip2Deposit)
+    LinearLayout llSkip2Deposit; //押金
+    @BindView(R.id.tvAccountBalance)
+    TextView tvAccountBalance; //账户余额
     @BindView(R.id.llSkip2MineParkingSpace)
     LinearLayout llSkip2MineParkingSpace; //我的车位
     @BindView(R.id.llSkip2MineCar)
@@ -164,6 +166,8 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
     LinearLayout llSkip2MoreOption; //更多
     @BindView(R.id.llSkip2IdentityInfo)
     LinearLayout llSkip2IdentityInfo; //身份信息认证
+    @BindView(R.id.llSkip2MyBankCard)
+    LinearLayout llSkip2MyBankCard; //我的银行卡
     @BindView(R.id.llSkip2IdentityCommunity)
     LinearLayout llSkip2IdentityCommunity; //小区认证
 
@@ -223,9 +227,6 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
     private AMapLocation mAmapLocation;
     private OfoKeyboard mKeyboardView;
 
-
-    private CameraManager cameraManager;// 声明CameraManager对象
-    private Camera m_Camera = null;// 声明Camera对象
     private ZxingConfig config = new ZxingConfig();
     private boolean isClickVoice = true; //扫描是否开启声音 默认开启
 
@@ -237,7 +238,6 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
     @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
         atvToolBarMainTitle.setText("彼得潘实业");
-        llSkip2Publish.setVisibility(View.VISIBLE);
         mUserInfoBean = (LoginResponse) getIntent().getSerializableExtra("user_info_bean");
         isGoToLogin = SharedUtil.getInstance(this).get("is_login_success", false);
         if (!isGoToLogin) {
@@ -291,7 +291,9 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
         etNumberplate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mKeyboardView.attachTo(etNumberplate, false);
+                mKeyboardView.attachTo(etNumberplate, false, "");
+                llSkip2Publish.setClickable(false);
+                ivSkip2MessageList.setClickable(false);
             }
         });
         etNumberplate.addTextChangedListener(new TextWatcher() {
@@ -308,9 +310,11 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 if (s.length() > 0) {
                     mBtnSure.setTextColor(ContextCompat.getColor(PeterMainActivity.this, R.color.white));
                     mBtnSure.setBackgroundResource(R.drawable.activity_button_blue_border);
+                    mKeyboardView.attachTo(etNumberplate, false, s.toString());
                 } else {
                     mBtnSure.setTextColor(ContextCompat.getColor(PeterMainActivity.this, R.color.text_common_color));
                     mBtnSure.setBackgroundResource(R.drawable.activity_button_disable_grey_border);
+                    mKeyboardView.attachTo(etNumberplate, false, "");
                 }
             }
         });
@@ -336,6 +340,19 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
             }
         });
         llOpenScanCode.setOnClickListener(new CommClick());
+        mKeyboardView.setOnOkClick(new OfoKeyboard.OnOkClick() {
+            @Override
+            public void onOkClick() {
+                if (TextUtils.isEmpty(etNumberplate.getText().toString())) {
+                    ToastUtils.show("请输入车牌号");
+                    return;
+                }
+                ToastUtils.show("即将进行解锁功能");
+                isOpenInputCenter = false;
+                ofoMenuKeyBoardLayout.closeKeyboard();
+//                releaseLock();
+            }
+        });
     }
 
     private void loginEvent() {
@@ -401,6 +418,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 });
     }
 
+    @SuppressLint("SetTextI18n")
     private void initInfo() {
         if (GlobalVerificateUtils.getInstance(this).isAuth()) {
             tvUserIdentityStatus.setText("已认证");
@@ -416,6 +434,11 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
             tvCommunityIdentityStatus.setText("请认证");
             tvCommunityIdentityStatus.setTextColor(ContextCompat.getColor(this, R.color.color_fd604f));
         }
+        DecimalFormat df = new DecimalFormat("0.00");
+        if (mUserInfoBean.getAccount() != null && mUserInfoBean.getAccount().getBalance() != 0)
+            tvAccountBalance.setText("￥ " + df.format((float) mUserInfoBean.getAccount().getBalance() / 1));
+        else
+            tvAccountBalance.setText("￥ 0.00");
 
         ivSkip2MessageList.setOnClickListener(new CommClick());
         ivSkip2CustomerService.setOnClickListener(new CommClick());
@@ -428,12 +451,14 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
         tvSkipLoginReg.setOnClickListener(new CommClick()); //登录/注册
         tvAccount.setOnClickListener(new CommClick()); //退出登录
         llSkip2MoneyBag.setOnClickListener(new CommClick()); //我的钱包
+        llSkip2Deposit.setOnClickListener(new CommClick()); //押金
         llSkip2MineCar.setOnClickListener(new CommClick()); //我的车辆
         llSkip2MineParkingSpace.setOnClickListener(new CommClick()); //我的车位
         llSkip2MineOrder.setOnClickListener(new CommClick()); //我的订单
         llSkip2MineDevice.setOnClickListener(new CommClick()); //我的设备
         llSkip2MineService.setOnClickListener(new CommClick()); //我的客服
         llSkip2IdentityInfo.setOnClickListener(new CommClick()); //身份信息
+        llSkip2MyBankCard.setOnClickListener(new CommClick()); //我的银行卡
         llSkip2IdentityCommunity.setOnClickListener(new CommClick()); //小区认证
         llSkip2CommonProblems.setOnClickListener(new CommClick()); //常见问题
         llSkip2MoreOption.setOnClickListener(new CommClick()); //更多
@@ -817,16 +842,12 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                     startActivity(new Intent(PeterMainActivity.this, NearbySearchActivity.class));
                     break;
                 case R.id.ivSkip2CustomerService: //我的客服
-//                    if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
-//                        return;
                     startActivity(new Intent(PeterMainActivity.this, CustomerServiceMineActivity.class));
                     break;
                 case R.id.ivSkip2MyLocation:
                     location();
                     break;
                 case R.id.ivSkip2Notify: //我的通知
-//                    if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
-//                        return;
                     startActivity(new Intent(PeterMainActivity.this, NotifyMineActivity.class));
                     break;
                 case R.id.llOrderScan: //扫描开锁
@@ -846,7 +867,12 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 case R.id.llSkip2MoneyBag: //我的钱包
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
                         return;
-                    startActivity(new Intent(PeterMainActivity.this, WalletMineActivity.class).putExtra("user_account_info", mUserInfoBean.getAccountCashConf()));
+                    startActivity(new Intent(PeterMainActivity.this, WalletMineActivity.class).putExtra("user_account_info", mUserInfoBean.getAccount()));
+                    break;
+                case R.id.llSkip2Deposit: //押金
+                    if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
+                        return;
+                    startActivity(new Intent(PeterMainActivity.this, DepositMineActivity.class));
                     break;
                 case R.id.llSkip2MineDevice: //我的设备
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
@@ -865,8 +891,6 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                     startActivity(new Intent(PeterMainActivity.this, OrderMineActivity.class));
                     break;
                 case R.id.llSkip2MineService: //我的客服
-//                    if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
-//                        return;
                     startActivity(new Intent(PeterMainActivity.this, CustomerServiceMineActivity.class));
                     break;
                 case R.id.llSkip2CommonProblems: //常见问题
@@ -887,6 +911,11 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                         return;
                     startActivity(new Intent(PeterMainActivity.this, AuthCommunityListActivity.class));
                     break;
+                case R.id.llSkip2MyBankCard: //我的银行卡
+                    if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
+                        return;
+                    startActivity(new Intent(PeterMainActivity.this, BankCardListActivity.class));
+                    break;
                 case R.id.llSkip2MineParkingSpace: //我的车位
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
                         return;
@@ -897,7 +926,6 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
     }
 
     private void judgePermission(final boolean isCloseView) {
-        // releaseLock();
         AndPermission.with(this)
                 .permission(Permission.CAMERA, Permission.READ_EXTERNAL_STORAGE)
                 .onGranted(new Action() {
@@ -977,7 +1005,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                         @Override
                         public void run() {
                             openKeyboard();
-                            mKeyboardView.attachTo(etNumberplate, false);
+                            mKeyboardView.attachTo(etNumberplate, false, "");
                         }
                     }, 160);
                 }

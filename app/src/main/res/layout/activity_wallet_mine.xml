@@ -11,8 +11,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar">
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:paddingBottom="54dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,14 +32,19 @@
                 android:paddingRight="16dp">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:id="@+id/tvAccountBalance"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="60.00"
+                    android:text="0.00"
                     android:textColor="@color/white"
                     android:textSize="32sp"
                     android:textStyle="bold" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tvAccount"
@@ -66,7 +72,7 @@
                 <EditText
                     android:id="@+id/etInputMoney"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="44dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
@@ -93,21 +99,29 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvPayDeposit"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginBottom="36dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/activity_button_blue_border"
-                android:gravity="center"
-                android:text="立即充值"
-                android:textColor="@color/white" />
-
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/activity_button_transparent"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvPayDeposit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/activity_button_blue_cornors"
+            android:gravity="center"
+            android:text="立即充值"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
 
 </RelativeLayout>

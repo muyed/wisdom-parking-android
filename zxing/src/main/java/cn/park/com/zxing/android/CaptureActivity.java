@@ -258,7 +258,7 @@ public class CaptureActivity extends AppCompatActivity implements SurfaceHolder.
 
     private void displayFrameworkBugMessageAndExit() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("扫一扫");
+        builder.setTitle("对准车锁二维码");
         builder.setMessage(getString(R.string.msg_camera_framework_bug));
         builder.setPositiveButton(R.string.button_ok, new FinishListener(this));
         builder.setOnCancelListener(new FinishListener(this));

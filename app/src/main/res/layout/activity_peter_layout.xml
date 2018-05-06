@@ -29,6 +29,7 @@
 
                 <!-- 押金 -->
                 <LinearLayout
+                    android:id="@+id/llSkip2Deposit"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -310,6 +311,33 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/llSkip2MyBankCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/common_dimen_1px"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="我的银行卡"
+                        android:textColor="@color/text_normal_color"
+                        android:textSize="13sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/icon_arrow_right_nav" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -487,6 +515,16 @@
                     android:gravity="center_vertical"
                     android:text="钱包"
                     android:textColor="@color/text_normal_color"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvAccountBalance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="center_vertical"
+                    android:text="￥ 0.00"
+                    android:textColor="@color/color_fd604f"
                     android:textSize="13sp" />
 
                 <ImageView

@@ -1,5 +1,7 @@
 package com.cn.climax.wisdomparking.ui.setting;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -27,7 +29,7 @@ import com.cn.climax.wisdomparking.base.PayConstant;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.base.help.RecyclerViewLayoutManager;
 import com.cn.climax.wisdomparking.data.local.BaseLocalBean;
-import com.cn.climax.wisdomparking.ui.main.device.ParkingSpacePayActivity;
+import com.cn.climax.wisdomparking.data.response.LoginResponse;
 import com.cn.climax.wisdomparking.ui.main.device.adapter.RVDevicePayAdapter;
 import com.cn.climax.wisdomparking.ui.pay.bean.PayResult;
 import com.cn.climax.wisdomparking.ui.setting.adapter.TagAdapter;
@@ -38,6 +40,7 @@ import com.lzy.okgo.callback.StringCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -54,15 +57,29 @@ public class WalletMineActivity extends BaseSwipeBackActivity {
     TextView tvPayDeposit;
     @BindView(R.id.rvPayMoneyTypeList)
     RecyclerView rvPayMoneyTypeList;
+    @BindView(R.id.tvAccountBalance)
+    TextView tvAccountBalance; //账户余额
 
     String mDataJson;
     private TagAdapter<String> mMoneyTagAdapter;
     private RVDevicePayAdapter mAdapter;
     private BaseLocalBean checkBean = new BaseLocalBean();
+    private LoginResponse.AccountBean mAccountBean = new LoginResponse.AccountBean();
+
 
     @Override
-    protected void setToolBar(boolean isShowNavBack, String headerTitle) {
-        super.setToolBar(isShowNavBack, "我的钱包");
+    protected void setToolBar(boolean isShowNavBack, String headerTitle, String rightTitle) {
+        super.setToolBar(isShowNavBack, "我的钱包", "提现");
+    }
+
+    @Override
+    protected String isShowHeaderTitle() {
+        return "我的钱包";
+    }
+
+    @Override
+    protected String isSHowRightTitle() {
+        return "提现";
     }
 
     @Override
@@ -73,11 +90,25 @@ public class WalletMineActivity extends BaseSwipeBackActivity {
     @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
         tvPayDeposit.setOnClickListener(new CommonClick());
-
+        mAccountBean = (LoginResponse.AccountBean) getIntent().getSerializableExtra("user_account_info");
+        
+        setOnClickRightListener(new OnClickRightBarListener() {
+            @Override
+            public void click() {
+                startActivity(new Intent(WalletMineActivity.this, WithDrawalBalanceActivity.class));
+            }
+        });
         initView();
     }
 
+    @SuppressLint("SetTextI18n")
     private void initView() {
+        DecimalFormat df = new DecimalFormat("0.00");
+        if (mAccountBean != null && mAccountBean.getBalance() != 0)
+            tvAccountBalance.setText("" + df.format((float) mAccountBean.getBalance() / 1));
+        else
+            tvAccountBalance.setText("0.00");
+
         mMoneyTagAdapter = new TagAdapter<>(this);
         mMoneyFlowTagLayout.setTagCheckedMode(FlowTagLayout.FLOW_TAG_CHECKED_SINGLE);
         mMoneyFlowTagLayout.setAdapter(mMoneyTagAdapter);
@@ -88,13 +119,10 @@ public class WalletMineActivity extends BaseSwipeBackActivity {
                     StringBuilder sb = new StringBuilder();
                     for (int i : selectedList) {
                         sb.append(parent.getAdapter().getItem(i));
-                        sb.append(":");
                     }
-                    Snackbar.make(parent, "充值中心:" + sb.toString(), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    Snackbar.make(parent, "充值中心:" + sb.toString(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 } else {
-                    Snackbar.make(parent, "没有选择标签", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    Snackbar.make(parent, "没有选择标签", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }
             }
         });
