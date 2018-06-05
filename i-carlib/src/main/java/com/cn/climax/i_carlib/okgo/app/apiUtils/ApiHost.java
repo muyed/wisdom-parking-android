@@ -1,17 +1,12 @@
 package com.cn.climax.i_carlib.okgo.app.apiUtils;
 
 
-import com.cn.climax.i_carlib.util.ContextHolderUtil;
-import com.cn.climax.i_carlib.util.SharedUtil;
-
 /**
  * api url 接口名
  */
 public class ApiHost extends ApiHostBase {
 
     private static ApiHost instance;
-    private String customerList;
-    private String deliverAddrList;
 
     private ApiHost() {
 
@@ -143,6 +138,11 @@ public class ApiHost extends ApiHostBase {
     //打开车锁
     public String unLock() {
         return "/api/carport/unLock";  
+    }
+    
+    //获取公告列表
+    public String noticeList() {
+        return "/api/notice/list";
     }
 
 }

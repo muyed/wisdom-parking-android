@@ -14,7 +14,7 @@
         android:background="@drawable/home_input_lock_bg"
         android:cursorVisible="true"
         android:gravity="center"
-        android:hint="请输入车牌号"
+        android:hint="请输入车位锁"
         android:inputType="number"
         android:textColorHint="@color/text_common_hint"
         android:textCursorDrawable="@drawable/cursor_location_drawable"
@@ -30,7 +30,7 @@
         android:layout_marginRight="24dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/activity_button_disable_grey_border"
-        android:text="立即用车"
+        android:text="立即开锁"
         android:textColor="@color/text_common_color"
         android:textSize="13sp" />
 

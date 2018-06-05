@@ -40,6 +40,11 @@ public class WithDrawalActivity extends BaseSwipeBackActivity {
     };
 
     @Override
+    protected void setToolBar(boolean isShowNavBack, String headerTitle) {
+        super.setToolBar(isShowNavBack, "提现");
+    }
+
+    @Override
     protected int initContentView() {
         return R.layout.activity_with_drawal;
     }

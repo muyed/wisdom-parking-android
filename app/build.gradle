@@ -43,9 +43,9 @@ android {
         if (localProps['keystore.props.file']) {
             keyProps.load(new FileInputStream(file(localProps['keystore.props.file'])))
         } else {
-            keyProps["store"] = '../buildsystem/cxzh_carsmart.jks'
+            keyProps["store"] = '../buildsystem/wisdom-parking.jks'
             keyProps["storePass"] = '123456'
-            keyProps["alias"] = 'cxzh_carsmart'
+            keyProps["alias"] = 'wisdom-parking'
             keyProps["pass"] = '123456'
         }
 
@@ -101,28 +101,17 @@ android {
     }
     //配置产品风格信息
     productFlavors {
-//        _Debug {}
-//        Yingyonghui {}
-//        Jifeng {}
-//        Anzhishichang {}
-//        Baidushoujizhushou {}
-//        Huaweishichang {}
-//        Meizushichang {}
-//        Vivoshichang {}
-//        Nduoshichang {}
-//        Wandoujia {}
-//        _360zhushou {}
-//        TengxunYingyongbao {}
-//        Taobaozhushou {}
-//        Xiaomishangdian {}
-//        Sougouzhushou {}
-//        Mumayi {}
-//        Lianxiangle {}
-//        Zhongguoyidong {}
-//        Zhongguoliantong {}
-//        OppoMarket {}
-//
-//        Firim {}
+        Anzhi {}
+        Baidu {}
+        Huawei {}
+        Meizu {}
+        Vivo {}
+        Wandoujia {}
+        _360 {}
+        Tencent {}
+        PP {}
+        Xiaomi {}
+        Oppo {}
     }
     //设置测试相关属性
     testOptions {}
@@ -131,6 +120,7 @@ android {
     //设置lint属性
     lintOptions {
         abortOnError rootProject.ext.android.abortOnLintError
+        
         checkReleaseBuilds rootProject.ext.android.checkLintRelease
         quiet true
         ignoreWarnings true
