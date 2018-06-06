@@ -96,7 +96,7 @@
             android:paddingRight="15dp">
 
             <ImageView
-                android:id="@+id/ivSkip2MessageList"
+                android:id="@+id/ivSkip2SearchList"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
                 android:layout_alignParentRight="true"

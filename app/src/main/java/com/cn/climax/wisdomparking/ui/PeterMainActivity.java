@@ -92,6 +92,8 @@ import com.cn.climax.wisdomparking.util.HelperFromPermission;
 import com.cn.climax.wisdomparking.widget.CircleView;
 import com.cn.climax.wisdomparking.widget.My2dMapView;
 import com.cn.climax.wisdomparking.widget.bottomdialog.BottomDialog;
+import com.cn.climax.wisdomparking.widget.bulletinboard.adapter.SimpleBulletinAdapter;
+import com.cn.climax.wisdomparking.widget.bulletinboard.view.BulletinView;
 import com.cn.climax.wisdomparking.widget.numberkeyboard.OfoKeyboard;
 import com.cn.climax.wisdomparking.widget.ofo.OfoConvcaveMenuActivity;
 import com.lzy.okgo.callback.StringCallback;
@@ -226,6 +228,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
 
     private ZxingConfig config = new ZxingConfig();
     private boolean isClickVoice = true; //扫描是否开启声音 默认开启
+    private BulletinView mBulletinView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -274,9 +277,14 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 tvSkipLoginReg.setVisibility(View.VISIBLE);
                 tvAccount.setVisibility(View.GONE);
             }
+            
+            initBulletin();
         }
     }
 
+    private void initBulletin() {
+    }
+    
     private void initView() {
         initMapView();
         initInfo();
@@ -284,13 +292,14 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
     }
 
     private void initInputKeyboard() {
+        ivSkip2SearchList = (ImageView) findViewById(R.id.ivSkip2SearchList);
         mKeyboardView = new OfoKeyboard(PeterMainActivity.this);
         etNumberplate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mKeyboardView.attachTo(etNumberplate, false, "");
                 llSkip2Publish.setClickable(false);
-                ivSkip2MessageList.setClickable(false);
+                ivSkip2SearchList.setClickable(false);
             }
         });
         etNumberplate.addTextChangedListener(new TextWatcher() {

@@ -365,4 +365,20 @@
         <attr name="indicator_color" format="color"/>
     </declare-styleable>
 
+    <declare-styleable name="BulletinView">
+        <attr name="bulletinInterval" format="integer"/>
+        <attr name="bulletinEnterAnim" format="reference"/>
+        <attr name="bulletinLeaveAnim" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="PieChart">
+        <attr name="marqueeEnabled" format="boolean" />
+        <attr name="edgeEffectEnabled" format="boolean" />
+        <attr name="edgeEffectWidth" format="integer" />
+        <attr name="edgeEffectColor" format="color" />
+        <attr name="pauseDuration" format="integer" />
+        <attr name="forceMarquee" format="boolean" />
+        <attr name="centerText" format="boolean" />
+    </declare-styleable>
+
 </resources>

@@ -138,9 +138,51 @@
 
     </RelativeLayout>
 
+    <!-- 公告 -->
+    <LinearLayout
+        android:id="@+id/llSkip2Bulletin"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/toolbar"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="6dp">
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/app_name"
+            android:padding="5dp"
+            android:src="@drawable/icon_notice_black" />
+
+        <com.cn.climax.wisdomparking.widget.bulletinboard.MarqueeTextView
+            android:id="@+id/tvNewDynamic"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="3dp"
+            android:layout_weight="3"
+            android:gravity="center_vertical"
+            android:text="抢月卡，详情信息，戳此抢购"
+            android:textSize="12sp"
+            app:centerText="false"
+            app:edgeEffectColor="#fff"
+            app:edgeEffectEnabled="true"
+            app:edgeEffectWidth="5"
+            app:pauseDuration="1500" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_arrow_right_nav" />
+
+    </LinearLayout>
+
     <!--<include layout="@layout/activity_ofo_layout" />-->
     <include layout="@layout/activity_peter_layout" />
-    
+
     <include layout="@layout/activity_ofo_number_keyboard_layout" />
 
 </RelativeLayout>

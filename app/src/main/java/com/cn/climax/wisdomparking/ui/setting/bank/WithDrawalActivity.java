@@ -31,11 +31,14 @@ import com.cn.climax.wisdomparking.http.WrapJsonBeanCallback;
 import com.cn.climax.wisdomparking.ui.setting.utils.BankManager;
 import com.cn.climax.wisdomparking.widget.pay.Keyboard;
 import com.cn.climax.wisdomparking.widget.pay.PayEditText;
+import com.lzy.okgo.callback.StringCallback;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import okhttp3.Call;
@@ -159,24 +162,26 @@ public class WithDrawalActivity extends BaseSwipeBackActivity {
 
         ApiManage.post(ApiHost.getInstance().withdrawBalance())
                 .upJson(json.toString())
-                .execute(new WrapJsonBeanCallback<WithDrawalResponse>(WithDrawalActivity.this) {
+                .execute(new StringCallback() {
                     @Override
-                    protected void onJsonParseException(int code, String msg, Call call) {
-                        ToastUtils.show(msg);
-                    }
-
-                    @Override
-                    protected void onExecuteSuccess(WithDrawalResponse bean, Call call) {
-                        if (bean.getCode() == 200) {
-                            ToastUtils.show("提现成功");
+                    public void onSuccess(String s, Call call, Response response) {
+                        if (response.code() == 200) {
+                            try {
+                                JSONObject json = new JSONObject(s);
+                                int code = Integer.parseInt(String.valueOf(json.get("code")));
+                                String errMsg = String.valueOf(json.get("errMsg"));
+                                if (code == 200) {
+                                    ToastUtils.show("提现成功");
+                                    finish();
+                                } else {
+                                    ToastUtils.show(errMsg);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         } else {
-                            ToastUtils.show(bean.getErrMsg());
+                            ToastUtils.show(response.message());
                         }
-                    }
-
-                    @Override
-                    protected void onExecuteError(Call call, Response response, Exception e) {
-                        ToastUtils.show(response.message());
                     }
                 });
     }

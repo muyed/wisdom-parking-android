@@ -91,8 +91,8 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
                     ToastUtils.show("请填写绑定码");
                     return;
                 }
-                getAliPayOrder("CD20180418234539356044");
-//                bindCarPort();
+//                getAliPayOrder("CD20180418234539356044");
+                bindCarPort();
             }
         });
     }

@@ -84,7 +84,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@color/white"
             android:orientation="vertical"
@@ -95,14 +95,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:gravity="center_vertical"
-                android:text="提现金额 (收取0.1%手续费)"
+                android:text="提现金额"
                 android:textColor="@color/text_lighter_color"
                 android:textSize="13sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="48dp"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:gravity="center_vertical"
@@ -129,6 +128,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
+                android:visibility="gone"
                 android:gravity="center_vertical"
                 android:text="可用余额 149.04元"
                 android:textColor="@color/text_lighter_color"

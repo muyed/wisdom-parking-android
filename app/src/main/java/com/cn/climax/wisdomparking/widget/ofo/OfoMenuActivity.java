@@ -42,7 +42,8 @@ public class OfoMenuActivity extends BaseActivity {
     protected FrameLayout menuKeyboard;
     protected ImageView ivSkip2Pcenter;
     protected LinearLayout llSkip2Publish;
-    protected ImageView ivSkip2MessageList;
+    protected ImageView ivSkip2SearchList;
+    protected LinearLayout llSkip2Bulletin;
 
     protected int count;
     protected boolean isOpenPCenter = false; //是否点击打开个人设置界面 默认未打开
@@ -81,22 +82,29 @@ public class OfoMenuActivity extends BaseActivity {
         }
         llSkip2Publish = ((LinearLayout) findViewById(R.id.llSkip2Publish));
         llSkip2Publish.setVisibility(View.VISIBLE);
-        ivSkip2MessageList = ((ImageView) findViewById(R.id.ivSkip2MessageList));
-        ivSkip2MessageList.setOnClickListener(new ForbidQuickClickListener() {  //跳转搜索
+        ivSkip2SearchList = ((ImageView) findViewById(R.id.ivSkip2SearchList));
+        ivSkip2SearchList.setOnClickListener(new ForbidQuickClickListener() {  //跳转搜索
             @Override
             protected void forbidClick(View view) {
                 startActivity(new Intent(OfoMenuActivity.this, NearbySearchActivity.class));
             }
         });
-        
+
         ivSkip2Pcenter = ((ImageView) findViewById(R.id.ivSkip2Pcenter));
+        llSkip2Bulletin = ((LinearLayout) findViewById(R.id.llSkip2Bulletin));
+        llSkip2Bulletin.setOnClickListener(new ForbidQuickClickListener() {  //跳转搜索
+            @Override
+            protected void forbidClick(View view) {
+//                startActivity(new Intent(OfoMenuActivity.this, NearbySearchActivity.class));
+            }
+        });
         ofoMenuLayout = ((OfoMenuLayout) findViewById(R.id.ofo_menu));
         ofoContentLayout = ((OfoContentLayout) findViewById(R.id.ofo_content));
         menu = (FrameLayout) findViewById(R.id.menu_content);
         ofoMenuKeyBoardLayout = ((OfoMenuLayout) findViewById(R.id.ofo_menu_keyboard));
         ofoContentKeyboardLayout = ((OfoContentLayout) findViewById(R.id.ofo_content_keyboard));
         menuKeyboard = (FrameLayout) findViewById(R.id.menu_content_keyboard);
-        
+
         final MenuBrawable menuBrawable = new MenuBrawable(BitmapFactory.decodeResource(getResources(), R.mipmap.default_avatar_img), OfoMenuActivity.this, menu, getType(), R.color.color_f5f5f5);
         final MenuBrawable menuKeyboardBrawable = new MenuBrawable(BitmapFactory.decodeResource(getResources(), R.drawable.transparent), OfoMenuActivity.this, menuKeyboard, getKeyboardType(), R.color.white);
         menu.setBackground(menuBrawable);
@@ -121,7 +129,8 @@ public class OfoMenuActivity extends BaseActivity {
                 ofoMenuLayout.close();
 
                 llSkip2Publish.setClickable(true);
-                ivSkip2MessageList.setClickable(true);
+                llSkip2Bulletin.setClickable(true);
+                ivSkip2SearchList.setClickable(true);
             }
         });
 
@@ -133,7 +142,9 @@ public class OfoMenuActivity extends BaseActivity {
                 ofoMenuKeyBoardLayout.closeKeyboard();
 
                 llSkip2Publish.setClickable(true);
-                ivSkip2MessageList.setClickable(true);
+                llSkip2Bulletin.setClickable(true);
+                llSkip2Bulletin.setVisibility(View.VISIBLE);
+                ivSkip2SearchList.setClickable(true);
             }
         });
 
@@ -146,7 +157,8 @@ public class OfoMenuActivity extends BaseActivity {
                 ofoMenuLayout.open();
 
                 llSkip2Publish.setClickable(false);
-                ivSkip2MessageList.setClickable(false);
+                ivSkip2SearchList.setClickable(false);
+                llSkip2Bulletin.setClickable(false);
             }
         });
         //menu的监听
@@ -181,14 +193,16 @@ public class OfoMenuActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         if (ofoMenuLayout.isOpen()) {
+            llSkip2Publish.setClickable(false);
+            llSkip2Bulletin.setClickable(false);
+            ivSkip2SearchList.setClickable(false);
             ofoMenuLayout.close();
-            llSkip2Publish.setClickable(true);
-            ivSkip2MessageList.setClickable(true);
             return;
         }
         if (ofoMenuKeyBoardLayout.isOpen()) {
             llSkip2Publish.setClickable(true);
-            ivSkip2MessageList.setClickable(true);
+            llSkip2Bulletin.setClickable(true);
+            ivSkip2SearchList.setClickable(true);
             ofoMenuKeyBoardLayout.closeKeyboard();
             return;
         }
@@ -201,7 +215,9 @@ public class OfoMenuActivity extends BaseActivity {
         ofoMenuKeyBoardLayout.openKeyboard();
 
         llSkip2Publish.setClickable(false);
-        ivSkip2MessageList.setClickable(false);
+        llSkip2Bulletin.setVisibility(View.GONE);
+        llSkip2Bulletin.setClickable(false);
+        ivSkip2SearchList.setClickable(false);
     }
 }
 
