@@ -173,6 +173,11 @@ public class ApiHost extends ApiHostBase {
     public String myTicket() {
         return "/api/ticket/myTicket";
     }
+    
+    //支付停车单
+    public String payMyTicket() {
+        return "/api/ticket/pay/";
+    }
 
 }
 

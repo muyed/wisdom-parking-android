@@ -3,11 +3,15 @@ package com.cn.climax.wisdomparking.ui.setting.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,13 +55,30 @@ public class BankCardAdapter extends RecyclerView.Adapter<BankCardAdapter.BankVi
     }
 
     @Override
-    public void onBindViewHolder(BankCardAdapter.BankViewHolder holder, int position) {
+    public void onBindViewHolder(final BankCardAdapter.BankViewHolder holder, int position) {
         holder.ivBankLogo.setImageResource(BankManager.getImageResId(mContext, mListBean.get(position).getBankName()));
         holder.tvBankName.setText(mListBean.get(position).getBankName());
         holder.tvBankCardNo.setText(BankCardUtil.hideCardNo(mListBean.get(position).getBankAccount()));
-        holder.cvBankCard.setCardBackgroundColor(BankManager.setBgColor(mListBean.get(position).getBankName()));
+//        holder.cvBankCard.setCardBackgroundColor(BankManager.setBgColor(mListBean.get(position).getBankName()));
         holder.tvUnBindBank.setOnClickListener(new CommonClick(mListBean.get(position), position));
         holder.cvBankCard.setOnClickListener(new CommonClick(mListBean.get(position), position));
+
+        // 用来提取颜色的Bitmap
+        Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), BankManager.getImageResId(mContext, mListBean.get(position).getBankName()));
+        // Palette的部分 
+        Palette.Builder builder = Palette.from(bitmap);
+        builder.generate(new Palette.PaletteAsyncListener() {
+            @Override
+            public void onGenerated(Palette palette) {
+                //获取到充满活力的这种色调
+                Palette.Swatch vibrant = palette.getDarkVibrantSwatch();
+                //根据调色板Palette获取到图片中的颜色设置到toolbar和tab中背景，标题等，使整个UI界面颜色统一
+                if (vibrant != null)
+                    holder.cvBankCard.setBackgroundColor(vibrant.getRgb());
+            }
+        });
+
+
     }
 
     @Override

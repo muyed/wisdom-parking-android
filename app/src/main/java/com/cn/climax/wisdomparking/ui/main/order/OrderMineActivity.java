@@ -1,21 +1,40 @@
 package com.cn.climax.wisdomparking.ui.main.order;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 
+import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiManage;
+import com.cn.climax.i_carlib.util.ToastUtils;
 import com.cn.climax.i_carlib.util.phone.ScreenUtil;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.Constant;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
+import com.cn.climax.wisdomparking.data.response.BulletinResponse;
+import com.cn.climax.wisdomparking.data.response.MyOrderResponse;
+import com.cn.climax.wisdomparking.ui.PeterMainActivity;
+import com.cn.climax.wisdomparking.ui.main.AppBulletinActivity;
 import com.cn.climax.wisdomparking.ui.main.order.adapter.OrderMineAdapter;
 import com.cn.climax.wisdomparking.widget.xrecyclerview.ProgressStyle;
 import com.cn.climax.wisdomparking.widget.xrecyclerview.SpacesItemDecoration;
 import com.cn.climax.wisdomparking.widget.xrecyclerview.XRecyclerView;
+import com.lzy.okgo.callback.StringCallback;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class OrderMineActivity extends BaseSwipeBackActivity {
 
@@ -26,7 +45,7 @@ public class OrderMineActivity extends BaseSwipeBackActivity {
 
     @Override
     protected void setToolBar(boolean isShowNavBack, String headerTitle) {
-        super.setToolBar(isShowNavBack, "我的订单");
+        super.setToolBar(isShowNavBack, "我的停车单");
     }
 
     @Override
@@ -74,13 +93,27 @@ public class OrderMineActivity extends BaseSwipeBackActivity {
         xrvMineOrderListView.setAdapter(mAdapter);
     }
 
-    private void listOrders(int tag) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                xrvMineOrderListView.refreshComplete();
-            }
-        }, 1300);
+    private void listOrders(int tag) { 
+        ApiManage.get(ApiHost.getInstance().myTicket())
+                .tag(this)
+                .cacheKey("cacheKey")
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        if (response.code() == 200) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(s);
+                                final List<MyOrderResponse> bulletinResponseList = com.alibaba.fastjson.JSONObject.parseArray(String.valueOf(jsonObject.get("data")), MyOrderResponse.class);
+                                mAdapter.setDatas(bulletinResponseList);
+                                xrvMineOrderListView.refreshComplete();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            ToastUtils.show(response.message());
+                        }
+                    }
+                });
     }
 
 }

@@ -164,6 +164,7 @@ dependencies {
     compile presentationDependencies.libSupportAppcompat
     compile presentationDependencies.libSupportDesign
     compile presentationDependencies.libSupportCardView
+    compile presentationDependencies.libSupportPalette
     compile presentationDependencies.libSupportRecyclerview
     //OkHttp
     //    compile presentationDependencies.libOkHttp
