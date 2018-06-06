@@ -92,12 +92,7 @@ public class OfoMenuActivity extends BaseActivity {
 
         ivSkip2Pcenter = ((ImageView) findViewById(R.id.ivSkip2Pcenter));
         llSkip2Bulletin = ((LinearLayout) findViewById(R.id.llSkip2Bulletin));
-        llSkip2Bulletin.setOnClickListener(new ForbidQuickClickListener() {  //跳转搜索
-            @Override
-            protected void forbidClick(View view) {
-//                startActivity(new Intent(OfoMenuActivity.this, NearbySearchActivity.class));
-            }
-        });
+       
         ofoMenuLayout = ((OfoMenuLayout) findViewById(R.id.ofo_menu));
         ofoContentLayout = ((OfoContentLayout) findViewById(R.id.ofo_content));
         menu = (FrameLayout) findViewById(R.id.menu_content);

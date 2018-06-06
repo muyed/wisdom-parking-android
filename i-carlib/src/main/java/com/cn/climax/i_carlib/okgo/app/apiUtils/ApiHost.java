@@ -168,6 +168,11 @@ public class ApiHost extends ApiHostBase {
     public String noticeList() {
         return "/api/notice/list";
     }
+    
+    //我的停车单
+    public String myTicket() {
+        return "/api/ticket/myTicket";
+    }
 
 }
 

@@ -58,21 +58,26 @@ import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiManage;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
+import com.cn.climax.i_carlib.okgo.http.GsonConvert;
 import com.cn.climax.i_carlib.util.SharedUtil;
 import com.cn.climax.i_carlib.util.ToastUtils;
 import com.cn.climax.wisdomparking.R;
+import com.cn.climax.wisdomparking.data.response.BulletinResponse;
 import com.cn.climax.wisdomparking.data.response.CarLicenseMineBean;
 import com.cn.climax.wisdomparking.data.response.LoginResponse;
 import com.cn.climax.wisdomparking.data.response.NearbyParkingMineBean;
 import com.cn.climax.wisdomparking.data.response.PublishShareOrder;
 import com.cn.climax.wisdomparking.http.WrapJsonBeanCallback;
 import com.cn.climax.wisdomparking.ui.account.LoginActivity;
+import com.cn.climax.wisdomparking.ui.main.AppBulletinActivity;
 import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceImmMatchingActivity;
 import com.cn.climax.wisdomparking.ui.main.community.AddCommunityActivity;
 import com.cn.climax.wisdomparking.ui.main.community.AuthCommunityListActivity;
 import com.cn.climax.wisdomparking.ui.main.community.CommunityIdentifyActivity;
 import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceMineActivity;
+import com.cn.climax.wisdomparking.ui.main.device.AddDeviceActivity;
 import com.cn.climax.wisdomparking.ui.main.device.LicenseManagerListActivity;
+import com.cn.climax.wisdomparking.ui.main.device.ParkingSpacePayActivity;
 import com.cn.climax.wisdomparking.ui.main.device.ReleaseLockActivity;
 import com.cn.climax.wisdomparking.ui.main.nav.Navigation2DActivity;
 import com.cn.climax.wisdomparking.ui.main.order.OrderMineActivity;
@@ -92,6 +97,8 @@ import com.cn.climax.wisdomparking.util.HelperFromPermission;
 import com.cn.climax.wisdomparking.widget.CircleView;
 import com.cn.climax.wisdomparking.widget.My2dMapView;
 import com.cn.climax.wisdomparking.widget.bottomdialog.BottomDialog;
+import com.cn.climax.wisdomparking.widget.bulletinboard.MarqueeTextView;
+import com.cn.climax.wisdomparking.widget.bulletinboard.TipView;
 import com.cn.climax.wisdomparking.widget.bulletinboard.adapter.SimpleBulletinAdapter;
 import com.cn.climax.wisdomparking.widget.bulletinboard.view.BulletinView;
 import com.cn.climax.wisdomparking.widget.numberkeyboard.OfoKeyboard;
@@ -193,6 +200,11 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
     @BindView(R.id.llOpenScanCode)
     LinearLayout llOpenScanCode; //扫码解锁
 
+    @BindView(R.id.tip_view)
+    TipView tipView;
+    @BindView(R.id.llSkip2Bulletin)
+    LinearLayout llSkip2Bulletin;
+
     private long exitTime = 0;
     private AMapLocationClient mNavLocationClient;
     private AMap aNavMap;
@@ -277,18 +289,48 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 tvSkipLoginReg.setVisibility(View.VISIBLE);
                 tvAccount.setVisibility(View.GONE);
             }
-            
-            initBulletin();
         }
     }
 
     private void initBulletin() {
+        ApiManage.get(ApiHost.getInstance().noticeList())
+                .tag(this)
+                .cacheKey("cacheKey")
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        if (response.code() == 200) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(s);
+                                final List<BulletinResponse> bulletinResponseList = com.alibaba.fastjson.JSONObject.parseArray(String.valueOf(jsonObject.get("data")), BulletinResponse.class);
+                                List<String> tips = new ArrayList<>();
+                                if (bulletinResponseList != null && bulletinResponseList.size() > 0) {
+                                    for (int i = 0; i < bulletinResponseList.size(); i++) {
+                                        tips.add(bulletinResponseList.get(i).getTitle());
+                                    }
+                                    tipView.setTipList(tips);
+                                    llSkip2Bulletin.setOnClickListener(new ForbidQuickClickListener() {  //跳转搜索
+                                        @Override
+                                        protected void forbidClick(View view) {
+                                            startActivity(new Intent(PeterMainActivity.this, AppBulletinActivity.class).putExtra("cur_tip_bean", bulletinResponseList.get(tipView.getCurTipIndex())));
+                                        }
+                                    });
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            ToastUtils.show(response.message());
+                        }
+                    }
+                });
     }
-    
+
     private void initView() {
         initMapView();
         initInfo();
         initInputKeyboard();
+        initBulletin();
     }
 
     private void initInputKeyboard() {
