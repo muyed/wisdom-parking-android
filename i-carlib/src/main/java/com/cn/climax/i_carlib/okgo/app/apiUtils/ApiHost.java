@@ -80,10 +80,14 @@ public class ApiHost extends ApiHostBase {
     }
     
     //支付账户押金
+    public String payDeposit() {
+        return "/api/pay/wx/";
+    }
+    
+    //微信支付
     public String payCash() {
         return "/api/account/payCash";
     }
-    
     
     //用户绑定车位
     public String bindCarPort() {
@@ -138,6 +142,26 @@ public class ApiHost extends ApiHostBase {
     //打开车锁
     public String unLock() {
         return "/api/carport/unLock";  
+    }
+    
+    //银行卡取现
+    public String withdrawBalance() {
+        return "/api/account/withdrawBalance";
+    }
+    
+    //我的银行卡
+    public String myBankList() {
+        return "/api/bank/myList";
+    }
+    
+    //添加银行卡
+    public String myBankAdd() {
+        return "/api/bank/add";
+    }
+    
+    //解绑银行卡
+    public String delBank() {
+        return "/api/bank/del/";
     }
     
     //获取公告列表

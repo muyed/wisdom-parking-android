@@ -1,7 +1,8 @@
 package com.cn.climax.wisdomparking.ui.setting.adapter;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,11 +11,21 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.cn.climax.i_carlib.util.glide.GlideUitl;
+import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiManage;
 import com.cn.climax.wisdomparking.R;
+import com.cn.climax.wisdomparking.data.response.BankCardMineBean;
+import com.cn.climax.wisdomparking.ui.setting.utils.BankManager;
+import com.cn.climax.wisdomparking.util.BankCardUtil;
+import com.lzy.okgo.callback.StringCallback;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Response;
 
 
 /**
@@ -26,8 +37,8 @@ import butterknife.ButterKnife;
 public class BankCardAdapter extends RecyclerView.Adapter<BankCardAdapter.BankViewHolder> {
 
     private Context mContext;
-    private String[] bankPinYinArr = new String[]{"beijing", "gonghang", "guangda", "hebei", "huaxia", "jianhang", "jiaohang", "minsheng", "nonghang", "renmin", "shanghai", "xingye", "youzheng", "zhaohang", "zhengzhou", "zhonghang", "zhongxin"};
-    private String[] bankNameArr = new String[]{"北京银行", "中国工商银行", "中国光大银行", "河北银行", "华夏银行", "中国建设银行", "中国交通银行", "中国民生银行", "中国农业银行", "中国人民银行", "上海银行", "兴业银行", "中国邮政", "招商银行", "郑州银行", "中国银行", "中信银行"};
+
+    private List<BankCardMineBean> mListBean;
 
     public BankCardAdapter(Context context) {
         this.mContext = context;
@@ -41,24 +52,22 @@ public class BankCardAdapter extends RecyclerView.Adapter<BankCardAdapter.BankVi
 
     @Override
     public void onBindViewHolder(BankCardAdapter.BankViewHolder holder, int position) {
-        String iconName = "icon_bank_" + bankPinYinArr[position];
-        int iconId = mContext.getResources().getIdentifier(iconName, "drawable", mContext.getPackageName());
-        holder.ivBankLogo.setImageResource(iconId);
-        holder.tvBankName.setText(bankNameArr[position]);
-
-        if (position % 3 == 0)
-            holder.cvBankCard.setCardBackgroundColor(R.color.basic_color_primary);
-        else if (position % 3 == 1)
-            holder.cvBankCard.setCardBackgroundColor(Color.parseColor("#495AA2"));
-        else if (position % 3 == 2)
-            holder.cvBankCard.setCardBackgroundColor(Color.parseColor("#F59484"));
-        else
-            holder.cvBankCard.setCardBackgroundColor(Color.parseColor("#26ca8a"));
+        holder.ivBankLogo.setImageResource(BankManager.getImageResId(mContext, mListBean.get(position).getBankName()));
+        holder.tvBankName.setText(mListBean.get(position).getBankName());
+        holder.tvBankCardNo.setText(BankCardUtil.hideCardNo(mListBean.get(position).getBankAccount()));
+        holder.cvBankCard.setCardBackgroundColor(BankManager.setBgColor(mListBean.get(position).getBankName()));
+        holder.tvUnBindBank.setOnClickListener(new CommonClick(mListBean.get(position), position));
+        holder.cvBankCard.setOnClickListener(new CommonClick(mListBean.get(position), position));
     }
 
     @Override
     public int getItemCount() {
-        return bankPinYinArr.length;
+        return mListBean != null && mListBean.size() > 0 ? mListBean.size() : 0;
+    }
+
+    public void setDatas(List<BankCardMineBean> bankListBean) {
+        mListBean = bankListBean;
+        notifyDataSetChanged();
     }
 
     public class BankViewHolder extends RecyclerView.ViewHolder {
@@ -72,9 +81,47 @@ public class BankCardAdapter extends RecyclerView.Adapter<BankCardAdapter.BankVi
         @BindView(R.id.tvBankCardNo)
         TextView tvBankCardNo;
 
+        @BindView(R.id.tvUnBindBank)
+        TextView tvUnBindBank;
+
         public BankViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+    }
+
+    private class CommonClick extends ForbidQuickClickListener {
+
+        private int mPosition;
+        private BankCardMineBean mCardMineBean;
+
+        public CommonClick(BankCardMineBean cardMineBean, int position) {
+            this.mCardMineBean = cardMineBean;
+            this.mPosition = position;
+        }
+
+        @Override
+        protected void forbidClick(View view) {
+            switch (view.getId()) {
+                case R.id.tvUnBindBank:
+                    ApiManage.get(ApiHost.getInstance().delBank() + mCardMineBean.getId())
+                            .tag(this)// 请求的 tag, 主要用于取消对应的请求
+                            .cacheKey("cacheKey")
+                            .execute(new StringCallback() {
+                                @Override
+                                public void onSuccess(String s, Call call, Response response) {
+                                    mListBean.remove(mPosition);
+                                    notifyDataSetChanged();
+                                }
+                            });
+                    break;
+                case R.id.cvBankCard:
+                    Intent intent = new Intent();
+                    intent.putExtra("card_bean", mCardMineBean);
+                    ((Activity) mContext).setResult(Activity.RESULT_OK, intent);
+                    ((Activity) mContext).finish();
+                    break;
+            }
         }
     }
 }

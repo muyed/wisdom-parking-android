@@ -37,9 +37,9 @@ public class GlobalVerificateUtils {
         } else if (!GlobalVerificateUtils.getInstance(context).isAuthCommunity()) {
             context.startActivity(new Intent(context, CommunityIdentifyActivity.class));
             return false;
-        } else if (!GlobalVerificateUtils.getInstance(context).isAuthParkingSpace()) {
-            context.startActivity(new Intent(context, AddDeviceActivity.class));
-            return false;
+//        } else if (!GlobalVerificateUtils.getInstance(context).isAuthParkingSpace()) {
+//            context.startActivity(new Intent(context, AddDeviceActivity.class));
+//            return false;
         }else if (!GlobalVerificateUtils.getInstance(context).isAddCarLicense()){
             context.startActivity(new Intent(context, AddLicensePlateActivity.class));
             return false;

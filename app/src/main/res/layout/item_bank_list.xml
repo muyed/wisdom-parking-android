@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llClickBank"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <com.cn.climax.wisdomparking.widget.CircleView
+            android:id="@+id/cvBankLogo"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:src="@drawable/icon_bank_gonghang" />
+
+        <TextView
+            android:id="@+id/tvBankName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:gravity="center_vertical"
+            android:text="工商银行"
+            android:textColor="@color/text_normal_color" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_dimen_1px"
+        android:background="@color/xx_gray" />
+
+</LinearLayout>

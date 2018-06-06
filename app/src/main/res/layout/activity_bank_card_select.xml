@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F2F2"
     android:orientation="vertical"
-    tools:context="com.cn.climax.wisdomparking.ui.setting.bank.BankCardListActivity">
+    tools:context="com.cn.climax.wisdomparking.ui.setting.bank.BankCardSelectActivity">
 
     <include layout="@layout/base_blue_nav_toolbar_layout" />
 
-    <com.cn.climax.wisdomparking.widget.xrecyclerview.XRecyclerView
-        android:id="@+id/rvMineBankCardList"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvBankList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:background="@color/white" />
 
 </LinearLayout>

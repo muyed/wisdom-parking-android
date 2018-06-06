@@ -1,4 +1,4 @@
-package com.cn.climax.wisdomparking.ui.setting;
+package com.cn.climax.wisdomparking.ui.setting.bank;
 
 import android.content.Intent;
 import android.os.Bundle;

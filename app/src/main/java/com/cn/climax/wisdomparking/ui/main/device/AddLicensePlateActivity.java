@@ -9,8 +9,10 @@ import android.widget.RelativeLayout;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiManage;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
+import com.cn.climax.i_carlib.util.SharedUtil;
 import com.cn.climax.i_carlib.util.ToastUtils;
 import com.cn.climax.wisdomparking.R;
+import com.cn.climax.wisdomparking.base.Core;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.data.response.LoginResponse;
 import com.cn.climax.wisdomparking.http.WrapJsonBeanCallback;
@@ -86,7 +88,9 @@ public class AddLicensePlateActivity extends BaseSwipeBackActivity implements Li
 
                     @Override
                     protected void onExecuteSuccess(LoginResponse bean, Call call) {
-                        startActivity(new Intent(AddLicensePlateActivity.this, ParkingSpacePayActivity.class));
+//                        startActivity(new Intent(AddLicensePlateActivity.this, ParkingSpacePayActivity.class));
+                        ToastUtils.show("车辆添加成功");
+                        SharedUtil.getInstance(Core.getInstances()).put(ApiParamsKey.IS_ADD_CAR_LICENSE, true);
                     }
 
                     @Override

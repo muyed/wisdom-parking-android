@@ -1,6 +1,7 @@
 package com.cn.climax.wisdomparking.widget.ofo;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.Image;
@@ -17,8 +18,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseActivity;
+import com.cn.climax.wisdomparking.ui.PeterMainActivity;
+import com.cn.climax.wisdomparking.ui.main.community.NearbySearchActivity;
 import com.cn.climax.wisdomparking.widget.numberkeyboard.OfoKeyboardView;
 import com.cn.climax.wisdomparking.widget.ofo.drawable.MenuBrawable;
 import com.cn.climax.wisdomparking.widget.ofo.view.OfoContentLayout;
@@ -76,19 +80,22 @@ public class OfoMenuActivity extends BaseActivity {
             window.setStatusBarColor(Color.TRANSPARENT);
         }
         llSkip2Publish = ((LinearLayout) findViewById(R.id.llSkip2Publish));
+        llSkip2Publish.setVisibility(View.VISIBLE);
         ivSkip2MessageList = ((ImageView) findViewById(R.id.ivSkip2MessageList));
+        ivSkip2MessageList.setOnClickListener(new ForbidQuickClickListener() {  //跳转搜索
+            @Override
+            protected void forbidClick(View view) {
+                startActivity(new Intent(OfoMenuActivity.this, NearbySearchActivity.class));
+            }
+        });
         
         ivSkip2Pcenter = ((ImageView) findViewById(R.id.ivSkip2Pcenter));
-
         ofoMenuLayout = ((OfoMenuLayout) findViewById(R.id.ofo_menu));
         ofoContentLayout = ((OfoContentLayout) findViewById(R.id.ofo_content));
         menu = (FrameLayout) findViewById(R.id.menu_content);
-
         ofoMenuKeyBoardLayout = ((OfoMenuLayout) findViewById(R.id.ofo_menu_keyboard));
         ofoContentKeyboardLayout = ((OfoContentLayout) findViewById(R.id.ofo_content_keyboard));
         menuKeyboard = (FrameLayout) findViewById(R.id.menu_content_keyboard);
-
-        llSkip2Publish.setVisibility(View.VISIBLE);
         
         final MenuBrawable menuBrawable = new MenuBrawable(BitmapFactory.decodeResource(getResources(), R.mipmap.default_avatar_img), OfoMenuActivity.this, menu, getType(), R.color.color_f5f5f5);
         final MenuBrawable menuKeyboardBrawable = new MenuBrawable(BitmapFactory.decodeResource(getResources(), R.drawable.transparent), OfoMenuActivity.this, menuKeyboard, getKeyboardType(), R.color.white);

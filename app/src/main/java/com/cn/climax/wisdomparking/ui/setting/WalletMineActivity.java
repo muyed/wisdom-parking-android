@@ -33,6 +33,7 @@ import com.cn.climax.wisdomparking.data.response.LoginResponse;
 import com.cn.climax.wisdomparking.ui.main.device.adapter.RVDevicePayAdapter;
 import com.cn.climax.wisdomparking.ui.pay.bean.PayResult;
 import com.cn.climax.wisdomparking.ui.setting.adapter.TagAdapter;
+import com.cn.climax.wisdomparking.ui.setting.bank.WithDrawalBalanceActivity;
 import com.cn.climax.wisdomparking.widget.flowtag.FlowTagLayout;
 import com.cn.climax.wisdomparking.widget.flowtag.OnTagSelectListener;
 import com.lzy.okgo.callback.StringCallback;

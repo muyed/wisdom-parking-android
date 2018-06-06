@@ -10,6 +10,7 @@ public class ApiParamsKey {
     public static final String RECENT_APP_KEY = "recent_app_key"; //是否点击最近app进行app强制关闭操作
 
     public static final String IS_AUTH_ALIPAY = "is_auth_alipay"; //阿里支付是否授权成功
+    public static final String IS_AUTH_WECHAT = "is_auth_wechat"; //微信支付是否授权成功
 
     public static final String USER_NAME = "username"; //帐号
     public static final String PHONE = "phone"; //手机号码
@@ -48,5 +49,12 @@ public class ApiParamsKey {
     public static final String CAR_LICENSE_NUM = "carLicense"; //预约停车车牌
     
     public static final String ID = "id"; //车锁ID
+    
+    public static final String BANK_ACCOUNT = "bankAccount"; //银行卡号
+    public static final String BANK_ACCOUNT_NAME = "accountName"; //银行卡 - 真实姓名
+    public static final String BANK_ACCOUNT_ADDR = "bankAddr"; //银行卡 地址
+    public static final String BANK_CODE= "bankCode"; //银行卡号
+    public static final String BANK_ID= "bankId"; //银行卡号
+    public static final String BANK_WITH_AMOUNT= "amount"; //银行卡号
     
 }

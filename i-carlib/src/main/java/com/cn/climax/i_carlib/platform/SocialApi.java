@@ -9,7 +9,7 @@ import com.cn.climax.i_carlib.platform.listener.ShareListener;
 import com.cn.climax.i_carlib.platform.qq.QQHandler;
 import com.cn.climax.i_carlib.platform.share_media.IShareMedia;
 import com.cn.climax.i_carlib.platform.sina.SinaWBHandler;
-import com.cn.climax.i_carlib.platform.weixin.WXHandler;
+import com.cn.climax.i_carlib.weixin.WXHandler;
 
 import java.util.HashMap;
 import java.util.Map;

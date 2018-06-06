@@ -1,4 +1,4 @@
-package com.cn.climax.i_carlib.platform.weixin;
+package com.cn.climax.i_carlib.weixin;
 
 import android.app.Activity;
 import android.content.Intent;

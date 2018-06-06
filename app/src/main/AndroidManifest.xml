@@ -69,9 +69,21 @@
         <activity android:name=".ui.main.home.city.AddressSelectedActivity" />
         <activity android:name=".ui.main.home.city.AddressSettingsActivity" />
 
+        <!-- 微信支付 -->
+        <activity
+            android:name="com.cn.climax.i_carlib.weixin.WXPayCallbackActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity-alias
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:targetActivity="com.cn.climax.i_carlib.weixin.WXPayCallbackActivity" />
+
         <!-- Weixin -->
         <activity
-            android:name="com.cn.climax.i_carlib.platform.weixin.WXCallbackActivity"
+            android:name="com.cn.climax.i_carlib.weixin.WXCallbackActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:exported="true"
             android:launchMode="singleTop"
@@ -80,7 +92,7 @@
         <activity-alias
             android:name=".wxapi.WXEntryActivity"
             android:exported="true"
-            android:targetActivity="com.cn.climax.i_carlib.platform.weixin.WXCallbackActivity" />
+            android:targetActivity="com.cn.climax.i_carlib.weixin.WXCallbackActivity" />
 
         <!-- qq -->
         <activity
@@ -176,10 +188,12 @@
         <activity android:name=".ui.main.carport.ParkingSpaceImmMatchingActivity" />
         <activity android:name=".ui.setting.RelativeUsActivity" />
         <activity android:name=".ui.setting.DepositMineActivity" />
-        <activity android:name=".ui.setting.BankCardListActivity" />
-        <activity android:name=".ui.setting.BankCardAddActivity" />
-        <activity android:name=".ui.setting.WithDrawalBalanceActivity" />
-        <activity android:name=".ui.setting.WithDrawalActivity"></activity>
+        <activity android:name=".ui.setting.bank.BankCardListActivity" />
+        <activity android:name=".ui.setting.bank.BankCardAddActivity" />
+        <activity android:name=".ui.setting.bank.WithDrawalBalanceActivity" />
+        <activity android:name=".ui.setting.bank.WithDrawalActivity" />
+        <activity android:name=".ui.setting.bank.BankCardSelectActivity" />
+        <activity android:name=".ui.setting.utils.AuthenticatedInfoActivity" />
     </application>
 
 </manifest>

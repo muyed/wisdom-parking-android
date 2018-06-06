@@ -22,6 +22,7 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/tvUnBindBank"
                 android:layout_width="36dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -29,7 +30,7 @@
                 android:gravity="center"
                 android:paddingBottom="3dp"
                 android:paddingTop="3dp"
-                android:text="更换"
+                android:text="解绑"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
@@ -53,8 +54,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_centerInParent="true"
-                        android:contentDescription="@string/app_name"
-                        android:src="@drawable/icon_bank_jianhang" />
+                        android:contentDescription="@string/app_name" />
 
                 </RelativeLayout>
 
@@ -63,7 +63,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="建设银行"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
@@ -79,7 +78,6 @@
                 android:paddingLeft="74dp"
                 android:paddingRight="24dp"
                 android:paddingTop="6dp"
-                android:text="****　****　****　5060"
                 android:textColor="@color/white" />
 
         </RelativeLayout>

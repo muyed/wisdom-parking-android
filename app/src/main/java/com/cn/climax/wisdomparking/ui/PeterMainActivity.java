@@ -2,10 +2,7 @@ package com.cn.climax.wisdomparking.ui;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.hardware.Camera;
-import android.hardware.camera2.CameraAccessException;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -71,9 +68,9 @@ import com.cn.climax.wisdomparking.data.response.PublishShareOrder;
 import com.cn.climax.wisdomparking.http.WrapJsonBeanCallback;
 import com.cn.climax.wisdomparking.ui.account.LoginActivity;
 import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceImmMatchingActivity;
+import com.cn.climax.wisdomparking.ui.main.community.AddCommunityActivity;
 import com.cn.climax.wisdomparking.ui.main.community.AuthCommunityListActivity;
 import com.cn.climax.wisdomparking.ui.main.community.CommunityIdentifyActivity;
-import com.cn.climax.wisdomparking.ui.main.community.NearbySearchActivity;
 import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceMineActivity;
 import com.cn.climax.wisdomparking.ui.main.device.LicenseManagerListActivity;
 import com.cn.climax.wisdomparking.ui.main.device.ReleaseLockActivity;
@@ -81,13 +78,14 @@ import com.cn.climax.wisdomparking.ui.main.nav.Navigation2DActivity;
 import com.cn.climax.wisdomparking.ui.main.order.OrderMineActivity;
 import com.cn.climax.wisdomparking.ui.main.share.PublishShareParkingActivity;
 import com.cn.climax.wisdomparking.ui.setting.AuthenticateCertActivity;
-import com.cn.climax.wisdomparking.ui.setting.BankCardListActivity;
+import com.cn.climax.wisdomparking.ui.setting.bank.BankCardListActivity;
 import com.cn.climax.wisdomparking.ui.setting.CommonProblemsActivity;
 import com.cn.climax.wisdomparking.ui.setting.CustomerServiceMineActivity;
 import com.cn.climax.wisdomparking.ui.setting.DepositMineActivity;
 import com.cn.climax.wisdomparking.ui.setting.MoreOptionsActivity;
 import com.cn.climax.wisdomparking.ui.setting.NotifyMineActivity;
-import com.cn.climax.wisdomparking.ui.setting.WalletMineActivity;
+import com.cn.climax.wisdomparking.ui.setting.bank.WithDrawalBalanceActivity;
+import com.cn.climax.wisdomparking.ui.setting.utils.AuthenticatedInfoActivity;
 import com.cn.climax.wisdomparking.util.FlashUtils;
 import com.cn.climax.wisdomparking.util.GlobalVerificateUtils;
 import com.cn.climax.wisdomparking.util.HelperFromPermission;
@@ -104,7 +102,6 @@ import com.yanzhenjie.permission.Permission;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -115,9 +112,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import cn.park.com.zxing.android.CaptureActivity;
-import cn.park.com.zxing.android.CaptureActivityHandler;
 import cn.park.com.zxing.bean.ZxingConfig;
-import cn.park.com.zxing.camera.CameraManager;
 import cn.park.com.zxing.common.Constant;
 import okhttp3.Call;
 import okhttp3.Response;
@@ -158,6 +153,8 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
     LinearLayout llSkip2MineOrder; //我的订单
     @BindView(R.id.llSkip2MineDevice)
     LinearLayout llSkip2MineDevice; //我的设备
+    @BindView(R.id.llSkip2MineCommunity)
+    LinearLayout llSkip2MineCommunity; //我的小区
     @BindView(R.id.llSkip2MineService)
     LinearLayout llSkip2MineService; //我的客服
     @BindView(R.id.llSkip2CommonProblems)
@@ -373,6 +370,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                     @Override
                     protected void onExecuteSuccess(LoginResponse bean, Call call) {
                         SharedUtil.getInstance(PeterMainActivity.this).put("is_login_success", true);
+                        SharedUtil.getInstance(PeterMainActivity.this).put(ApiParamsKey.REAL_NAME, bean.getRealName());
                         SharedUtil.getInstance(PeterMainActivity.this).put(ApiParamsKey.IS_AUTH, !TextUtils.isEmpty(bean.getRealName()));
                         SharedUtil.getInstance(PeterMainActivity.this).put(ApiParamsKey.IS_AUTH_COMMUNITY, bean != null && bean.getCommunityList() != null && bean.getCommunityList().size() > 0);
                         SharedUtil.getInstance(PeterMainActivity.this).put(ApiParamsKey.IS_AUTH_PARKING_SPACE, bean != null && bean.getUserCarportList() != null && bean.getUserCarportList().size() > 0);
@@ -428,6 +426,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
             tvUserIdentityStatus.setTextColor(ContextCompat.getColor(this, R.color.color_fd604f));
         }
         if (GlobalVerificateUtils.getInstance(this).isAuthCommunity()) {
+            tvCommunityIdentityStatus.setVisibility(View.GONE);
             tvCommunityIdentityStatus.setText("已认证");
             tvCommunityIdentityStatus.setTextColor(ContextCompat.getColor(this, R.color.text_common_hint));
         } else {
@@ -440,12 +439,13 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
         else
             tvAccountBalance.setText("￥ 0.00");
 
-        ivSkip2MessageList.setOnClickListener(new CommClick());
         ivSkip2CustomerService.setOnClickListener(new CommClick());
         ivSkip2MyLocation.setOnClickListener(new CommClick());
         ivSkip2Notify.setOnClickListener(new CommClick());
         llOrderScan.setOnClickListener(new CommClick());
 
+        llSkip2Publish = ((LinearLayout) findViewById(R.id.llSkip2Publish));
+        llSkip2Publish.setVisibility(View.VISIBLE);
         llSkip2Publish.setOnClickListener(new CommClick()); //发布共享单
         cvCenterAvatar.setOnClickListener(new CommClick()); //头像设置
         tvSkipLoginReg.setOnClickListener(new CommClick()); //登录/注册
@@ -456,6 +456,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
         llSkip2MineParkingSpace.setOnClickListener(new CommClick()); //我的车位
         llSkip2MineOrder.setOnClickListener(new CommClick()); //我的订单
         llSkip2MineDevice.setOnClickListener(new CommClick()); //我的设备
+        llSkip2MineCommunity.setOnClickListener(new CommClick()); //我的小区
         llSkip2MineService.setOnClickListener(new CommClick()); //我的客服
         llSkip2IdentityInfo.setOnClickListener(new CommClick()); //身份信息
         llSkip2MyBankCard.setOnClickListener(new CommClick()); //我的银行卡
@@ -838,9 +839,6 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                         return;
                     startActivity(new Intent(PeterMainActivity.this, PublishShareParkingActivity.class));
                     break;
-                case R.id.ivSkip2MessageList: //跳转搜索
-                    startActivity(new Intent(PeterMainActivity.this, NearbySearchActivity.class));
-                    break;
                 case R.id.ivSkip2CustomerService: //我的客服
                     startActivity(new Intent(PeterMainActivity.this, CustomerServiceMineActivity.class));
                     break;
@@ -867,7 +865,8 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 case R.id.llSkip2MoneyBag: //我的钱包
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
                         return;
-                    startActivity(new Intent(PeterMainActivity.this, WalletMineActivity.class).putExtra("user_account_info", mUserInfoBean.getAccount()));
+//                    startActivity(new Intent(PeterMainActivity.this, WalletMineActivity.class).putExtra("user_account_info", mUserInfoBean.getAccount()));
+                    startActivity(new Intent(PeterMainActivity.this, WithDrawalBalanceActivity.class));
                     break;
                 case R.id.llSkip2Deposit: //押金
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
@@ -878,6 +877,11 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
                         return;
                     startActivity(new Intent(PeterMainActivity.this, CommunityIdentifyActivity.class));
+                    break;
+                case R.id.llSkip2MineCommunity: //我的小区
+                    if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
+                        return;
+                    startActivity(new Intent(PeterMainActivity.this, AuthCommunityListActivity.class));
                     break;
 
                 case R.id.llSkip2MineCar: //我的车辆
@@ -904,12 +908,13 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isAuth())
                         startActivity(new Intent(PeterMainActivity.this, AuthenticateCertActivity.class));
                     else
-                        ToastUtils.show("身份信息已认证");
+                        startActivity(new Intent(PeterMainActivity.this, AuthenticatedInfoActivity.class).putExtra("account_bean", mUserInfoBean));
                     break;
                 case R.id.llSkip2IdentityCommunity: //考虑多小区情况 小区认证
-                    if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
-                        return;
-                    startActivity(new Intent(PeterMainActivity.this, AuthCommunityListActivity.class));
+//                    if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
+//                        return;
+//                    startActivity(new Intent(PeterMainActivity.this, AuthCommunityListActivity.class));
+                    startActivity(new Intent(PeterMainActivity.this, AddCommunityActivity.class));
                     break;
                 case R.id.llSkip2MyBankCard: //我的银行卡
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))

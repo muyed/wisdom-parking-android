@@ -27,7 +27,7 @@ public class AddCommunitySuccessActivity extends BaseSwipeBackActivity {
         setOnClickRightListener(new OnClickRightBarListener() {
             @Override
             public void click() {
-                
+                finish();
             }
         });
     }

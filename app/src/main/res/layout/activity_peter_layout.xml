@@ -102,13 +102,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:background="@color/white"
                 android:gravity="center_horizontal">
 
-                <!-- 我的车位 -->
+                <!-- 我的车辆 -->
                 <LinearLayout
-                    android:id="@+id/llSkip2MineParkingSpace"
+                    android:id="@+id/llSkip2MineCar"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -119,13 +119,13 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:contentDescription="@string/app_name"
-                        android:src="@drawable/icon_car_parking_space" />
+                        android:src="@drawable/icon_car_mine" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
-                        android:text="我的车位"
+                        android:text="我的车辆"
                         android:textColor="@color/text_normal_color"
                         android:textSize="13sp" />
 
@@ -163,7 +163,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -181,9 +182,9 @@
 
                 </LinearLayout>
 
-                <!-- 我的车辆 -->
+                <!-- 我的小区 -->
                 <LinearLayout
-                    android:id="@+id/llSkip2MineCar"
+                    android:id="@+id/llSkip2MineCommunity"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -194,13 +195,38 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:contentDescription="@string/app_name"
-                        android:src="@drawable/icon_car_mine" />
+                        android:src="@drawable/icon_device_mine" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:text="我的小区"
+                        android:textColor="@color/text_normal_color"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <!-- 我的车位 -->
+                <LinearLayout
+                    android:id="@+id/llSkip2MineParkingSpace"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/icon_car_parking_space" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
-                        android:text="我的车辆"
+                        android:text="我的车位"
                         android:textColor="@color/text_normal_color"
                         android:textSize="13sp" />
 
@@ -237,7 +263,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -343,7 +369,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:orientation="vertical">
 
                 <LinearLayout

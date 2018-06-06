@@ -32,7 +32,7 @@ public class LoginResponse extends BaseBean<LoginResponse> {
     private String identityCard;
     private double carportCashConf;
     private AccountBean account;
-    private int payDeadlineMinConf;
+    private double payDeadlineMinConf;
     private List<CommunityListBean> communityList;
     private List<UserCarportListBean> userCarportList;
 
@@ -84,11 +84,11 @@ public class LoginResponse extends BaseBean<LoginResponse> {
         this.account = account;
     }
 
-    public int getPayDeadlineMinConf() {
+    public double getPayDeadlineMinConf() {
         return payDeadlineMinConf;
     }
 
-    public void setPayDeadlineMinConf(int payDeadlineMinConf) {
+    public void setPayDeadlineMinConf(double payDeadlineMinConf) {
         this.payDeadlineMinConf = payDeadlineMinConf;
     }
 
@@ -120,8 +120,8 @@ public class LoginResponse extends BaseBean<LoginResponse> {
          * userId : 22
          */
 
-        private int balance;
-        private int cash;
+        private double balance;
+        private double cash;
         private long createTime;
         private int id;
         private long modifyTime;
@@ -129,19 +129,19 @@ public class LoginResponse extends BaseBean<LoginResponse> {
         private String sorts;
         private int userId;
 
-        public int getBalance() {
+        public double getBalance() {
             return balance;
         }
 
-        public void setBalance(int balance) {
+        public void setBalance(double balance) {
             this.balance = balance;
         }
 
-        public int getCash() {
+        public double getCash() {
             return cash;
         }
 
-        public void setCash(int cash) {
+        public void setCash(double cash) {
             this.cash = cash;
         }
 
