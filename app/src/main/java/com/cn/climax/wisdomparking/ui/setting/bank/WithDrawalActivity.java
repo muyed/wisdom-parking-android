@@ -145,10 +145,10 @@ public class WithDrawalActivity extends BaseSwipeBackActivity {
                     withDrawal();
                     break;
                 case R.id.llAddBankArea:
-                    startActivityForResult(new Intent(WithDrawalActivity.this, BankCardListActivity.class), 99);
+                    startActivityForResult(new Intent(WithDrawalActivity.this, BankCardListActivity.class).putExtra("is_enableSelect", true), 99);
                     break;
                 case R.id.llShowBankArea:
-                    startActivityForResult(new Intent(WithDrawalActivity.this, BankCardListActivity.class), 99);
+                    startActivityForResult(new Intent(WithDrawalActivity.this, BankCardListActivity.class).putExtra("is_enableSelect", true), 99);
                     break;
             }
         }

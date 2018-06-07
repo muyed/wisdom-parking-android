@@ -194,7 +194,7 @@
         <activity android:name=".ui.setting.bank.WithDrawalActivity" />
         <activity android:name=".ui.setting.bank.BankCardSelectActivity" />
         <activity android:name=".ui.setting.utils.AuthenticatedInfoActivity" />
-        <activity android:name=".ui.main.AppBulletinActivity"></activity>
+        <activity android:name=".ui.main.AppBulletinActivity" />
     </application>
 
 </manifest>

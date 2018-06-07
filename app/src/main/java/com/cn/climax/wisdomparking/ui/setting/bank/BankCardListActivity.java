@@ -39,6 +39,7 @@ public class BankCardListActivity extends BaseSwipeBackActivity {
     XRecyclerView rvMineBankCardList;
 
     private BankCardAdapter mAdapter;
+    private boolean isEnableSelect;
 
     @Override
     protected void setToolBar(boolean isShowNavBack, String headerTitle) {
@@ -52,12 +53,13 @@ public class BankCardListActivity extends BaseSwipeBackActivity {
 
     @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
+        isEnableSelect = getIntent().getBooleanExtra("is_enableSelect", false);
         ivSwitchOption.setVisibility(View.VISIBLE);
         ivSwitchOption.setImageResource(R.drawable.icon_main_publish_share);
         ivSwitchOption.setOnClickListener(new ForbidQuickClickListener() {
             @Override
             protected void forbidClick(View view) {
-                startActivityForResult(new Intent(BankCardListActivity.this, BankCardAddActivity.class), 199);
+                startActivityForResult(new Intent(BankCardListActivity.this, BankCardAddActivity.class).putExtra("is_enableSelect", true), 199);
             }
         });
 
@@ -105,7 +107,7 @@ public class BankCardListActivity extends BaseSwipeBackActivity {
                             try {
                                 JSONObject json = new JSONObject(s);
                                 List<BankCardMineBean> carLicenseMineBeen = com.alibaba.fastjson.JSONObject.parseArray(String.valueOf(json.get("data")), BankCardMineBean.class);
-                                mAdapter.setDatas(carLicenseMineBeen);
+                                mAdapter.setDatas(carLicenseMineBeen, isEnableSelect);
                                 rvMineBankCardList.refreshComplete();
                             } catch (JSONException e) {
                                 e.printStackTrace();

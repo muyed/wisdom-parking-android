@@ -91,18 +91,21 @@ public class DepositMineActivity extends BaseSwipeBackActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
-                        if (response.code() == 200) {
-                            Log.e("onSuccess: ", s);
-                            JSONObject json;
-                            try {
-                                json = new JSONObject(s);
+
+                        Log.e("onSuccess: ", s);
+                        JSONObject json;
+                        try {
+                            json = new JSONObject(s);
+                            int code = Integer.parseInt(String.valueOf(json.get("code")));
+                            String errMsg = String.valueOf(json.get("errMsg"));
+                            if (code == 200) {
                                 mOrderNo = String.valueOf(json.get("data"));
                                 gotoPay(checkBean.getPayWay());
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+                            } else {
+                                ToastUtils.show(errMsg);
                             }
-                        } else {
-                            ToastUtils.show(response.message());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
                     }
                 });
@@ -152,7 +155,7 @@ public class DepositMineActivity extends BaseSwipeBackActivity {
      * @param pay_param 支付服务生成的支付参数
      */
     private void doWXPay(String pay_param) {
-        String wx_appid = "wx39fab7de09774fbd";     //替换为自己的appid
+        String wx_appid = "wx39fab7de09774fbd";     //替换为自己的appid = wx39fab7de09774fbd
         WXPay.init(getApplicationContext(), wx_appid);      //要在支付前调用
         WXPay.getInstance().doPay(pay_param, new WXPay.WXPayResultCallBack() {
             @Override

@@ -43,6 +43,7 @@ public class BankCardAdapter extends RecyclerView.Adapter<BankCardAdapter.BankVi
     private Context mContext;
 
     private List<BankCardMineBean> mListBean;
+    private boolean isEnableSelect = false;
 
     public BankCardAdapter(Context context) {
         this.mContext = context;
@@ -59,10 +60,8 @@ public class BankCardAdapter extends RecyclerView.Adapter<BankCardAdapter.BankVi
         holder.ivBankLogo.setImageResource(BankManager.getImageResId(mContext, mListBean.get(position).getBankName()));
         holder.tvBankName.setText(mListBean.get(position).getBankName());
         holder.tvBankCardNo.setText(BankCardUtil.hideCardNo(mListBean.get(position).getBankAccount()));
-//        holder.cvBankCard.setCardBackgroundColor(BankManager.setBgColor(mListBean.get(position).getBankName()));
         holder.tvUnBindBank.setOnClickListener(new CommonClick(mListBean.get(position), position));
-        holder.cvBankCard.setOnClickListener(new CommonClick(mListBean.get(position), position));
-
+//        holder.cvBankCard.setCardBackgroundColor(BankManager.setBgColor(mListBean.get(position).getBankName()));
         // 用来提取颜色的Bitmap
         Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), BankManager.getImageResId(mContext, mListBean.get(position).getBankName()));
         // Palette的部分 
@@ -71,14 +70,15 @@ public class BankCardAdapter extends RecyclerView.Adapter<BankCardAdapter.BankVi
             @Override
             public void onGenerated(Palette palette) {
                 //获取到充满活力的这种色调
-                Palette.Swatch vibrant = palette.getDarkVibrantSwatch();
+                Palette.Swatch vibrant = palette.getDominantSwatch();
                 //根据调色板Palette获取到图片中的颜色设置到toolbar和tab中背景，标题等，使整个UI界面颜色统一
                 if (vibrant != null)
                     holder.cvBankCard.setBackgroundColor(vibrant.getRgb());
             }
         });
 
-
+        if (isEnableSelect)
+            holder.cvBankCard.setOnClickListener(new CommonClick(mListBean.get(position), position));
     }
 
     @Override
@@ -86,8 +86,9 @@ public class BankCardAdapter extends RecyclerView.Adapter<BankCardAdapter.BankVi
         return mListBean != null && mListBean.size() > 0 ? mListBean.size() : 0;
     }
 
-    public void setDatas(List<BankCardMineBean> bankListBean) {
+    public void setDatas(List<BankCardMineBean> bankListBean, boolean isEnableSelect) {
         mListBean = bankListBean;
+        this.isEnableSelect = isEnableSelect;
         notifyDataSetChanged();
     }
 

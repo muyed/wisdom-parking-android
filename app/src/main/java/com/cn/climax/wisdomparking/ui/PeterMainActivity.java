@@ -970,7 +970,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 case R.id.llSkip2MyBankCard: //我的银行卡
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
                         return;
-                    startActivity(new Intent(PeterMainActivity.this, BankCardListActivity.class));
+                    startActivity(new Intent(PeterMainActivity.this, BankCardListActivity.class).putExtra("is_enableSelect", false));
                     break;
                 case R.id.llSkip2MineParkingSpace: //我的车位
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
