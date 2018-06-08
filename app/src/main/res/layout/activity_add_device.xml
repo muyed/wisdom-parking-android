@@ -26,7 +26,6 @@
             android:layout_marginBottom="3dp"
             android:layout_weight="1"
             android:gravity="bottom"
-            android:text="b817221"
             android:textColor="@color/text_color_dark"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -53,7 +52,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
-                android:text="白马服装市场"
                 android:textColor="@color/text_common_hint"
                 android:textSize="14sp" />
 
