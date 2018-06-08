@@ -1,8 +1,11 @@
 package com.cn.climax.wisdomparking.ui.main.community.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +17,11 @@ import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.data.response.CommunityAuthListResponse;
 import com.cn.climax.wisdomparking.ui.main.device.AddDeviceActivity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -43,14 +51,50 @@ public class CommunityCarPortsAdapter extends RecyclerView.Adapter<CommunityCarP
         return new CarViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(CommunityCarPortsAdapter.CarViewHolder holder, final int position) {
-        holder.tvGoToBind.setOnClickListener(new ForbidQuickClickListener() {
-            @Override
-            protected void forbidClick(View view) {
-                mContext.startActivity(new Intent(mContext, AddDeviceActivity.class).putExtra("carports_address", mCommunityDetail.getAddr()).putExtra("carports_info", mCarportList.get(position)));
+        holder.tvParkingCode.setText(mCarportList.get(position).getCarportNum());
+
+        if (TextUtils.isEmpty(mCarportList.get(position).getModifyTime())) {
+            holder.tvParkingValidity.setText("有效期：长期有效");
+        } else {
+            Calendar calendar = new GregorianCalendar();
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Long time = Long.parseLong(mCarportList.get(position).getModifyTime());
+            String d = format.format(time);
+            Date date;
+            try {
+                date = format.parse(d);
+                calendar.setTime(date);
+                calendar.add(calendar.YEAR, 1);//把日期往后增加一年.整数往后推,负数往前移动
+                date = calendar.getTime();   //这个时间就是日期往后推一天的结果 
+                holder.tvParkingValidity.setText("有效期：" + format.format(date.getTime()));
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
-        });
+        }
+        dispatchCarportStatus(holder.tvParkingStatus, holder.tvGoToBind, mCarportList.get(position));
+    }
+
+    private void dispatchCarportStatus(TextView tvParkingStatus, TextView tvGoToBind, final CommunityAuthListResponse.CarportListBean carportListBean) {
+        if (carportListBean.isBind()) {
+            tvParkingStatus.setText("已绑定");
+            tvParkingStatus.setTextColor(ContextCompat.getColor(mContext, R.color.color_31C27C));
+            tvParkingStatus.setBackgroundResource(R.drawable.common_blue_oval_frame);
+            tvGoToBind.setVisibility(View.GONE);
+        } else {
+            tvParkingStatus.setText("未绑定");
+            tvParkingStatus.setBackgroundResource(R.drawable.common_red_oval_frame);
+            tvParkingStatus.setTextColor(ContextCompat.getColor(mContext, R.color.color_f5222d));
+            tvGoToBind.setVisibility(View.VISIBLE);
+            tvGoToBind.setOnClickListener(new ForbidQuickClickListener() {
+                @Override
+                protected void forbidClick(View view) {
+                    mContext.startActivity(new Intent(mContext, AddDeviceActivity.class).putExtra("carports_address", mCommunityDetail.getAddr()).putExtra("carports_info", carportListBean));
+                }
+            });
+        }
     }
 
     @Override

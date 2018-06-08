@@ -92,7 +92,6 @@
                 android:layout_height="40dp"
                 android:background="@null"
                 android:hint="请填写绑定码"
-                android:text="222222"
                 android:textColor="@color/text_normal_color"
                 android:textColorHint="@color/text_common_hint"
                 android:textSize="13sp" />
@@ -125,8 +124,8 @@
             android:ellipsize="end"
             android:maxLines="5"
             android:minHeight="100dp"
-            android:text="绑定码说明文字"
-            android:textColor="@color/text_lighter_color"
+            android:text="绑定之后不可更改"
+            android:textColor="@color/text_common_hint"
             android:textSize="12sp" />
 
         <Button

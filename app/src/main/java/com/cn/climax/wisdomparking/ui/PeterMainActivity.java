@@ -855,7 +855,10 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 case R.id.llSkip2Publish: //发布共享单
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
                         return;
-                    startActivity(new Intent(PeterMainActivity.this, PublishShareParkingActivity.class));
+                    Intent intent = new Intent(PeterMainActivity.this, PublishShareParkingActivity.class);
+                    if (mUserInfoBean != null && mUserInfoBean.getCommunityList() != null && mUserInfoBean.getCommunityList().size() > 0)
+                        intent.putExtra("community_bean", (Serializable) mUserInfoBean.getCommunityList());
+                    startActivity(intent);
                     break;
                 case R.id.ivSkip2CustomerService: //我的客服
                     startActivity(new Intent(PeterMainActivity.this, CustomerServiceMineActivity.class));

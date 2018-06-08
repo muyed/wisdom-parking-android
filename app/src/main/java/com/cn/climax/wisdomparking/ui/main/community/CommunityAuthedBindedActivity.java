@@ -74,39 +74,4 @@ public class CommunityAuthedBindedActivity extends BaseSwipeBackActivity {
         rvCarPortsListView.setAdapter(adapter);
     }
 
-    private void initDetailList(int tag) {
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(this) {
-//            @Override
-//            public RecyclerView.LayoutParams generateDefaultLayoutParams() {
-//                return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//            }
-//        };
-//        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-//        xrvAuthedBindedListView.setLayoutManager(layoutManager);
-//        xrvAuthedBindedListView.setLayoutManager(layoutManager);
-//        xrvAuthedBindedListView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-//        xrvAuthedBindedListView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
-//        xrvAuthedBindedListView.setArrowImageView(R.drawable.iconfont_downgrey);
-//
-//        xrvAuthedBindedListView.getDefaultRefreshHeaderView().setRefreshTimeVisible(true);
-//        xrvAuthedBindedListView.getDefaultFootView().setLoadingDoneHint("我是有底线的");
-//        xrvAuthedBindedListView.setLimitNumberToCallLoadMore(2);
-//
-//        mAdapter = new CommunityAuthedBindedAdapter(this);
-//        xrvAuthedBindedListView.setAdapter(mAdapter);
-//
-//        xrvAuthedBindedListView.setLoadingListener(new XRecyclerView.LoadingListener() {
-//            @Override
-//            public void onRefresh() {
-//                initDetailList(Constant.REFRESH);
-//            }
-//
-//            @Override
-//            public void onLoadMore() {
-//                initDetailList(Constant.LOAD);
-//            }
-//        });
-//
-//        xrvAuthedBindedListView.refresh();
-    }
 }

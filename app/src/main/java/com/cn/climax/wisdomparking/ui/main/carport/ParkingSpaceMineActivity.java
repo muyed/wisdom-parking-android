@@ -84,7 +84,7 @@ public class ParkingSpaceMineActivity extends BaseSwipeBackActivity {
 
             @Override
             public void onLoadMore() {
-                listParkings(Constant.LOAD);
+                xrvParkingListView.setLoadingMoreEnabled(false);
             }
         });
         xrvParkingListView.refresh();
@@ -103,14 +103,14 @@ public class ParkingSpaceMineActivity extends BaseSwipeBackActivity {
                         if (response.code() == 200) {
                             try {
                                 JSONObject json = new JSONObject(s);
-                                List<ParkingSpaceMineBean> parkingSpaceMineBeanList =  com.alibaba.fastjson.JSONObject.parseArray(String.valueOf(json.get("data")), ParkingSpaceMineBean.class);
-                                if (tag == Constant.REFRESH){
+                                List<ParkingSpaceMineBean> parkingSpaceMineBeanList = com.alibaba.fastjson.JSONObject.parseArray(String.valueOf(json.get("data")), ParkingSpaceMineBean.class);
+                                if (tag == Constant.REFRESH) {
                                     mAdapter.setDatas(parkingSpaceMineBeanList);
                                     xrvParkingListView.refreshComplete();
-                                }else{
-                                    
+                                } else {
+                                    xrvParkingListView.setLoadingMoreEnabled(false);
                                 }
-                                
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -134,7 +134,15 @@ public class ParkingSpaceMineActivity extends BaseSwipeBackActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 199 && resultCode == RESULT_OK) {
+            xrvParkingListView.refresh();
+        }
+    }
+
     private void authParkingSpace() {
-        startActivity(new Intent(ParkingSpaceMineActivity.this, AddDeviceActivity.class));
+        startActivityForResult(new Intent(ParkingSpaceMineActivity.this, AddDeviceActivity.class), 199);
     }
 }

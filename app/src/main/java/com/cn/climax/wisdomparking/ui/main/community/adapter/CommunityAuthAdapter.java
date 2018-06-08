@@ -63,15 +63,7 @@ public class CommunityAuthAdapter extends RecyclerView.Adapter<CommunityAuthAdap
 
         if (mCommunityListBean.get(position).getCarportList() != null && mCommunityListBean.get(position).getCarportList().size() > 0) {
             holder.tvParkingInfo.setVisibility(View.VISIBLE);
-            StringBuilder parkingInfoList = new StringBuilder();
-            if (mCommunityListBean.get(position).getCarportList().size() > 1) {
-                for (int i = 0; i < mCommunityListBean.get(position).getCarportList().size(); i++) {
-                    parkingInfoList.append(mCommunityListBean.get(position).getCarportList().get(i).getCarportNum()).append("、");
-                }
-                holder.tvParkingInfo.setText("车位：" + parkingInfoList.substring(0, parkingInfoList.length() - 1));
-            } else {
-                holder.tvParkingInfo.setText("车位：" + mCommunityListBean.get(position));
-            }
+            holder.tvParkingInfo.setText("共" + mCommunityListBean.get(position).getCarportList().size() + "个车位");
         } else {
             holder.tvParkingInfo.setVisibility(View.VISIBLE);
             holder.tvParkingInfo.setText("未绑定车位");

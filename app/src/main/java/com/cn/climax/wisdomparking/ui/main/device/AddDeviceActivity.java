@@ -68,8 +68,9 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
         if (mCarPortBean != null) {
             tvCarPortCode.setText(mCarPortBean.getCarportNum());
             tvCarPortAddr.setText(mCarPortAddress);
+            etInputBindCode.setText(mCarPortBean.getBindCode());
+            mCarPortBindCode = mCarPortBean.getBindCode();
         }
-        mCarPortBindCode = etInputBindCode.getText().toString();
         etInputBindCode.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -81,7 +82,11 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                mCarPortBindCode = s.toString();
+                if (s.length() > 0) {
+                    mCarPortBindCode = s.toString();
+                } else {
+                    mCarPortBindCode = null;
+                }
             }
         });
         btnBindCarPort.setOnClickListener(new ForbidQuickClickListener() {
@@ -91,7 +96,6 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
                     ToastUtils.show("请填写绑定码");
                     return;
                 }
-//                getAliPayOrder("CD20180418234539356044");
                 bindCarPort();
             }
         });
@@ -100,30 +104,27 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
     private void bindCarPort() {
         HashMap<String, String> httpParams = new HashMap<>();
         httpParams.put(ApiParamsKey.CAR_PORT_ID, "3");
-        httpParams.put(ApiParamsKey.CAR_PORT_BIND_CODE, "222222");
+        httpParams.put(ApiParamsKey.CAR_PORT_BIND_CODE, mCarPortBindCode);
         JSONObject json = new JSONObject(httpParams);
 
         ApiManage.post(ApiHost.getInstance().bindCarPort())
                 .upJson(json.toString())
-                .execute(new WrapJsonBeanCallback<CarPortBindBean>(AddDeviceActivity.this) {
+                .execute(new StringCallback() {
                     @Override
-                    protected void onJsonParseException(int code, String msg, Call call) {
-
-                    }
-
-                    @Override
-                    protected void onExecuteSuccess(CarPortBindBean bean, Call call) {
-                        getAliPayOrder(GsonConvert.toJSONString(bean.getData()));
-                    }
-
-                    @Override
-                    protected void onExecuteError(Call call, Response response, Exception e) {
-
-                    }
-
-                    @Override
-                    protected boolean setDialogShow() {
-                        return false;
+                    public void onSuccess(String s, Call call, Response response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(s);
+                            String mDataJson = String.valueOf(jsonObject.get("data"));
+                            int code = Integer.parseInt(String.valueOf(jsonObject.get("code")));
+                            String errMsg = String.valueOf(jsonObject.get("errMsg"));
+                            if (code == 200) {
+                                getAliPayOrder(mDataJson);
+                            } else {
+                                ToastUtils.show(errMsg);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
     }
@@ -136,7 +137,7 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
                         if (response.code() == 200) {
-                            SharedUtil.getInstance(AddDeviceActivity.this).put(ApiParamsKey.IS_AUTH_PARKING_SPACE,true);
+                            SharedUtil.getInstance(AddDeviceActivity.this).put(ApiParamsKey.IS_AUTH_PARKING_SPACE, true);
                             try {
                                 JSONObject jsonObject = new JSONObject(s);
                                 String mDataJson = (String) jsonObject.get("data");

@@ -61,6 +61,7 @@ public class CommunityIdentifyActivity extends BaseSwipeBackActivity {
     TextView tvGoCertParking;
     @BindView(R.id.llNoParkingSpace)
     LinearLayout llNoParkingSpace;
+    @BindView(R.id.tvCarSpaceNo) TextView tvCarSpaceNo;
 
     private ArrayList<CarLockParkingBean> lockList = new ArrayList<>();
     private List<ParkingSpaceMineBean> mParkingSpaceMineBeanList = new ArrayList<>();

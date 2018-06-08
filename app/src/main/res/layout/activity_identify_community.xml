@@ -149,11 +149,11 @@
                 android:textSize="13sp" />
 
             <TextView
+                android:id="@+id/tvCarSpaceNo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:gravity="center_vertical"
-                android:text="B888888"
                 android:textColor="@color/text_darker_color"
                 android:textSize="13sp" />
 
