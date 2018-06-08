@@ -233,6 +233,16 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         }
     }
 
+    public Date getSelectedDate() {
+        try {
+            Date date = WheelTime.dateFormat.parse(wheelTime.getTime());
+            return date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     /**
      * 动态设置标题
      *

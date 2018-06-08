@@ -43,7 +43,7 @@ public class MyOrderResponse extends BaseBean<MyOrderResponse> {
 
     private String sorts;
     private String ranges;
-    private int id;
+    private String id;
     private long createTime;
     private long modifyTime;
     private int userId;
@@ -86,11 +86,11 @@ public class MyOrderResponse extends BaseBean<MyOrderResponse> {
         this.ranges = ranges;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

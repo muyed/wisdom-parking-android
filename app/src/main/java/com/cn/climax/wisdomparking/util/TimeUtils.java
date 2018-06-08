@@ -21,6 +21,20 @@ public class TimeUtils {
     private static final long HOUR_OF_MILLISECONDS = 1000 * 60 * 60;
     private static final long MINUTES_OF_MILLISECONDS = 1000 * 60;
 
+    public static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    public static SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM");
+    public static SimpleDateFormat dateFormatDB = new SimpleDateFormat("yyyyMMdd");// 数据库使用的日期格式  
+    public static SimpleDateFormat dataTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static final String Y_M_D = "yyyy-MM-dd";
+    public static final String Y_M_D_HM = "yyyy-MM-dd HH:mm";
+    public static final String Y_M_D_HMS = "yyyy-MM-dd HH:mm:ss";
+    public static final String YMD = "yyyyMMdd";
+    public static final String YMDHM = "yyyyMMddHHmm";
+    public static final String YMDHMS = "yyyyMMddHHmmss";
+    public static final String ymd = "yyyy/MM/dd";
+    public static final String ymd_HM = "yyyy/MM/dd HH:mm";
+    public static final String ymd_HMS = "yyyy/MM/dd HH:mm:ss";
+
     /**
      * 时间戳转为时间(年月日，时分秒)
      *
@@ -155,6 +169,60 @@ public class TimeUtils {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return "周" + GetCH(Calendar.DAY_OF_WEEK);
+    }
+
+    /**
+     * 日期转星期
+     */
+    public static String dateToWeek(String datetime) {
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+        String[] weekDays = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
+        Calendar cal = Calendar.getInstance(); // 获得一个日历  
+        Date datet = null;
+        try {
+            datet = f.parse(datetime);
+            cal.setTime(datet);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        int w = cal.get(Calendar.DAY_OF_WEEK) - 1; // 指示一个星期中的某天。  
+        if (w < 0)
+            w = 0;
+        return weekDays[w];
+    }
+
+    /**
+     * 方法用途: 结束时间（end）与start时间进行比较<br>
+     * 实现步骤: 如果相等返回0，如果end大于start返回1，如果end小于start返回-1<br>
+     *
+     * @param start
+     * @param end
+     * @return
+     * @throws Exception
+     */
+    public static int compareEndAndStart(String start, String end) throws Exception {
+        long s = 0;
+        if (8 == start.length()) {
+            s = dateFormatDB.parse(start).getTime();
+        } else if (10 == start.length()) {
+            s = dateFormat.parse(start).getTime();
+        } else {
+            s = dataTimeFormat.parse(start).getTime();
+        }
+        long e = 0;
+        if (8 == end.length()) {
+            e = dateFormatDB.parse(end).getTime();
+        } else if (10 == end.length()) {
+            e = dateFormat.parse(end).getTime();
+        } else {
+            e = dataTimeFormat.parse(end).getTime();
+        }
+        if (e > s) {
+            return 1;
+        } else if (e < s) {
+            return -1;
+        }
+        return 0;
     }
 
     /**

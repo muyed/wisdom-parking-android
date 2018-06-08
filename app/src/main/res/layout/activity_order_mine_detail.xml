@@ -19,21 +19,22 @@
         android:paddingRight="16dp">
 
         <TextView
+            android:id="@+id/tvReleaseLockCode"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:gravity="center_vertical"
-            android:text="预约码：ABCD"
             android:textColor="@color/text_color_dark"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tvOrderStatus"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:gravity="center_vertical|right"
-            android:text="取消订单" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 
@@ -62,11 +63,11 @@
             android:textColor="@color/white" />
 
         <TextView
+            android:id="@+id/tvParkingLocation"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
-            android:text="负四层055"
             android:textSize="15sp" />
 
     </LinearLayout>
@@ -89,11 +90,11 @@
             android:textColor="@color/white" />
 
         <TextView
+            android:id="@+id/tvCardLicenseNo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
-            android:text="苏B2LT69"
             android:textSize="15sp" />
 
     </LinearLayout>
@@ -119,11 +120,11 @@
                 android:textColor="@color/text_lighter_color" />
 
             <TextView
+                android:id="@+id/tvOrderNo"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:gravity="center_vertical"
-                android:text="000000011545512"
                 android:textColor="@color/text_darker_color" />
 
         </LinearLayout>
@@ -150,11 +151,11 @@
                 android:textColor="@color/text_lighter_color" />
 
             <TextView
+                android:id="@+id/tvOrderPhone"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:gravity="center_vertical"
-                android:text="15715769421"
                 android:textColor="@color/text_darker_color" />
 
         </LinearLayout>
@@ -173,6 +174,7 @@
             android:paddingRight="16dp">
 
             <TextView
+                android:id="@+id/tvStatusStartTime"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -181,11 +183,11 @@
                 android:textColor="@color/text_lighter_color" />
 
             <TextView
+                android:id="@+id/tvOrderStartTime"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:gravity="center_vertical"
-                android:text="2018-03-28 16:00:00"
                 android:textColor="@color/text_darker_color" />
 
         </LinearLayout>
@@ -204,6 +206,7 @@
             android:paddingRight="16dp">
 
             <TextView
+                android:id="@+id/tvStatusEndTime"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -212,11 +215,11 @@
                 android:textColor="@color/text_lighter_color" />
 
             <TextView
+                android:id="@+id/tvOrderCancleTime"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:gravity="center_vertical"
-                android:text="2018-03-28 19:00:00"
                 android:textColor="@color/text_darker_color" />
 
         </LinearLayout>
@@ -236,20 +239,19 @@
             android:paddingRight="16dp">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="应付："
                 android:textColor="@color/text_normal_color"
                 android:textSize="17sp" />
 
             <TextView
+                android:id="@+id/tvPayAmount"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:gravity="center_vertical"
-                android:text="￥4.00"
                 android:textColor="@color/red_7"
                 android:textSize="17sp"
                 android:textStyle="bold" />

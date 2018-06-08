@@ -195,6 +195,8 @@
         <activity android:name=".ui.setting.bank.BankCardSelectActivity" />
         <activity android:name=".ui.setting.utils.AuthenticatedInfoActivity" />
         <activity android:name=".ui.main.AppBulletinActivity" />
+        <activity android:name=".ui.main.order.OrderPaySuccessActivity" />
+        <activity android:name=".ui.main.order.OrderAppointmentActivity"></activity>
     </application>
 
 </manifest>

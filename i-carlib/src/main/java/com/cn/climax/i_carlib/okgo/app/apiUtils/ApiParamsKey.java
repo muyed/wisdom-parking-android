@@ -25,6 +25,7 @@ public class ApiParamsKey {
     public static final String START_TIME = "startTime"; //共享开始时间 yyyy-MM-dd HH:mm:ss
     public static final String STOP_TIME = "stopTime"; //共享结束时间 yyyy-MM-dd HH:mm:ss
     public static final String SHARE_PRICE = "price"; //价格
+    public static final String SHARE_REMARK = "price"; //价格
 
     public static final String REAL_NAME = "realName"; //真实姓名
     public static final String IDENTITY_CARD = "identityCard"; //身份证

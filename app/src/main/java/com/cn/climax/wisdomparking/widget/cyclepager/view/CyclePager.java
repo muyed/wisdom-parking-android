@@ -47,6 +47,19 @@ public class CyclePager<T> extends ViewPager {
     private boolean isRunnin;
     private int lastPos;
 
+    /*
+    更改scrollble的值可设置是否可滑动，默认true为可滑动
+     */
+    private boolean scrollble = true;
+
+    public boolean isScrollble() {
+        return scrollble;
+    }
+
+    public void setScrollble(boolean scrollble) {
+        this.scrollble = scrollble;
+    }
+
     public CyclePager(Context context) {
         super(context);
         mContext = context;
@@ -240,6 +253,9 @@ public class CyclePager<T> extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
+        if (!scrollble) {
+            return true;
+        }
         //防止多指误操作
         int action = MotionEventCompat.getActionMasked(ev);
         switch (action) {
@@ -333,7 +349,7 @@ public class CyclePager<T> extends ViewPager {
             }
 
 //            Log.w("jijinchao", "-----pos:" + position + "------count:" + getAdapter().getCount());
-            if (ll_pointer != null){
+            if (ll_pointer != null) {
                 View lastChild = ll_pointer.getChildAt(lastPos);
 
                 //选中的指示点和非选中的指示点如果大小不同时需要重新设置LayoutParams
@@ -352,8 +368,8 @@ public class CyclePager<T> extends ViewPager {
             }
             lastPos = position - 1;
 //            Log.w("jijinchao", "child******" + curChild);
-            int tag = CyclePager.this.getTag() == null ? -1 : (int)CyclePager.this.getTag();
-            if (mOnItemInitLisenter != null &&  ( tag == -1 || tag != position)) {
+            int tag = CyclePager.this.getTag() == null ? -1 : (int) CyclePager.this.getTag();
+            if (mOnItemInitLisenter != null && (tag == -1 || tag != position)) {
                 setScrollDurationFactor(mScrollDurationRatio);
                 mOnItemInitLisenter.onItemVisible(position - 1);
                 CyclePager.this.setTag(position);
@@ -362,13 +378,13 @@ public class CyclePager<T> extends ViewPager {
 
         @Override
         public void onPageScrollStateChanged(int state) {
-                //这个判断会使手动滑动到边界条目的时候卡顿
+            //这个判断会使手动滑动到边界条目的时候卡顿
 //            if (state == ViewPager.SCROLL_STATE_IDLE) {
-                if (position == getAdapter().getCount() - 1) {
-                    CyclePager.this.setCurrentItem(1, false);
-                } else if (position == 0) {
-                    CyclePager.this.setCurrentItem(getAdapter().getCount() - 2, false);
-                }
+            if (position == getAdapter().getCount() - 1) {
+                CyclePager.this.setCurrentItem(1, false);
+            } else if (position == 0) {
+                CyclePager.this.setCurrentItem(getAdapter().getCount() - 2, false);
+            }
 //            }
             if (listener != null) {
                 listener.onPageScrollStateChanged(state);

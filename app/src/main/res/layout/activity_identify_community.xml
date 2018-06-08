@@ -11,6 +11,7 @@
     <include layout="@layout/base_blue_nav_toolbar_layout" />
 
     <LinearLayout
+        android:id="@+id/llShowMineParkingSpace"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
@@ -22,7 +23,33 @@
         <com.cn.climax.wisdomparking.widget.cyclepager.view.CyclePager
             android:id="@+id/lock_viewPager"
             android:layout_width="match_parent"
-            android:layout_height="88dp" />
+            android:layout_height="88dp"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/llNoParkingSpace"
+            android:layout_width="match_parent"
+            android:layout_height="88dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/icon_share_parking" />
+
+            <TextView
+                android:id="@+id/tvGoCertParking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="还没有停车位，快去添加吧"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_point"

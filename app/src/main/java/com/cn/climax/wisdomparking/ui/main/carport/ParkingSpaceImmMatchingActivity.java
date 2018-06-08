@@ -146,11 +146,11 @@ public class ParkingSpaceImmMatchingActivity extends BaseSwipeCustomActivity {
     }
 
     private void initCustomTimePicker() {
-        Calendar selectedDate = Calendar.getInstance();//系统当前时间
-        Calendar startDate = Calendar.getInstance();
+        final Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        final Calendar startDate = Calendar.getInstance();
 
         int mYear = startDate.get(Calendar.YEAR); // 获取当前年份
-        int mMonth = startDate.get(Calendar.MONTH) + 1;// 获取当前月份
+        int mMonth = startDate.get(Calendar.MONTH);// 获取当前月份
         int mDay = startDate.get(Calendar.DAY_OF_MONTH);// 获取当日期
         int mWeek = startDate.get(Calendar.DAY_OF_WEEK);// 获取当前日期的星期
         int mHour = startDate.get(Calendar.HOUR_OF_DAY);//时
@@ -159,11 +159,11 @@ public class ParkingSpaceImmMatchingActivity extends BaseSwipeCustomActivity {
 
         startDate.set(mYear, mMonth, mDay, mHour, mMinute);
         Calendar endDate = Calendar.getInstance();
-        endDate.set(mYear, mMonth, mDay + 1, mHour, mMinute);
+        endDate.set(2999, 12, mDay, mHour, mMinute);
         //时间选择器 ，自定义布局
         pvCustomTimeStart = new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
-            public void onTimeSelect(Date date, View v) {//选中事件回调
+            public void onTimeSelect(Date date, View v) {//选中事件回调 
                 tvSelectStartTime.setText(getTime(date));
                 mShareStartTime = getTime(date);
                 tvSelectStartTime.setTextColor(ContextCompat.getColor(ParkingSpaceImmMatchingActivity.this, R.color.text_darker_color));
@@ -180,8 +180,18 @@ public class ParkingSpaceImmMatchingActivity extends BaseSwipeCustomActivity {
                         tvSubmit.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                pvCustomTimeStart.returnData();
-                                pvCustomTimeStart.dismiss();
+                                try {
+                                    if (TimeUtils.compareEndAndStart(getTime(pvCustomTimeStart.getSelectedDate()) + ":00", getTime(new Date()) + ":00") > 0) {
+                                        ToastUtils.show("选择时间请大于当前时间");
+                                    } else if (!TextUtils.isEmpty(tvSelectStopTime.getText().toString()) && TimeUtils.compareEndAndStart(getTime(pvCustomTimeStart.getSelectedDate()) + ":00", getTime(pvCustomTimeStop.getSelectedDate()) + ":00") < 0) {
+                                        ToastUtils.show("起始时间请小于结束时间");
+                                    } else {
+                                        pvCustomTimeStart.returnData();
+                                        pvCustomTimeStart.dismiss();
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                             }
                         });
                         tv_cancel.setOnClickListener(new View.OnClickListener() {
@@ -195,10 +205,10 @@ public class ParkingSpaceImmMatchingActivity extends BaseSwipeCustomActivity {
                 .setContentTextSize(16)
                 .setType(new boolean[]{true, true, true, true, true, false})
                 .setLabel("年", "月", "日", "时", "分", "秒")
-                .setLineSpacingMultiplier(1.2f)
+                .setLineSpacingMultiplier(1.8f)
                 .setTextXOffset(0, 0, 0, 0, 0, 0)
                 .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
-                .setDividerColor(0xFF24AD9D)
+                .setDividerColor(0xFFF4F4F4)
                 .build();
         pvCustomTimeStop = new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
@@ -219,8 +229,18 @@ public class ParkingSpaceImmMatchingActivity extends BaseSwipeCustomActivity {
                         tvSubmit.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                pvCustomTimeStop.returnData();
-                                pvCustomTimeStop.dismiss();
+                                try {
+                                    if (TimeUtils.compareEndAndStart(getTime(pvCustomTimeStop.getSelectedDate()) + ":00", getTime(new Date()) + ":00") > 0) {
+                                        ToastUtils.show("选择时间请大于当前时间");
+                                    } else if (!TextUtils.isEmpty(tvSelectStartTime.getText().toString()) && TimeUtils.compareEndAndStart(getTime(pvCustomTimeStop.getSelectedDate()) + ":00", getTime(pvCustomTimeStart.getSelectedDate()) + ":00") >= 0) {
+                                        ToastUtils.show("结束时间请大于起始时间");
+                                    } else {
+                                        pvCustomTimeStop.returnData();
+                                        pvCustomTimeStop.dismiss();
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                             }
                         });
                         tv_cancel.setOnClickListener(new View.OnClickListener() {
@@ -234,10 +254,10 @@ public class ParkingSpaceImmMatchingActivity extends BaseSwipeCustomActivity {
                 .setContentTextSize(16)
                 .setType(new boolean[]{true, true, true, true, true, false})
                 .setLabel("年", "月", "日", "时", "分", "秒")
-                .setLineSpacingMultiplier(1.2f)
+                .setLineSpacingMultiplier(1.8f)
                 .setTextXOffset(0, 0, 0, 0, 0, 0)
                 .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
-                .setDividerColor(0xFF24AD9D)
+                .setDividerColor(0xFFF4F4F4)
                 .build();
 
     }

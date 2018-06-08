@@ -2,29 +2,43 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/transparent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:background="@color/transparent"
+    android:gravity="center">
 
-    <TextView
-        android:id="@+id/tvCarSpaceLockNo"
+    <LinearLayout
+        android:id="@+id/llAbovearea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:drawableRight="@drawable/icon_lock_car_space"
-        android:text="车位锁一 "
-        android:textColor="@color/selectable_item_background_general_light_pressed"
-        android:textSize="13sp" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvCarSpaceLockNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="车位锁一 "
+            android:textColor="@color/selectable_item_background_general_light_pressed"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginLeft="5dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/icon_lock_car_space" />
+        
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tvCarSpaceLockRemark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvCarSpaceLockNo"
+        android:layout_below="@+id/llAbovearea"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="18dp"
         android:text="备注的名称"
         android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:textSize="17sp" />
 
 </RelativeLayout>

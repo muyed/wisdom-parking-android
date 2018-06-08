@@ -242,11 +242,11 @@ public class BottomDialog {
         public void setData(AMapLocation myLocation, NearbyParkingMineBean parkingMineBean) {
             tvNavStartAddr.setText(myLocation.getAddress());
             tvNavStartDate.setText(TimeUtils.getCurrentDate(parkingMineBean.getStartTime()));
-            tvNavStartWeek.setText(TimeUtils.getDateAndDayOfWeek(TimeUtils.getTimeStamp(parkingMineBean.getStartTime(), "yyyy-MM-dd HH:mm:ss")) + " " + TimeUtils.getCurrentHour(parkingMineBean.getStartTime()));
+            tvNavStartWeek.setText(TimeUtils.dateToWeek(parkingMineBean.getStartTime().substring(0, parkingMineBean.getStartTime().lastIndexOf(" "))) + " " + TimeUtils.getCurrentHour(parkingMineBean.getStartTime()));
 
             tvNavEndAddr.setText(parkingMineBean.getAddr());
             tvNavEndDate.setText(TimeUtils.getCurrentDate(parkingMineBean.getStopTime()));
-            tvNavEndWeek.setText(TimeUtils.getDateAndDayOfWeek(TimeUtils.getTimeStamp(parkingMineBean.getStopTime(), "yyyy-MM-dd HH:mm:ss")) + " " + TimeUtils.getCurrentHour(parkingMineBean.getStopTime()));
+            tvNavEndWeek.setText(TimeUtils.dateToWeek(parkingMineBean.getStopTime().substring(0, parkingMineBean.getStartTime().lastIndexOf(" "))) + " " + TimeUtils.getCurrentHour(parkingMineBean.getStopTime()));
 
             tvUnitPrice.setText(parkingMineBean.getPrice() + "元/小时");
             tvNavCurrentParkingSpace.setText("车位 " + parkingMineBean.getCarportNum());

@@ -8,11 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alipay.sdk.app.AuthTask;
 import com.alipay.sdk.app.PayTask;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiManage;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
 import com.cn.climax.i_carlib.pay.alipay.AuthResult;
 import com.cn.climax.i_carlib.pay.alipay.util.OrderInfoUtil2_0;
@@ -24,22 +27,31 @@ import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.data.local.BaseLocalBean;
 import com.cn.climax.wisdomparking.ui.main.device.adapter.RVDevicePayAdapter;
 import com.cn.climax.wisdomparking.ui.pay.bean.PayResult;
+import com.lzy.okgo.callback.StringCallback;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class ParkingSpacePayActivity extends BaseSwipeBackActivity {
 
+    @BindView(R.id.tvOrderPayAmount)
+    TextView tvOrderPayAmount;
     @BindView(R.id.rvPayParkSpaceList)
     RecyclerView rvPayParkSpaceList;
 
     private RVDevicePayAdapter mAdapter;
     private BaseLocalBean checkBean = new BaseLocalBean();
     private String mOrderNo;
-    HashMap<String, String> orderMap = new HashMap<>();
+    private double mOrderAmount;
+    private String mOrderId;
 
     @Override
     protected int initContentView() {
@@ -54,6 +66,10 @@ public class ParkingSpacePayActivity extends BaseSwipeBackActivity {
     @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
         mOrderNo = getIntent().getStringExtra("order_no");
+        mOrderAmount = getIntent().getDoubleExtra("pay_amount", 0d);
+        mOrderId = getIntent().getStringExtra("order_id");
+
+        tvOrderPayAmount.setText(String.valueOf(mOrderAmount));
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rvPayParkSpaceList.setLayoutManager(layoutManager);
@@ -72,7 +88,33 @@ public class ParkingSpacePayActivity extends BaseSwipeBackActivity {
     void click(View view) {
         switch (view.getId()) {
             case R.id.tvNextStep2:
-                gotoPay(checkBean.getPayWay());
+                ApiManage.get(ApiHost.getInstance().payMyTicket() + mOrderId)
+                        .tag(this)// 请求的 tag, 主要用于取消对应的请求
+                        .cacheKey("cacheKey")
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onSuccess(String s, Call call, Response response) {
+                                if (response.code() == 200) {
+                                    try {
+                                        JSONObject json = new JSONObject(s);
+                                        int code = Integer.parseInt(String.valueOf(json.get("code")));
+                                        String errMsg = String.valueOf(json.get("errMsg"));
+                                        String data = String.valueOf(json.get("data"));
+                                        if (code == 200) {
+                                            
+                                        } else if (code == 8) {
+                                            ToastUtils.show("该停车单已支付");
+                                        } else {
+                                            ToastUtils.show(errMsg);
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                } else {
+                                    ToastUtils.show(response.message());
+                                }
+                            }
+                        });
                 break;
         }
     }

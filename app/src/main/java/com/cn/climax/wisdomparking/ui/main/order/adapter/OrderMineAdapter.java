@@ -45,7 +45,7 @@ public class OrderMineAdapter extends RecyclerView.Adapter<OrderMineAdapter.Orde
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(OrderMineAdapter.OrderViewHolder holder, int position) {
+    public void onBindViewHolder(OrderMineAdapter.OrderViewHolder holder, final int position) {
         holder.tvOrderCode.setText("解锁码：" + mDataBean.get(position).getOpenCode());
         holder.tvParkingAddr.setText("解锁码：" + mDataBean.get(position).getOpenCode());
         holder.tvOrderTime.setText("预约时间：" + mDataBean.get(position).getAppointmentStartTime());
@@ -53,7 +53,7 @@ public class OrderMineAdapter extends RecyclerView.Adapter<OrderMineAdapter.Orde
         holder.rlSkip2Detail.setOnClickListener(new ForbidQuickClickListener() {
             @Override
             protected void forbidClick(View view) {
-                mContext.startActivity(new Intent(mContext, OrderMineDetailActivity.class));
+                mContext.startActivity(new Intent(mContext, OrderMineDetailActivity.class).putExtra("order_detail_bean", mDataBean.get(position)));
             }
         });
     }

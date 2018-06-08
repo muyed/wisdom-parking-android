@@ -58,7 +58,6 @@ import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiManage;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
-import com.cn.climax.i_carlib.okgo.http.GsonConvert;
 import com.cn.climax.i_carlib.util.SharedUtil;
 import com.cn.climax.i_carlib.util.ToastUtils;
 import com.cn.climax.wisdomparking.R;
@@ -75,9 +74,7 @@ import com.cn.climax.wisdomparking.ui.main.community.AddCommunityActivity;
 import com.cn.climax.wisdomparking.ui.main.community.AuthCommunityListActivity;
 import com.cn.climax.wisdomparking.ui.main.community.CommunityIdentifyActivity;
 import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceMineActivity;
-import com.cn.climax.wisdomparking.ui.main.device.AddDeviceActivity;
 import com.cn.climax.wisdomparking.ui.main.device.LicenseManagerListActivity;
-import com.cn.climax.wisdomparking.ui.main.device.ParkingSpacePayActivity;
 import com.cn.climax.wisdomparking.ui.main.device.ReleaseLockActivity;
 import com.cn.climax.wisdomparking.ui.main.nav.Navigation2DActivity;
 import com.cn.climax.wisdomparking.ui.main.order.OrderMineActivity;
@@ -97,9 +94,7 @@ import com.cn.climax.wisdomparking.util.HelperFromPermission;
 import com.cn.climax.wisdomparking.widget.CircleView;
 import com.cn.climax.wisdomparking.widget.My2dMapView;
 import com.cn.climax.wisdomparking.widget.bottomdialog.BottomDialog;
-import com.cn.climax.wisdomparking.widget.bulletinboard.MarqueeTextView;
 import com.cn.climax.wisdomparking.widget.bulletinboard.TipView;
-import com.cn.climax.wisdomparking.widget.bulletinboard.adapter.SimpleBulletinAdapter;
 import com.cn.climax.wisdomparking.widget.bulletinboard.view.BulletinView;
 import com.cn.climax.wisdomparking.widget.numberkeyboard.OfoKeyboard;
 import com.cn.climax.wisdomparking.widget.ofo.OfoConvcaveMenuActivity;
@@ -240,7 +235,6 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
 
     private ZxingConfig config = new ZxingConfig();
     private boolean isClickVoice = true; //扫描是否开启声音 默认开启
-    private BulletinView mBulletinView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -543,33 +537,6 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-            if (isOpenPCenter) {
-                if (ofoMenuLayout.isOpen()) {
-                    ofoMenuLayout.close();
-                    isOpenPCenter = false;
-                }
-            } else if (isOpenInputCenter) {
-                if (ofoMenuKeyBoardLayout.isOpen()) {
-                    ofoMenuKeyBoardLayout.close();
-                    isOpenInputCenter = false;
-                }
-            } else {
-                if ((System.currentTimeMillis() - exitTime) > 1000) {
-                    Toast.makeText(getApplicationContext(), "再按一次退出", Toast.LENGTH_SHORT).show();
-                    exitTime = System.currentTimeMillis();
-                } else {
-                    SharedUtil.getInstance(getApplicationContext()).put("last_launch", System.currentTimeMillis());
-                    finish();
-                }
-            }
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
-    @Override
     public void onLocationChanged(final AMapLocation amapLocation) {
         if (amapLocation != null) {
             if (amapLocation.getErrorCode() == 0) {
@@ -763,7 +730,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                                     startActivity(new Intent(PeterMainActivity.this, ParkingSpaceImmMatchingActivity.class).putExtra("destination_navi_info", mNearbyParkingMineBeen.get(finalI)));
                                 }
                             })
-                            .setData(mAmapLocation, mNearbyParkingMineBeen.get(i))
+                            .setData(mAmapLocation, mNearbyParkingMineBeen.get(finalI))
                             .show();
                 }
                 return true;
@@ -975,7 +942,8 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 case R.id.llSkip2MineParkingSpace: //我的车位
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
                         return;
-                    startActivity(new Intent(PeterMainActivity.this, ParkingSpaceMineActivity.class));
+//                    startActivity(new Intent(PeterMainActivity.this, ParkingSpaceMineActivity.class));
+                    startActivity(new Intent(PeterMainActivity.this, CommunityIdentifyActivity.class));
                     break;
             }
         }
@@ -1067,5 +1035,32 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 }
             }
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (isOpenPCenter) {
+                if (ofoMenuLayout.isOpen()) {
+                    ofoMenuLayout.close();
+                    isOpenPCenter = false;
+                }
+            } else if (isOpenInputCenter) {
+                if (ofoMenuKeyBoardLayout.isOpen()) {
+                    ofoMenuKeyBoardLayout.close();
+                    isOpenInputCenter = false;
+                }
+            } else {
+                if ((System.currentTimeMillis() - exitTime) > 1000) {
+                    Toast.makeText(getApplicationContext(), "再按一次退出", Toast.LENGTH_SHORT).show();
+                    exitTime = System.currentTimeMillis();
+                } else {
+                    SharedUtil.getInstance(getApplicationContext()).put("last_launch", System.currentTimeMillis());
+                    finish();
+                }
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
