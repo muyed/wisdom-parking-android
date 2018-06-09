@@ -149,7 +149,6 @@ public class CommunityIdentifyActivity extends BaseSwipeBackActivity {
                 @SuppressLint("SetTextI18n")
                 @Override
                 public void onPageSelected(int position) {
-                    Log.e("===> onPageSelected: ", position + "");
                     mCurParkingSpaceBean = mParkingSpaceMineBeanList.get(position);
                     tvCarSpaceNo.setText(mCurParkingSpaceBean.getCarportNum());
                     tvMonthProfit.setText(mCurParkingSpaceBean.getDeposit() + "");
