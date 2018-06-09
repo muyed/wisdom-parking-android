@@ -17,6 +17,7 @@
         android:background="@color/colorPrimary"
         android:gravity="center"
         android:orientation="vertical"
+        android:paddingBottom="16dp"
         android:paddingLeft="32dp"
         android:paddingRight="32dp">
 
@@ -24,7 +25,22 @@
             android:id="@+id/lock_viewPager"
             android:layout_width="match_parent"
             android:layout_height="88dp"
-            android:visibility="visible" />
+            android:visibility="gone" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="88dp"
+            android:layout_below="@+id/toolbar" />
+
+        <com.cn.climax.wisdomparking.widget.pageview.PageIndicatorView
+            android:id="@+id/pageIndicatorView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:piv_animationType="thinWorm"
+            app:piv_padding="16dp"
+            app:piv_radius="3dp"
+            app:piv_viewPager="@id/viewPager" />
 
         <LinearLayout
             android:id="@+id/llNoParkingSpace"
@@ -59,7 +75,7 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="10dp"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -173,11 +189,11 @@
                 android:textSize="13sp" />
 
             <TextView
+                android:id="@+id/tvMonthProfit"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:gravity="center_vertical"
-                android:text="199.00"
                 android:textColor="#F0BE26"
                 android:textSize="13sp" />
 

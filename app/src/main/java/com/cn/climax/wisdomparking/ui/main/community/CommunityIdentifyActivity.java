@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -23,10 +24,12 @@ import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.data.local.CarLockParkingBean;
 import com.cn.climax.wisdomparking.data.response.ParkingSpaceMineBean;
 import com.cn.climax.wisdomparking.ui.PeterMainActivity;
+import com.cn.climax.wisdomparking.ui.main.community.adapter.CarportAdapter;
 import com.cn.climax.wisdomparking.ui.main.device.ReleaseLockActivity;
 import com.cn.climax.wisdomparking.ui.main.share.PublishShareParkingActivity;
 import com.cn.climax.wisdomparking.util.GlobalVerificateUtils;
 import com.cn.climax.wisdomparking.widget.cyclepager.view.CyclePager;
+import com.cn.climax.wisdomparking.widget.pageview.PageIndicatorView;
 import com.lzy.okgo.callback.StringCallback;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
@@ -48,10 +51,10 @@ public class CommunityIdentifyActivity extends BaseSwipeBackActivity {
 
     private int REQUEST_CODE_SCAN = 111;
 
-    @BindView(R.id.lock_viewPager)
-    CyclePager lockViewPager;
-    @BindView(R.id.ll_point)
-    LinearLayout ll_point;
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
+    @BindView(R.id.pageIndicatorView)
+    PageIndicatorView pageIndicatorView;
     @BindView(R.id.llSkip2Share)
     LinearLayout llSkip2Share;
     @BindView(R.id.llReleaseLock)
@@ -61,7 +64,10 @@ public class CommunityIdentifyActivity extends BaseSwipeBackActivity {
     TextView tvGoCertParking;
     @BindView(R.id.llNoParkingSpace)
     LinearLayout llNoParkingSpace;
-    @BindView(R.id.tvCarSpaceNo) TextView tvCarSpaceNo;
+    @BindView(R.id.tvCarSpaceNo)
+    TextView tvCarSpaceNo;
+    @BindView(R.id.tvMonthProfit)
+    TextView tvMonthProfit;
 
     private ArrayList<CarLockParkingBean> lockList = new ArrayList<>();
     private List<ParkingSpaceMineBean> mParkingSpaceMineBeanList = new ArrayList<>();
@@ -124,56 +130,50 @@ public class CommunityIdentifyActivity extends BaseSwipeBackActivity {
             lockList.add(parkingBean);
         }
         if (lockList == null || lockList.size() == 0) {
-            lockViewPager.setVisibility(View.GONE);
-            ll_point.setVisibility(View.INVISIBLE);
+            viewPager.setVisibility(View.GONE);
+            pageIndicatorView.setVisibility(View.INVISIBLE);
             llNoParkingSpace.setVisibility(View.VISIBLE);
         } else {
-            lockViewPager.setVisibility(View.VISIBLE);
-            ll_point.setVisibility(View.VISIBLE);
+            viewPager.setVisibility(View.VISIBLE);
+            pageIndicatorView.setVisibility(View.VISIBLE);
             llNoParkingSpace.setVisibility(View.GONE);
-            if (lockList.size() == 1) {
-                lockViewPager.setScrollble(false);
-                mCurParkingSpaceBean = mParkingSpaceMineBeanList.get(0);
-            } else {
-                lockViewPager.setScrollble(true);
-            }
-            lockViewPager.addPoints(mContext, R.drawable.bg_pointer, ll_point, lockList.size());
-            lockViewPager.setImages(mContext, lockList, R.layout.view_pager_lock_item_layout, new CyclePager.OnItemInitLisenter() {
-                @Override
-                public void initItemView(View view, int position) {
-                    TextView tvCarSpaceLockNo = (TextView) view.findViewById(R.id.tvCarSpaceLockNo);
-                    TextView tvCarSpaceLockRemark = (TextView) view.findViewById(R.id.tvCarSpaceLockRemark);
-                    tvCarSpaceLockNo.setText(lockList.get(position).getLockName());
-                    tvCarSpaceLockRemark.setText(lockList.get(position).getLockRemark());
-                }
 
-                @Override
-                public void onItemClick(int position) {
-                }
-
-                @Override
-                public void onItemVisible(int position) {
-                }
-            }, 6);
-            lockViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            CarportAdapter adapter = new CarportAdapter();
+            adapter.setData(createPageList(), lockList);
+            viewPager.setAdapter(adapter);
+            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
                 public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                    Log.e("---> onPageScrolled: ", position + "");
                 }
 
+                @SuppressLint("SetTextI18n")
                 @Override
                 public void onPageSelected(int position) {
-                    Log.e("---> onPageSelected: ", position + "");
+                    Log.e("===> onPageSelected: ", position + "");
                     mCurParkingSpaceBean = mParkingSpaceMineBeanList.get(position);
+                    tvCarSpaceNo.setText(mCurParkingSpaceBean.getCarportNum());
+                    tvMonthProfit.setText(mCurParkingSpaceBean.getDeposit() + "");
                 }
 
-                @SuppressLint("LongLogTag")
                 @Override
                 public void onPageScrollStateChanged(int state) {
-                    Log.e("---> onPageScrollState: ", state + "");
                 }
             });
         }
+    }
+
+    private List<View> createPageList() {
+        List<View> pageList = new ArrayList<>();
+        for (int i = 0; i < lockList.size(); i++) {
+            pageList.add(createPageView(R.layout.view_pager_lock_item_layout));
+        }
+        return pageList;
+    }
+
+    @NonNull
+    private View createPageView(int layoutId) {
+        View view = View.inflate(CommunityIdentifyActivity.this, layoutId, null);
+        return view;
     }
 
     private class CommonClick extends ForbidQuickClickListener {
