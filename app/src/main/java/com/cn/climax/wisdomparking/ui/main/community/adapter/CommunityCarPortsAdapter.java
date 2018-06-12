@@ -92,10 +92,12 @@ public class CommunityCarPortsAdapter extends RecyclerView.Adapter<CommunityCarP
                 tvGoToBind.setOnClickListener(new ForbidQuickClickListener() {
                     @Override
                     protected void forbidClick(View view) {
-                        mContext.startActivity(new Intent(mContext, AddDeviceActivity.class).putExtra("carports_address", mCommunityDetail.getAddr()).putExtra("carports_info", carportListBean));
+                        mContext.startActivity(new Intent(mContext, AddDeviceActivity.class)
+                                .putExtra("carports_address", mCommunityDetail.getAddr())
+                                .putExtra("carports_info", carportListBean));
                     }
                 });
-            }else{
+            } else {
                 tvGoToBind.setVisibility(View.GONE);
             }
         }

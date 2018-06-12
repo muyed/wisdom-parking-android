@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llAboveArea"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/home_input_lock_bg"
+            android:inputType="text"
+            android:text="退押金后，您将不再享有车位共享所带来的任何盈利"
+            android:textColor="@color/text_lighter_color"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llAboveArea"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/tvWithdrawPreButton"
+            android:layout_width="88dp"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/button_blue_frame"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/text_normal_color"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvConfirmPreButton"
+            android:layout_width="88dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/button_blue_shape"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

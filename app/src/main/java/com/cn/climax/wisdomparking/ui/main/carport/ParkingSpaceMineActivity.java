@@ -41,6 +41,7 @@ public class ParkingSpaceMineActivity extends BaseSwipeBackActivity {
     LinearLayout llSkip2AuthParkingSpace;
 
     private ParkingSpaceMineAdapter mAdapter;
+    private boolean isEnableSelect;
 
     @Override
     protected void setToolBar(boolean isShowNavBack, String headerTitle) {
@@ -54,6 +55,7 @@ public class ParkingSpaceMineActivity extends BaseSwipeBackActivity {
 
     @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
+        isEnableSelect = getIntent().getBooleanExtra("is_enable_select", false);
         llSkip2AuthParkingSpace.setOnClickListener(new CommonClick());
         initListView();
     }
@@ -105,7 +107,7 @@ public class ParkingSpaceMineActivity extends BaseSwipeBackActivity {
                                 JSONObject json = new JSONObject(s);
                                 List<ParkingSpaceMineBean> parkingSpaceMineBeanList = com.alibaba.fastjson.JSONObject.parseArray(String.valueOf(json.get("data")), ParkingSpaceMineBean.class);
                                 if (tag == Constant.REFRESH) {
-                                    mAdapter.setDatas(parkingSpaceMineBeanList);
+                                    mAdapter.setDatas(parkingSpaceMineBeanList, isEnableSelect);
                                     xrvParkingListView.refreshComplete();
                                 } else {
                                     xrvParkingListView.setLoadingMoreEnabled(false);

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import com.cn.climax.wisdomparking.ui.main.community.CommunityDeniedActivity;
 import com.cn.climax.wisdomparking.ui.main.device.AddDeviceActivity;
 import com.cn.climax.wisdomparking.ui.main.order.OrderMineDetailActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,10 +105,11 @@ public class CommunityAuthAdapter extends RecyclerView.Adapter<CommunityAuthAdap
                 holder.tvParkingStatus_binded.setVisibility(View.GONE);
                 holder.tvParkingStatus_authing.setVisibility(View.GONE);
                 holder.llSkip2BindParkingSpace.setVisibility(View.VISIBLE);
-                holder.llSkip2BindParkingSpace.setOnClickListener(new ForbidQuickClickListener() {
+                holder.iv2BindParkingSpace.setOnClickListener(new ForbidQuickClickListener() {
                     @Override
                     protected void forbidClick(View view) {
-                        mContext.startActivity(new Intent(mContext, AddDeviceActivity.class));
+                        mContext.startActivity(new Intent(mContext, AddDeviceActivity.class)
+                                .putExtra("carports_address", authListResponse.getAddr()));
                     }
                 });
                 break;
@@ -168,6 +171,8 @@ public class CommunityAuthAdapter extends RecyclerView.Adapter<CommunityAuthAdap
         TextView tvParkingCommunityAddress;
         @BindView(R.id.tvParkingInfo)
         TextView tvParkingInfo;
+        @BindView(R.id.iv2BindParkingSpace)
+        ImageView iv2BindParkingSpace;
 
         public OrderViewHolder(View itemView) {
             super(itemView);

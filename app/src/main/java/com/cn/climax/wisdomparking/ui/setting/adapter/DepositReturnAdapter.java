@@ -13,35 +13,21 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
-import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
-import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiManage;
-import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
-import com.cn.climax.i_carlib.util.ToastUtils;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.Core;
-import com.cn.climax.wisdomparking.data.response.LoginResponse;
 import com.cn.climax.wisdomparking.data.response.ParkingSpaceMineBean;
 import com.cn.climax.wisdomparking.ui.setting.DepositMineActivity;
-import com.cn.climax.wisdomparking.ui.setting.DepositReturnActivity;
 import com.cn.climax.wisdomparking.ui.setting.bank.WithDrawalActivity;
-import com.lzy.okgo.callback.StringCallback;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.OnBackPressListener;
 import com.orhanobut.dialogplus.OnCancelListener;
 import com.orhanobut.dialogplus.OnDismissListener;
-import com.orhanobut.dialogplus.ViewHolder;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.Call;
-import okhttp3.Response;
 
 /**
  * author：leo on 2018/6/11 0011 10:00

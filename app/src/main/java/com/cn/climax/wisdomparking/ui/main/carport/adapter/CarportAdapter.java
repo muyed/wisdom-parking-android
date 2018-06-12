@@ -3,12 +3,20 @@ package com.cn.climax.wisdomparking.ui.main.carport.adapter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cn.climax.wisdomparking.R;
+import com.cn.climax.wisdomparking.base.Core;
 import com.cn.climax.wisdomparking.data.local.CarLockParkingBean;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.OnBackPressListener;
+import com.orhanobut.dialogplus.OnCancelListener;
+import com.orhanobut.dialogplus.OnDismissListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,11 +42,59 @@ public class CarportAdapter extends PagerAdapter {
 
         TextView tvCarSpaceLockNo = (TextView) view.findViewById(R.id.tvCarSpaceLockNo);
         TextView tvCarSpaceLockRemark = (TextView) view.findViewById(R.id.tvCarSpaceLockRemark);
+        ImageView tvEditAliasName = (ImageView) view.findViewById(R.id.tvEditAliasName);
         tvCarSpaceLockNo.setText(mLockList.get(position).getLockName());
         tvCarSpaceLockRemark.setText(mLockList.get(position).getLockRemark());
+        tvEditAliasName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showEditDialog();
+            }
+        });
 
         collection.addView(view);
         return view;
+    }
+
+    private void showEditDialog() {
+        final View contentView = Core.getInstances().getCurrentActivity().getLayoutInflater().inflate(R.layout.dialog_edit_view, null);
+        com.orhanobut.dialogplus.ViewHolder DialogViewHolder = new com.orhanobut.dialogplus.ViewHolder(contentView);
+        final DialogPlus dialogPlus = DialogPlus.newDialog(Core.getInstances().getCurrentContext())
+                .setContentHolder(DialogViewHolder)
+                .setCancelable(true)
+                .setGravity(Gravity.CENTER)
+                .setContentHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
+                .setOnDismissListener(new OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogPlus dialog) {
+                    }
+                })
+                .setOnCancelListener(new OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogPlus dialog) {
+                    }
+                })
+                .setOnBackPressListener(new OnBackPressListener() {
+                    @Override
+                    public void onBackPressed(DialogPlus dialogPlus) {
+                    }
+                })
+                .create();
+        dialogPlus.show();
+
+        contentView.findViewById(R.id.tvWithdrawPreButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogPlus.dismiss();
+            }
+        });
+        contentView.findViewById(R.id.tvConfirmPreButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               
+                dialogPlus.dismiss();
+            }
+        });
     }
 
     @Override

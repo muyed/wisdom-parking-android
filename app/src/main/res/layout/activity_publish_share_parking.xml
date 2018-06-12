@@ -127,8 +127,8 @@
             android:layout_height="120dp"
             android:background="@color/white"
             android:gravity="center"
-            android:visibility="gone"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/ivBindIcon"
@@ -141,6 +141,7 @@
                 android:id="@+id/tvNoCarSpaceHint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:text="还没有任何车位锁，快去添加吧"
                 android:textColor="@color/text_lighter_color"
                 android:textSize="13sp" />

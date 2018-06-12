@@ -68,10 +68,12 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
         mCarPortAddress = getIntent().getStringExtra("carports_address");
         if (mCarPortBean != null) {
             tvCarPortCode.setText(mCarPortBean.getCarportNum());
-            tvCarPortAddr.setText(mCarPortAddress);
             etInputBindCode.setText(mCarPortBean.getBindCode());
             mCarPortBindCode = mCarPortBean.getBindCode();
             mCarportId = mCarPortBean.getId();
+        }
+        if (!TextUtils.isEmpty(mCarPortAddress)){
+            tvCarPortAddr.setText(mCarPortAddress);
         }
         etInputBindCode.addTextChangedListener(new TextWatcher() {
             @Override

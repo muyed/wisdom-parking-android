@@ -40,7 +40,7 @@
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="已认证"
-                android:textColor="@color/color_52c41a"
+                android:textColor="@color/color_31C27C"
                 android:textSize="10sp" />
 
             <TextView
@@ -131,6 +131,7 @@
         android:visibility="gone">
 
         <ImageView
+            android:id="@+id/iv2BindParkingSpace"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:contentDescription="@string/app_name"

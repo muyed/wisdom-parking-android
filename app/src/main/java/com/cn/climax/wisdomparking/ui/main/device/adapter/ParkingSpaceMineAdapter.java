@@ -1,5 +1,6 @@
 package com.cn.climax.wisdomparking.ui.main.device.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -30,6 +31,7 @@ public class ParkingSpaceMineAdapter extends RecyclerView.Adapter<ParkingSpaceMi
 
     private Context mContext;
     private List<ParkingSpaceMineBean> mSpaceMineBeanList = new ArrayList<>();
+    private boolean isEnableSelect;
 
     public ParkingSpaceMineAdapter(Context context) {
         this.mContext = context;
@@ -42,13 +44,26 @@ public class ParkingSpaceMineAdapter extends RecyclerView.Adapter<ParkingSpaceMi
     }
 
     @Override
-    public void onBindViewHolder(ParkingSpaceMineAdapter.OrderViewHolder holder, int position) {
-        holder.rlSkip2Detail.setOnClickListener(new ForbidQuickClickListener() {
-            @Override
-            protected void forbidClick(View view) {
-                mContext.startActivity(new Intent(mContext, CarportMineActivity.class));
-            }
-        });
+    public void onBindViewHolder(ParkingSpaceMineAdapter.OrderViewHolder holder, final int position) {
+        if (!isEnableSelect) {
+            holder.rlSkip2Detail.setOnClickListener(new ForbidQuickClickListener() {
+                @Override
+                protected void forbidClick(View view) {
+                    mContext.startActivity(new Intent(mContext, CarportMineActivity.class));
+                }
+            });
+        } else {
+            holder.rlSkip2Detail.setOnClickListener(new ForbidQuickClickListener() {
+                @Override
+                protected void forbidClick(View view) {
+                    Intent intent = new Intent();
+                    intent.putExtra("parking_mine_bean", mSpaceMineBeanList.get(position));
+                    ((Activity) mContext).setResult(Activity.RESULT_OK, intent);
+                    ((Activity) mContext).finish();
+                }
+            });
+        }
+
         holder.tvParkingCode.setText(mSpaceMineBeanList.get(position).getCarportNum());
         holder.tvParkingValidity.setText(mSpaceMineBeanList.get(position).getParent());
         holder.tvParkingAddr.setText(mSpaceMineBeanList.get(position).getAddr());
@@ -56,15 +71,15 @@ public class ParkingSpaceMineAdapter extends RecyclerView.Adapter<ParkingSpaceMi
     }
 
     private void dispatchStatus(TextView tvParkingStatus, int status) {
-        switch (status){
-            case 0:
-                
+        switch (status) {
+            case 0: //认证中
+                tvParkingStatus.setText("认证中");
                 break;
-            case 1:
-                
+            case 1: //已绑定
+                tvParkingStatus.setText("已认证");
                 break;
-            case 2:
-                
+            case 2: //驳回
+                tvParkingStatus.setText("已驳回");
                 break;
         }
     }
@@ -74,8 +89,9 @@ public class ParkingSpaceMineAdapter extends RecyclerView.Adapter<ParkingSpaceMi
         return mSpaceMineBeanList != null && mSpaceMineBeanList.size() > 0 ? mSpaceMineBeanList.size() : 0;
     }
 
-    public void setDatas(List<ParkingSpaceMineBean> spaceMineBeanList) {
+    public void setDatas(List<ParkingSpaceMineBean> spaceMineBeanList, boolean isEnableSelect) {
         this.mSpaceMineBeanList = spaceMineBeanList;
+        this.isEnableSelect = isEnableSelect;
         notifyDataSetChanged();
     }
 

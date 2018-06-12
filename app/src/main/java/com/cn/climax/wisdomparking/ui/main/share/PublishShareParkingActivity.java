@@ -93,6 +93,9 @@ public class PublishShareParkingActivity extends BaseSwipeBackActivity {
     private ParkingSpaceMineBean mParkingSpaceBean;
     private List<LoginResponse.CommunityListBean> mCommunityListBean = new ArrayList<>();
     private int unBindCount = 0;
+    private int unCertCommunityCount = 0; //未认证小区计数
+    private int authedCommunityCount = 0; //已认证小区计数
+    private int deniededCommunityCount = 0; //被驳回小区计数
     private List<Integer> unBindListCount = new ArrayList<>();
 
     @Override
@@ -108,8 +111,8 @@ public class PublishShareParkingActivity extends BaseSwipeBackActivity {
     @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
         isFromMineParking = getIntent().getBooleanExtra("is_publish_mine", false);
-        mParkingSpaceBean = (ParkingSpaceMineBean) getIntent().getSerializableExtra("parking_mine_bean");
         mCommunityListBean = (List<LoginResponse.CommunityListBean>) getIntent().getSerializableExtra("community_bean");
+        mParkingSpaceBean = (ParkingSpaceMineBean) getIntent().getSerializableExtra("parking_mine_bean");
         initView();
         initClick();
     }
@@ -168,36 +171,59 @@ public class PublishShareParkingActivity extends BaseSwipeBackActivity {
 
                                 tvParkingAddress.setText(mCommunityListBean.get(i).getCommunityName());
                                 tvParkingSpaceLocation.setText(mCommunityListBean.get(i).getAddr());
-                                tvCarLicenseNo.setText(mCommunityListBean.get(i).getCarportList().get(0).getCarportNum());
+                                tvCarLicenseNo.setText(mCommunityListBean.get(i).getCarportList().get(j).getCarportNum());
                             } else {
                                 unBindCount++;
                             }
                         }
-                    }
 
-                    if (unBindCount == mCommunityListBean.get(i).getCarportList().size()) {
-                        unBindListCount.add(unBindCount);
+                        if (unBindCount == mCommunityListBean.get(i).getCarportList().size()) {
+                            unBindListCount.add(unBindCount);
+                        }
                     }
                 }
-                if (unBindListCount.size() == mCommunityListBean.size()) {
-                    ivBindIcon.setImageResource(R.drawable.icon_bind_car);
-                    tvNoCarSpaceHint.setText("还没有绑定车位锁，快去绑定吧");
+                for (int i = 0; i < mCommunityListBean.size(); i++) {
+                    if (mCommunityListBean.get(i).getType() == 1) { //审核中
+                        unCertCommunityCount++;
+                    } else if (mCommunityListBean.get(i).getType() == 2) { //已认证
+                        authedCommunityCount++;
+                    } else { //被驳回
+                        deniededCommunityCount++;
+                    }
+                }
 
-                    SpannableStringBuilder regTipBuilder = new SpannableStringBuilder(tvNoCarSpaceHint.getText().toString());
-                    ForegroundColorSpan blueSpan = new ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimary));
-                    regTipBuilder.setSpan(blueSpan, 11, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    BackgroundColorSpan whiteSpan = new BackgroundColorSpan(ContextCompat.getColor(this, R.color.white));
-                    regTipBuilder.setSpan(whiteSpan, 11, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    regTipBuilder.setSpan(new AbsoluteSizeSpan(32), 11, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    NoUnderlineSpan clickSpan = new NoUnderlineSpan() {
-                        @Override
-                        public void onClick(View widget) {
-                            startActivityForResult(new Intent(PublishShareParkingActivity.this, ParkingSpaceMineActivity.class), 99);
-                        }
-                    };
-                    regTipBuilder.setSpan(clickSpan, 11, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    tvNoCarSpaceHint.setText(regTipBuilder);
-                    tvNoCarSpaceHint.setMovementMethod(LinkMovementMethod.getInstance());
+                if (unCertCommunityCount == mCommunityListBean.size()) {
+                    ivBindIcon.setImageResource(R.drawable.icon_identifing);
+                    tvNoCarSpaceHint.setText("小区认证中，请耐心等待审核");
+                } else if (deniededCommunityCount == mCommunityListBean.size()) {
+                    ivBindIcon.setImageResource(R.drawable.icon_denied);
+                    tvNoCarSpaceHint.setText("小区认证已驳回，如需操作请修改重新提交");
+                } else if (unCertCommunityCount + deniededCommunityCount == mCommunityListBean.size()) {
+                    ivBindIcon.setImageResource(R.drawable.icon_community);
+                    tvNoCarSpaceHint.setText("还没有认证合格的小区");
+                    tvNoCarSpaceHint.setTextColor(ContextCompat.getColor(PublishShareParkingActivity.this, R.color.white));
+                    llNoCarPortArea.setBackgroundColor(ContextCompat.getColor(PublishShareParkingActivity.this, R.color.colorPrimary));
+                } else {
+                    if (unBindListCount.size() == mCommunityListBean.size()) { //如果每个小区下的全是未绑定的车位
+                        ivBindIcon.setImageResource(R.drawable.icon_bind_car);
+                        tvNoCarSpaceHint.setText("还没有绑定车位锁，快去绑定吧");
+
+                        SpannableStringBuilder regTipBuilder = new SpannableStringBuilder(tvNoCarSpaceHint.getText().toString());
+                        ForegroundColorSpan blueSpan = new ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimary));
+                        regTipBuilder.setSpan(blueSpan, 11, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        BackgroundColorSpan whiteSpan = new BackgroundColorSpan(ContextCompat.getColor(this, R.color.white));
+                        regTipBuilder.setSpan(whiteSpan, 11, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        regTipBuilder.setSpan(new AbsoluteSizeSpan(32), 11, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        NoUnderlineSpan clickSpan = new NoUnderlineSpan() {
+                            @Override
+                            public void onClick(View widget) {
+                                startActivityForResult(new Intent(PublishShareParkingActivity.this, ParkingSpaceMineActivity.class).putExtra("is_enable_select", true), 99);
+                            }
+                        };
+                        regTipBuilder.setSpan(clickSpan, 11, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        tvNoCarSpaceHint.setText(regTipBuilder);
+                        tvNoCarSpaceHint.setMovementMethod(LinkMovementMethod.getInstance());
+                    }
                 }
             } else {
                 llShowCarPortArea.setVisibility(View.GONE);
@@ -236,7 +262,7 @@ public class PublishShareParkingActivity extends BaseSwipeBackActivity {
 
     private void publishParking() {
         HashMap<String, String> httpParams = new HashMap<>();
-        if (isFromMineParking && mParkingSpaceBean != null)
+        if ( mParkingSpaceBean != null)
             httpParams.put(ApiParamsKey.CAR_PORT_ID, mParkingSpaceBean.getCarportId() + "");
         else {
             if (mCommunityListBean != null && mCommunityListBean.size() > 0) {
@@ -291,7 +317,7 @@ public class PublishShareParkingActivity extends BaseSwipeBackActivity {
         protected void forbidClick(View view) {
             switch (view.getId()) {
                 case R.id.llSkip2ChoseCarport:
-                    startActivityForResult(new Intent(PublishShareParkingActivity.this, ParkingSpaceMineActivity.class), 99);
+                    startActivityForResult(new Intent(PublishShareParkingActivity.this, ParkingSpaceMineActivity.class).putExtra("is_enable_select", true), 99);
                     break;
                 case R.id.btnPublishParking:
                     if (TextUtils.isEmpty(tvParkingAddress.getText().toString())) {
@@ -319,7 +345,9 @@ public class PublishShareParkingActivity extends BaseSwipeBackActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 99 && resultCode == RESULT_OK) {
             if (data != null) {
-
+                mParkingSpaceBean = (ParkingSpaceMineBean)data.getSerializableExtra("parking_mine_bean");
+                initView();
+                initClick();
             }
         }
         if (requestCode == 199 && resultCode == RESULT_OK) {
