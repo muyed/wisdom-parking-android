@@ -70,6 +70,7 @@ public class DepositReturnAdapter extends RecyclerView.Adapter<DepositReturnAdap
     @Override
     public void onBindViewHolder(DepositReturnAdapter.ViewHolder holder, final int position) {
         holder.tvParkingInfo.setText("车位：" + mUserCarportList.get(position).getCarportNum());
+        holder.tvCarportDeposit.setText(mDepositAmount);
         if (String.valueOf(mUserCarportList.get(position).getDeposit()).equals("0.00")
                 || mUserCarportList.get(position).getDeposit() == 0.00d
                 || mUserCarportList.get(position).getDeposit() == 0.0d

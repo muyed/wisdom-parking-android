@@ -23,6 +23,7 @@ import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiManage;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
+import com.cn.climax.i_carlib.util.SharedUtil;
 import com.cn.climax.i_carlib.util.ToastUtils;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.Core;
@@ -30,6 +31,8 @@ import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.base.help.CustomLinearLayoutManager;
 import com.cn.climax.wisdomparking.data.response.LoginResponse;
 import com.cn.climax.wisdomparking.data.response.ParkingSpaceMineBean;
+import com.cn.climax.wisdomparking.http.WrapJsonBeanCallback;
+import com.cn.climax.wisdomparking.ui.account.LoginActivity;
 import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceMineActivity;
 import com.cn.climax.wisdomparking.ui.main.device.AddDeviceActivity;
 import com.cn.climax.wisdomparking.ui.main.share.PublishShareParkingActivity;
@@ -47,6 +50,7 @@ import com.orhanobut.dialogplus.ViewHolder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -97,9 +101,61 @@ public class DepositReturnActivity extends BaseSwipeBackActivity {
 
     @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
-        mAccountBean = (LoginResponse.AccountBean) getIntent().getSerializableExtra("pay_account_bean");
-        mAccountAmount = getIntent().getStringExtra("pay_account_amount");
-        mDepositAmount = getIntent().getStringExtra("pay_deposit_amount");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        init();
+    }
+
+    private void init() {
+        loginEvent();
+    }
+
+    private void loginEvent() {
+        HashMap<String, String> httpParams = new HashMap<>();
+        httpParams.put(ApiParamsKey.USER_NAME, SharedUtil.getInstance(DepositReturnActivity.this).get(ApiParamsKey.USER_NAME));
+        httpParams.put(ApiParamsKey.PASSWORD, SharedUtil.getInstance(DepositReturnActivity.this).get(ApiParamsKey.PASSWORD));
+        httpParams.put(ApiParamsKey.TYPE, "1");
+        JSONObject json = new JSONObject(httpParams);
+
+        ApiManage.post(ApiHost.getInstance().login())
+                .upJson(json.toString())
+                .execute(new WrapJsonBeanCallback<LoginResponse>(DepositReturnActivity.this) {
+                    @Override
+                    protected void onJsonParseException(int code, String msg, Call call) {
+                        ToastUtils.show(msg);
+                    }
+
+                    @Override
+                    protected void onExecuteSuccess(LoginResponse bean, Call call) {
+                        SharedUtil.getInstance(DepositReturnActivity.this).put("is_login_success", true);
+                        SharedUtil.getInstance(DepositReturnActivity.this).put(ApiParamsKey.REAL_NAME, bean.getRealName());
+                        SharedUtil.getInstance(DepositReturnActivity.this).put(ApiParamsKey.IS_AUTH, !TextUtils.isEmpty(bean.getRealName()));
+                        SharedUtil.getInstance(DepositReturnActivity.this).put(ApiParamsKey.IS_AUTH_COMMUNITY, bean != null && bean.getCommunityList() != null && bean.getCommunityList().size() > 0);
+                        SharedUtil.getInstance(DepositReturnActivity.this).put(ApiParamsKey.IS_AUTH_PARKING_SPACE, bean != null && bean.getUserCarportList() != null && bean.getUserCarportList().size() > 0);
+
+                        initDepositView(bean);
+                        getMyCarport();
+                    }
+
+                    @Override
+                    protected void onExecuteError(Call call, Response response, Exception e) {
+                        ToastUtils.show(response.message());
+                    }
+
+                    @Override
+                    protected boolean setDialogShow() {
+                        return false;
+                    }
+                });
+    }
+
+    private void initDepositView(LoginResponse bean) {
+        mAccountBean = bean.getAccount();
+        mAccountAmount = String.valueOf(bean.getAccountCashConf());
+        mDepositAmount = String.valueOf(bean.getCarportCashConf());
 
         if (String.valueOf(mAccountBean.getCash()).equals("0.00")
                 || mAccountBean.getCash() == 0.00d
@@ -108,6 +164,8 @@ public class DepositReturnActivity extends BaseSwipeBackActivity {
             tvTitle.setVisibility(View.GONE);
             llNoDepositArea.setVisibility(View.VISIBLE);
             tvGoToDeposit.setVisibility(View.VISIBLE);
+            tvGoToDeposit.setText("交押金");
+            tvGoToDeposit.setBackgroundResource(R.drawable.activity_button_blue_border);
             tvGoToDeposit.setOnClickListener(new ForbidQuickClickListener() { //缴纳押金 
                 @Override
                 protected void forbidClick(View view) {
@@ -134,8 +192,6 @@ public class DepositReturnActivity extends BaseSwipeBackActivity {
         rvDepositListView.setLayoutManager(linearLayoutManager);
         adapter = new DepositReturnAdapter(this, mDepositAmount);
         rvDepositListView.setAdapter(adapter);
-
-        getMyCarport();
     }
 
     private void showDialog4Withdraw() {

@@ -207,6 +207,7 @@ public class DepositMineActivity extends BaseSwipeBackActivity {
             @Override
             public void onSuccess() {
                 Toast.makeText(getApplication(), "支付成功", Toast.LENGTH_SHORT).show();
+                finish();
             }
 
             @Override
@@ -347,6 +348,7 @@ public class DepositMineActivity extends BaseSwipeBackActivity {
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
                         Toast.makeText(DepositMineActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        finish();
                     } else {
                         Toast.makeText(DepositMineActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
                     }
