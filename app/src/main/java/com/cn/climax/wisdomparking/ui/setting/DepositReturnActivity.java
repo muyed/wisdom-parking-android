@@ -130,7 +130,8 @@ public class DepositReturnActivity extends BaseSwipeBackActivity {
                         SharedUtil.getInstance(DepositReturnActivity.this).put(ApiParamsKey.IS_AUTH, !TextUtils.isEmpty(bean.getRealName()));
                         SharedUtil.getInstance(DepositReturnActivity.this).put(ApiParamsKey.IS_AUTH_COMMUNITY, bean != null && bean.getCommunityList() != null && bean.getCommunityList().size() > 0);
                         SharedUtil.getInstance(DepositReturnActivity.this).put(ApiParamsKey.IS_AUTH_PARKING_SPACE, bean != null && bean.getUserCarportList() != null && bean.getUserCarportList().size() > 0);
-
+                        SharedUtil.getInstance(DepositReturnActivity.this).put(ApiParamsKey.ACCOUNT_DEPOSIT_AMOUNT, String.valueOf(bean.getAccountCashConf()));
+                        SharedUtil.getInstance(DepositReturnActivity.this).put(ApiParamsKey.CARPORT_DEPOSIT_AMOUNT, String.valueOf(bean.getCarportCashConf()));
                         initDepositView(bean);
                         getMyCarport();
                     }

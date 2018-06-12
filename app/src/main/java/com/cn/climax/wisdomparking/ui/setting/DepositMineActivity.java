@@ -52,6 +52,7 @@ public class DepositMineActivity extends BaseSwipeBackActivity {
 
     private boolean isGo2PayAccount; //是否是过来缴纳账户押金
     private String mDepositAmount;
+    private String mPayOrderNo;
 
     @Override
     protected void setToolBar(boolean isShowNavBack, String headerTitle) {
@@ -67,6 +68,7 @@ public class DepositMineActivity extends BaseSwipeBackActivity {
     @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
         isGo2PayAccount = getIntent().getBooleanExtra("is_pay_account", false);
+        mPayOrderNo = getIntent().getStringExtra("pay_order_no");
         if (isGo2PayAccount)
             mDepositAmount = getIntent().getStringExtra("pay_account_deposit");
         else
@@ -91,10 +93,15 @@ public class DepositMineActivity extends BaseSwipeBackActivity {
     void click(View view) {
         switch (view.getId()) {
             case R.id.tvNextStep2:
-                if (isGo2PayAccount)
-                    getPayAccount();
-                else
-                    getPayCarport();
+                if (!TextUtils.isEmpty(mPayOrderNo)) {
+                    mOrderNo = mPayOrderNo;
+                    gotoPay(checkBean.getPayWay());
+                } else {
+                    if (isGo2PayAccount)
+                        getPayAccount();
+                    else
+                        getPayCarport();
+                }
                 break;
         }
     }

@@ -49,7 +49,7 @@ public class ParkingSpacePayActivity extends BaseSwipeBackActivity {
     private RVDevicePayAdapter mAdapter;
     private BaseLocalBean checkBean = new BaseLocalBean();
     private String mOrderNo;
-    private double mOrderAmount;
+    private String mOrderAmount;
     private String mOrderId;
 
     @Override
@@ -65,7 +65,7 @@ public class ParkingSpacePayActivity extends BaseSwipeBackActivity {
     @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
         mOrderNo = getIntent().getStringExtra("order_no");
-        mOrderAmount = getIntent().getDoubleExtra("pay_amount", 0d);
+        mOrderAmount = getIntent().getStringExtra("pay_amount");
         mOrderId = getIntent().getStringExtra("order_id");
 
         tvOrderPayAmount.setText(String.valueOf(mOrderAmount));

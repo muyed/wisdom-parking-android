@@ -19,6 +19,9 @@ import com.cn.climax.i_carlib.util.ToastUtils;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.data.response.CommunityAuthListResponse;
+import com.cn.climax.wisdomparking.ui.PeterMainActivity;
+import com.cn.climax.wisdomparking.ui.setting.DepositMineActivity;
+import com.cn.climax.wisdomparking.ui.setting.DepositReturnActivity;
 import com.lzy.okgo.callback.StringCallback;
 
 import org.json.JSONException;
@@ -105,7 +108,7 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
         httpParams.put(ApiParamsKey.CAR_PORT_ID, mCarportId + "");
         httpParams.put(ApiParamsKey.CAR_PORT_BIND_CODE, mCarPortBindCode);
         JSONObject json = new JSONObject(httpParams);
-
+        final String depositCarport = SharedUtil.getInstance(AddDeviceActivity.this).get(ApiParamsKey.CARPORT_DEPOSIT_AMOUNT);
         ApiManage.post(ApiHost.getInstance().bindCarPort())
                 .upJson(json.toString())
                 .execute(new StringCallback() {
@@ -113,11 +116,15 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
                     public void onSuccess(String s, Call call, Response response) {
                         try {
                             JSONObject jsonObject = new JSONObject(s);
-                            String mDataJson = String.valueOf(jsonObject.get("data"));
+                            String orderNo = String.valueOf(jsonObject.get("data"));
                             int code = Integer.parseInt(String.valueOf(jsonObject.get("code")));
                             String errMsg = String.valueOf(jsonObject.get("errMsg"));
                             if (code == 200) {
-                                getPayOrder(mDataJson);
+                                startActivityForResult(new Intent(AddDeviceActivity.this, DepositMineActivity.class)
+                                        .putExtra("is_pay_account", false)
+                                        .putExtra("pay_order_no", orderNo)
+                                        .putExtra("pay_carport_deposit", depositCarport), 199);
+//                                getPayOrder(orderNo);
                             } else {
                                 ToastUtils.show(errMsg);
                             }
@@ -129,6 +136,7 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
     }
 
     private void getPayOrder(String orderNo) {
+        final String depositCarport = SharedUtil.getInstance(AddDeviceActivity.this).get(ApiParamsKey.CARPORT_DEPOSIT_AMOUNT);
         ApiManage.get(ApiHost.getInstance().payByAliPay() + orderNo)
                 .tag(this)
                 .cacheKey("cacheKey")
@@ -140,9 +148,9 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
                             try {
                                 JSONObject jsonObject = new JSONObject(s);
                                 String mDataJson = (String) jsonObject.get("data");
-                                startActivity(new Intent(AddDeviceActivity.this, ParkingSpacePayActivity.class)
-                                        .putExtra("order_no", mDataJson)
-                                        .putExtra("pay_amount", "199"));
+                                startActivityForResult(new Intent(AddDeviceActivity.this, DepositMineActivity.class)
+                                        .putExtra("is_pay_account", false)
+                                        .putExtra("pay_carport_deposit", depositCarport), 199);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

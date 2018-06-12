@@ -139,7 +139,7 @@ public class OrderMineDetailActivity extends BaseSwipeBackActivity {
 
     private void payMoney() {
         startActivity(new Intent(OrderMineDetailActivity.this, ParkingSpacePayActivity.class)
-                .putExtra("pay_amount", mOrderDetail.getParkingFee())
+                .putExtra("pay_amount", String.valueOf(mOrderDetail.getParkingFee()))
                 .putExtra("order_no", mOrderDetail.getTicketNum())
                 .putExtra("order_id", mOrderDetail.getId()));
 //        showTimerDialog();
