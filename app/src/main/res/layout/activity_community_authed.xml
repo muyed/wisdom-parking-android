@@ -47,8 +47,6 @@
                 android:layout_marginLeft="10dp"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="已认证"
-                android:textColor="@color/color_52c41a"
                 android:textSize="12sp" />
 
         </LinearLayout>

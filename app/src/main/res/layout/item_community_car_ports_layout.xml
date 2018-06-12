@@ -34,10 +34,10 @@
             android:layout_toRightOf="@+id/tvParkingCode"
             android:background="@drawable/common_blue_oval_frame"
             android:gravity="center"
-            android:paddingTop="2dp"
             android:paddingBottom="2dp"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
+            android:paddingTop="2dp"
             android:text="已绑定"
             android:textColor="@color/color_31C27C"
             android:textSize="10sp" />
@@ -74,7 +74,8 @@
             android:gravity="center"
             android:text="绑定车位"
             android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="gone" />
 
     </LinearLayout>
 

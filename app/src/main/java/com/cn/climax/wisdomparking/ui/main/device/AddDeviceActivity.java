@@ -45,6 +45,7 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
     private String mCarPortAddress;
     private String mCarPortBindCode;
     private boolean isFromAddCarport;
+    private int mCarportId;
 
     @Override
     protected void setToolBar(boolean isShowNavBack, String headerTitle) {
@@ -59,7 +60,7 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
     @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
         isFromAddCarport = getIntent().getBooleanExtra("is_from_add", false);
-        
+
         mCarPortBean = (CommunityAuthListResponse.CarportListBean) getIntent().getSerializableExtra("carports_info");
         mCarPortAddress = getIntent().getStringExtra("carports_address");
         if (mCarPortBean != null) {
@@ -67,6 +68,7 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
             tvCarPortAddr.setText(mCarPortAddress);
             etInputBindCode.setText(mCarPortBean.getBindCode());
             mCarPortBindCode = mCarPortBean.getBindCode();
+            mCarportId = mCarPortBean.getId();
         }
         etInputBindCode.addTextChangedListener(new TextWatcher() {
             @Override
@@ -100,7 +102,7 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
 
     private void bindCarPort() {
         HashMap<String, String> httpParams = new HashMap<>();
-        httpParams.put(ApiParamsKey.CAR_PORT_ID, "3");
+        httpParams.put(ApiParamsKey.CAR_PORT_ID, mCarportId + "");
         httpParams.put(ApiParamsKey.CAR_PORT_BIND_CODE, mCarPortBindCode);
         JSONObject json = new JSONObject(httpParams);
 
@@ -115,7 +117,7 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
                             int code = Integer.parseInt(String.valueOf(jsonObject.get("code")));
                             String errMsg = String.valueOf(jsonObject.get("errMsg"));
                             if (code == 200) {
-                                getAliPayOrder(mDataJson);
+                                getPayOrder(mDataJson);
                             } else {
                                 ToastUtils.show(errMsg);
                             }
@@ -126,7 +128,7 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
                 });
     }
 
-    private void getAliPayOrder(String orderNo) {
+    private void getPayOrder(String orderNo) {
         ApiManage.get(ApiHost.getInstance().payByAliPay() + orderNo)
                 .tag(this)
                 .cacheKey("cacheKey")
@@ -138,7 +140,9 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
                             try {
                                 JSONObject jsonObject = new JSONObject(s);
                                 String mDataJson = (String) jsonObject.get("data");
-                                startActivity(new Intent(AddDeviceActivity.this, ParkingSpacePayActivity.class).putExtra("order_no", mDataJson));
+                                startActivity(new Intent(AddDeviceActivity.this, ParkingSpacePayActivity.class)
+                                        .putExtra("order_no", mDataJson)
+                                        .putExtra("pay_amount", "199"));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

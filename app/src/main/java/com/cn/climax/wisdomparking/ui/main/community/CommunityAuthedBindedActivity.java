@@ -2,6 +2,7 @@ package com.cn.climax.wisdomparking.ui.main.community;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -31,6 +32,8 @@ public class CommunityAuthedBindedActivity extends BaseSwipeBackActivity {
     TextView tvCommunityAddr;
     @BindView(R.id.tvBindTotal)
     TextView tvBindTotal;
+    @BindView(R.id.tvCommunityStatus)
+    TextView tvCommunityStatus;
     @BindView(R.id.rvCarPortsListView)
     RecyclerView rvCarPortsListView;
 
@@ -64,6 +67,8 @@ public class CommunityAuthedBindedActivity extends BaseSwipeBackActivity {
         tvCommunityAddr.setText(mCommunityDetail.getAddr());
         tvBindTotal.setText("该小区共绑定" + mCommunityDetail.getCarportList().size() + "个车位");
 
+        dispatchStatus2List(tvCommunityStatus, mCommunityDetail);
+
         initRecyclerView();
     }
 
@@ -72,6 +77,23 @@ public class CommunityAuthedBindedActivity extends BaseSwipeBackActivity {
         rvCarPortsListView.setLayoutManager(linearLayoutManager);
         CommunityCarPortsAdapter adapter = new CommunityCarPortsAdapter(this,mCommunityDetail, mCommunityDetail.getCarportList());
         rvCarPortsListView.setAdapter(adapter);
+    }
+
+    private void dispatchStatus2List(TextView tvCommunityStatus, final CommunityAuthListResponse authListResponse) {
+        switch (authListResponse.getType()) {
+            case 1: //审核中
+                tvCommunityStatus.setText("认证中");
+                tvCommunityStatus.setTextColor(ContextCompat.getColor(CommunityAuthedBindedActivity.this, R.color.colorPrimary));
+                break;
+            case 2: //小区审核通过
+                tvCommunityStatus.setText("已认证");
+                tvCommunityStatus.setTextColor(ContextCompat.getColor(CommunityAuthedBindedActivity.this, R.color.color_52c41a));
+                break;
+            case 3: //已拒绝
+                tvCommunityStatus.setText("已拒绝");
+                tvCommunityStatus.setTextColor(ContextCompat.getColor(CommunityAuthedBindedActivity.this, R.color.color_f5222d));
+                break;
+        }
     }
 
 }

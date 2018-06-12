@@ -87,13 +87,17 @@ public class CommunityCarPortsAdapter extends RecyclerView.Adapter<CommunityCarP
             tvParkingStatus.setText("未绑定");
             tvParkingStatus.setBackgroundResource(R.drawable.common_red_oval_frame);
             tvParkingStatus.setTextColor(ContextCompat.getColor(mContext, R.color.color_f5222d));
-            tvGoToBind.setVisibility(View.VISIBLE);
-            tvGoToBind.setOnClickListener(new ForbidQuickClickListener() {
-                @Override
-                protected void forbidClick(View view) {
-                    mContext.startActivity(new Intent(mContext, AddDeviceActivity.class).putExtra("carports_address", mCommunityDetail.getAddr()).putExtra("carports_info", carportListBean));
-                }
-            });
+            if (mCommunityDetail.getType() == 2) { //只有认证通过的小区方可进行车位绑定
+                tvGoToBind.setVisibility(View.VISIBLE);
+                tvGoToBind.setOnClickListener(new ForbidQuickClickListener() {
+                    @Override
+                    protected void forbidClick(View view) {
+                        mContext.startActivity(new Intent(mContext, AddDeviceActivity.class).putExtra("carports_address", mCommunityDetail.getAddr()).putExtra("carports_info", carportListBean));
+                    }
+                });
+            }else{
+                tvGoToBind.setVisibility(View.GONE);
+            }
         }
     }
 

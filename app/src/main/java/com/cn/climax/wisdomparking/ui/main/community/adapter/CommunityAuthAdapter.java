@@ -88,39 +88,41 @@ public class CommunityAuthAdapter extends RecyclerView.Adapter<CommunityAuthAdap
                     mContext.startActivity(new Intent(mContext, CommunityAuthedBindedActivity.class).putExtra("community_detail", authListResponse));
                 }
             });
-        } else
-            switch (authListResponse.getType()) {
-                case 1: //审核中
-                    holder.tvParkingStatus_authed.setVisibility(View.GONE);
-                    holder.tvParkingStatus_denied.setVisibility(View.GONE);
-                    holder.tvParkingStatus_binded.setVisibility(View.GONE);
-                    holder.tvParkingStatus_authing.setVisibility(View.VISIBLE);
-                    break;
-                case 2: //小区审核通过
-                    holder.tvParkingStatus_authed.setVisibility(View.VISIBLE);
-                    holder.tvParkingStatus_denied.setVisibility(View.GONE);
-                    holder.tvParkingStatus_binded.setVisibility(View.GONE);
-                    holder.tvParkingStatus_authing.setVisibility(View.GONE);
-                    holder.llSkip2BindParkingSpace.setVisibility(View.VISIBLE);
-                    holder.llSkip2BindParkingSpace.setOnClickListener(new ForbidQuickClickListener() {
-                        @Override
-                        protected void forbidClick(View view) {
-                            mContext.startActivity(new Intent(mContext, AddDeviceActivity.class));
-                        }
-                    });
-                    break;
-                case 3: //已拒绝
-                    holder.tvParkingStatus_authed.setVisibility(View.GONE);
-                    holder.tvParkingStatus_denied.setVisibility(View.VISIBLE);
-                    holder.tvParkingStatus_binded.setVisibility(View.GONE);
-                    holder.tvParkingStatus_authing.setVisibility(View.GONE);
-                    break;
-            }
+        }
+
+        switch (authListResponse.getType()) {
+            case 1: //审核中
+                holder.tvParkingStatus_authed.setVisibility(View.GONE);
+                holder.tvParkingStatus_denied.setVisibility(View.GONE);
+                holder.tvParkingStatus_binded.setVisibility(View.GONE);
+                holder.tvParkingStatus_authing.setVisibility(View.VISIBLE);
+                break;
+            case 2: //小区审核通过
+                holder.tvParkingStatus_authed.setVisibility(View.VISIBLE);
+                holder.tvParkingStatus_denied.setVisibility(View.GONE);
+                holder.tvParkingStatus_binded.setVisibility(View.GONE);
+                holder.tvParkingStatus_authing.setVisibility(View.GONE);
+                holder.llSkip2BindParkingSpace.setVisibility(View.VISIBLE);
+                holder.llSkip2BindParkingSpace.setOnClickListener(new ForbidQuickClickListener() {
+                    @Override
+                    protected void forbidClick(View view) {
+                        mContext.startActivity(new Intent(mContext, AddDeviceActivity.class));
+                    }
+                });
+                break;
+            case 3: //已拒绝
+                holder.tvParkingStatus_authed.setVisibility(View.GONE);
+                holder.tvParkingStatus_denied.setVisibility(View.VISIBLE);
+                holder.tvParkingStatus_binded.setVisibility(View.GONE);
+                holder.tvParkingStatus_authing.setVisibility(View.GONE);
+                break;
+        }
     }
 
     private void dispatchStatus2Detail(CommunityAuthListResponse communityAuthListResponse, int type) {
         switch (type) {
             case 1:
+                mContext.startActivity(new Intent(mContext, CommunityAuthedActivity.class).putExtra("community_detail", communityAuthListResponse));
                 break;
             case 2: //小区审核通过
                 mContext.startActivity(new Intent(mContext, CommunityAuthedActivity.class).putExtra("community_detail", communityAuthListResponse));

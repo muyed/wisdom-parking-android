@@ -78,11 +78,6 @@ public class DepositReturnActivity extends BaseSwipeBackActivity {
     @BindView(R.id.tvNoCarSpaceHint)
     TextView tvNoCarSpaceHint;
 
-//    private List<LoginResponse.CommunityListBean.CarportListBean> mUserCarportList;
-//    private List<LoginResponse.CommunityListBean> mCommunityListBean;
-//    private List<String> mSearchAllList = new ArrayList<>();
-//    private SlideFromTopPopup mSlideFromTopPopup_PayStyle;
-
     private DepositReturnAdapter adapter;
     private List<ParkingSpaceMineBean> mParkingSpaceMineBeanList;
     private LoginResponse.AccountBean mAccountBean;
@@ -284,37 +279,5 @@ public class DepositReturnActivity extends BaseSwipeBackActivity {
                     }
                 });
     }
-
-    private void initPopupPayStyle() {
-//        for (int i = 0; i < mCommunityListBean.size(); i++) {
-//            mSearchAllList.add(mCommunityListBean.get(i).getCommunityName());
-//        }
-//
-//        mSlideFromTopPopup_PayStyle = new SlideFromTopPopup(this, mSearchAllList);
-//        mSlideFromTopPopup_PayStyle.setOnDismissListener(onDismissListener);
-//        mSlideFromTopPopup_PayStyle.setSelectListener(onSelectedKeyListener);
-    }
-
-//    private SlideFromTopPopup.ISearchSelectListener onSelectedKeyListener = new SlideFromTopPopup.ISearchSelectListener() {
-//        @Override
-//        public void selectedKey(String textKey) {
-//            if (mSlideFromTopPopup_PayStyle.isShowing()) {
-//                mSlideFromTopPopup_PayStyle.dismiss();
-//                tvSelectedCommunity.setText(textKey);
-//                tvSelectedCommunity.setTextColor(ContextCompat.getColor(DepositReturnActivity.this, R.color.colorPrimary));
-//            }
-//        }
-//    };
-
-    private BasePopupWindow.OnDismissListener onDismissListener = new BasePopupWindow.OnDismissListener() {
-        @Override
-        public boolean onBeforeDismiss() {
-            return super.onBeforeDismiss();
-        }
-
-        @Override
-        public void onDismiss() {
-        }
-    };
 
 }
