@@ -25,7 +25,6 @@ import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.PayConstant;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.data.local.BaseLocalBean;
-import com.cn.climax.wisdomparking.ui.PeterMainActivity;
 import com.cn.climax.wisdomparking.ui.main.device.adapter.RVDevicePayAdapter;
 import com.cn.climax.wisdomparking.ui.pay.bean.PayResult;
 import com.lzy.okgo.callback.StringCallback;
@@ -173,7 +172,7 @@ public class DepositMineActivity extends BaseSwipeBackActivity {
     }
 
     private void go2WeChatPay() {
-        ApiManage.get(ApiHost.getInstance().payDeposit() + mOrderNo)
+        ApiManage.get(ApiHost.getInstance().payByWeChat() + mOrderNo)
                 .tag(this)// 请求的 tag, 主要用于取消对应的请求
                 .cacheKey("cacheKey")
                 .execute(new StringCallback() {
@@ -273,7 +272,7 @@ public class DepositMineActivity extends BaseSwipeBackActivity {
     }
 
     private void go2AliPay() {
-        ApiManage.get(ApiHost.getInstance().getAliPayOrder() + mOrderNo)
+        ApiManage.get(ApiHost.getInstance().payByAliPay() + mOrderNo)
                 .tag(this)// 请求的 tag, 主要用于取消对应的请求
                 .cacheKey("cacheKey")
                 .execute(new StringCallback() {

@@ -79,11 +79,6 @@ public class ApiHost extends ApiHostBase {
         return "/api/community/user/list";
     }
     
-    //支付账户押金
-    public String payDeposit() {
-        return "/api/pay/wx/";
-    }
-    
     //微信支付
     public String payCash() {
         return "/api/account/payCash";
@@ -100,8 +95,13 @@ public class ApiHost extends ApiHostBase {
     }
 
     //获取支付宝支付单
-    public String getAliPayOrder() {
+    public String payByAliPay() {
         return "/api/pay/mayi/";
+    }
+
+    //支付账户押金
+    public String payByWeChat() {
+        return "/api/pay/wx/";
     }
     
     //获取我的车锁

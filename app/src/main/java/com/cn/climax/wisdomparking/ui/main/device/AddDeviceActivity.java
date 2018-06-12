@@ -10,27 +10,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
 import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiManage;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
-import com.cn.climax.i_carlib.okgo.http.GsonConvert;
 import com.cn.climax.i_carlib.util.SharedUtil;
 import com.cn.climax.i_carlib.util.ToastUtils;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
-import com.cn.climax.wisdomparking.data.response.CarPortBindBean;
 import com.cn.climax.wisdomparking.data.response.CommunityAuthListResponse;
-import com.cn.climax.wisdomparking.http.WrapJsonBeanCallback;
-import com.google.gson.JsonObject;
 import com.lzy.okgo.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.BindView;
 import okhttp3.Call;
@@ -133,7 +127,7 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
     }
 
     private void getAliPayOrder(String orderNo) {
-        ApiManage.get(ApiHost.getInstance().getAliPayOrder() + orderNo)
+        ApiManage.get(ApiHost.getInstance().payByAliPay() + orderNo)
                 .tag(this)
                 .cacheKey("cacheKey")
                 .execute(new StringCallback() {

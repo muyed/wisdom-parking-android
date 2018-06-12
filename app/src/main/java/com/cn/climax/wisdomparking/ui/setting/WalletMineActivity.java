@@ -179,7 +179,7 @@ public class WalletMineActivity extends BaseSwipeBackActivity {
     }
 
     private void getAliPayOrder(String orderNo) {
-        ApiManage.get(ApiHost.getInstance().getAliPayOrder() + orderNo)
+        ApiManage.get(ApiHost.getInstance().payByAliPay() + orderNo)
                 .tag(this)
                 .cacheKey("cacheKey")
                 .execute(new StringCallback() {

@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
 import com.alipay.sdk.app.AuthTask;
 import com.alipay.sdk.app.PayTask;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
@@ -21,6 +20,7 @@ import com.cn.climax.i_carlib.pay.alipay.AuthResult;
 import com.cn.climax.i_carlib.pay.alipay.util.OrderInfoUtil2_0;
 import com.cn.climax.i_carlib.util.SharedUtil;
 import com.cn.climax.i_carlib.util.ToastUtils;
+import com.cn.climax.i_carlib.weixin.WXPay;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.PayConstant;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
@@ -32,7 +32,6 @@ import com.lzy.okgo.callback.StringCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -99,9 +98,9 @@ public class ParkingSpacePayActivity extends BaseSwipeBackActivity {
                                         JSONObject json = new JSONObject(s);
                                         int code = Integer.parseInt(String.valueOf(json.get("code")));
                                         String errMsg = String.valueOf(json.get("errMsg"));
-                                        String data = String.valueOf(json.get("data"));
                                         if (code == 200) {
-                                            
+                                            mOrderNo = String.valueOf(json.get("data"));
+                                            gotoPay(checkBean.getPayWay());
                                         } else if (code == 8) {
                                             ToastUtils.show("该停车单已支付");
                                         } else {
@@ -128,9 +127,72 @@ public class ParkingSpacePayActivity extends BaseSwipeBackActivity {
                     go2AliPay();
                 break;
             case 1: //微信
-                ToastUtils.show("微信支付");
+                go2WeChatPay();
                 break;
         }
+    }
+
+    private void go2WeChatPay() {
+        ApiManage.get(ApiHost.getInstance().payMyTicket() + mOrderNo)
+                .tag(this)// 请求的 tag, 主要用于取消对应的请求
+                .cacheKey("cacheKey")
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        if (response.code() == 200) {
+                            Log.e("go2WeChatPay: ", s);
+                            JSONObject json;
+                            try {
+                                json = new JSONObject(s);
+                                String orderInfoParam = String.valueOf(json.get("data"));
+                                doWXPay(orderInfoParam);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            ToastUtils.show(response.message());
+                        }
+                    }
+                });
+    }
+
+    /**
+     * 微信支付
+     *
+     * @param pay_param 支付服务生成的支付参数
+     */
+    private void doWXPay(String pay_param) {
+        String wx_appid = "wx39fab7de09774fbd";     //替换为自己的appid = wx39fab7de09774fbd
+        WXPay.init(getApplicationContext(), wx_appid);      //要在支付前调用
+        WXPay.getInstance().doPay(pay_param, new WXPay.WXPayResultCallBack() {
+            @Override
+            public void onSuccess() {
+                Toast.makeText(getApplication(), "支付成功", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
+            @Override
+            public void onError(int error_code) {
+                switch (error_code) {
+                    case WXPay.NO_OR_LOW_WX:
+                        Toast.makeText(getApplication(), "未安装微信或微信版本过低", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case WXPay.ERROR_PAY_PARAM:
+                        Toast.makeText(getApplication(), "参数错误", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case WXPay.ERROR_PAY:
+                        Toast.makeText(getApplication(), "支付失败", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+
+            @Override
+            public void onCancel() {
+                Toast.makeText(getApplication(), "支付取消", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void authAliPay() {
@@ -170,8 +232,32 @@ public class ParkingSpacePayActivity extends BaseSwipeBackActivity {
     }
 
     private void go2AliPay() {
+        ApiManage.get(ApiHost.getInstance().payByAliPay() + mOrderNo)
+                .tag(this)// 请求的 tag, 主要用于取消对应的请求
+                .cacheKey("cacheKey")
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        if (response.code() == 200) {
+                            Log.e("go2WeChatPay: ", s);
+                            JSONObject json;
+                            try {
+                                json = new JSONObject(s);
+                                String orderInfoParam = String.valueOf(json.get("data"));
+                                doALIPay(orderInfoParam);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            ToastUtils.show(response.message());
+                        }
+                    }
+                });
+    }
+
+    private void doALIPay(String orderInfoParam) {
         //订单信息
-        final String orderInfo = mOrderNo;
+        final String orderInfo = orderInfoParam;
         //异步处理
         Runnable payRunnable = new Runnable() {
             @Override
