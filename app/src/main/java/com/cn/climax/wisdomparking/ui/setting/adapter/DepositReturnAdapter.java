@@ -77,6 +77,8 @@ public class DepositReturnAdapter extends RecyclerView.Adapter<DepositReturnAdap
                 || mUserCarportList.get(position).getDeposit() == 0d) {
             holder.tvGoToDeposit.setVisibility(View.VISIBLE);
             holder.llHasDepositedArea.setVisibility(View.GONE);
+            holder.tvGoToDeposit.setText("交押金");
+            holder.tvGoToDeposit.setBackgroundResource(R.drawable.activity_button_blue_border);
             holder.tvGoToDeposit.setOnClickListener(new ForbidQuickClickListener() {
                 @Override
                 protected void forbidClick(View view) {
@@ -90,9 +92,9 @@ public class DepositReturnAdapter extends RecyclerView.Adapter<DepositReturnAdap
             holder.llHasDepositedArea.setVisibility(View.VISIBLE);
             holder.tvGoToDeposit.setText("退押金");
             holder.tvGoToDeposit.setBackgroundResource(R.drawable.activity_button_red_border);
-            holder.tvGoToDeposit.setOnClickListener(new ForbidQuickClickListener() {
+            holder.tvGoToDeposit.setOnClickListener(new View.OnClickListener() {
                 @Override
-                protected void forbidClick(View view) {
+                public void onClick(View v) {
                     showDialog4Withdraw(mUserCarportList.get(position));
                 }
             });

@@ -181,9 +181,9 @@ public class DepositReturnActivity extends BaseSwipeBackActivity {
             tvGoToDeposit.setVisibility(View.VISIBLE);
             tvGoToDeposit.setText("退押金");
             tvGoToDeposit.setBackgroundResource(R.drawable.activity_button_red_border);
-            tvGoToDeposit.setOnClickListener(new ForbidQuickClickListener() { //退押金
+            tvGoToDeposit.setOnClickListener(new View.OnClickListener() {
                 @Override
-                protected void forbidClick(View view) {
+                public void onClick(View v) {
                     showDialog4Withdraw();
                 }
             });

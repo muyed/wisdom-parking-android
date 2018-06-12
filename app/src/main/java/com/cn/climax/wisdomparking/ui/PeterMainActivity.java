@@ -941,21 +941,22 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 case R.id.llSkip2Deposit: //押金
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
                         return;
-//                    if (String.valueOf(mUserInfoBean.getAccount().getCash()).equals("0.00")
-//                            || mUserInfoBean.getAccount().getCash() == 0.00d
-//                            || mUserInfoBean.getAccount().getCash() == 0.0d
-//                            || mUserInfoBean.getAccount().getCash() == 0d) {
-//                        startActivity(new Intent(PeterMainActivity.this, DepositMineActivity.class)
-//                                .putExtra("is_pay_account", true)
-//                                .putExtra("pay_account_deposit", String.valueOf(mUserInfoBean.getAccountCashConf())));
-//                    } else {
+                    boolean isWithdrawedDeposit = SharedUtil.getInstance(PeterMainActivity.this).get(ApiParamsKey.IS_WITHDRAWED_DEPOSIT, false);
+                    if ((String.valueOf(mUserInfoBean.getAccount().getCash()).equals("0.00")
+                            || mUserInfoBean.getAccount().getCash() == 0.00d
+                            || mUserInfoBean.getAccount().getCash() == 0.0d
+                            || mUserInfoBean.getAccount().getCash() == 0d) && !isWithdrawedDeposit) {
+                        startActivity(new Intent(PeterMainActivity.this, DepositMineActivity.class)
+                                .putExtra("is_pay_account", true)
+                                .putExtra("pay_account_deposit", String.valueOf(mUserInfoBean.getAccountCashConf())));
+                    } else {
                         startActivity(new Intent(PeterMainActivity.this, DepositReturnActivity.class)
                                 .putExtra("is_pay_account", false)
                                 .putExtra("pay_account_bean", mUserInfoBean.getAccount())
                                 .putExtra("pay_account_amount", String.valueOf(mUserInfoBean.getAccountCashConf()))
                                 .putExtra("pay_deposit_amount", String.valueOf(mUserInfoBean.getCarportCashConf()))
                         );
-//                    }
+                    }
                     break;
                 case R.id.llSkip2MineDevice: //我的设备
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))

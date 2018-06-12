@@ -11,6 +11,8 @@ public class ApiParamsKey {
 
     public static final String IS_AUTH_ALIPAY = "is_auth_alipay"; //阿里支付是否授权成功
     public static final String IS_AUTH_WECHAT = "is_auth_wechat"; //微信支付是否授权成功
+    
+    public static final String IS_WITHDRAWED_DEPOSIT = "is_withdrawed_deposit"; //是否第一次支付押金
 
     public static final String USER_NAME = "username"; //帐号
     public static final String PHONE = "phone"; //手机号码

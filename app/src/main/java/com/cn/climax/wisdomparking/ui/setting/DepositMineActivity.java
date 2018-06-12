@@ -25,6 +25,7 @@ import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.PayConstant;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.data.local.BaseLocalBean;
+import com.cn.climax.wisdomparking.ui.PeterMainActivity;
 import com.cn.climax.wisdomparking.ui.main.device.adapter.RVDevicePayAdapter;
 import com.cn.climax.wisdomparking.ui.pay.bean.PayResult;
 import com.lzy.okgo.callback.StringCallback;
@@ -207,6 +208,7 @@ public class DepositMineActivity extends BaseSwipeBackActivity {
             @Override
             public void onSuccess() {
                 Toast.makeText(getApplication(), "支付成功", Toast.LENGTH_SHORT).show();
+                SharedUtil.getInstance(DepositMineActivity.this).put(ApiParamsKey.IS_WITHDRAWED_DEPOSIT, true);
                 finish();
             }
 
@@ -348,6 +350,7 @@ public class DepositMineActivity extends BaseSwipeBackActivity {
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
                         Toast.makeText(DepositMineActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        SharedUtil.getInstance(DepositMineActivity.this).put(ApiParamsKey.IS_WITHDRAWED_DEPOSIT, true);
                         finish();
                     } else {
                         Toast.makeText(DepositMineActivity.this, "支付失败", Toast.LENGTH_SHORT).show();

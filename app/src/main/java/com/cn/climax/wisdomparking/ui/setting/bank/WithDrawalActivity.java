@@ -89,7 +89,9 @@ public class WithDrawalActivity extends BaseSwipeBackActivity {
 
     @Override
     protected void setToolBar(boolean isShowNavBack, String headerTitle) {
-        super.setToolBar(isShowNavBack, "提现");
+        isFromCarport = getIntent().getBooleanExtra("is_withdraw_carport", false);
+        isFromAccount = getIntent().getBooleanExtra("is_withdraw_account", false);
+        super.setToolBar(isShowNavBack, isFromCarport || isFromAccount ? "退押金" : "提现");
     }
 
     @Override
@@ -103,7 +105,7 @@ public class WithDrawalActivity extends BaseSwipeBackActivity {
         isFromCarport = getIntent().getBooleanExtra("is_withdraw_carport", false);
         mCarportAmount = getIntent().getStringExtra("deposit_carport_amount");
         mCarportBean = (ParkingSpaceMineBean) getIntent().getSerializableExtra("deposit_carport_bean");
-        
+
         isFromAccount = getIntent().getBooleanExtra("is_withdraw_account", false);
         mAccountAmount = getIntent().getStringExtra("deposit_account_amount");
         mAccountBean = (LoginResponse.AccountBean) getIntent().getSerializableExtra("deposit_account_bean");
@@ -161,9 +163,9 @@ public class WithDrawalActivity extends BaseSwipeBackActivity {
 //                    toastPayDialog();
                     if (isFromCarport) {
                         withDrawalCarport();
-                    }else if (isFromAccount){
+                    } else if (isFromAccount) {
                         withDrawalAccount();
-                    }else {
+                    } else {
                         if (TextUtils.isEmpty(mAmount)) {
                             ToastUtils.show("请填写金额");
                             return;
@@ -211,7 +213,7 @@ public class WithDrawalActivity extends BaseSwipeBackActivity {
                     }
                 });
     }
-    
+
     private void withDrawalCarport() {
         HashMap<String, String> paramsMap = new HashMap<>();
         paramsMap.put(ApiParamsKey.BANK_ID, mCardBean.getId() + "");
