@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F6f6F4"
     android:orientation="vertical"
-    tools:context="com.cn.climax.wisdomparking.ui.main.community.CommunityIdentifyActivity">
+    tools:context="com.cn.climax.wisdomparking.ui.main.carport.CarportMineActivity">
 
     <include layout="@layout/base_blue_nav_toolbar_layout" />
 
@@ -51,10 +51,11 @@
             android:visibility="gone">
 
             <ImageView
+                android:id="@+id/ivAddCarport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/icon_share_parking" />
+                android:src="@drawable/icon_carport_add" />
 
             <TextView
                 android:id="@+id/tvGoCertParking"

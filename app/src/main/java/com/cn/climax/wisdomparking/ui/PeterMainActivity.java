@@ -2,6 +2,7 @@ package com.cn.climax.wisdomparking.ui;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -71,15 +72,15 @@ import com.cn.climax.wisdomparking.ui.account.LoginActivity;
 import com.cn.climax.wisdomparking.ui.main.AppBulletinActivity;
 import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceImmMatchingActivity;
 import com.cn.climax.wisdomparking.ui.main.community.AddCommunityActivity;
-import com.cn.climax.wisdomparking.ui.main.community.AuthCommunityListActivity;
-import com.cn.climax.wisdomparking.ui.main.community.CommunityIdentifyActivity;
-import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceMineActivity;
+import com.cn.climax.wisdomparking.ui.main.community.CommunityListMineActivity;
+import com.cn.climax.wisdomparking.ui.main.carport.CarportMineActivity;
 import com.cn.climax.wisdomparking.ui.main.device.LicenseManagerListActivity;
 import com.cn.climax.wisdomparking.ui.main.device.ReleaseLockActivity;
 import com.cn.climax.wisdomparking.ui.main.nav.Navigation2DActivity;
 import com.cn.climax.wisdomparking.ui.main.order.OrderMineActivity;
 import com.cn.climax.wisdomparking.ui.main.share.PublishShareParkingActivity;
 import com.cn.climax.wisdomparking.ui.setting.AuthenticateCertActivity;
+import com.cn.climax.wisdomparking.ui.setting.DepositReturnActivity;
 import com.cn.climax.wisdomparking.ui.setting.bank.BankCardListActivity;
 import com.cn.climax.wisdomparking.ui.setting.CommonProblemsActivity;
 import com.cn.climax.wisdomparking.ui.setting.CustomerServiceMineActivity;
@@ -95,7 +96,7 @@ import com.cn.climax.wisdomparking.widget.CircleView;
 import com.cn.climax.wisdomparking.widget.My2dMapView;
 import com.cn.climax.wisdomparking.widget.bottomdialog.BottomDialog;
 import com.cn.climax.wisdomparking.widget.bulletinboard.TipView;
-import com.cn.climax.wisdomparking.widget.bulletinboard.view.BulletinView;
+import com.cn.climax.wisdomparking.widget.easyguideview.HintPopupWindow;
 import com.cn.climax.wisdomparking.widget.numberkeyboard.OfoKeyboard;
 import com.cn.climax.wisdomparking.widget.ofo.OfoConvcaveMenuActivity;
 import com.lzy.okgo.callback.StringCallback;
@@ -200,6 +201,9 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
     @BindView(R.id.llSkip2Bulletin)
     LinearLayout llSkip2Bulletin;
 
+    @BindView(R.id.cvHint2Deposit)
+    CardView cvHint2Deposit;
+
     private long exitTime = 0;
     private AMapLocationClient mNavLocationClient;
     private AMap aNavMap;
@@ -235,6 +239,8 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
 
     private ZxingConfig config = new ZxingConfig();
     private boolean isClickVoice = true; //扫描是否开启声音 默认开启
+
+    private HintPopupWindow hintPopupWindow;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -283,7 +289,23 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 tvSkipLoginReg.setVisibility(View.VISIBLE);
                 tvAccount.setVisibility(View.GONE);
             }
+
+//            if (isFirstUseTag(PeterMainActivity.this)) {
+//            ImageView ivPublishParking = ((ImageView) findViewById(R.id.ivPublishParking));
+//            menuShow(ivPublishParking);
+//            }
         }
+    }
+
+    private void menuShow(final View v) {
+        //下面的操作是初始化弹出数据
+        ArrayList<String> strList = new ArrayList<>();
+        strList.add("选项item1");
+
+        //具体初始化逻辑看下面的图
+        hintPopupWindow = new HintPopupWindow(this, strList, null);
+        //弹出选项弹窗
+        hintPopupWindow.showPopupWindow(v);
     }
 
     private void initBulletin() {
@@ -397,6 +419,16 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
         });
     }
 
+    private boolean isFirstUseTag(Context context) {
+        int count = SharedUtil.getInstance(context).get(ApiParamsKey.APP_USE_TAG, 0);
+        if (count == 0) {
+            count++;
+            SharedUtil.getInstance(context).put(ApiParamsKey.APP_USE_TAG, count);
+            return true;
+        }
+        return false;
+    }
+
     private void loginEvent() {
         HashMap<String, String> httpParams = new HashMap<>();
         httpParams.put(ApiParamsKey.USER_NAME, SharedUtil.getInstance(PeterMainActivity.this).get(ApiParamsKey.USER_NAME));
@@ -432,6 +464,22 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 });
     }
 
+    private void initCarportCashConf() {
+        if (String.valueOf(mUserInfoBean.getCarportCashConf()).equals("0.00") || mUserInfoBean.getCarportCashConf() == 0.0d || mUserInfoBean.getCarportCashConf() == 0d) {
+            cvHint2Deposit.setVisibility(View.VISIBLE);
+            cvHint2Deposit.setOnClickListener(new ForbidQuickClickListener() {
+                @Override
+                protected void forbidClick(View view) {
+                    if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
+                        return;
+                    startActivity(new Intent(PeterMainActivity.this, DepositMineActivity.class));
+                }
+            });
+        } else {
+            cvHint2Deposit.setVisibility(View.GONE);
+        }
+    }
+
     private void judgeUserIsAddCarLicense() {
         ApiManage.get(ApiHost.getInstance().getMyCarLicenseList())
                 .tag(this)// 请求的 tag, 主要用于取消对应的请求
@@ -453,6 +501,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                                 SharedUtil.getInstance(PeterMainActivity.this).put(ApiParamsKey.IS_ADD_CAR_LICENSE, false);
                                 e.printStackTrace();
                             }
+                            initCarportCashConf();
                         } else {
                             SharedUtil.getInstance(PeterMainActivity.this).put(ApiParamsKey.IS_ADD_CAR_LICENSE, false);
                             ToastUtils.show(response.message());
@@ -892,17 +941,31 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 case R.id.llSkip2Deposit: //押金
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
                         return;
-                    startActivity(new Intent(PeterMainActivity.this, DepositMineActivity.class));
+//                    if (String.valueOf(mUserInfoBean.getAccount().getCash()).equals("0.00")
+//                            || mUserInfoBean.getAccount().getCash() == 0.00d
+//                            || mUserInfoBean.getAccount().getCash() == 0.0d
+//                            || mUserInfoBean.getAccount().getCash() == 0d) {
+//                        startActivity(new Intent(PeterMainActivity.this, DepositMineActivity.class)
+//                                .putExtra("is_pay_account", true)
+//                                .putExtra("pay_account_deposit", String.valueOf(mUserInfoBean.getAccountCashConf())));
+//                    } else {
+                        startActivity(new Intent(PeterMainActivity.this, DepositReturnActivity.class)
+                                .putExtra("is_pay_account", false)
+                                .putExtra("pay_account_bean", mUserInfoBean.getAccount())
+                                .putExtra("pay_account_amount", String.valueOf(mUserInfoBean.getAccountCashConf()))
+                                .putExtra("pay_deposit_amount", String.valueOf(mUserInfoBean.getCarportCashConf()))
+                        );
+//                    }
                     break;
                 case R.id.llSkip2MineDevice: //我的设备
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
                         return;
-                    startActivity(new Intent(PeterMainActivity.this, CommunityIdentifyActivity.class));
+                    startActivity(new Intent(PeterMainActivity.this, CarportMineActivity.class));
                     break;
                 case R.id.llSkip2MineCommunity: //我的小区
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
                         return;
-                    startActivity(new Intent(PeterMainActivity.this, AuthCommunityListActivity.class));
+                    startActivity(new Intent(PeterMainActivity.this, CommunityListMineActivity.class));
                     break;
 
                 case R.id.llSkip2MineCar: //我的车辆
@@ -934,7 +997,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                 case R.id.llSkip2IdentityCommunity: //考虑多小区情况 小区认证
 //                    if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
 //                        return;
-//                    startActivity(new Intent(PeterMainActivity.this, AuthCommunityListActivity.class));
+//                    startActivity(new Intent(PeterMainActivity.this, CommunityListMineActivity.class));
                     startActivity(new Intent(PeterMainActivity.this, AddCommunityActivity.class));
                     break;
                 case R.id.llSkip2MyBankCard: //我的银行卡
@@ -946,7 +1009,7 @@ public class PeterMainActivity extends OfoConvcaveMenuActivity implements AMapLo
                     if (!GlobalVerificateUtils.getInstance(PeterMainActivity.this).isEnableOption(PeterMainActivity.this))
                         return;
 //                    startActivity(new Intent(PeterMainActivity.this, ParkingSpaceMineActivity.class));
-                    startActivity(new Intent(PeterMainActivity.this, CommunityIdentifyActivity.class));
+                    startActivity(new Intent(PeterMainActivity.this, CarportMineActivity.class));
                     break;
             }
         }

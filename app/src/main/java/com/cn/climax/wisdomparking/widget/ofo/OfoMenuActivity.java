@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -44,6 +45,7 @@ public class OfoMenuActivity extends BaseActivity {
     protected LinearLayout llSkip2Publish;
     protected ImageView ivSkip2SearchList;
     protected LinearLayout llSkip2Bulletin;
+    protected CardView cvHint2Deposit;
 
     protected int count;
     protected boolean isOpenPCenter = false; //是否点击打开个人设置界面 默认未打开
@@ -92,6 +94,7 @@ public class OfoMenuActivity extends BaseActivity {
 
         ivSkip2Pcenter = ((ImageView) findViewById(R.id.ivSkip2Pcenter));
         llSkip2Bulletin = ((LinearLayout) findViewById(R.id.llSkip2Bulletin));
+        cvHint2Deposit = ((CardView) findViewById(R.id.cvHint2Deposit));
        
         ofoMenuLayout = ((OfoMenuLayout) findViewById(R.id.ofo_menu));
         ofoContentLayout = ((OfoContentLayout) findViewById(R.id.ofo_content));
@@ -125,6 +128,7 @@ public class OfoMenuActivity extends BaseActivity {
 
                 llSkip2Publish.setClickable(true);
                 llSkip2Bulletin.setClickable(true);
+                cvHint2Deposit.setClickable(true);
                 ivSkip2SearchList.setClickable(true);
             }
         });

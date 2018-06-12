@@ -33,6 +33,7 @@
                 android:visibility="visible">
 
                 <ImageView
+                    android:id="@+id/ivPublishParking"
                     android:layout_width="@dimen/common_dimen_40px"
                     android:layout_height="@dimen/common_dimen_40px"
                     android:contentDescription="@string/app_name"

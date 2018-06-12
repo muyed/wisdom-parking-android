@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#00BCD5</color>
     <color name="colorPrimaryDark">#00BCD5</color>
-    <color name="colorAccent">#EFC02F</color>
+    <color name="colorAccent">#FF4081</color>
 
     <color name="key_ok_color">#1280FA</color>
     <color name="key_ok_color_pressed">#0174f2</color>
@@ -46,6 +46,16 @@
     <color name="red_7">#E62E2E</color>
 
     <color name="basic_color_primary">#00BCD5</color>
+
+    <!-- popup -->
+    <color name="popup_bg">#ffffffff</color>
+    <color name="line_bg">#CDCDCD</color>
+    <color name="comment_popup_bg">#292929</color>
+    <color name="comment_popup_tx_bg">#c7c7c7</color>
+    <color name="click_bg">#c7c7c7</color>
+    <color name="menu_bg">#2b2b2b</color>
+    <color name="menu_click_bg">#515151</color>
+    <color name="color_bg">#F2F2F2</color>
 
     <!-- button -->
     <color name="buttonRetryBackground">#30000000</color>
@@ -150,4 +160,14 @@
 
     <color name="gray_light">#f2f2f2</color>
     <color name="gray_font_dark">#646464</color>
+
+
+    <color name="white_pressed">#d5d5d5</color>
+    <color name="stand_bg">#f6f6f6</color>
+    <color name="font_black_content">#222222</color>
+    <color name="divide">#e4e4e4</color>
+    <color name="font_black_6">#666666</color>
+    <color name="font_gray">#999999</color>
+
+    <color name="black_p50">#7f000000</color>
 </resources>

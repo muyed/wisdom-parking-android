@@ -34,9 +34,9 @@
             android:src="@drawable/icon_pay_renminbi" />
 
         <TextView
+            android:id="@+id/tvDepositAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0.01"
             android:textColor="#E62E2E"
             android:textSize="18sp"
             android:textStyle="bold" />

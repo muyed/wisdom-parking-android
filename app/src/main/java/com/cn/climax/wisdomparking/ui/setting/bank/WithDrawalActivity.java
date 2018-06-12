@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -26,6 +27,8 @@ import com.cn.climax.i_carlib.util.ToastUtils;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.data.response.BankCardMineBean;
+import com.cn.climax.wisdomparking.data.response.LoginResponse;
+import com.cn.climax.wisdomparking.data.response.ParkingSpaceMineBean;
 import com.cn.climax.wisdomparking.data.response.WithDrawalResponse;
 import com.cn.climax.wisdomparking.http.WrapJsonBeanCallback;
 import com.cn.climax.wisdomparking.ui.setting.utils.BankManager;
@@ -77,6 +80,13 @@ public class WithDrawalActivity extends BaseSwipeBackActivity {
     private BankCardMineBean mCardBean;
     private String mAmount;
 
+    private boolean isFromCarport;
+    private String mCarportAmount;
+    private ParkingSpaceMineBean mCarportBean;
+    private boolean isFromAccount;
+    private String mAccountAmount;
+    private LoginResponse.AccountBean mAccountBean;
+
     @Override
     protected void setToolBar(boolean isShowNavBack, String headerTitle) {
         super.setToolBar(isShowNavBack, "提现");
@@ -90,6 +100,14 @@ public class WithDrawalActivity extends BaseSwipeBackActivity {
     @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
 //        hideSystemSofeKeyboard(WithDrawalActivity.this, etInputWithDrawalAmount);
+        isFromCarport = getIntent().getBooleanExtra("is_withdraw_carport", false);
+        mCarportAmount = getIntent().getStringExtra("deposit_carport_amount");
+        mCarportBean = (ParkingSpaceMineBean) getIntent().getSerializableExtra("deposit_carport_bean");
+        
+        isFromAccount = getIntent().getBooleanExtra("is_withdraw_account", false);
+        mAccountAmount = getIntent().getStringExtra("deposit_account_amount");
+        mAccountBean = (LoginResponse.AccountBean) getIntent().getSerializableExtra("deposit_account_bean");
+
         initView();
         setSubView();
         initEvent();
@@ -102,14 +120,6 @@ public class WithDrawalActivity extends BaseSwipeBackActivity {
         llShowBankArea.setOnClickListener(new CommonClick());
         btnBindCardConfirm.setOnClickListener(new CommonClick());
 
-        etInputWithDrawalAmount.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-
-                }
-            }
-        });
         etInputWithDrawalAmount.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -128,6 +138,17 @@ public class WithDrawalActivity extends BaseSwipeBackActivity {
                 }
             }
         });
+
+        if (isFromCarport) {
+            etInputWithDrawalAmount.setText(mCarportAmount);
+            etInputWithDrawalAmount.setTextColor(ContextCompat.getColor(WithDrawalActivity.this, R.color.text_darker_color));
+            etInputWithDrawalAmount.setEnabled(false);
+        }
+        if (isFromAccount) {
+            etInputWithDrawalAmount.setText(mAccountAmount);
+            etInputWithDrawalAmount.setTextColor(ContextCompat.getColor(WithDrawalActivity.this, R.color.text_darker_color));
+            etInputWithDrawalAmount.setEnabled(false);
+        }
     }
 
     private class CommonClick extends ForbidQuickClickListener {
@@ -138,11 +159,17 @@ public class WithDrawalActivity extends BaseSwipeBackActivity {
                 case R.id.btnBindCardConfirm:
 //                    llPwdKeyboard.setVisibility(View.VISIBLE);
 //                    toastPayDialog();
-                    if (TextUtils.isEmpty(mAmount)) {
-                        ToastUtils.show("请填写金额");
-                        return;
+                    if (isFromCarport) {
+                        withDrawalCarport();
+                    }else if (isFromAccount){
+                        withDrawalAccount();
+                    }else {
+                        if (TextUtils.isEmpty(mAmount)) {
+                            ToastUtils.show("请填写金额");
+                            return;
+                        }
+                        withDrawal();
                     }
-                    withDrawal();
                     break;
                 case R.id.llAddBankArea:
                     startActivityForResult(new Intent(WithDrawalActivity.this, BankCardListActivity.class).putExtra("is_enableSelect", true), 99);
@@ -152,6 +179,69 @@ public class WithDrawalActivity extends BaseSwipeBackActivity {
                     break;
             }
         }
+    }
+
+    private void withDrawalAccount() {
+        HashMap<String, String> paramsMap = new HashMap<>();
+        paramsMap.put(ApiParamsKey.ID, mCardBean.getId() + "");
+        JSONObject json = new JSONObject(paramsMap);
+        ApiManage.post(ApiHost.getInstance().withdrawCash())
+                .upJson(json.toString())
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        if (response.code() == 200) {
+                            try {
+                                JSONObject json = new JSONObject(s);
+                                int code = Integer.parseInt(String.valueOf(json.get("code")));
+                                String errMsg = String.valueOf(json.get("errMsg"));
+                                if (code == 200) {
+
+                                    ToastUtils.show("提现成功");
+                                    finish();
+                                } else {
+                                    ToastUtils.show(errMsg);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            ToastUtils.show(response.message());
+                        }
+                    }
+                });
+    }
+    
+    private void withDrawalCarport() {
+        HashMap<String, String> paramsMap = new HashMap<>();
+        paramsMap.put(ApiParamsKey.BANK_ID, mCardBean.getId() + "");
+        paramsMap.put(ApiParamsKey.ID, mCarportBean.getCarportId() + "");
+        JSONObject json = new JSONObject(paramsMap);
+
+        ApiManage.post(ApiHost.getInstance().withdrawCarport())
+                .upJson(json.toString())
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        if (response.code() == 200) {
+                            try {
+                                JSONObject json = new JSONObject(s);
+                                int code = Integer.parseInt(String.valueOf(json.get("code")));
+                                String errMsg = String.valueOf(json.get("errMsg"));
+                                if (code == 200) {
+                                    ToastUtils.show("提现成功");
+                                    finish();
+                                } else {
+                                    ToastUtils.show(errMsg);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            ToastUtils.show(response.message());
+                        }
+                    }
+                });
     }
 
     private void withDrawal() {

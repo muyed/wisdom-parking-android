@@ -3,13 +3,21 @@ package com.cn.climax.i_carlib.weixin;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.cn.climax.i_carlib.util.secret.MD5Utils;
+import com.tencent.connect.common.Constants;
+import com.tencent.mm.opensdk.utils.Log;
 import com.tencent.mm.sdk.constants.Build;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 微信支付
@@ -27,7 +35,9 @@ public class WXPay {
 
     public interface WXPayResultCallBack {
         void onSuccess(); //支付成功
+
         void onError(int error_code);   //支付失败
+
         void onCancel();    //支付取消
     }
 
@@ -37,17 +47,19 @@ public class WXPay {
     }
 
     public static void init(Context context, String wx_appid) {
-        if(mWXPay == null) {
+        if (mWXPay == null) {
             mWXPay = new WXPay(context, wx_appid);
         }
     }
-    public static WXPay getInstance(){
+
+    public static WXPay getInstance() {
         return mWXPay;
     }
 
     public IWXAPI getWXApi() {
         return mWXApi;
     }
+
     /**
      * 发起微信支付
      */
@@ -55,8 +67,8 @@ public class WXPay {
         mPayParam = pay_param;
         mCallback = callback;
 
-        if(!check()) {
-            if(mCallback != null) {
+        if (!check()) {
+            if (mCallback != null) {
                 mCallback.onError(NO_OR_LOW_WX);
             }
             return;
@@ -67,16 +79,16 @@ public class WXPay {
             param = new JSONObject(mPayParam);
         } catch (JSONException e) {
             e.printStackTrace();
-            if(mCallback != null) {
+            if (mCallback != null) {
                 mCallback.onError(ERROR_PAY_PARAM);
             }
             return;
         }
-        if(TextUtils.isEmpty(param.optString("appid")) || TextUtils.isEmpty(param.optString("partnerid"))
+        if (TextUtils.isEmpty(param.optString("appid")) || TextUtils.isEmpty(param.optString("partnerid"))
                 || TextUtils.isEmpty(param.optString("prepayid")) || TextUtils.isEmpty(param.optString("package")) ||
                 TextUtils.isEmpty(param.optString("noncestr")) || TextUtils.isEmpty(param.optString("timestamp")) ||
                 TextUtils.isEmpty(param.optString("sign"))) {
-            if(mCallback != null) {
+            if (mCallback != null) {
                 mCallback.onError(ERROR_PAY_PARAM);
             }
             return;
@@ -96,15 +108,15 @@ public class WXPay {
 
     //支付回调响应
     public void onResp(int error_code) {
-        if(mCallback == null) {
+        if (mCallback == null) {
             return;
         }
 
-        if(error_code == 0) {   //成功
+        if (error_code == 0) {   //成功
             mCallback.onSuccess();
-        } else if(error_code == -1) {   //错误
+        } else if (error_code == -1) {   //错误
             mCallback.onError(ERROR_PAY);
-        } else if(error_code == -2) {   //取消
+        } else if (error_code == -2) {   //取消
             mCallback.onCancel();
         }
 

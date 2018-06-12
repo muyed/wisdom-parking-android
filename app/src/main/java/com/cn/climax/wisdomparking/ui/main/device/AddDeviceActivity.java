@@ -50,6 +50,7 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
     private CommunityAuthListResponse.CarportListBean mCarPortBean;
     private String mCarPortAddress;
     private String mCarPortBindCode;
+    private boolean isFromAddCarport;
 
     @Override
     protected void setToolBar(boolean isShowNavBack, String headerTitle) {
@@ -63,6 +64,8 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
 
     @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
+        isFromAddCarport = getIntent().getBooleanExtra("is_from_add", false);
+        
         mCarPortBean = (CommunityAuthListResponse.CarportListBean) getIntent().getSerializableExtra("carports_info");
         mCarPortAddress = getIntent().getStringExtra("carports_address");
         if (mCarPortBean != null) {
@@ -152,4 +155,8 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
                 });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

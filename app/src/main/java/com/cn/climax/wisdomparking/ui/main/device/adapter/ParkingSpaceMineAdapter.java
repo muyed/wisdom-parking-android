@@ -12,8 +12,7 @@ import android.widget.TextView;
 import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.data.response.ParkingSpaceMineBean;
-import com.cn.climax.wisdomparking.ui.main.community.CommunityIdentifyActivity;
-import com.cn.climax.wisdomparking.ui.main.order.OrderMineDetailActivity;
+import com.cn.climax.wisdomparking.ui.main.carport.CarportMineActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +46,7 @@ public class ParkingSpaceMineAdapter extends RecyclerView.Adapter<ParkingSpaceMi
         holder.rlSkip2Detail.setOnClickListener(new ForbidQuickClickListener() {
             @Override
             protected void forbidClick(View view) {
-                mContext.startActivity(new Intent(mContext, CommunityIdentifyActivity.class));
+                mContext.startActivity(new Intent(mContext, CarportMineActivity.class));
             }
         });
         holder.tvParkingCode.setText(mSpaceMineBeanList.get(position).getCarportNum());

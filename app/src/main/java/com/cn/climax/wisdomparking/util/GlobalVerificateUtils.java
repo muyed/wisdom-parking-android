@@ -6,8 +6,7 @@ import android.content.Intent;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
 import com.cn.climax.i_carlib.util.SharedUtil;
 import com.cn.climax.wisdomparking.base.Core;
-import com.cn.climax.wisdomparking.ui.main.community.CommunityIdentifyActivity;
-import com.cn.climax.wisdomparking.ui.main.device.AddDeviceActivity;
+import com.cn.climax.wisdomparking.ui.main.carport.CarportMineActivity;
 import com.cn.climax.wisdomparking.ui.main.device.AddLicensePlateActivity;
 import com.cn.climax.wisdomparking.ui.setting.AuthenticateCertActivity;
 
@@ -35,7 +34,7 @@ public class GlobalVerificateUtils {
             context.startActivity(new Intent(context, AuthenticateCertActivity.class));
             return false;
         } else if (!GlobalVerificateUtils.getInstance(context).isAuthCommunity()) {
-            context.startActivity(new Intent(context, CommunityIdentifyActivity.class));
+            context.startActivity(new Intent(context, CarportMineActivity.class));
             return false;
 //        } else if (!GlobalVerificateUtils.getInstance(context).isAuthParkingSpace()) {
 //            context.startActivity(new Intent(context, AddDeviceActivity.class));

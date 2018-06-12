@@ -57,5 +57,6 @@ public class ApiParamsKey {
     public static final String BANK_CODE= "bankCode"; //银行卡号
     public static final String BANK_ID= "bankId"; //银行卡号
     public static final String BANK_WITH_AMOUNT= "amount"; //银行卡号
-    
+
+    public static final String APP_USE_TAG = "app_installedFirst";
 }

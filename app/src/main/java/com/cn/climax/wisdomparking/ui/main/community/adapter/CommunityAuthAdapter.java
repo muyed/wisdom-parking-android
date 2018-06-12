@@ -74,8 +74,13 @@ public class CommunityAuthAdapter extends RecyclerView.Adapter<CommunityAuthAdap
         if (authListResponse.getCarportList() != null && authListResponse.getCarportList().size() > 0) {
             holder.tvParkingStatus_authed.setVisibility(View.VISIBLE);
             holder.tvParkingStatus_denied.setVisibility(View.GONE);
-            holder.tvParkingStatus_binded.setVisibility(View.VISIBLE);
             holder.tvParkingStatus_authing.setVisibility(View.GONE);
+
+            for (int i = 0; i < authListResponse.getCarportList().size(); i++) {
+                if (authListResponse.getCarportList().get(i).isBind()) {
+                    holder.tvParkingStatus_binded.setVisibility(View.VISIBLE);
+                }
+            }
 
             holder.llSkip2Detail.setOnClickListener(new ForbidQuickClickListener() {
                 @Override

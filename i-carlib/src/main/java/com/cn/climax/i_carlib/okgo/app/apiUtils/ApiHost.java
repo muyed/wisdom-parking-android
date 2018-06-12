@@ -148,6 +148,16 @@ public class ApiHost extends ApiHostBase {
     public String withdrawBalance() {
         return "/api/account/withdrawBalance";
     }
+
+    //账户押金取现
+    public String withdrawCash() {
+        return "/api/account/withdrawCash";
+    }
+
+    //账户押金取现
+    public String withdrawCarport() {
+        return "/api/carport/withdraw";
+    }
     
     //我的银行卡
     public String myBankList() {

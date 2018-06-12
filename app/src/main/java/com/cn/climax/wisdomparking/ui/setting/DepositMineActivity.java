@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.AuthTask;
@@ -40,6 +41,8 @@ import okhttp3.Response;
 
 public class DepositMineActivity extends BaseSwipeBackActivity {
 
+    @BindView(R.id.tvDepositAmount)
+    TextView tvDepositAmount;
     @BindView(R.id.rvPayParkSpaceList)
     RecyclerView rvPayParkSpaceList;
 
@@ -47,9 +50,13 @@ public class DepositMineActivity extends BaseSwipeBackActivity {
     private BaseLocalBean checkBean = new BaseLocalBean();
     private String mOrderNo;
 
+    private boolean isGo2PayAccount; //是否是过来缴纳账户押金
+    private String mDepositAmount;
+
     @Override
     protected void setToolBar(boolean isShowNavBack, String headerTitle) {
-        super.setToolBar(isShowNavBack, "缴纳押金");
+        isGo2PayAccount = getIntent().getBooleanExtra("is_pay_account", false);
+        super.setToolBar(isShowNavBack, isGo2PayAccount ? "缴纳账户押金" : "缴纳车位押金");
     }
 
     @Override
@@ -59,6 +66,14 @@ public class DepositMineActivity extends BaseSwipeBackActivity {
 
     @Override
     protected void initUiAndListener(Bundle savedInstanceState) {
+        isGo2PayAccount = getIntent().getBooleanExtra("is_pay_account", false);
+        if (isGo2PayAccount)
+            mDepositAmount = getIntent().getStringExtra("pay_account_deposit");
+        else
+            mDepositAmount = getIntent().getStringExtra("pay_carport_deposit"); //// TODO: 2018/6/11 0011  
+        tvDepositAmount.setText(mDepositAmount);
+
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rvPayParkSpaceList.setLayoutManager(layoutManager);
         mAdapter = new RVDevicePayAdapter(this);
@@ -76,22 +91,53 @@ public class DepositMineActivity extends BaseSwipeBackActivity {
     void click(View view) {
         switch (view.getId()) {
             case R.id.tvNextStep2:
-                getOrderNo();
+                if (isGo2PayAccount)
+                    getPayAccount();
+                else
+                    getPayCarport();
                 break;
         }
     }
 
     /**
-     * 先获取订单号
+     * 先获取订单号 - 缴纳账户押金
      */
-    private void getOrderNo() {
+    private void getPayAccount() {
         ApiManage.get(ApiHost.getInstance().payCash())
                 .tag(this)// 请求的 tag, 主要用于取消对应的请求
                 .cacheKey("payCash_cache")
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
+                        Log.e("onSuccess: ", s);
+                        JSONObject json;
+                        try {
+                            json = new JSONObject(s);
+                            int code = Integer.parseInt(String.valueOf(json.get("code")));
+                            String errMsg = String.valueOf(json.get("errMsg"));
+                            if (code == 200) {
+                                mOrderNo = String.valueOf(json.get("data"));
+                                gotoPay(checkBean.getPayWay());
+                            } else {
+                                ToastUtils.show(errMsg);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
 
+    /**
+     * 先获取订单号 - 缴纳车位押金
+     */
+    private void getPayCarport() {
+        ApiManage.get(ApiHost.getInstance().payCash())
+                .tag(this)// 请求的 tag, 主要用于取消对应的请求
+                .cacheKey("payCash_cache")
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
                         Log.e("onSuccess: ", s);
                         JSONObject json;
                         try {
@@ -187,10 +233,6 @@ public class DepositMineActivity extends BaseSwipeBackActivity {
         });
     }
 
-    private void authWeChatPay() {
-
-    }
-
     private void authAliPay() {
         /**
          * 这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
@@ -228,8 +270,32 @@ public class DepositMineActivity extends BaseSwipeBackActivity {
     }
 
     private void go2AliPay() {
+        ApiManage.get(ApiHost.getInstance().getAliPayOrder() + mOrderNo)
+                .tag(this)// 请求的 tag, 主要用于取消对应的请求
+                .cacheKey("cacheKey")
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        if (response.code() == 200) {
+                            Log.e("go2WeChatPay: ", s);
+                            JSONObject json;
+                            try {
+                                json = new JSONObject(s);
+                                String orderInfoParam = String.valueOf(json.get("data"));
+                                doALIPay(orderInfoParam);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            ToastUtils.show(response.message());
+                        }
+                    }
+                });
+    }
+
+    private void doALIPay(String orderInfoParam) {
         //订单信息
-        final String orderInfo = mOrderNo;
+        final String orderInfo = orderInfoParam;
         //异步处理
         Runnable payRunnable = new Runnable() {
             @Override

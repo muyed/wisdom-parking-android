@@ -70,6 +70,7 @@
         <activity android:name=".ui.main.home.city.AddressSettingsActivity" />
 
         <!-- 微信支付 -->
+        <!-- 微信支付 -->
         <activity
             android:name="com.cn.climax.i_carlib.weixin.WXPayCallbackActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
@@ -80,19 +81,6 @@
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:targetActivity="com.cn.climax.i_carlib.weixin.WXPayCallbackActivity" />
-
-        <!-- Weixin -->
-        <activity
-            android:name="com.cn.climax.i_carlib.weixin.WXCallbackActivity"
-            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
-            android:exported="true"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        <activity-alias
-            android:name=".wxapi.WXEntryActivity"
-            android:exported="true"
-            android:targetActivity="com.cn.climax.i_carlib.weixin.WXCallbackActivity" />
 
         <!-- qq -->
         <activity
@@ -130,15 +118,6 @@
             </intent-filter>
         </activity>
 
-        <!-- for wechat pay -->
-        <!-- <activity -->
-        <!-- android:name=".wxapi.WXPayEntryActivity" -->
-        <!-- android:configChanges="keyboardHidden|orientation|screenSize|keyboard|navigation" -->
-        <!-- android:exported="true" -->
-        <!-- android:launchMode="singleTop" -->
-        <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar" /> -->
-        <!-- for wechat pay -->
-
         <activity android:name=".ui.setting.ModifyProfileActivity" />
         <activity android:name=".ui.setting.MineGarageActivity" />
         <activity android:name=".ui.main.home.MineTravelActivity" />
@@ -154,7 +133,7 @@
         <activity android:name=".ui.main.carport.ParkingSpaceAppointmentActivity" />
         <activity android:name=".ui.setting.AuthenticateCertActivity" />
         <activity android:name=".ui.account.RetrievePwdActivity" />
-        <activity android:name=".ui.main.community.CommunityIdentifyActivity" />
+        <activity android:name=".ui.main.carport.CarportMineActivity" />
         <activity android:name=".ui.main.device.AddLicensePlateActivity" />
         <activity android:name=".ui.account.AgreementActivity" />
         <activity android:name=".ui.main.community.AppointmentCommunityActivity" />
@@ -176,7 +155,7 @@
         <activity android:name=".ui.main.carport.ParkingSpaceIdentityActivity" />
         <activity android:name=".ui.main.share.PublishShareParkingActivity" />
         <activity android:name=".ui.main.device.ReleaseLockActivity" />
-        <activity android:name=".ui.main.community.AuthCommunityListActivity" />
+        <activity android:name=".ui.main.community.CommunityListMineActivity" />
         <activity android:name=".ui.main.community.CommunityDeniedActivity" />
         <activity android:name=".ui.main.community.CommunityAuthedActivity" />
         <activity android:name=".ui.main.community.CommunityAuthedBindedActivity" />
@@ -196,7 +175,8 @@
         <activity android:name=".ui.setting.utils.AuthenticatedInfoActivity" />
         <activity android:name=".ui.main.AppBulletinActivity" />
         <activity android:name=".ui.main.order.OrderPaySuccessActivity" />
-        <activity android:name=".ui.main.order.OrderAppointmentActivity"></activity>
+        <activity android:name=".ui.main.order.OrderAppointmentActivity" />
+        <activity android:name=".ui.setting.DepositReturnActivity"></activity>
     </application>
 
 </manifest>
