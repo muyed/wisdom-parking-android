@@ -253,23 +253,24 @@ public class DepositReturnActivity extends BaseSwipeBackActivity {
                                 } else {
                                     llEmptyView.setVisibility(View.VISIBLE);
                                     rvDepositListView.setVisibility(View.GONE);
-
-                                    tvNoCarSpaceHint.setText("还没有绑定车位锁，快去绑定吧");
-                                    SpannableStringBuilder regTipBuilder = new SpannableStringBuilder(tvNoCarSpaceHint.getText().toString());
-                                    ForegroundColorSpan blueSpan = new ForegroundColorSpan(ContextCompat.getColor(DepositReturnActivity.this, R.color.colorPrimary));
-                                    regTipBuilder.setSpan(blueSpan, 11, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                                    BackgroundColorSpan whiteSpan = new BackgroundColorSpan(ContextCompat.getColor(DepositReturnActivity.this, R.color.white));
-                                    regTipBuilder.setSpan(whiteSpan, 11, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                                    regTipBuilder.setSpan(new AbsoluteSizeSpan(32), 11, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                                    NoUnderlineSpan clickSpan = new NoUnderlineSpan() {
-                                        @Override
-                                        public void onClick(View widget) {
-                                            startActivityForResult(new Intent(DepositReturnActivity.this, AddDeviceActivity.class), 99);
-                                        }
-                                    };
-                                    regTipBuilder.setSpan(clickSpan, 11, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                                    tvNoCarSpaceHint.setText(regTipBuilder);
-                                    tvNoCarSpaceHint.setMovementMethod(LinkMovementMethod.getInstance());
+                                    tvNoCarSpaceHint.setText("车位锁认证中，请耐心等待后台审核");
+                                    
+//                                    tvNoCarSpaceHint.setText("还没有绑定车位锁，快去绑定吧");
+//                                    SpannableStringBuilder regTipBuilder = new SpannableStringBuilder(tvNoCarSpaceHint.getText().toString());
+//                                    ForegroundColorSpan blueSpan = new ForegroundColorSpan(ContextCompat.getColor(DepositReturnActivity.this, R.color.colorPrimary));
+//                                    regTipBuilder.setSpan(blueSpan, 11, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                                    BackgroundColorSpan whiteSpan = new BackgroundColorSpan(ContextCompat.getColor(DepositReturnActivity.this, R.color.white));
+//                                    regTipBuilder.setSpan(whiteSpan, 11, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                                    regTipBuilder.setSpan(new AbsoluteSizeSpan(32), 11, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                                    NoUnderlineSpan clickSpan = new NoUnderlineSpan() {
+//                                        @Override
+//                                        public void onClick(View widget) {
+//                                            startActivityForResult(new Intent(DepositReturnActivity.this, AddDeviceActivity.class), 99);
+//                                        }
+//                                    };
+//                                    regTipBuilder.setSpan(clickSpan, 11, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                                    tvNoCarSpaceHint.setText(regTipBuilder);
+//                                    tvNoCarSpaceHint.setMovementMethod(LinkMovementMethod.getInstance());
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
