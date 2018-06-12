@@ -91,6 +91,7 @@ public class AddLicensePlateActivity extends BaseSwipeBackActivity implements Li
 //                        startActivity(new Intent(AddLicensePlateActivity.this, ParkingSpacePayActivity.class));
                         ToastUtils.show("车辆添加成功");
                         SharedUtil.getInstance(Core.getInstances()).put(ApiParamsKey.IS_ADD_CAR_LICENSE, true);
+                        finish();
                     }
 
                     @Override

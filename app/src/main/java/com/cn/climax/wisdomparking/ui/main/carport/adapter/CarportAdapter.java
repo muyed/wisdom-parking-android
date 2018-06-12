@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiHost;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiManage;
+import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.Core;
 import com.cn.climax.wisdomparking.data.local.CarLockParkingBean;
@@ -91,7 +94,9 @@ public class CarportAdapter extends PagerAdapter {
         contentView.findViewById(R.id.tvConfirmPreButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               
+//                ApiManage.post(ApiHost.getInstance().changeCarAlias())
+//                        .params(ApiParamsKey.)
+//                        .params()
                 dialogPlus.dismiss();
             }
         });
