@@ -9,10 +9,6 @@
     android:orientation="vertical"
     tools:context="com.cn.climax.wisdomparking.ui.main.community.CommunityListActivity">
 
-    <include
-        layout="@layout/base_blue_nav_toolbar_layout"
-        android:visibility="gone" />
-
     <include layout="@layout/base_fake_toolbar_layout_search" />
 
     <com.cn.climax.wisdomparking.widget.xrecyclerview.XRecyclerView

@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cn.climax.i_carlib.okgo.app.AppActivityManager;
@@ -39,6 +40,8 @@ public abstract class BaseSwipeBackActivity extends BaseActivity implements ISwi
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.llNavBackToPre)
+    LinearLayout llNavBackToPre;
     @BindView(R.id.ivLeftHorizonalIcon)
     ImageView ivNavBack;
     @BindView(R.id.atvToolBarMainTitle)

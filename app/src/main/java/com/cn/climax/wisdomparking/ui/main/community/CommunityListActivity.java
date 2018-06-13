@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -30,13 +31,16 @@ import com.cn.climax.i_carlib.util.phone.ScreenUtil;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.Constant;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
+import com.cn.climax.wisdomparking.base.activity.BaseSwipeCustomActivity;
 import com.cn.climax.wisdomparking.data.local.PoiAddressBean;
 import com.cn.climax.wisdomparking.data.response.CommunityListResponse;
 import com.cn.climax.wisdomparking.http.WrapJsonBeanCallback;
 import com.cn.climax.wisdomparking.ui.main.community.adapter.SearchAddressResultsAdapter;
 import com.cn.climax.wisdomparking.ui.main.community.adapter.SearchCommunityResultsAdapter;
 import com.cn.climax.wisdomparking.ui.main.home.city.CityPickerActivity;
+import com.cn.climax.wisdomparking.util.PinyinUtils;
 import com.cn.climax.wisdomparking.util.ToastUtils;
+import com.cn.climax.wisdomparking.widget.ClearEditText;
 import com.cn.climax.wisdomparking.widget.citypicker.model.LocateState;
 import com.cn.climax.wisdomparking.widget.xrecyclerview.ProgressStyle;
 import com.cn.climax.wisdomparking.widget.xrecyclerview.SpacesItemDecoration;
@@ -54,14 +58,14 @@ import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class CommunityListActivity extends BaseSwipeBackActivity {
+public class CommunityListActivity extends BaseSwipeCustomActivity {
 
     @BindView(R.id.llNavBackToPre)
     LinearLayout llNavBackToPre;
     @BindView(R.id.atvLeftTitle)
     TextView atvLeftTitle;
     @BindView(R.id.atvToolBarMainSearch)
-    EditText atvToolBarMainSearch;
+    ClearEditText atvToolBarMainSearch;
     @BindView(R.id.rvSearchCommunityList)
     XRecyclerView rvSearchResultList;
 
@@ -75,16 +79,8 @@ public class CommunityListActivity extends BaseSwipeBackActivity {
     private String keyWord = "";// 要输入的poi搜索关键字
 
     private List<CommunityListResponse> mCommunityListBean = new ArrayList<>();
+    private List<CommunityListResponse> mSearchCommunityListBean;
 
-    @Override
-    protected void setToolBar(boolean isShowNavBack, String headerTitle, String rightTitle) {
-        super.setToolBar(isShowNavBack, "小区列表", "完成");
-    }
-
-    @Override
-    protected String isSHowRightTitle() {
-        return "完成";
-    }
 
     @Override
     protected int initContentView() {
@@ -155,8 +151,8 @@ public class CommunityListActivity extends BaseSwipeBackActivity {
                     protected void onExecuteSuccess(List<CommunityListResponse> bean, Call call) {
                         mCommunityListBean = bean;
                         if (tag == Constant.REFRESH) {
-                            rvSearchResultList.refreshComplete();
                             adapter.setDatas(mCommunityListBean);
+                            rvSearchResultList.refreshComplete();
                         } else {
                             rvSearchResultList.loadMoreComplete();
                         }
@@ -183,27 +179,35 @@ public class CommunityListActivity extends BaseSwipeBackActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-                keyWord = String.valueOf(charSequence);
-                currentPage = 0;
-                if ("".equals(keyWord)) {
-//                    ToastUtils.show("请输入搜索关键字");
-                    return;
-                } else {
-//                    doSearchQuery(keyWord);
-                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                String content = atvToolBarMainSearch.getText().toString().trim();
                 if (s.length() > 0) {
-                    atvToolBarMainSearch.setSelection(s.length());
-                    rvSearchResultList.setVisibility(View.VISIBLE);
+                    keyWord = s.toString();
                 } else {
-                    rvSearchResultList.setVisibility(View.GONE);
+                    keyWord = "";
                 }
+                doSearchLocalQuery(keyWord);
             }
         });
+    }
+
+    private void doSearchLocalQuery(String keyWord) {
+        mSearchCommunityListBean = new ArrayList<>();
+
+        if (!TextUtils.isEmpty(keyWord)) {
+            for (int i = 0; i < mCommunityListBean.size(); i++) {
+                Log.e("doSearchLocalQuery: ", PinyinUtils.getPingYin(mCommunityListBean.get(i).getCommunityName()).toLowerCase());
+                if (PinyinUtils.getPingYin(mCommunityListBean.get(i).getCommunityName()).toLowerCase().contains(PinyinUtils.getPingYin(keyWord))) {
+                    mSearchCommunityListBean.add(mCommunityListBean.get(i));
+                }
+            }
+        } else {
+            mSearchCommunityListBean.addAll(mCommunityListBean);
+        }
+
+        adapter.setDatas(mSearchCommunityListBean);
     }
 
     private void doSearchQuery(final String content) {

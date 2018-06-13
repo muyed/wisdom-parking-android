@@ -72,6 +72,7 @@ public class SearchCommunityResultsAdapter extends RecyclerView.Adapter<SearchCo
     }
 
     public void setDatas(List<CommunityListResponse> communityList) {
+        mCommunityList = new ArrayList<>();
         this.mCommunityList = communityList;
         notifyDataSetChanged();
     }

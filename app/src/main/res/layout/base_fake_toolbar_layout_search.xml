@@ -18,10 +18,9 @@
 
         <LinearLayout
             android:id="@+id/llNavBackToPre"
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:paddingRight="12dp">
+            android:gravity="center_vertical">
 
             <ImageView
                 android:id="@+id/ivLeftHorizonalIcon"
@@ -33,14 +32,14 @@
 
         </LinearLayout>
 
-        <EditText
+        <com.cn.climax.wisdomparking.widget.ClearEditText
             android:id="@+id/atvToolBarMainSearch"
             android:layout_width="0dp"
             android:layout_height="@dimen/common_dimen_64px"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:background="@drawable/home_map_search_bg"
-            android:drawableRight="@drawable/search_btn_cancel"
+            android:drawableRight="@drawable/delete_selector"
             android:gravity="center_vertical"
             android:hint="请搜索小区"
             android:maxLines="1"

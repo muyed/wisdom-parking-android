@@ -39,6 +39,9 @@ public abstract class BaseSwipeCustomActivity extends BaseActivity implements IS
     private SwipeBackHelper mHelper;
     private SwipeBackLayout mSwipeBackLayout;
 
+    protected int mPageIndex = 1;
+    protected int mPageSize = 10;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

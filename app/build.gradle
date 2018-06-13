@@ -160,87 +160,54 @@ dependencies {
     def developmentDebugDependencies = rootProject.ext.developmentDebugDependencies
     def developmentReleaseDependencies = rootProject.ext.developmentReleaseDependencies
     //Support
-    compile presentationDependencies.libSupportV13 
-    compile presentationDependencies.libSupportAppcompat 
-    compile presentationDependencies.libSupportDesign 
-    compile presentationDependencies.libSupportCardView 
-    compile presentationDependencies.libSupportPalette 
+    compile presentationDependencies.libSupportV13
+    compile presentationDependencies.libSupportAppcompat
+    compile presentationDependencies.libSupportDesign
+    compile presentationDependencies.libSupportCardView
+    compile presentationDependencies.libSupportPalette
     compile presentationDependencies.libSupportRecyclerview
     //OkHttp
-
     //    compile presentationDependencies.libOkHttp
-
     //    compile presentationDependencies.libOkHttpLoggingInterceptor
-
     //    compile presentationDependencies.libStetho
-
     //    compile presentationDependencies.libOkStetho
-
     //Chuck
-
     //    debugCompile presentationDependencies.libChuck
-
     //    releaseCompile presentationDependencies.libChuckNoOp
-
     //Retrofit
-
     //    compile presentationDependencies.libRetrofit
-
     //    compile presentationDependencies.libRetrofitConverterGson
-
     //    compile presentationDependencies.libRetrofitAdapterRxJava
-
     //ButterKnife
-    compile presentationDependencies.libButterKnife 
+    compile presentationDependencies.libButterKnife
     apt presentationDependencies.libButterKnifeCompiler
     //Rx
-
     //    compile presentationDependencies.libRxAndroid
-
     //    compile presentationDependencies.libRxJava
-
     //Dagger
-
     //    compile presentationDependencies.libAnnotationApi
-
     //    compile presentationDependencies.libDagger
-
     //    apt presentationDependencies.libDaggerCompiler
-
     //otto
-
     //    compile presentationDependencies.libOtto
-
     //fresco
-
     //        compile presentationDependencies.libFresco
-
     //        compile presentationDependencies.libFrescoImagePipeLine
-
     //        compile presentationDependencies.libFrescoGif
-
     //app custom dependencies
-
     //    compile presentationDependencies.libAutoLayout
-
     //    compile presentationDependencies.libSlider
-
     //file downloader
-
     //    compile presentationDependencies.libFileDownloader
-
     //Logger
-
     //    compile presentationDependencies.libLogger
-
     //leakcanary
-    debugCompile developmentDebugDependencies.libLeakCanary 
-    releaseCompile developmentReleaseDependencies.libLeakCanary 
+    debugCompile developmentDebugDependencies.libLeakCanary
+    releaseCompile developmentReleaseDependencies.libLeakCanary
     compile project(':i-carlib')
     compile files('libs/Amap_2DMap_V4.2.0_20170209.jar')
     compile files('libs/umeng-analytics-v6.0.9.jar')
     //widget
-
     //noinspection GradleCompatible
     compile files('libs/nineoldandroids-library-2.4.0.jar')
     compile('com.github.hotchemi:permissionsdispatcher:2.4.0') {
@@ -248,7 +215,6 @@ dependencies {
     }
     compile files('libs/AMap_Location_V3.3.0_20170118.jar')
     //noinspection GradleCompatible
-
     //compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
     compile files('libs/AMap3DMap_6.2.0_AMapNavi_6.1.0_20180427.jar')
     compile files('libs/Msc.jar')
@@ -265,6 +231,7 @@ dependencies {
     compile 'com.yanzhenjie:permission:2.0.0-rc4'
     testCompile 'junit:junit:4.12'
     compile 'com.orhanobut:dialogplus:1.11@aar'
+    compile files('libs/pinyin4j-2.5.0.jar')
 }
 
 static def releaseTime() {
