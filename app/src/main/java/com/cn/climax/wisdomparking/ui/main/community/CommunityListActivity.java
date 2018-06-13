@@ -39,6 +39,7 @@ import com.cn.climax.wisdomparking.ui.main.community.adapter.SearchAddressResult
 import com.cn.climax.wisdomparking.ui.main.community.adapter.SearchCommunityResultsAdapter;
 import com.cn.climax.wisdomparking.ui.main.home.city.CityPickerActivity;
 import com.cn.climax.wisdomparking.util.PinyinUtils;
+import com.cn.climax.wisdomparking.util.StringUtil;
 import com.cn.climax.wisdomparking.util.ToastUtils;
 import com.cn.climax.wisdomparking.widget.ClearEditText;
 import com.cn.climax.wisdomparking.widget.citypicker.model.LocateState;
@@ -198,9 +199,15 @@ public class CommunityListActivity extends BaseSwipeCustomActivity {
 
         if (!TextUtils.isEmpty(keyWord)) {
             for (int i = 0; i < mCommunityListBean.size(); i++) {
-                Log.e("doSearchLocalQuery: ", PinyinUtils.getPingYin(mCommunityListBean.get(i).getCommunityName()).toLowerCase());
-                if (PinyinUtils.getPingYin(mCommunityListBean.get(i).getCommunityName()).toLowerCase().contains(PinyinUtils.getPingYin(keyWord))) {
-                    mSearchCommunityListBean.add(mCommunityListBean.get(i));
+                Log.e("doSearchLocalQuery: ", PinyinUtils.getFirstSpell(mCommunityListBean.get(i).getCommunityName()).toLowerCase());
+                if (StringUtil.isChinese(keyWord)) {
+                    if (mCommunityListBean.get(i).getCommunityName().contains(keyWord)) {
+                        mSearchCommunityListBean.add(mCommunityListBean.get(i));
+                    }
+                } else {
+                    if (PinyinUtils.getFirstSpell(mCommunityListBean.get(i).getCommunityName()).toLowerCase().contains(keyWord)) {
+                        mSearchCommunityListBean.add(mCommunityListBean.get(i));
+                    }
                 }
             }
         } else {
