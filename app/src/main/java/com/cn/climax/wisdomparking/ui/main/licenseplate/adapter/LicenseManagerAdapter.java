@@ -1,4 +1,4 @@
-package com.cn.climax.wisdomparking.ui.main.device.adapter;
+package com.cn.climax.wisdomparking.ui.main.licenseplate.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.data.response.CarLicenseMineBean;
-import com.cn.climax.wisdomparking.data.response.LoginResponse;
 
 import java.util.ArrayList;
 import java.util.List;

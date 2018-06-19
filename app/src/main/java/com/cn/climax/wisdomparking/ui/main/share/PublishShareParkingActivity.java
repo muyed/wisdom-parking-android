@@ -36,9 +36,8 @@ import com.cn.climax.wisdomparking.data.response.LoginResponse;
 import com.cn.climax.wisdomparking.data.response.ParkingSpaceMineBean;
 import com.cn.climax.wisdomparking.data.response.PublishShareOrder;
 import com.cn.climax.wisdomparking.http.WrapJsonBeanCallback;
-import com.cn.climax.wisdomparking.ui.PeterMainActivity;
 import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceMineActivity;
-import com.cn.climax.wisdomparking.ui.main.device.AddDeviceActivity;
+import com.cn.climax.wisdomparking.ui.main.carport.AddDeviceActivity;
 import com.cn.climax.wisdomparking.util.TimeUtils;
 import com.cn.climax.wisdomparking.widget.NoUnderlineSpan;
 

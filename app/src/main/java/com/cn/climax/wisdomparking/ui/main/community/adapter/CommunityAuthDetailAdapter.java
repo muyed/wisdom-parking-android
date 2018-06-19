@@ -15,7 +15,7 @@ import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.data.response.CommunityAuthListResponse;
 import com.cn.climax.wisdomparking.ui.main.community.CommunityAuthedActivity;
 import com.cn.climax.wisdomparking.ui.main.community.CommunityDeniedActivity;
-import com.cn.climax.wisdomparking.ui.main.device.AddDeviceActivity;
+import com.cn.climax.wisdomparking.ui.main.carport.AddDeviceActivity;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cn.climax.wisdomparking.ui.main.device.ParkingSpacePayActivity">
+    tools:context="com.cn.climax.wisdomparking.ui.main.carport.ParkingSpacePayActivity">
 
     <include layout="@layout/base_blue_nav_toolbar_layout" />
 

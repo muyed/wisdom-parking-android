@@ -1,4 +1,4 @@
-package com.cn.climax.wisdomparking.ui.main.device.adapter;
+package com.cn.climax.wisdomparking.ui.main.licenseplate.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,9 +12,7 @@ import android.widget.TextView;
 
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.data.local.BaseLocalBean;
-import com.cn.climax.wisdomparking.util.Number2ChineseUtils;
 import com.cn.climax.wisdomparking.widget.ACheckBox;
-import com.sina.weibo.sdk.api.share.Base;
 
 import java.util.ArrayList;
 import java.util.List;

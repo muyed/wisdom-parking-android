@@ -1,4 +1,4 @@
-package com.cn.climax.wisdomparking.ui.main.device;
+package com.cn.climax.wisdomparking.ui.main.licenseplate;
 
 import android.os.Bundle;
 

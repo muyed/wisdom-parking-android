@@ -1,4 +1,4 @@
-package com.cn.climax.wisdomparking.ui.main.device;
+package com.cn.climax.wisdomparking.ui.main.carport;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,9 +19,7 @@ import com.cn.climax.i_carlib.util.ToastUtils;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.data.response.CommunityAuthListResponse;
-import com.cn.climax.wisdomparking.ui.PeterMainActivity;
 import com.cn.climax.wisdomparking.ui.setting.DepositMineActivity;
-import com.cn.climax.wisdomparking.ui.setting.DepositReturnActivity;
 import com.lzy.okgo.callback.StringCallback;
 
 import org.json.JSONException;

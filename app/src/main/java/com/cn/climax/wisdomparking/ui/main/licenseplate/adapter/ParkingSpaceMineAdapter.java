@@ -1,4 +1,4 @@
-package com.cn.climax.wisdomparking.ui.main.device.adapter;
+package com.cn.climax.wisdomparking.ui.main.licenseplate.adapter;
 
 import android.app.Activity;
 import android.content.Context;

@@ -74,8 +74,8 @@ import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceImmMatchingActivi
 import com.cn.climax.wisdomparking.ui.main.community.AddCommunityActivity;
 import com.cn.climax.wisdomparking.ui.main.community.CommunityListMineActivity;
 import com.cn.climax.wisdomparking.ui.main.carport.CarportMineActivity;
-import com.cn.climax.wisdomparking.ui.main.device.LicenseManagerListActivity;
-import com.cn.climax.wisdomparking.ui.main.device.ReleaseLockActivity;
+import com.cn.climax.wisdomparking.ui.main.licenseplate.LicenseManagerListActivity;
+import com.cn.climax.wisdomparking.ui.main.licenseplate.ReleaseLockActivity;
 import com.cn.climax.wisdomparking.ui.main.nav.Navigation2DActivity;
 import com.cn.climax.wisdomparking.ui.main.order.OrderMineActivity;
 import com.cn.climax.wisdomparking.ui.main.share.PublishShareParkingActivity;

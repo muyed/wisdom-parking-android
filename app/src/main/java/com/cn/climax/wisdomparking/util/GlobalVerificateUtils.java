@@ -7,7 +7,7 @@ import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
 import com.cn.climax.i_carlib.util.SharedUtil;
 import com.cn.climax.wisdomparking.base.Core;
 import com.cn.climax.wisdomparking.ui.main.carport.CarportMineActivity;
-import com.cn.climax.wisdomparking.ui.main.device.AddLicensePlateActivity;
+import com.cn.climax.wisdomparking.ui.main.licenseplate.AddLicensePlateActivity;
 import com.cn.climax.wisdomparking.ui.setting.AuthenticateCertActivity;
 
 /**

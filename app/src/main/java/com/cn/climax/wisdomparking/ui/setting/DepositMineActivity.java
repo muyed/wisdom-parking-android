@@ -25,7 +25,7 @@ import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.PayConstant;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.data.local.BaseLocalBean;
-import com.cn.climax.wisdomparking.ui.main.device.adapter.RVDevicePayAdapter;
+import com.cn.climax.wisdomparking.ui.main.licenseplate.adapter.RVDevicePayAdapter;
 import com.cn.climax.wisdomparking.ui.pay.bean.PayResult;
 import com.lzy.okgo.callback.StringCallback;
 

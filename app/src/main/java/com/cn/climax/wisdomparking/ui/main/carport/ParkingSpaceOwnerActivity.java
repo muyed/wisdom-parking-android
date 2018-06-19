@@ -9,8 +9,7 @@ import android.view.View;
 import com.cn.climax.i_carlib.util.widget.SoftInputUtil;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
-import com.cn.climax.wisdomparking.ui.main.device.ParkingSpacePayActivity;
-import com.cn.climax.wisdomparking.ui.main.device.adapter.RVDeviceAddAdapter;
+import com.cn.climax.wisdomparking.ui.main.licenseplate.adapter.RVDeviceAddAdapter;
 
 import butterknife.BindView;
 import butterknife.OnClick;

@@ -1,4 +1,4 @@
-package com.cn.climax.wisdomparking.ui.main.device;
+package com.cn.climax.wisdomparking.ui.main.licenseplate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +16,6 @@ import com.cn.climax.i_carlib.util.phone.ScreenUtil;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.base.help.FullyLinearLayoutManager;
-import com.cn.climax.wisdomparking.base.help.ScrollLinearLayoutManager;
 import com.cn.climax.wisdomparking.data.response.CarLicenseMineBean;
 import com.cn.climax.wisdomparking.widget.swipemenu.SwipeMenuDeleteRecyclerView;
 import com.cn.climax.wisdomparking.widget.swipemenu.adapter.SwipeMenuLicenseDeleteAdapter;

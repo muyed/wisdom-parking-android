@@ -1,4 +1,4 @@
-package com.cn.climax.wisdomparking.ui.main.device.adapter;
+package com.cn.climax.wisdomparking.ui.main.licenseplate.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -16,31 +16,31 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * author：leo on 2018/3/5 0005 00:40
+ * author：leo on 2018/3/5 0005 20:34
  * email： leocheung4ever@gmail.com
- * description: 添加设备 适配器
+ * description: 车辆识别仪 适配器
  * what & why is modified:
  */
-public class RVDeviceAddAdapter extends RecyclerView.Adapter<RVDeviceAddAdapter.ParkSpaceViewHolder> {
+public class RVCarIdentifyAdapter extends RecyclerView.Adapter<RVCarIdentifyAdapter.CarViewHolder> {
 
     private Context mContext;
     private int mInsertPos = 1;
 
-    public RVDeviceAddAdapter(Context context) {
+    public RVCarIdentifyAdapter(Context context) {
         this.mContext = context;
     }
 
     @Override
-    public RVDeviceAddAdapter.ParkSpaceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_add_device_park_layout, parent, false);
-        return new ParkSpaceViewHolder(view);
+    public RVCarIdentifyAdapter.CarViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_add_car_identify_layout, parent, false);
+        return new CarViewHolder(view);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(RVDeviceAddAdapter.ParkSpaceViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        holder.tvParkNumber.setText("车位" + Number2ChineseUtils.toChinese((position + 1) + ""));
-        holder.ivAddParkSpace.setOnClickListener(new View.OnClickListener() {
+    public void onBindViewHolder(RVCarIdentifyAdapter.CarViewHolder holder, final int position) {
+        holder.tvCarNumber.setText("车位" + Number2ChineseUtils.toChinese((position + 1) + ""));
+        holder.ivAddCarSpace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mOnClickListener != null) {
@@ -52,9 +52,9 @@ public class RVDeviceAddAdapter extends RecyclerView.Adapter<RVDeviceAddAdapter.
             }
         });
         if (position == 0) {
-            holder.ivAddParkSpace.setImageResource(R.drawable.icon_add_park);
+            holder.ivAddCarSpace.setImageResource(R.drawable.icon_add_park);
         } else {
-            holder.ivAddParkSpace.setImageResource(R.drawable.icon_delete_park);
+            holder.ivAddCarSpace.setImageResource(R.drawable.icon_delete_park);
         }
     }
 
@@ -68,28 +68,28 @@ public class RVDeviceAddAdapter extends RecyclerView.Adapter<RVDeviceAddAdapter.
         notifyDataSetChanged();
     }
 
-    public class ParkSpaceViewHolder extends RecyclerView.ViewHolder {
+    public class CarViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tvParkNumber)
-        TextView tvParkNumber;
-        @BindView(R.id.ivAddParkSpace)
-        ImageView ivAddParkSpace;
+        @BindView(R.id.tvCarNumber)
+        TextView tvCarNumber;
+        @BindView(R.id.ivAddCarSpace)
+        ImageView ivAddCarSpace;
 
-        public ParkSpaceViewHolder(View itemView) {
+        public CarViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
     }
 
-    public interface OnClickAddParkListener {
+    public interface OnClickAddCarListener {
         void addItem();
 
         void deleteItem();
     }
 
-    private OnClickAddParkListener mOnClickListener;
+    private OnClickAddCarListener mOnClickListener;
 
-    public void setOnClickListener(OnClickAddParkListener mOnClickListener) {
+    public void setOnClickListener(OnClickAddCarListener mOnClickListener) {
         this.mOnClickListener = mOnClickListener;
     }
 }

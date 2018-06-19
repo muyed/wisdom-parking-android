@@ -4,14 +4,13 @@ import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.ScrollView;
 
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.base.help.CustomLinearLayoutManager;
-import com.cn.climax.wisdomparking.ui.main.device.adapter.RVCarIdentifyAdapter;
-import com.cn.climax.wisdomparking.ui.main.device.adapter.RVDeviceShowAdapter;
+import com.cn.climax.wisdomparking.ui.main.licenseplate.adapter.RVCarIdentifyAdapter;
+import com.cn.climax.wisdomparking.ui.main.licenseplate.adapter.RVDeviceShowAdapter;
 
 import butterknife.BindView;
 

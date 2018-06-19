@@ -30,7 +30,7 @@ import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.base.help.RecyclerViewLayoutManager;
 import com.cn.climax.wisdomparking.data.local.BaseLocalBean;
 import com.cn.climax.wisdomparking.data.response.LoginResponse;
-import com.cn.climax.wisdomparking.ui.main.device.adapter.RVDevicePayAdapter;
+import com.cn.climax.wisdomparking.ui.main.licenseplate.adapter.RVDevicePayAdapter;
 import com.cn.climax.wisdomparking.ui.pay.bean.PayResult;
 import com.cn.climax.wisdomparking.ui.setting.adapter.TagAdapter;
 import com.cn.climax.wisdomparking.ui.setting.bank.WithDrawalBalanceActivity;

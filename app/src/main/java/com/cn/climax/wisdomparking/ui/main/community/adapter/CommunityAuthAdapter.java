@@ -9,20 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.data.response.CommunityAuthListResponse;
-import com.cn.climax.wisdomparking.data.response.CommunityListResponse;
 import com.cn.climax.wisdomparking.ui.main.community.CommunityAuthedActivity;
 import com.cn.climax.wisdomparking.ui.main.community.CommunityAuthedBindedActivity;
 import com.cn.climax.wisdomparking.ui.main.community.CommunityDeniedActivity;
-import com.cn.climax.wisdomparking.ui.main.device.AddDeviceActivity;
-import com.cn.climax.wisdomparking.ui.main.order.OrderMineDetailActivity;
+import com.cn.climax.wisdomparking.ui.main.carport.AddDeviceActivity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

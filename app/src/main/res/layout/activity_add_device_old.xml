@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.cn.climax.wisdomparking.ui.main.device.AddDeviceActivity">
+    tools:context="com.cn.climax.wisdomparking.ui.main.carport.AddDeviceActivity">
 
     <include layout="@layout/base_blue_nav_toolbar_layout" />
 

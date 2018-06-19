@@ -40,7 +40,7 @@ import okhttp3.Response;
 public abstract class WrapJsonBeanCallback<T> extends StringDialogCallback {
 
     private Activity mCurrentActivity;
-    private SweetAlertDialog dialog;
+//    private SweetAlertDialog dialog;
 
     public WrapJsonBeanCallback(Activity activity) {
         super(activity);

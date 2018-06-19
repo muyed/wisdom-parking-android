@@ -1,6 +1,5 @@
-package com.cn.climax.wisdomparking.ui.main.device;
+package com.cn.climax.wisdomparking.ui.main.licenseplate;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;

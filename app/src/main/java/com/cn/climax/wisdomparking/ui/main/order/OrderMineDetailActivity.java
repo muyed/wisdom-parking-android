@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.data.response.MyOrderResponse;
-import com.cn.climax.wisdomparking.ui.main.device.ParkingSpacePayActivity;
+import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpacePayActivity;
 import com.cn.climax.wisdomparking.widget.TimerDialog;
 
 import butterknife.BindView;

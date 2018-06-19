@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.data.response.CommunityAuthListResponse;
-import com.cn.climax.wisdomparking.ui.main.device.AddDeviceActivity;
+import com.cn.climax.wisdomparking.ui.main.carport.AddDeviceActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

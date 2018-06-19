@@ -10,8 +10,6 @@ import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.data.response.CommunityAuthListResponse;
-import com.cn.climax.wisdomparking.ui.main.community.adapter.CommunityAuthAdapter;
-import com.cn.climax.wisdomparking.ui.main.device.AddDeviceActivity;
 
 import butterknife.BindView;
 

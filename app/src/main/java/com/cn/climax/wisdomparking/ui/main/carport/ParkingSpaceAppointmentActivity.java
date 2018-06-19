@@ -8,7 +8,6 @@ import android.widget.EditText;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.base.activity.BaseSwipeBackActivity;
 import com.cn.climax.wisdomparking.ui.main.community.AddCommunityActivity;
-import com.cn.climax.wisdomparking.ui.main.device.AddDeviceActivity;
 
 import java.util.HashMap;
 
