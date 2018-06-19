@@ -17,7 +17,7 @@ import com.cn.climax.wisdomparking.data.response.CommunityAuthListResponse;
 import com.cn.climax.wisdomparking.ui.main.community.CommunityAuthedActivity;
 import com.cn.climax.wisdomparking.ui.main.community.CommunityAuthedBindedActivity;
 import com.cn.climax.wisdomparking.ui.main.community.CommunityDeniedActivity;
-import com.cn.climax.wisdomparking.ui.main.carport.AddDeviceActivity;
+import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceAddActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,7 +104,7 @@ public class CommunityAuthAdapter extends RecyclerView.Adapter<CommunityAuthAdap
                 holder.iv2BindParkingSpace.setOnClickListener(new ForbidQuickClickListener() {
                     @Override
                     protected void forbidClick(View view) {
-                        mContext.startActivity(new Intent(mContext, AddDeviceActivity.class)
+                        mContext.startActivity(new Intent(mContext, ParkingSpaceAddActivity.class)
                                 .putExtra("carports_address", authListResponse.getAddr()));
                     }
                 });

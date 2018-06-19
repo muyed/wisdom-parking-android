@@ -37,7 +37,7 @@ import com.cn.climax.wisdomparking.data.response.ParkingSpaceMineBean;
 import com.cn.climax.wisdomparking.data.response.PublishShareOrder;
 import com.cn.climax.wisdomparking.http.WrapJsonBeanCallback;
 import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceMineActivity;
-import com.cn.climax.wisdomparking.ui.main.carport.AddDeviceActivity;
+import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceAddActivity;
 import com.cn.climax.wisdomparking.util.TimeUtils;
 import com.cn.climax.wisdomparking.widget.NoUnderlineSpan;
 
@@ -237,7 +237,7 @@ public class PublishShareParkingActivity extends BaseSwipeBackActivity {
                 NoUnderlineSpan clickSpan = new NoUnderlineSpan() {
                     @Override
                     public void onClick(View widget) {
-                        startActivityForResult(new Intent(PublishShareParkingActivity.this, AddDeviceActivity.class), 199);
+                        startActivityForResult(new Intent(PublishShareParkingActivity.this, ParkingSpaceAddActivity.class), 199);
                     }
                 };
                 regTipBuilder.setSpan(clickSpan, 11, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

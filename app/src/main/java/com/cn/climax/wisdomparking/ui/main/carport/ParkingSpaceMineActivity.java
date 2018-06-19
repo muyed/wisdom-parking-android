@@ -144,6 +144,6 @@ public class ParkingSpaceMineActivity extends BaseSwipeBackActivity {
     }
 
     private void authParkingSpace() {
-        startActivityForResult(new Intent(ParkingSpaceMineActivity.this, AddDeviceActivity.class), 199);
+        startActivityForResult(new Intent(ParkingSpaceMineActivity.this, ParkingSpaceAddActivity.class), 199);
     }
 }

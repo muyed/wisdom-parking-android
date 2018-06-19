@@ -124,7 +124,7 @@
         <activity android:name=".ui.main.home.CurrentTravelActivity" />
         <activity android:name=".widget.ofo.OfoConvcaveMenuActivity" />
         <activity android:name=".ui.setting.NotifyMineActivity" />
-        <activity android:name=".ui.main.carport.AddDeviceActivity" />
+        <activity android:name=".ui.main.carport.ParkingSpaceAddActivity" />
         <activity android:name=".ui.main.licenseplate.ReleaseLockProgressActivity" />
         <activity android:name=".ui.main.carport.ParkingSpaceOwnerActivity" />
         <activity android:name=".ui.main.carport.ParkingSpacePayActivity" />

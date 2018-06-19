@@ -33,7 +33,7 @@ public class ParkingSpaceAppointmentActivity extends BaseSwipeBackActivity {
     void click(View view) {
         switch (view.getId()) {
             case R.id.flAddSmartLock: //添加车位锁
-                startActivity(new Intent(ParkingSpaceAppointmentActivity.this, AddDeviceActivity.class));
+                startActivity(new Intent(ParkingSpaceAppointmentActivity.this, ParkingSpaceAddActivity.class));
                 break;
             case R.id.tvOrderLock: //立即预约
                 startActivity(new Intent(ParkingSpaceAppointmentActivity.this, AddCommunityActivity.class));

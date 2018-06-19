@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.cn.climax.i_carlib.okgo.app.ForbidQuickClickListener;
 import com.cn.climax.wisdomparking.R;
 import com.cn.climax.wisdomparking.data.response.CommunityAuthListResponse;
-import com.cn.climax.wisdomparking.ui.main.carport.AddDeviceActivity;
+import com.cn.climax.wisdomparking.ui.main.carport.ParkingSpaceAddActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -92,7 +92,7 @@ public class CommunityCarPortsAdapter extends RecyclerView.Adapter<CommunityCarP
                 tvGoToBind.setOnClickListener(new ForbidQuickClickListener() {
                     @Override
                     protected void forbidClick(View view) {
-                        mContext.startActivity(new Intent(mContext, AddDeviceActivity.class)
+                        mContext.startActivity(new Intent(mContext, ParkingSpaceAddActivity.class)
                                 .putExtra("carports_address", mCommunityDetail.getAddr())
                                 .putExtra("carports_info", carportListBean));
                     }

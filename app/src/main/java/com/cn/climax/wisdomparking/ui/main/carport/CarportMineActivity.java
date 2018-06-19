@@ -182,11 +182,11 @@ public class CarportMineActivity extends BaseSwipeBackActivity {
         protected void forbidClick(View view) {
             switch (view.getId()) {
                 case R.id.ivAddCarport:
-                    startActivityForResult(new Intent(CarportMineActivity.this, AddDeviceActivity.class).putExtra("is_from_add", true), 199);
+                    startActivityForResult(new Intent(CarportMineActivity.this, ParkingSpaceAddActivity.class).putExtra("is_from_add", true), 199);
                     break;
                 case R.id.llSkip2Share: //共享车位锁
                     if (isNoCarportTag) { //TODO 可能会是通过扫描获得车位绑定码 也可能是设备上手输绑定码 
-                        startActivityForResult(new Intent(CarportMineActivity.this, AddDeviceActivity.class).putExtra("is_from_add", true), 199);
+                        startActivityForResult(new Intent(CarportMineActivity.this, ParkingSpaceAddActivity.class).putExtra("is_from_add", true), 199);
                     } else {
                         startActivity(new Intent(CarportMineActivity.this, PublishShareParkingActivity.class)
                                 .putExtra("is_publish_mine", mParkingSpaceMineBeanList != null && mParkingSpaceMineBeanList.size() > 0)
@@ -195,7 +195,7 @@ public class CarportMineActivity extends BaseSwipeBackActivity {
                     break;
                 case R.id.llReleaseLock: //解锁车位锁
                     if (isNoCarportTag) { //TODO 可能会是通过扫描获得车位绑定码 也可能是设备上手输绑定码 
-                        startActivityForResult(new Intent(CarportMineActivity.this, AddDeviceActivity.class).putExtra("is_from_add", true), 199);
+                        startActivityForResult(new Intent(CarportMineActivity.this, ParkingSpaceAddActivity.class).putExtra("is_from_add", true), 199);
                     } else {
                         startActivity(new Intent(CarportMineActivity.this, ReleaseLockActivity.class));
                     }

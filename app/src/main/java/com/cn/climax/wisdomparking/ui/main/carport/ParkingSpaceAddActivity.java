@@ -31,7 +31,7 @@ import butterknife.BindView;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class AddDeviceActivity extends BaseSwipeBackActivity {
+public class ParkingSpaceAddActivity extends BaseSwipeBackActivity {
 
     @BindView(R.id.tvCarPortCode)
     TextView tvCarPortCode;
@@ -108,7 +108,7 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
         httpParams.put(ApiParamsKey.CAR_PORT_ID, mCarportId + "");
         httpParams.put(ApiParamsKey.CAR_PORT_BIND_CODE, mCarPortBindCode);
         JSONObject json = new JSONObject(httpParams);
-        final String depositCarport = SharedUtil.getInstance(AddDeviceActivity.this).get(ApiParamsKey.CARPORT_DEPOSIT_AMOUNT);
+        final String depositCarport = SharedUtil.getInstance(ParkingSpaceAddActivity.this).get(ApiParamsKey.CARPORT_DEPOSIT_AMOUNT);
         ApiManage.post(ApiHost.getInstance().bindCarPort())
                 .upJson(json.toString())
                 .execute(new StringCallback() {
@@ -120,7 +120,7 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
                             int code = Integer.parseInt(String.valueOf(jsonObject.get("code")));
                             String errMsg = String.valueOf(jsonObject.get("errMsg"));
                             if (code == 200) {
-                                startActivityForResult(new Intent(AddDeviceActivity.this, DepositMineActivity.class)
+                                startActivityForResult(new Intent(ParkingSpaceAddActivity.this, DepositMineActivity.class)
                                         .putExtra("is_pay_account", false)
                                         .putExtra("pay_order_no", orderNo)
                                         .putExtra("pay_carport_deposit", depositCarport), 199);
@@ -136,7 +136,7 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
     }
 
     private void getPayOrder(String orderNo) {
-        final String depositCarport = SharedUtil.getInstance(AddDeviceActivity.this).get(ApiParamsKey.CARPORT_DEPOSIT_AMOUNT);
+        final String depositCarport = SharedUtil.getInstance(ParkingSpaceAddActivity.this).get(ApiParamsKey.CARPORT_DEPOSIT_AMOUNT);
         ApiManage.get(ApiHost.getInstance().payByAliPay() + orderNo)
                 .tag(this)
                 .cacheKey("cacheKey")
@@ -144,11 +144,11 @@ public class AddDeviceActivity extends BaseSwipeBackActivity {
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
                         if (response.code() == 200) {
-                            SharedUtil.getInstance(AddDeviceActivity.this).put(ApiParamsKey.IS_AUTH_PARKING_SPACE, true);
+                            SharedUtil.getInstance(ParkingSpaceAddActivity.this).put(ApiParamsKey.IS_AUTH_PARKING_SPACE, true);
                             try {
                                 JSONObject jsonObject = new JSONObject(s);
                                 String mDataJson = (String) jsonObject.get("data");
-                                startActivityForResult(new Intent(AddDeviceActivity.this, DepositMineActivity.class)
+                                startActivityForResult(new Intent(ParkingSpaceAddActivity.this, DepositMineActivity.class)
                                         .putExtra("is_pay_account", false)
                                         .putExtra("pay_carport_deposit", depositCarport), 199);
                             } catch (JSONException e) {
