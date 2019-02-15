@@ -2,7 +2,6 @@ package com.cn.climax.wisdomparking.base.help;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.support.v4.BuildConfig;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -189,10 +188,10 @@ public class FullyLinearLayoutManager extends LinearLayoutManager {
     }
 
     private void logMeasureWarning(int child) {
-        if (BuildConfig.DEBUG) {
-            Log.w("LinearLayoutManager", "Can't measure child #" + child + ", previously used dimensions will be reused." +
-                    "To remove this message either use #setChildSize() method or don't run RecyclerView animations");
-        }
+//        if (BuildConfig.DEBUG) {
+//            Log.w("LinearLayoutManager", "Can't measure child #" + child + ", previously used dimensions will be reused." +
+//                    "To remove this message either use #setChildSize() method or don't run RecyclerView animations");
+//        }
     }
 
     private void initChildDimensions(int width, int height, boolean vertical) {
@@ -240,9 +239,9 @@ public class FullyLinearLayoutManager extends LinearLayoutManager {
         try {
             child = recycler.getViewForPosition(position);
         } catch (IndexOutOfBoundsException e) {
-            if (BuildConfig.DEBUG) {
-                Log.w("LinearLayoutManager", "LinearLayoutManager doesn't work well with animations. Consider switching them off", e);
-            }
+//            if (BuildConfig.DEBUG) {
+//                Log.w("LinearLayoutManager", "LinearLayoutManager doesn't work well with animations. Consider switching them off", e);
+//            }
             return;
         }
 
@@ -294,8 +293,8 @@ public class FullyLinearLayoutManager extends LinearLayoutManager {
 
     private static void onMakeInsertDirtyFailed() {
         canMakeInsetsDirty = false;
-        if (BuildConfig.DEBUG) {
-            Log.w("LinearLayoutManager", "Can't make LayoutParams insets dirty, decorations measurements might be incorrect");
-        }
+//        if (BuildConfig.DEBUG) {
+//            Log.w("LinearLayoutManager", "Can't make LayoutParams insets dirty, decorations measurements might be incorrect");
+//        }
     }
 }

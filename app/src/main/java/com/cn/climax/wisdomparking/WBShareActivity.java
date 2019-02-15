@@ -1,6 +1,6 @@
 package com.cn.climax.wisdomparking;
 
-import com.cn.climax.i_carlib.platform.sina.WBShareCallbackActivity;
+//import com.cn.climax.i_carlib.platform.sina.WBShareCallbackActivity;
 
 /**
  * author：leo on 2018/2/28 23:57
@@ -9,5 +9,5 @@ import com.cn.climax.i_carlib.platform.sina.WBShareCallbackActivity;
  * what & why is modified:
  */
 
-public class WBShareActivity extends WBShareCallbackActivity {
+public class WBShareActivity  { //extends WBShareCallbackActivity
 }

@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion //编译版本
@@ -16,7 +15,7 @@ android {
         //运行脚本 -> 搭建Espresso步骤1
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
-
+        flavorDimensions "versionCode"
 //        ndk {
 //            moduleName "JniTest" //模组名称
 //            abiFilters "armeabi", "armeabi-v7a", "x86" //支持的平台
@@ -41,14 +40,14 @@ android {
         def Properties keyProps = new Properties()
 
         //if can not find the property of keystore.props.file , then using debug.keystore
-        if (localProps['keystore.props.file']) {
-            keyProps.load(new FileInputStream(file(localProps['keystore.props.file'])))
-        } else {
-            keyProps["store"] = '../buildsystem/wisdom-parking.jks'
-            keyProps["storePass"] = '123456'
-            keyProps["alias"] = 'wisdom-parking'
-            keyProps["pass"] = '123456'
-        }
+//        if (localProps['keystore.props.file']) {
+//            keyProps.load(new FileInputStream(file(localProps['keystore.props.file'])))
+//        } else {
+        keyProps["store"] = '../buildsystem/wisdom-parking.jks'
+        keyProps["storePass"] = '123456'
+        keyProps["alias"] = 'wisdom-parking'
+        keyProps["pass"] = '123456'
+//        }
 
         debug {
             storeFile file(keyProps["store"])
@@ -59,7 +58,7 @@ android {
 
         release {
             // release版本使用assert确保存在该属性 否则报错，避免错误打包
-            assert localProps['keystore.props.file'];
+            //assert localProps['keystore.props.file'];
             storeFile file(keyProps["store"])
             keyAlias keyProps["alias"]
             storePassword keyProps["storePass"]
@@ -83,15 +82,12 @@ android {
             zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release // package cmd：gradlew assembleRelease
-            //custom name of apk like (name + version + time + flavor).apk
+
             applicationVariants.all { variant ->
-                if (variant.buildType.name.equals('release')) {
-                    variant.outputs.each { output ->
-                        def outputFile = output.outputFile
-                        if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                            def fileName = "smart_v${defaultConfig.versionName}_${releaseTime()}_${variant.flavorName}.apk"
-                            output.outputFile = new File(outputFile.parent, fileName)
-                        }
+                variant.outputs.all {
+                    if (variant.buildType.name.equals('release')) {
+                        def fileName = "smart_v${defaultConfig.versionName}_${releaseTime()}_${variant.flavorName}.apk"
+                        outputFileName = fileName
                     }
                 }
             }
@@ -102,17 +98,17 @@ android {
     }
     //配置产品风格信息
     productFlavors {
-        Anzhi {}
-        Baidu {}
-        Huawei {}
-        Meizu {}
-        Vivo {}
-        Wandoujia {}
-        _360 {}
-        Tencent {}
-        PP {}
-        Xiaomi {}
-        Oppo {}
+//        Anzhi {}
+//        Baidu {}
+//        Huawei {}
+//        Meizu {}
+//        Vivo {}
+//        Wandoujia {}
+//        _360 {}
+//        Tencent {}
+//        PP {}
+//        Xiaomi {}
+//        Oppo {}
     }
     //设置测试相关属性
     testOptions {}
@@ -132,8 +128,8 @@ android {
     }
     //设置编译相关属性
     compileOptions {
-        sourceCompatibility rootProject.ext.android.javaVersion
-        sourceCompatibility rootProject.ext.android.javaVersion
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
     }
     //设置APK包相关属性
     packagingOptions { //排除干扰打包项 -> 搭建Espresso步骤2
@@ -148,90 +144,90 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
-    buildToolsVersion '25.0.3'
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     def presentationDependencies = rootProject.ext.presentationDependencies
     def developmentDebugDependencies = rootProject.ext.developmentDebugDependencies
     def developmentReleaseDependencies = rootProject.ext.developmentReleaseDependencies
     //Support
-    compile presentationDependencies.libSupportV13
-    compile presentationDependencies.libSupportAppcompat
-    compile presentationDependencies.libSupportDesign
-    compile presentationDependencies.libSupportCardView
-    compile presentationDependencies.libSupportPalette
-    compile presentationDependencies.libSupportRecyclerview
+//    implementation presentationDependencies.libSupportV13
+    implementation presentationDependencies.libSupportAppcompat
+    implementation presentationDependencies.libSupportDesign
+    implementation presentationDependencies.libSupportCardView
+    implementation presentationDependencies.libSupportPalette
+    implementation presentationDependencies.libSupportRecyclerview
     //OkHttp
-    //    compile presentationDependencies.libOkHttp
-    //    compile presentationDependencies.libOkHttpLoggingInterceptor
-    //    compile presentationDependencies.libStetho
-    //    compile presentationDependencies.libOkStetho
+    //    implementation presentationDependencies.libOkHttp
+    //    implementation presentationDependencies.libOkHttpLoggingInterceptor
+    //    implementation presentationDependencies.libStetho
+    //    implementation presentationDependencies.libOkStetho
     //Chuck
-    //    debugCompile presentationDependencies.libChuck
-    //    releaseCompile presentationDependencies.libChuckNoOp
+    //    debugImplementation presentationDependencies.libChuck
+    //    releaseImplementation presentationDependencies.libChuckNoOp
     //Retrofit
-    //    compile presentationDependencies.libRetrofit
-    //    compile presentationDependencies.libRetrofitConverterGson
-    //    compile presentationDependencies.libRetrofitAdapterRxJava
+    //    implementation presentationDependencies.libRetrofit
+    //    implementation presentationDependencies.libRetrofitConverterGson
+    //    implementation presentationDependencies.libRetrofitAdapterRxJava
     //ButterKnife
-    compile presentationDependencies.libButterKnife
-    apt presentationDependencies.libButterKnifeCompiler
+    implementation presentationDependencies.libButterKnife
+    annotationProcessor presentationDependencies.libButterKnifeCompiler
     //Rx
-    //    compile presentationDependencies.libRxAndroid
-    //    compile presentationDependencies.libRxJava
+    //    implementation presentationDependencies.libRxAndroid
+    //    implementation presentationDependencies.libRxJava
     //Dagger
-    //    compile presentationDependencies.libAnnotationApi
-    //    compile presentationDependencies.libDagger
+    //    implementation presentationDependencies.libAnnotationApi
+    //    implementation presentationDependencies.libDagger
     //    apt presentationDependencies.libDaggerCompiler
     //otto
-    //    compile presentationDependencies.libOtto
+    //    implementation presentationDependencies.libOtto
     //fresco
-    //        compile presentationDependencies.libFresco
-    //        compile presentationDependencies.libFrescoImagePipeLine
-    //        compile presentationDependencies.libFrescoGif
+    //        implementation presentationDependencies.libFresco
+    //        implementation presentationDependencies.libFrescoImagePipeLine
+    //        implementation presentationDependencies.libFrescoGif
     //app custom dependencies
-    //    compile presentationDependencies.libAutoLayout
-    //    compile presentationDependencies.libSlider
+    //    implementation presentationDependencies.libAutoLayout
+    //    implementation presentationDependencies.libSlider
     //file downloader
-    //    compile presentationDependencies.libFileDownloader
+    //    implementation presentationDependencies.libFileDownloader
     //Logger
-    //    compile presentationDependencies.libLogger
+    //    implementation presentationDependencies.libLogger
     //leakcanary
-    debugCompile developmentDebugDependencies.libLeakCanary
-    releaseCompile developmentReleaseDependencies.libLeakCanary
-    compile project(':i-carlib')
-    compile files('libs/Amap_2DMap_V4.2.0_20170209.jar')
-    compile files('libs/umeng-analytics-v6.0.9.jar')
+//    debugImplementation developmentDebugDependencies.libLeakCanary
+//    releaseImplementation developmentReleaseDependencies.libLeakCanary
+    implementation project(':i-carlib')
+    implementation files('libs/Amap_2DMap_V4.2.0_20170209.jar')
+//    implementation files('libs/umeng-analytics-v6.0.9.jar')
     //widget
     //noinspection GradleCompatible
-    compile files('libs/nineoldandroids-library-2.4.0.jar')
-    compile('com.github.hotchemi:permissionsdispatcher:2.4.0') {
+    implementation files('libs/nineoldandroids-library-2.4.0.jar')
+    implementation('com.github.hotchemi:permissionsdispatcher:2.4.0') {
         exclude module: 'support-v13'
     }
-    compile files('libs/AMap_Location_V3.3.0_20170118.jar')
+    implementation files('libs/AMap_Location_V3.3.0_20170118.jar')
     //noinspection GradleCompatible
-    //compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
-    compile files('libs/AMap3DMap_6.2.0_AMapNavi_6.1.0_20180427.jar')
-    compile files('libs/Msc.jar')
-    compile project(':zxing')
-    compile files('libs/commons-lang.jar')
-    compile 'com.android.support:support-vector-drawable:25.3.1'
-    compile 'com.daimajia.numberprogressbar:library:1.4@aar'
-    compile 'com.just.agentweb:agentweb:2.0.1'
-    compile 'com.lcodecorex:tkrefreshlayout:1.0.7'
-    compile 'com.github.PingerOne:SwipeRecyclerView:1.0.5'
-    compile 'pub.devrel:easypermissions:0.2.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.alibaba:fastjson:1.1.56.android'
-    compile 'com.yanzhenjie:permission:2.0.0-rc4'
-    testCompile 'junit:junit:4.12'
-    compile 'com.orhanobut:dialogplus:1.11@aar'
-    compile files('libs/pinyin4j-2.5.0.jar')
+    //implementation 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
+    implementation files('libs/AMap3DMap_6.2.0_AMapNavi_6.1.0_20180427.jar')
+    implementation files('libs/Msc.jar')
+    implementation project(':zxing')
+    implementation files('libs/commons-lang.jar')
+    implementation 'com.android.support:support-vector-drawable:25.3.1'
+    implementation 'com.daimajia.numberprogressbar:library:1.4@aar'
+    implementation 'com.just.agentweb:agentweb:2.0.1'
+    implementation 'com.lcodecorex:tkrefreshlayout:1.0.7'
+    implementation 'com.github.PingerOne:SwipeRecyclerView:1.0.5'
+    implementation 'pub.devrel:easypermissions:0.2.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.alibaba:fastjson:1.1.56.android'
+    implementation 'com.yanzhenjie:permission:2.0.0-rc4'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.orhanobut:dialogplus:1.11@aar'
+    implementation files('libs/pinyin4j-2.5.0.jar')
 }
 
 static def releaseTime() {

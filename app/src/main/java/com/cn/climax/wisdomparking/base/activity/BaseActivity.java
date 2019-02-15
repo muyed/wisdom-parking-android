@@ -20,7 +20,6 @@ import com.cn.climax.i_carlib.okgo.app.AppActivityManager;
 import com.cn.climax.i_carlib.okgo.app.apiUtils.ApiParamsKey;
 import com.cn.climax.i_carlib.util.SharedUtil;
 import com.lzy.okgo.OkGo;
-import com.sina.weibo.sdk.ApiUtils;
 
 import java.util.List;
 

@@ -6,7 +6,6 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v13.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -138,7 +137,7 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
     private void initThirdPlatform() {
         PlatformConfig.setWeixin(WX_APPID);
         PlatformConfig.setQQ(QQ_APPID);
-        PlatformConfig.setSinaWB(SINA_WB_APPKEY);
+//        PlatformConfig.setSinaWB(SINA_WB_APPKEY);
 
         mSocialApi = SocialApi.get(getApplicationContext());
     }
@@ -268,7 +267,7 @@ public class LoginActivity extends BaseSwipeBackActivity implements View.OnClick
                     mSocialApi.doOauthVerify(LoginActivity.this, PlatformType.QQ, new MyAuthListener());
                     break;
                 case R.id.ivSinaLogin: //新浪登录
-                    mSocialApi.doOauthVerify(LoginActivity.this, PlatformType.SINA_WB, new MyAuthListener());
+//                    mSocialApi.doOauthVerify(LoginActivity.this, PlatformType.SINA_WB, new MyAuthListener());
                     break;
             }
         }

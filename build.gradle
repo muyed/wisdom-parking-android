@@ -2,27 +2,49 @@
 apply from: "config.gradle"
 
 buildscript {
-    ext.kotlin_version = '1.2.31'
+//    ext.kotlin_version = '1.2.31'
     repositories {
+        google()
         jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-        classpath 'com.novoda:bintray-release:0.4.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'
+//        classpath 'com.novoda:bintray-release:0.4.0'
+//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
 
 allprojects {
+//    repositories {
+//        jcenter()
+//        maven { url "https://jitpack.io" }
+//        maven { url "https://dl.bintray.com/thelasterstar/maven" }
+////        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+////        mavenCentral()
+//    }
+
     repositories {
+        google()
         jcenter()
-        maven { url "https://jitpack.io" }
-        maven { url "https://dl.bintray.com/thelasterstar/maven" }
-//        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-//        mavenCentral()
+        mavenCentral()
+        //Add the JitPack repository
+        maven {
+            url "https://jitpack.io"
+        }
+        maven {
+            url "https://maven.google.com"
+        }
+        maven {
+            url "http://maven.aliyun.com/nexus/content/repositories/releases/"
+        }
+        //支持arr包
+        flatDir {
+            dirs 'libs'
+        }
     }
 }
 
@@ -31,7 +53,7 @@ task clean(type: Delete) {
 }
 
 ext {
-    minSdkVersion = 15
+    minSdkVersion = 21
     targetSdkVersion = 27
     compileSdkVersion = 27
     buildToolsVersion = '27.0.3'
@@ -43,5 +65,5 @@ ext.deps = [
         robolectric       : 'org.robolectric:robolectric:3.3',
         mockito           : "org.mockito:mockito-core:2.8.9",
         supportAnnotations: "com.android.support:support-annotations:27.1.0",
-        kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//        kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 ]

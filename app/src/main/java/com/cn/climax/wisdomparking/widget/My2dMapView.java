@@ -43,7 +43,8 @@ public class My2dMapView extends MapView {
                     @Override
                     public void onGlobalLayout() {
                         ViewGroup child = (ViewGroup) getChildAt(0); //地图框架
-                        child.getChildAt(2).setVisibility(View.GONE); //logo
+                        if (child != null && child.getChildAt(2) != null)
+                            child.getChildAt(2).setVisibility(View.GONE); //logo
 //                        child.getChildAt(7).setVisibility(View.GONE); //缩放
                     }
                 }

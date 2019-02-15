@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.support.multidex.MultiDex;
 
 import com.cn.climax.i_carlib.logcat.ZLog;
 
@@ -31,6 +32,13 @@ public abstract class BaseApplication extends Application {
         instance = this;
         this.initConfig();
         this.initThirdParty();
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        // 依赖宝的同时在工程中引入了多个第三方jar包，导致调用的方法数超过了android设定的65536个（DEX 64K problem），进而导致dex无法生成，也就无法生成APK文件。
+        MultiDex.install(this);
     }
 
     /**

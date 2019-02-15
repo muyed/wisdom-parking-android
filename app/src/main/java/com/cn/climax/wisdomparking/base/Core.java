@@ -2,7 +2,6 @@ package com.cn.climax.wisdomparking.base;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.multidex.MultiDex;
 
 import com.cn.climax.i_carlib.okgo.app.AppControl;
 import com.cn.climax.i_carlib.okgo.app.BaseApplication;
@@ -80,13 +79,6 @@ public class Core extends BaseApplication {
 //        RongIM.registerMessageTemplate(new MLConfirmOrderMessageProvider()); //确认订单 消息模板
 //
 //        setIExtensionModule();
-    }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        // 依赖宝的同时在工程中引入了多个第三方jar包，导致调用的方法数超过了android设定的65536个（DEX 64K problem），进而导致dex无法生成，也就无法生成APK文件。
-        MultiDex.install(this);
     }
 
     @Override

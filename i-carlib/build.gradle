@@ -47,7 +47,7 @@ android {
         }
 
         // Move the tests to tests/java, tests/res, etc...
-        instrumentTest.setRoot('tests')
+//        instrumentTest.setRoot('tests')
 
         // Move the build types to build-types/<type>
         // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
@@ -58,51 +58,39 @@ android {
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
     }
-    buildToolsVersion '25.0.3'
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
     def dataDependencies = rootProject.ext.dataDependencies
-    compile dataDependencies.libSupportAppcompat
-    compile dataDependencies.libSupportV4
-    compile dataDependencies.libSupportDesign
-    compile dataDependencies.libSupportRecyclerview
-    compile dataDependencies.libGson
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    api dataDependencies.libSupportAppcompat
+    api dataDependencies.libSupportV4
+    api dataDependencies.libSupportDesign
+    api dataDependencies.libSupportRecyclerview
+    api dataDependencies.libGson
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
-    compile files('libs/asmack.jar')
-    compile files('libs/libammsdk.jar')
-    compile files('libs/qq_mta-sdk-1.6.2.jar')
-    //    compile files('libs/weiboSDKCore_3.1.4.jar')
+    testImplementation 'junit:junit:4.12'
+    implementation files('libs/asmack.jar')
+    implementation files('libs/libammsdk.jar')
+    implementation files('libs/qq_mta-sdk-1.6.2.jar')
+    //    implementation files('libs/weiboSDKCore_3.1.4.jar')
     //noinspection GradleCompatible
-    compile 'com.android.support:multidex:1.0.1'
-    compile 'com.lzy.net:okgo:2.1.4'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.youth.banner:banner:1.4.10'
-    compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:1.4.0'
-    compile 'com.sina.weibo.sdk:core:1.0.0:openDefaultRelease@aar'
-    compile 'com.mcxiaoke.volley:library:1.0.19'
-    compile 'com.squareup.retrofit2:retrofit:2.2.0'
-    //    compile files('libs/alipaySdk-20170922.jar')
-    //    compile files('libs/alipay-sdk-java20180309170622.jar')
-    compile files('libs/bcprov-jdk15on-1.54.jar')
-    //    compile files('libs/alipaySdk-20170309.jar')
-//    compile files('libs/alipaySDK-20150818.jar')
-    compile files('libs/alipaySdk-20180403.jar')
+    implementation 'com.android.support:multidex:1.0.2'
+    api 'com.lzy.net:okgo:2.1.4'
+    api 'com.github.bumptech.glide:glide:3.7.0'
+    api 'com.youth.banner:banner:1.4.10'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:1.4.0'
+//    implementation 'com.sina.weibo.sdk:core:1.0.0:openDefaultRelease@aar'
+    api 'com.mcxiaoke.volley:library:1.0.19'
+    api 'com.squareup.retrofit2:retrofit:2.2.0'
+    //    implementation files('libs/alipaySdk-20170922.jar')
+    //    implementation files('libs/alipay-sdk-java20180309170622.jar')
+    api files('libs/bcprov-jdk15on-1.54.jar')
+    //    implementation files('libs/alipaySdk-20170309.jar')
+//    implementation files('libs/alipaySDK-20150818.jar')
+    api files('libs/alipaySdk-20180403.jar')
 }
 
-//task nativeLibsToJar(type: Zip, description: 'create a jar archive of the native libs') {
-//    destinationDir file("$buildDir/native-libs")
-//    baseName 'native-libs'
-//    extension 'jar'
-//    from fileTree(dir: 'libs', include: '**/*.so')
-//    from fileTree(dir: 'renderscript', include: '**/*.so')
-//    into 'lib/'
-//}
-
-//tasks.withType(JavaCompile) {
-//    compileTask -> compileTask.dependsOn(nativeLibsToJar)
-//}

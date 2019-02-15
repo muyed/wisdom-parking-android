@@ -15,7 +15,7 @@ public class PlatformConfig {
         configs.put(PlatformType.WEIXIN_CIRCLE, new Weixin(PlatformType.WEIXIN_CIRCLE));
         configs.put(PlatformType.QQ, new QQ(PlatformType.QQ));
         configs.put(PlatformType.QZONE, new QQ(PlatformType.QZONE));
-        configs.put(PlatformType.SINA_WB, new SinaWB(PlatformType.SINA_WB));
+//        configs.put(PlatformType.SINA_WB, new SinaWB(PlatformType.SINA_WB));
     }
 
     public interface Platform {
@@ -93,8 +93,8 @@ public class PlatformConfig {
      * @param appKey
      */
     public static void setSinaWB(String appKey) {
-        SinaWB sinaWB = (SinaWB)configs.get(PlatformType.SINA_WB);
-        sinaWB.appKey = appKey;
+//        SinaWB sinaWB = (SinaWB)configs.get(PlatformType.SINA_WB);
+//        sinaWB.appKey = appKey;
     }
 
     public static Platform getPlatformConfig(PlatformType platformType) {
